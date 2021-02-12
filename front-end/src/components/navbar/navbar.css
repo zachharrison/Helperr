@@ -1,3 +1,12 @@
-.nav {
-  color: chocolate;
+.navbar {
+  background-color: #a0c5e7;
+}
+
+.logo {
+  font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  background: #f9cb9c;
+  padding: 3px;
+  font-size: 24px;
+  border: 2px solid black;
+  position: relative;
 }
