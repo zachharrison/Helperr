@@ -42,7 +42,7 @@ const libraries = ["places"];
 
 function Map() {
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyCEZ-0oQHICHO4_cJRbiNBiE8CcdsOi89Q",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
     libraries,
   });
   const [markers, setMarkers] = useState([]);
