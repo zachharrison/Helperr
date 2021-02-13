@@ -1,11 +1,15 @@
 import Navbar from "./navbar/Navbar";
-import Map from "./map/Map";
+import MapContainer from "./container/MapContainer";
+import JobsContainer from "./container/JobsContainer";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <Map />
+      <div className="containers">
+        <MapContainer />
+        <JobsContainer />
+      </div>
     </div>
   );
 }
