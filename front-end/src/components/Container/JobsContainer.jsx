@@ -1,4 +1,4 @@
-import Map from "../map";
+import Map from "../Map";
 
 function JobsContainer() {
   return (
