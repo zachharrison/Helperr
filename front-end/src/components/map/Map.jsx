@@ -23,8 +23,8 @@ import {
 import "@reach/combobox/styles.css";
 
 const mapContainerStyle = {
-  width: "50vw",
-  height: "70vh",
+  width: "85%",
+  height: "75%",
 };
 
 const center = {
@@ -73,7 +73,7 @@ function Map() {
   if (!isLoaded) return "Loading maps";
 
   return (
-    <div>
+    <div className="google-map">
       <Search panTo={panTo} />
       <Locate panTo={panTo} />
       <GoogleMap
@@ -132,7 +132,7 @@ function Locate({ panTo }) {
         );
       }}
     >
-      <img src="my-location.jpg" alt="my location" />
+      <img className="find-me" src="my-location.jpg" alt="my location" />
     </button>
   );
 }
@@ -164,6 +164,7 @@ function Search({ panTo }) {
       }}
     >
       <ComboboxInput
+        className="address-search"
         value={value}
         onChange={(event) => {
           setValue(event.target.value);
