@@ -1,6 +1,6 @@
 import mapStyles from "../../mapStyles";
 import { useCallback, useRef, useState } from "react";
-import './map.css'
+import './Map.css'
 
 import {
   GoogleMap,

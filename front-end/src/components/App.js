@@ -1,4 +1,4 @@
-import Navbar from "./navbar/Navbar";
+import Navbar from "./Navbar/Navbar";
 import Map from "./Map";
 import { Input } from "@material-ui/core";
 import Jobs from "./Jobs";
