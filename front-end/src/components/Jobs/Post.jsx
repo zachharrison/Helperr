@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, setState, React } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -8,9 +8,20 @@ import Select from "@material-ui/core/Select";
 import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import clsx from "clsx";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import "./Jobs.css";
+import 'date-fns';
+
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+
 
 const categories = [
   {
@@ -50,14 +61,32 @@ const categories = [
     name: "Miscellaneous",
   },
 ];
+/* 
+function onPin() {
+  if (name === "" && interviewer === null) {
+    setError("Student name and Instructor selection cannot be blank");
+    return;
+  } else if (name === "") {
+    setError("Student name cannot be blank");
+    return;
+  } else if (interviewer === null) {
+    setError("Instructor selection cannot be blank");
+    return;
+  }
+  setError("");
+  props.onSave(name, interviewer);
+} */
 
-export default function Post() {
+export default function Post(props/*, setJobView */) {
   const classes = useStyles();
-  const [age, setAge] = React.useState("");
+  const [hourly, setHourly] = useState();
+  const handleChange = (event) => {setHourly(event.target.value)}
+  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
   };
+
 
   return (
     <>
@@ -65,14 +94,15 @@ export default function Post() {
       <form action="">
         <TextField
           id="standard-textarea"
-          style={{ margin: 8 }}
+          style={{ width: 450, margin: 8 }}
           label="Job"
           placeholder="What do you need help with?"
           fullWidth
         />
         <TextField
           id="standard-textarea"
-          style={{ margin: 8 }}
+          value={props.state.per_hr}
+          style={{ width: 450, margin: 8 }}
           label="Description"
           placeholder="Details of your job"
           fullWidth
@@ -80,15 +110,16 @@ export default function Post() {
         />
         <Autocomplete
           id="combo-box-demo"
+          value={props.state.category}
           options={categories}
-          disableCloseOnSelect
           getOptionLabel={(option) => option.name}
-          style={{ width: 300, margin: 8 }}
+          style={{ width: 355, margin: 8 }}
           renderInput={(params) => <TextField {...params} label="Category" />}
         />
         <TextField
           label="Price"
           id="standard-start-adornment"
+          value={props.state.price}
           style={{ margin: 8 }}
           InputProps={{
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
@@ -99,15 +130,21 @@ export default function Post() {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={age}
+            value={props.state.per_hr}
             onChange={handleChange}
           >
             <MenuItem value={"hourly"}>Hourly</MenuItem>
             <MenuItem value={"perJob"}>Per Job</MenuItem>
           </Select>
         </FormControl>
-        <Button variant="contained" color="primary">
-          Primary
+        <br />
+        <Button
+          onClick={props.setJobView}
+          variant="contained"
+          color="primary"
+          style={{ margin: 8 }}
+        >
+          HELP ME!!!
         </Button>
       </form>
     </>

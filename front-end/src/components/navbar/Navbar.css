@@ -1,5 +1,10 @@
+.MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters {
+  height: 10vh;
+}
+
 .navbar {
   background-color: #a0c5e7;
+
 }
 
 .logo {

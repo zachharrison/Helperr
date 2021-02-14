@@ -1,13 +1,16 @@
 .map-container {
+  box-sizing: border-box;
   display: flex;
-  width: 50vw;
+  width: 60vw;
   height: 90vh;
   border: 3px solid #ffb663;
+  padding: 20px
 }
 
 .jobs-container {
+  box-sizing: border-box;
   border: 3px solid #02539b;
-  width: 50vw;
+  width: 40vw;
   height: 90vh;
   padding-right: 20px
 }

@@ -1,3 +1,5 @@
+import "./Jobs.css";
+
 export default function All() {
   return (
     <>
