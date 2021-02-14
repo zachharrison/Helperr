@@ -12,7 +12,7 @@ export default function useAppData() {
     offers,
     messages,
     reviews,
-    jobView: "ALL",
+    jobView: "POST",
   });
 
   const setJobView = (jobView) => setState({ ...state, jobView });

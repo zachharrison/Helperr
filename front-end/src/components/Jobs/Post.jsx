@@ -1,4 +1,4 @@
-import { useState, setState, React } from "react";
+import { useState, setState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -12,16 +12,15 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import "./Jobs.css";
-import 'date-fns';
+import "date-fns";
 
-import Grid from '@material-ui/core/Grid';
-import DateFnsUtils from '@date-io/date-fns';
+import Grid from "@material-ui/core/Grid";
+import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
   KeyboardDatePicker,
-} from '@material-ui/pickers';
-
+} from "@material-ui/pickers";
 
 const categories = [
   {
@@ -76,18 +75,30 @@ function onPin() {
   setError("");
   props.onSave(name, interviewer);
 } */
+function onSubmit() {
 
-export default function Post(props/*, setJobView */) {
+}
+export default function Post(props) {
   const classes = useStyles();
   const [hourly, setHourly] = useState();
-  const handleChange = (event) => {setHourly(event.target.value)}
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const handleChange = (event) => {
+    setHourly(event.target.value);
+  };
+  const [selectedStartDate, setSelectedStartDate] = useState(
+    new Date("2021-02-18T21:11:54")
+  );
+  const [selectedEndDate, setSelectedEndDate] = useState(
+    new Date("2021-02-18T21:11:54")
+  );
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleStartDateChange = (date) => {
+    setSelectedStartDate(date);
   };
 
-
+  const handleEndDateChange = (date) => {
+    setSelectedEndDate(date);
+  };
+  // `https://maps.googleapis.com/maps/api/geocode/json?address=${post_code},+CA&key=${process.env.REACT_APP_GOOGLE_API_KEY}`
   return (
     <>
       <span>Post Help Request</span>
@@ -101,26 +112,35 @@ export default function Post(props/*, setJobView */) {
         />
         <TextField
           id="standard-textarea"
-          value={props.state.per_hr}
+          // value={props.state.per_hr}
           style={{ width: 450, margin: 8 }}
           label="Description"
           placeholder="Details of your job"
           fullWidth
           multiline
+          rowsMax="10"
         />
         <Autocomplete
           id="combo-box-demo"
           value={props.state.category}
           options={categories}
           getOptionLabel={(option) => option.name}
-          style={{ width: 355, margin: 8 }}
+          style={{ width: 450, margin: 8 }}
           renderInput={(params) => <TextField {...params} label="Category" />}
+        />
+          <TextField
+          id="standard-textarea"
+          // value={props.state.per_hr}
+          style={{ width: 450, margin: 8 }}
+          label="Location"
+          placeholder="Enter Postal Code"
+          fullWidth
         />
         <TextField
           label="Price"
           id="standard-start-adornment"
           value={props.state.price}
-          style={{ margin: 8 }}
+          style={{ width: 315, margin: 8 }}
           InputProps={{
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
@@ -138,8 +158,95 @@ export default function Post(props/*, setJobView */) {
           </Select>
         </FormControl>
         <br />
+        <form className={classes.container} noValidate>
+          <TextField
+            id="datetime-local"
+            style={{ width: 145 }}
+            label="Start Date"
+            // type="datetime-local"
+            type="date"
+            defaultValue="--"
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            id="time"
+            style={{ width: 55 }}
+            label="Time"
+            type="time"
+            defaultValue="--"
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{
+              step: 300, // 5 min
+            }}
+          />
+          <TextField
+            id="datetime-local"
+            style={{ width: 145 }}
+            label="End Date"
+            // type="datetime-local"
+            type="date"
+            defaultValue="--"
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <TextField
+            id="time"
+            style={{ width: 55 }}
+            label="Time"
+            type="time"
+            defaultValue="--"
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{
+              step: 300, // 5 min
+            }}
+          />
+        </form>
+
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container justify="space-around">
+            <KeyboardDatePicker
+              disableToolbar
+              variant="inline"
+              format="MM/dd/yyyy"
+              margin="normal"
+              id="date-picker-inline"
+              label="Start Date"
+              value={selectedStartDate}
+              onChange={handleStartDateChange}
+              KeyboardButtonProps={{
+                "aria-label": "change date",
+              }}
+            />
+            <KeyboardDatePicker
+              disableToolbar
+              variant="inline"
+              format="MM/dd/yyyy"
+              margin="normal"
+              id="date-picker-inline"
+              label="End Date"
+              value={selectedEndDate}
+              onChange={handleEndDateChange}
+              KeyboardButtonProps={{
+                "aria-label": "change date",
+              }}
+            />
+          </Grid>
+        </MuiPickersUtilsProvider>
+
+        <br />
         <Button
-          onClick={props.setJobView}
+          onClick={onSubmit}
           variant="contained"
           color="primary"
           style={{ margin: 8 }}
