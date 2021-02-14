@@ -1,6 +1,7 @@
+import './map.css'
 export default function Locate(props) {
   return (
-    <button
+    <button className="find-me"
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
@@ -13,7 +14,7 @@ export default function Locate(props) {
         );
       }}
     >
-      <img className="find-me" src="my-location.jpg" alt="my location" />
+      <img src="my-location.jpg" alt="my location" />
     </button>
   );
 }

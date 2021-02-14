@@ -1,22 +1,22 @@
 import mapStyles from "../../mapStyles";
 import { useCallback, useRef, useState } from "react";
+import './map.css'
 
 import {
   GoogleMap,
-  Marker,
-  InfoWindow,
   useJsApiLoader,
 } from "@react-google-maps/api";
 
 import "@reach/combobox/styles.css";
 
-import Locate from "./Locate";
 import Search from "./Search";
+import Locate from "./Locate";
 import Markers from "./Markers";
 
+
 const mapContainerStyle = {
-  width: "85%",
-  height: "75%",
+  width: "100%",
+  height: "100%",
 };
 
 const center = {
@@ -32,10 +32,9 @@ const options = {
 
 const libraries = ["places"];
 
-function Map() {
+export default function Map() {
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-    libraries,
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY, libraries,
   });
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(); 
@@ -67,8 +66,6 @@ function Map() {
 
   return (
     <div className="google-map">
-      <Search panTo={panTo} />
-      <Locate panTo={panTo} />
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={12}
@@ -77,6 +74,8 @@ function Map() {
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
+        <Search panTo={panTo} />
+        <Locate panTo={panTo} />
         <Markers
           markers={markers}
           setSelected={setSelected}
@@ -86,5 +85,3 @@ function Map() {
     </div>
   );
 }
-
-export default Map;

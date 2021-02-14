@@ -1,0 +1,19 @@
+.map-container {
+  display: flex;
+  width: 50vw;
+  height: 90vh;
+  border: 3px solid #ffb663;
+}
+
+.jobs-container {
+  border: 3px solid #02539b;
+  width: 50vw;
+  height: 90vh;
+  padding-right: 20px
+}
+
+.containers {
+  display: flex;
+}
+
+
