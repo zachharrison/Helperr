@@ -1,13 +1,13 @@
-import { useState, setState } from "react";
+import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
+// import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import Input from "@material-ui/core/Input";
+// import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import clsx from "clsx";
+// import clsx from "clsx";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -18,7 +18,7 @@ import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
+  // KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 
@@ -75,9 +75,7 @@ function onPin() {
   setError("");
   props.onSave(name, interviewer);
 } */
-function onSubmit() {
 
-}
 export default function Post(props) {
   const classes = useStyles();
   const [hourly, setHourly] = useState();
@@ -90,6 +88,25 @@ export default function Post(props) {
   const [selectedEndDate, setSelectedEndDate] = useState(
     new Date("2021-02-18T21:11:54")
   );
+  const [jobTitle, setJobTitle] = useState("");
+  const [jobDescription, setJobDescription] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [jobCategory, setJobCategory] = useState("");
+  const [price, setPrice] = useState("");
+
+  function onSubmit() {
+    const job = {
+      jobTitle,
+      jobDescription,
+      postalCode,
+      jobCategory,
+      price,
+      hourly,
+      selectedStartDate,
+      selectedEndDate,
+    };
+    console.log(job);
+  }
 
   const handleStartDateChange = (date) => {
     setSelectedStartDate(date);
@@ -104,52 +121,62 @@ export default function Post(props) {
       <span>Post Help Request</span>
       <form action="">
         <TextField
-          id="standard-textarea"
+          id="job-title"
           style={{ width: 450, margin: 8 }}
           label="Job"
           placeholder="What do you need help with?"
           fullWidth
+          onChange={(event) => setJobTitle(event.target.value)}
         />
         <TextField
-          id="standard-textarea"
-          // value={props.state.per_hr}
+          id="job-descripton"
+          name="job-descripton"
           style={{ width: 450, margin: 8 }}
           label="Description"
           placeholder="Details of your job"
           fullWidth
           multiline
           rowsMax="10"
+          onChange={(event) => setJobDescription(event.target.value)}
         />
         <Autocomplete
-          id="combo-box-demo"
-          value={props.state.category}
+          onChange={(event, value) => setJobCategory(value ? value.name : "")}
+          id="category-search"
+          name="category-search"
           options={categories}
           getOptionLabel={(option) => option.name}
           style={{ width: 450, margin: 8 }}
           renderInput={(params) => <TextField {...params} label="Category" />}
         />
-          <TextField
-          id="standard-textarea"
-          // value={props.state.per_hr}
+        <TextField
+          id="postal-code"
+          name="postal-code"
           style={{ width: 450, margin: 8 }}
           label="Location"
           placeholder="Enter Postal Code"
           fullWidth
+          onChange={(event) => setPostalCode(event.target.value)}
         />
         <TextField
           label="Price"
-          id="standard-start-adornment"
+          id="price"
+          name="price"
           value={props.state.price}
           style={{ width: 315, margin: 8 }}
           InputProps={{
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
+          onChange={(event) => setPrice(event.target.value)}
         />
-        <FormControl className={classes.formControl}>
-          <InputLabel id="demo-simple-select-label">Pay Type</InputLabel>
+        <FormControl
+          className={classes.formControl}
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <InputLabel id="pay-type">Pay Type</InputLabel>
           <Select
             labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            id="pay-type-select"
+            name="pay-type-select"
             value={props.state.per_hr}
             onChange={handleChange}
           >
@@ -158,69 +185,74 @@ export default function Post(props) {
           </Select>
         </FormControl>
         <br />
-        <form className={classes.container} noValidate>
-          <TextField
-            id="datetime-local"
-            style={{ width: 145 }}
-            label="Start Date"
-            // type="datetime-local"
-            type="date"
-            defaultValue="--"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-          <TextField
-            id="time"
-            style={{ width: 55 }}
-            label="Time"
-            type="time"
-            defaultValue="--"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{
-              step: 300, // 5 min
-            }}
-          />
-          <TextField
-            id="datetime-local"
-            style={{ width: 145 }}
-            label="End Date"
-            // type="datetime-local"
-            type="date"
-            defaultValue="--"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-          <TextField
-            id="time"
-            style={{ width: 55 }}
-            label="Time"
-            type="time"
-            defaultValue="--"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{
-              step: 300, // 5 min
-            }}
-          />
-        </form>
+
+        {/* <TextField
+          id="datetime-start-date"
+          name="datetime-start-date"
+          style={{ width: 145 }}
+          label="Start Date"
+          // type="datetime-local"
+          type="date"
+          defaultValue="--"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <TextField
+          id="datetime-time-start-date"
+          name="datetime-time-start-date"
+          style={{ width: 55 }}
+          label="Time"
+          type="time"
+          defaultValue="--"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          inputProps={{
+            step: 300, // 5 min
+          }}
+        />
+        <TextField
+          id="datetime-end-date"
+          name="datetime-end-date"
+          style={{ width: 145 }}
+          label="End Date"
+          // type="datetime-local"
+          type="date"
+          defaultValue="--"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <TextField
+          id="datetime-time-end-date"
+          name="datetime-time-end-date"
+          style={{ width: 55 }}
+          label="Time"
+          type="time"
+          defaultValue="--"
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          inputProps={{
+            step: 300, // 5 min
+          }}
+        /> */}
 
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container justify="space-around">
             <KeyboardDatePicker
+              style={{ width: 150, margin: 8 }}
               disableToolbar
               variant="inline"
               format="MM/dd/yyyy"
               margin="normal"
-              id="date-picker-inline"
+              id="date-picker-start-date"
+              name="date-picker-start-date"
               label="Start Date"
               value={selectedStartDate}
               onChange={handleStartDateChange}
@@ -229,11 +261,13 @@ export default function Post(props) {
               }}
             />
             <KeyboardDatePicker
+              style={{ width: 150, margin: 8, marginLeft: 30 }}
               disableToolbar
               variant="inline"
               format="MM/dd/yyyy"
               margin="normal"
-              id="date-picker-inline"
+              id="date-picker-end-date"
+              name="date-picker-end-date"
               label="End Date"
               value={selectedEndDate}
               onChange={handleEndDateChange}

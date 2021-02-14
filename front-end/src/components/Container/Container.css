@@ -3,20 +3,19 @@
   display: flex;
   width: 60vw;
   height: 90vh;
-  border: 3px solid #ffb663;
-  padding: 20px
+  /* border: 3px solid #ffb663; */
+  padding-right: 50px;
+  padding-top: 30px;
 }
 
 .jobs-container {
   box-sizing: border-box;
-  border: 3px solid #02539b;
+  /* border: 3px solid #02539b; */
   width: 40vw;
   height: 90vh;
-  padding-right: 20px
+  padding-right: 20px;
 }
 
 .containers {
   display: flex;
 }
-
-
