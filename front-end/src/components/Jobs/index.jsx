@@ -1,21 +1,21 @@
+// import { useState } from "react";
 import Post from "./Post";
 import Find from "./Find";
 import All from "./All";
-import Error from "./Error";
-import Status from "./Status";
-import useVisualMode from "../helpers/hooks/useVisualMode";
+// import Error from "./Error";
+// import Status from "./Status";
+// import useVisualMode from "../helpers/hooks/useVisualMode";
 import JobToggle from "../JobToggle/JobToggle";
-import { useState } from "react";
 import "./Jobs.css";
 import Chat from "../Chat/Chat";
-import { Transition } from "react-transition-group";
+// import { Transition } from "react-transition-group";
 
-const POST = "POST";
-const FIND = "FIND";
-const ALL = "ALL";
-const SAVING = "SAVING";
-const ERROR_SAVE = "ERROR_SAVE";
-const ERROR_DELETE = "ERROR_DELETE";
+// const POST = "POST";
+// const FIND = "FIND";
+// const ALL = "ALL";
+// const SAVING = "SAVING";
+// const ERROR_SAVE = "ERROR_SAVE";
+// const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Jobs(props) {
   // const [jobView, setJobView] = useState(ALL)

@@ -1,8 +1,6 @@
 import "./Jobs.css";
 
-/* eslint-disable no-use-before-define */
-import { useState } from "react";
-import Chip from "@material-ui/core/Chip";
+// import { useState } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -19,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Find() {
   const classes = useStyles();
-  const [selectedCategories, setSelectedCategories] = useState("");
+  // const [selectedCategories, setSelectedCategories] = useState("");
 
   return (
     <>
