@@ -4,23 +4,21 @@ import All from "./All";
 import Error from "./Error";
 import Status from "./Status";
 import useVisualMode from "../helpers/hooks/useVisualMode";
-import JobToggle from "../JobToggle/JobToggle"
+import JobToggle from "../JobToggle/JobToggle";
 import { useState } from "react";
 import "./Jobs.css";
-
+import Chat from "../Chat/Chat";
 
 const POST = "POST";
 const FIND = "FIND";
 const ALL = "ALL";
-const SAVING = "SAVING"
+const SAVING = "SAVING";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
-
 
 export default function Jobs(props) {
   // const [jobView, setJobView] = useState(ALL)
   // const { mode, transition, back } = useVisualMode(ALL);
-
 
   // function save(job) {
   //   const newJob = {
@@ -40,17 +38,20 @@ export default function Jobs(props) {
   //   };
   //   // transition(SAVING);
   //   props
-  //     .savePin(props.id) 
+  //     .savePin(props.id)
   //     .then(() => setJobView(ALL))
   //     // .catch((error) => transition(ERROR_SAVE, true));
   // }
 
   return (
     <>
-    <JobToggle state={props.state} setJobView={props.setJobView}/>
-      {props.state.jobView === "POST" && <Post state={props.state}/>}
-      {props.state.jobView === "FIND" && <Find/>}
+      <JobToggle state={props.state} setJobView={props.setJobView} />
+      {props.state.jobView === "POST" && <Post state={props.state} />}
+      {props.state.jobView === "FIND" && <Find />}
       {props.state.jobView === "ALL" && <All />}
+      {props.state.jobView === "MESSAGE" && (
+        <Chat messages={props.messages} sendMessage={props.sendMessage} />
+      )}
     </>
   );
 }

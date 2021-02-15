@@ -1,12 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Navbar from "./navbar/Navbar";
+import { useEffect, useRef, useState } from "react";
 import Navbar from "./Navbar/Navbar";
 import Map from "./Map";
 import { Input } from "@material-ui/core";
-import { io } from 'socket.io-client'
+import { io } from "socket.io-client";
 import Jobs from "./Jobs";
 import Chat from "./Chat/Chat";
-const _socket = io.connect('http://localhost:8080', { transports: ["websocket"] });
+import fixtures from "./helpers/__mocks__/axios";
+import useAppData from "./helpers/hooks/useAppData";
+const _socket = io.connect("http://localhost:8080", {
+  transports: ["websocket"],
+});
 
 const useChatSocket = () => {
   const [messages, setMessages] = useState([]);
@@ -14,32 +17,24 @@ const useChatSocket = () => {
   const socket = socketRef.current;
 
   const sendMessage = ({ name, message }) => {
-    return socket.emit('message', { name, message });
+    return socket.emit("message", { name, message });
   };
 
   useEffect(() => {
     socket.removeAllListeners();
-    socket.on('message', (message) => {
+    socket.on("message", (message) => {
       setMessages([...messages, message]);
     });
   });
-  return { messages, sendMessage};
+  return { messages, sendMessage };
 };
 
-
-
 export default function App() {
-
   const { messages, sendMessage } = useChatSocket();
-
-  import { useState } from "react";
-
-  import fixtures from "./helpers/__mocks__/axios";
-  import useAppData from "./helpers/hooks/useAppData";
 
   // fixtures has: users, jobs, categories, offers, messages, reviews
   // const { users, jobs, categories, offers, messages, reviews } = fixtures;
-  const {state, setJobView } = useAppData()
+  const { state, setJobView, setPostCode } = useAppData();
 
   // const [state, setState] = useState({
   //   users,
@@ -60,9 +55,13 @@ export default function App() {
         </div>
 
         <div className="jobs-container">
-          <Jobs />
-          <Chat messages={messages} sendMessage={sendMessage}/>
-          <Jobs state={state} setJobView={setJobView}/>
+          <Jobs
+            state={state}
+            setJobView={setJobView}
+            messages={messages}
+            sendMessage={sendMessage}
+          />
+          {/* <Chat messages={messages} sendMessage={sendMessage} /> */}
         </div>
       </div>
     </div>

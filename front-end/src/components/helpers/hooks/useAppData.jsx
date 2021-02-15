@@ -13,9 +13,11 @@ export default function useAppData() {
     messages,
     reviews,
     jobView: "FIND",
+    postcode: "",
   });
 
   const setJobView = (jobView) => setState({ ...state, jobView });
+  const setPostCode = (postCode) => setState({ ...state, postCode });
 
   useEffect(() => {
     Promise.all([
@@ -38,5 +40,5 @@ export default function useAppData() {
     });
   }, []);
 
-  return { state, setJobView };
+  return { state, setJobView, setPostCode };
 }
