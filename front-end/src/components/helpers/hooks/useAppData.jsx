@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import fixtures from "../__mocks__/axios";
 import axios from "axios";
 
-
 export default function useAppData() {
   const { users, jobs, categories, offers, messages, reviews } = fixtures;
-  
+
   const [state, setState] = useState({
     users,
     jobs,
@@ -13,7 +12,7 @@ export default function useAppData() {
     offers,
     messages,
     reviews,
-    jobView: "POST",
+    jobView: "FIND",
   });
 
   const setJobView = (jobView) => setState({ ...state, jobView });
@@ -40,4 +39,4 @@ export default function useAppData() {
   }, []);
 
   return { state, setJobView };
-};
+}
