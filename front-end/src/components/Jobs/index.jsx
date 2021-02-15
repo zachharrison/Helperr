@@ -8,6 +8,7 @@ import JobToggle from "../JobToggle/JobToggle";
 import { useState } from "react";
 import "./Jobs.css";
 import Chat from "../Chat/Chat";
+import { Transition } from "react-transition-group";
 
 const POST = "POST";
 const FIND = "FIND";

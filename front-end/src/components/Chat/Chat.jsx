@@ -29,7 +29,7 @@ const Chat = ({ messages, sendMessage }) => {
 
   return (
     <div className="card">
-      <form onSubmit={onMessageSubmit}>
+      <form className="chat-form" onSubmit={onMessageSubmit}>
         <h1>Messenger</h1>
         <div className="name-field">
           <TextField

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Navbar from "./Navbar/Navbar";
 import Map from "./Map";
+import ChatNav from "./Chat/ChatNav";
 import { Input } from "@material-ui/core";
 import { io } from "socket.io-client";
 import Jobs from "./Jobs";
@@ -36,16 +37,6 @@ export default function App() {
   // const { users, jobs, categories, offers, messages, reviews } = fixtures;
   const { state, setJobView, setPostCode } = useAppData();
 
-  // const [state, setState] = useState({
-  //   users,
-  //   jobs,
-  //   categories,
-  //   offers,
-  //   messages,
-  //   reviews,
-  //   jobView: "ALL"
-  // });
-
   return (
     <div className="App">
       <Navbar />
@@ -62,6 +53,7 @@ export default function App() {
             sendMessage={sendMessage}
           />
           {/* <Chat messages={messages} sendMessage={sendMessage} /> */}
+          <ChatNav setJobView={setJobView} />
         </div>
       </div>
     </div>
