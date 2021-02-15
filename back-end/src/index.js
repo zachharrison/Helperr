@@ -1,18 +1,11 @@
 const PORT = process.env.PORT || 8001;
 const ENV = require("./environment");
-
 const app = require("./application")('development');
-// const http = require('http').createServer(app)
 const server = require("http").Server(app);
 const express = require('express')()
-
 const io = require('socket.io')(server);
-// const cors = require('cors');
-// const index = require("./routes/index");
-
 let sockets = [];
 express.use(app);
-// express.use(cors());
 
 io.on("connection", socket => {
   sockets.push(socket);
