@@ -17,6 +17,7 @@ const offers = require("./routes/offers")
 const messages = require("./routes/messages")
 const reviews = require("./routes/reviews")
 
+
 function read(file) {
   return new Promise((resolve, reject) => {
     fs.readFile(
@@ -48,6 +49,10 @@ module.exports = function application(
   app.use("/api", reviews(db));
   app.use("/api", offers(db));
 
+  app.get("/", (req, res) => {
+    res.send({ response: "I am alive" }).status(200);
+  });
+
   if (ENV === "development" || ENV === "test") {
     Promise.all([
       read(path.resolve(__dirname, `db/schema/create.sql`)),
@@ -74,3 +79,4 @@ module.exports = function application(
 
   return app;
 };
+

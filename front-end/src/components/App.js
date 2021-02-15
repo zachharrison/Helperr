@@ -7,7 +7,7 @@ import Jobs from "./Jobs";
 import Chat from "./Chat/Chat";
 import fixtures from "./helpers/__mocks__/axios";
 import useAppData from "./helpers/hooks/useAppData";
-const _socket = io.connect("http://localhost:8080", {
+const _socket = io.connect("http://localhost:8001", {
   transports: ["websocket"],
 });
 
