@@ -1,5 +1,5 @@
 import { Marker, InfoWindow } from "@react-google-maps/api";
-import './map.css'
+import './Map.css'
 
 export default function Markers({markers, selected, setSelected}) {
 

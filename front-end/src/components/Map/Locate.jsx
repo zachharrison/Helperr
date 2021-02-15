@@ -1,4 +1,4 @@
-import './map.css'
+import './Map.css'
 export default function Locate(props) {
   return (
     <button className="find-me"
