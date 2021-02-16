@@ -45,7 +45,7 @@ export default function App() {
   });
 
   const panTo1 = function (lat, lng) {
-    setCoord(lat, lng);
+    setCoord({ lat, lng });
   };
 
   // fixtures has: users, jobs, categories, offers, messages, reviews
@@ -62,6 +62,7 @@ export default function App() {
             setPostCode={setPostCode}
             setJobView={setJobView}
             panTo1={panTo1}
+            setCoord={setCoord}
             coord={coord}
           />
         </div>
@@ -73,6 +74,7 @@ export default function App() {
             messages={messages}
             sendMessage={sendMessage}
             panTo1={panTo1}
+            setCoord={setCoord}
             coord={coord}
           />
           {/* {<ChatList messages={messages} sendMessage={sendMessage} /> } */}

@@ -123,8 +123,10 @@ export default function Post(props) {
   }, []);
 
   const panTo = useCallback(({ lat, lng }) => {
-    mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
+    if (mapRef.current) {
+      mapRef.current.panTo({ lat, lng });
+      mapRef.current.setZoom(14);
+    }
   }, []);
 
   // `https://maps.googleapis.com/maps/api/geocode/json?address=${post_code},+CA&key=${process.env.REACT_APP_GOOGLE_API_KEY}`
@@ -169,7 +171,11 @@ export default function Post(props) {
           fullWidth
           onChange={(event) => setPostalCode(event.target.value)}
         /> */}
-        <Places panTo1={props.panTo1} />
+        <Places
+          panTo1={props.panTo1}
+          setCoord={props.setCoord}
+          coord={props.coord}
+        />
         <TextField
           label="Price"
           id="price"

@@ -65,13 +65,14 @@ export default function Map(props) {
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
-    console.log("current", mapRef.current);
     mapRef.current = map;
   }, []);
 
   const panTo = useCallback(({ lat, lng }) => {
-    mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
+    if (mapRef.current) {
+      mapRef.current.panTo({ lat, lng });
+      mapRef.current.setZoom(14);
+    }
   }, []);
 
   useEffect(() => {
@@ -80,7 +81,7 @@ export default function Map(props) {
     console.log("THE LNG: ", props.coord.lng);
     const lat = props.coord.lat;
     const lng = props.coord.lng;
-    // panTo({ lat, lng });
+    panTo({ lat, lng });
   }, [props.coord]);
 
   if (loadError) return "Error loading maps";
@@ -97,7 +98,7 @@ export default function Map(props) {
         onLoad={onMapLoad}
       >
         {/*     <Search panTo={panTo} /> */}
-        <Places panTo1={props.panTo1} />
+        {/* <Places panTo1={props.panTo1} /> */}
         <Locate panTo={panTo} />
         <Markers
           markers={markers}

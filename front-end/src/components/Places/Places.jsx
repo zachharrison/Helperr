@@ -47,10 +47,10 @@ export default function Places(props) {
     mapRef.current = map;
   }, []);
 
-  // const panTo = useCallback(({ lat, lng }) => {
-  //   mapRef.current.panTo({ lat, lng });
-  //   mapRef.current.setZoom(14);
-  // }, []);
+  const panTo = useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(14);
+  }, []);
 
   if (typeof window !== "undefined" && !loaded.current) {
     if (!document.querySelector("#google-maps")) {
@@ -129,14 +129,13 @@ export default function Places(props) {
         onChange={async (event, newValue) => {
           setOptions(newValue ? [newValue, ...options] : options);
           const address = newValue.description;
-          console.log("fullAddress =>", address);
           try {
             const results = await getGeocode({ address });
-            console.log("results =>", lat, lng);
             const { lat, lng } = await getLatLng(results[0]);
+            props.setCoord({ lat: lat, lng: lng });
             panTo({ lat, lng });
           } catch (error) {
-            console.log("Error!");
+            console.log("Error!", error);
           }
           setValue(newValue);
         }}
