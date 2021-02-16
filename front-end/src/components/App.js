@@ -7,6 +7,7 @@ import { io } from "socket.io-client";
 import Jobs from "./Jobs";
 import Chat from "./Chat/Chat";
 import fixtures from "./helpers/__mocks__/axios";
+import ChatList from './Chat/ChatList'
 import useAppData from "./helpers/hooks/useAppData";
 const _socket = io.connect("http://localhost:8001", {
   transports: ["websocket"],
@@ -52,7 +53,7 @@ export default function App() {
             messages={messages}
             sendMessage={sendMessage}
           />
-          {/* <Chat messages={messages} sendMessage={sendMessage} /> */}
+          {/* {<ChatList messages={messages} sendMessage={sendMessage} /> } */}
           <ChatNav setJobView={setJobView} />
         </div>
       </div>

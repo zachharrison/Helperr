@@ -23,6 +23,6 @@ io.on("connection", socket => {
   });
 });
 
-server.listen(PORT, () => {
+server.listen(8001, () => {
   console.log(`Listening on port ${PORT} in ${ENV} mode.`);
 });
