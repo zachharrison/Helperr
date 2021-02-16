@@ -14,6 +14,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import Places from "../Places/Places";
 import "./Jobs.css";
 import "date-fns";
+import { Marker, InfoWindow } from "@react-google-maps/api";
 
 import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
@@ -162,20 +163,11 @@ export default function Post(props) {
           style={{ width: 450, margin: 8 }}
           renderInput={(params) => <TextField {...params} label="Category" />}
         />
-        {/*         <TextField
-          id="postal-code"
-          name="postal-code"
-          style={{ width: 450, margin: 8 }}
-          label="Location"
-          placeholder="Enter Postal Code"
-          fullWidth
-          onChange={(event) => setPostalCode(event.target.value)}
-        /> */}
-        <Places
-          panTo1={props.panTo1}
-          setCoord={props.setCoord}
-          coord={props.coord}
-        />
+        <Places setCoord={props.setCoord} coord={props.coord} />
+
+        {/* <Marker position={{ lat: props.coord.lng, lng: props.coord.lng }} /> */}
+        <script>console.log(props.coord.lng)</script>
+
         <TextField
           label="Price"
           id="price"

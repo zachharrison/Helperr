@@ -1,9 +1,7 @@
 import { Marker, InfoWindow } from "@react-google-maps/api";
-import './Map.css'
+import "./Map.css";
 
-export default function Markers({markers, selected, setSelected}) {
-
-
+export default function Markers({ markers, selected, setSelected, coord }) {
   return (
     <>
       {markers.map((marker) => (
@@ -21,6 +19,12 @@ export default function Markers({markers, selected, setSelected}) {
           }}
         />
       ))}
+      <Marker
+        position={{ lat: coord.lat, lng: coord.lng }}
+        onChange={() => {
+          setSelected(coord);
+        }}
+      />
 
       {selected ? (
         <InfoWindow
@@ -30,7 +34,7 @@ export default function Markers({markers, selected, setSelected}) {
           }}
         >
           <div>
-            <h2>A Job!</h2>
+            <h2>Job Title</h2>
           </div>
         </InfoWindow>
       ) : null}

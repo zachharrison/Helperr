@@ -76,9 +76,7 @@ export default function Map(props) {
   }, []);
 
   useEffect(() => {
-    console.log("You are hitting useEffect");
-    console.log("THE LAT: ", props.coord.lat);
-    console.log("THE LNG: ", props.coord.lng);
+    console.log("LAT: ", props.coord.lat, "LNG: ", props.coord.lng);
     const lat = props.coord.lat;
     const lng = props.coord.lng;
     panTo({ lat, lng });
@@ -97,13 +95,12 @@ export default function Map(props) {
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
-        {/*     <Search panTo={panTo} /> */}
-        {/* <Places panTo1={props.panTo1} /> */}
         <Locate panTo={panTo} />
         <Markers
           markers={markers}
           setSelected={setSelected}
           selected={selected}
+          coord={props.coord}
         />
       </GoogleMap>
     </div>

@@ -60,7 +60,6 @@ export default function Jobs(props) {
             <div>
               <Post
                 state={props.state}
-                panTo1={props.panTo1}
                 setCoord={props.setCoord}
                 coord={props.coord}
               />
