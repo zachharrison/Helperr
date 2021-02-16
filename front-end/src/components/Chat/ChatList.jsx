@@ -33,8 +33,9 @@ export default function ChatList(props) {
         {
           conversations.map(conversation =>
             <ChatListItem
-              key={conversation.name}
-              data={conversation}
+            key={conversation.name}
+            data={conversation}
+            setJobView={props.setJobView}
             />
           )
         }

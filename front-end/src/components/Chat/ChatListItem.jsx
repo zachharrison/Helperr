@@ -11,7 +11,9 @@ export default function ChatListItem(props) {
     const { name, text } = props.data;
 
     return (
-      <div className="conversation-list-item">
+      <div className="conversation-list-item" onClick={() => {
+        props.setJobView("CHAT");
+      }}>
         <div className="conversation-info">
           <h1 className="conversation-title">{ name }</h1>
           <p className="conversation-snippet">{ text }</p>

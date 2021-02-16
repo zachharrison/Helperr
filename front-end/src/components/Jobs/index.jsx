@@ -52,8 +52,9 @@ export default function Jobs(props) {
       {props.state.jobView === "FIND" && <Find />}
       {props.state.jobView === "ALL" && <All />}
       {props.state.jobView === "MESSAGE" && (
-        <ChatList messages={props.messages} sendMessage={props.sendMessage} />
+        <ChatList messages={props.messages} sendMessage={props.sendMessage} setJobView={props.setJobView}/>
       )}
+      {props.state.jobView === "CHAT" && <Chat />}
     </>
   );
 }

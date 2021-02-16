@@ -18,6 +18,7 @@ export default function useAppData() {
 
   const setJobView = (jobView) => setState({ ...state, jobView });
   const setPostCode = (postCode) => setState({ ...state, postCode });
+  const setChatView = (chatView) => setState({ ...state, chatView });
 
   useEffect(() => {
     Promise.all([
@@ -40,5 +41,5 @@ export default function useAppData() {
     });
   }, []);
 
-  return { state, setJobView, setPostCode };
+  return { state, setJobView, setPostCode, setChatView };
 }
