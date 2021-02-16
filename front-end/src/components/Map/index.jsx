@@ -86,8 +86,8 @@ export default function Map(props) {
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
-{/*         <Search panTo={panTo} /> */}
-        <Places panTo={panTo}/>
+        {/*         <Search panTo={panTo} /> */}
+        <Places panTo={panTo} />
         <Locate panTo={panTo} />
         <Markers
           markers={markers}
