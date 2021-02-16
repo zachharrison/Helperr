@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import "./Chat.css";
+// import { io } from "socket.io-client";
 
 const Chat = ({ messages, sendMessage }) => {
   const [state, setState] = useState({ message: "", name: "" });
