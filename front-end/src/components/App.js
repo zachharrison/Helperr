@@ -37,7 +37,7 @@ export default function App() {
 
   // fixtures has: users, jobs, categories, offers, messages, reviews
   // const { users, jobs, categories, offers, messages, reviews } = fixtures;
-  const { state, setJobView, setMessageView } = useAppData();
+  const { state, setJobView, setMessageView, getConversations } = useAppData();
 
   return (
     <div className="App">
@@ -54,6 +54,7 @@ export default function App() {
             messages={messages}
             sendMessage={sendMessage}
             setMessageView={setMessageView}
+            getConversations={getConversations}
           />
           <ChatNav setJobView={setJobView} />
         </div>

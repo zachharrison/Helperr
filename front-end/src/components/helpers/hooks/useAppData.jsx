@@ -3,22 +3,22 @@ import fixtures from "../__mocks__/axios";
 import axios from "axios";
 
 export default function useAppData() {
-  const { users, jobs, categories, offers, messages, reviews } = fixtures;
-
+  const { users, jobs, categories, offers, reviews, chats } = fixtures;
+  
   const [state, setState] = useState({
     users,
     jobs,
     categories,
     offers,
-    messages,
+    chats,
     reviews,
     jobView: "FIND",
     postcode: "",
   });
-
-  const setJobView = (jobView) => setState({ ...state, jobView });
-  const setPostCode = (postCode) => setState({ ...state, postCode });
-  const setChatView = (chatView) => setState({ ...state, chatView });
+  
+  // useEffect(() => {
+  //   getConversations()
+  // },[])
 
   useEffect(() => {
     Promise.all([
@@ -41,5 +41,28 @@ export default function useAppData() {
     });
   }, []);
 
-  return { state, setJobView, setPostCode, setChatView };
+  const setJobView = (jobView) => setState({ ...state, jobView });
+  const setPostCode = (postCode) => setState({ ...state, postCode });
+  const setChatView = (chatView) => setState({ ...state, chatView });
+
+
+
+  const getConversations = () => {
+    const currentUser = "Natasha"
+    const usersConversations = chats.filter(chat => chat.userName === currentUser)
+    
+    const chatData = usersConversations.map(chat => {
+      const otherUser = chat.messages.find(message => message.name !== currentUser);
+      const name = otherUser.name;
+      const message = chat.messages[chat.messages.length - 1].message;
+      const chatObj = { name, message };
+
+      return chatObj
+
+    })
+
+    return chatData;
+
+  }
+  return { state, setJobView, setPostCode, setChatView, getConversations };
 }
