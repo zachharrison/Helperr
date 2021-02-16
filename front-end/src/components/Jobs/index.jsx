@@ -9,6 +9,8 @@ import JobToggle from "../JobToggle/JobToggle";
 import "./Jobs.css";
 import Chat from "../Chat/Chat";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import ChatList from "../Chat/ChatList";
+// import { Transition } from "react-transition-group";
 
 // const POST = "POST";
 // const FIND = "FIND";

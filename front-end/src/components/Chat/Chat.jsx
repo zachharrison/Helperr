@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import "./Chat.css";
 // import { io } from "socket.io-client";
@@ -26,37 +26,14 @@ const Chat = ({ messages, sendMessage }) => {
       </div>
     ));
   };
+ 
 
-  return (
-    <div className="card">
-      <form className="chat-form" onSubmit={onMessageSubmit}>
-        <h1>Messenger</h1>
-        <div className="name-field">
-          <TextField
-            name="name"
-            onChange={(e) => onTextChange(e)}
-            value={state.name}
-            label="Name"
-          />
-        </div>
-        <div>
-          <TextField
-            name="message"
-            onChange={(e) => onTextChange(e)}
-            value={state.message}
-            id="outlined-multiline-static"
-            variant="outlined"
-            label="Message"
-          />
-        </div>
-        <button>Send Message</button>
-      </form>
-      <div className="render-chat">
-        <h1>Chat Log</h1>
-        {renderChat()}
+    return (
+      <div className="App">
       </div>
-    </div>
-  );
-};
+    );
+}
+ 
+
 
 export default Chat;

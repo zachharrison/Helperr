@@ -12,7 +12,7 @@ export default function useAppData() {
     offers,
     messages,
     reviews,
-    jobView: "FIND",
+    jobView: "POST",
     postcode: "",
   });
 

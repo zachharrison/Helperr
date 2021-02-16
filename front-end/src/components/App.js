@@ -4,10 +4,11 @@ import Map from "./Map";
 import ChatNav from "./Chat/ChatNav";
 import { io } from "socket.io-client";
 import Jobs from "./Jobs";
+import Chat from "./Chat/Chat";
+import fixtures from "./helpers/__mocks__/axios";
+import ChatList from "./Chat/ChatList";
 import useAppData from "./helpers/hooks/useAppData";
-// import { Input } from "@material-ui/core";
-// import Chat from "./Chat/Chat";
-// import fixtures from "./helpers/__mocks__/axios";
+import { Input } from "@material-ui/core";
 const _socket = io.connect("http://localhost:8001", {
   transports: ["websocket"],
 });
@@ -35,14 +36,18 @@ export default function App() {
 
   // fixtures has: users, jobs, categories, offers, messages, reviews
   // const { users, jobs, categories, offers, messages, reviews } = fixtures;
-  const { state, setJobView } = useAppData();
+  const { state, setJobView, setPostCode } = useAppData();
 
   return (
     <div className="App">
       <Navbar />
       <div className="containers">
         <div className="map-container">
-          <Map />
+          <Map
+            state={state}
+            setPostCode={setPostCode}
+            setJobView={setJobView}
+          />
         </div>
 
         <div className="jobs-container">
@@ -52,7 +57,7 @@ export default function App() {
             messages={messages}
             sendMessage={sendMessage}
           />
-          {/* <Chat messages={messages} sendMessage={sendMessage} /> */}
+          {/* {<ChatList messages={messages} sendMessage={sendMessage} /> } */}
           <ChatNav setJobView={setJobView} />
         </div>
       </div>

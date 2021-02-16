@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -11,6 +11,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import Places from "../Places/Places"
 import "./Jobs.css";
 import "date-fns";
 
@@ -21,6 +22,7 @@ import {
   // KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
+
 
 const categories = [
   {
@@ -115,6 +117,17 @@ export default function Post(props) {
   const handleEndDateChange = (date) => {
     setSelectedEndDate(date);
   };
+
+  const mapRef = useRef();
+  const onMapLoad = useCallback((map) => {
+    mapRef.current = map;
+  }, []);
+
+  const panTo = useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(14);
+  }, []);
+
   // `https://maps.googleapis.com/maps/api/geocode/json?address=${post_code},+CA&key=${process.env.REACT_APP_GOOGLE_API_KEY}`
   return (
     <>
@@ -148,7 +161,7 @@ export default function Post(props) {
           style={{ width: 450, margin: 8 }}
           renderInput={(params) => <TextField {...params} label="Category" />}
         />
-        <TextField
+{/*         <TextField
           id="postal-code"
           name="postal-code"
           style={{ width: 450, margin: 8 }}
@@ -156,7 +169,8 @@ export default function Post(props) {
           placeholder="Enter Postal Code"
           fullWidth
           onChange={(event) => setPostalCode(event.target.value)}
-        />
+        /> */}
+        <Places panTo={panTo}/>
         <TextField
           label="Price"
           id="price"
@@ -186,7 +200,7 @@ export default function Post(props) {
         </FormControl>
         <br />
 
-        {/* <TextField
+        <TextField
           id="datetime-start-date"
           name="datetime-start-date"
           style={{ width: 145 }}
@@ -241,9 +255,9 @@ export default function Post(props) {
           inputProps={{
             step: 300, // 5 min
           }}
-        /> */}
+        />
 
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container justify="space-around">
             <KeyboardDatePicker
               style={{ width: 150, margin: 8 }}
@@ -276,7 +290,7 @@ export default function Post(props) {
               }}
             />
           </Grid>
-        </MuiPickersUtilsProvider>
+        </MuiPickersUtilsProvider> */}
 
         <br />
         <Button
