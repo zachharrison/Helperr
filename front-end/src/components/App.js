@@ -8,7 +8,7 @@ import Chat from "./Chat/Chat";
 import fixtures from "./helpers/__mocks__/axios";
 import ChatList from "./Chat/ChatList";
 import useAppData from "./helpers/hooks/useAppData";
-import { Input } from "@material-ui/core";
+// import { Input } from "@material-ui/core";
 
 const _socket = io.connect("http://localhost:8001", {
   transports: ["websocket"],

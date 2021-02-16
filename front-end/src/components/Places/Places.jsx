@@ -109,68 +109,74 @@ export default function Places(props) {
   }, [value, inputValue, fetch]);
 
   return (
-    <Autocomplete
-      id="google-map-demo"
-      style={{ width: 300 }}
-      getOptionLabel={(option) =>
-        typeof option === "string" ? option : option.description
-      }
-      filterOptions={(x) => x}
-      options={options}
-      autoComplete
-      includeInputInList
-      filterSelectedOptions
-      getOptionSelected={(option, value) => option.place_id === value.place_id}
-      value={value}
-      onChange={async (event, newValue) => {
-        setOptions(newValue ? [newValue, ...options] : options);
-        const address = newValue.description;
-        try {
-          const results = await getGeocode({ address });
-          const { lat, lng } = await getLatLng(results[0]);
-          console.log("coords ======>", lat, lng);
-          props.panTo1({ lat, lng });
-        } catch (error) {
-          console.log("Error!", error);
+    console.log("options b4 autocomplete", options),
+    (
+      <Autocomplete
+        id="google-map-demo"
+        style={{ width: 300 }}
+        getOptionLabel={(option) =>
+          typeof option === "string" ? option : option.description
         }
-        setValue(newValue);
-      }}
-      onInputChange={(event, newInputValue) => {
-        setInputValue(newInputValue);
-      }}
-      renderInput={(params) => (
-        <TextField {...params} label="Address" variant="outlined" fullWidth />
-      )}
-      renderOption={(option) => {
-        const matches =
-          option.structured_formatting.main_text_matched_substrings;
-        const parts = parse(
-          option.structured_formatting.main_text,
-          matches.map((match) => [match.offset, match.offset + match.length])
-        );
+        filterOptions={(x) => x}
+        options={options}
+        autoComplete
+        includeInputInList
+        filterSelectedOptions
+        getOptionSelected={(option, value) =>
+          option.place_id === value.place_id
+        }
+        value={value}
+        onChange={async (event, newValue) => {
+          setOptions(newValue ? [newValue, ...options] : options);
+          const address = newValue.description;
+          console.log("fullAddress =>", address);
+          try {
+            const results = await getGeocode({ address });
+            console.log("results =>", lat, lng);
+            const { lat, lng } = await getLatLng(results[0]);
+            panTo({ lat, lng });
+          } catch (error) {
+            console.log("Error!");
+          }
+          setValue(newValue);
+        }}
+        onInputChange={(event, newInputValue) => {
+          setInputValue(newInputValue);
+        }}
+        renderInput={(params) => (
+          <TextField {...params} label="Address" variant="outlined" fullWidth />
+        )}
+        renderOption={(option) => {
+          const matches =
+            option.structured_formatting.main_text_matched_substrings;
+          const parts = parse(
+            option.structured_formatting.main_text,
+            matches.map((match) => [match.offset, match.offset + match.length])
+          );
 
-        return (
-          <Grid container alignItems="center">
-            <Grid item>
-              <LocationOnIcon className={classes.icon} />
-            </Grid>
-            <Grid item xs>
-              {parts.map((part, index) => (
-                <span
-                  key={index}
-                  style={{ fontWeight: part.highlight ? 700 : 400 }}
-                >
-                  {part.text}
-                </span>
-              ))}
+          return (
+            <Grid container alignItems="center">
+              <Grid item>
+                <LocationOnIcon className={classes.icon} />
+              </Grid>
+              <Grid item xs>
+                {parts.map((part, index) => (
+                  <span
+                    key={index}
+                    style={{ fontWeight: part.highlight ? 700 : 400 }}
+                  >
+                    {part.text}
+                  </span>
+                ))}
 
-              <Typography variant="body2" color="textSecondary">
-                {option.structured_formatting.secondary_text}
-              </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  {option.structured_formatting.secondary_text}
+                </Typography>
+              </Grid>
             </Grid>
-          </Grid>
-        );
-      }}
-    />
+          );
+        }}
+      />
+    )
   );
 }

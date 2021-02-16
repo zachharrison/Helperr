@@ -11,7 +11,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Places from "../Places/Places"
+import Places from "../Places/Places";
 import "./Jobs.css";
 import "date-fns";
 
@@ -22,7 +22,6 @@ import {
   // KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-
 
 const categories = [
   {
@@ -161,7 +160,7 @@ export default function Post(props) {
           style={{ width: 450, margin: 8 }}
           renderInput={(params) => <TextField {...params} label="Category" />}
         />
-{/*         <TextField
+        {/*         <TextField
           id="postal-code"
           name="postal-code"
           style={{ width: 450, margin: 8 }}
@@ -170,7 +169,7 @@ export default function Post(props) {
           fullWidth
           onChange={(event) => setPostalCode(event.target.value)}
         /> */}
-        <Places panTo1={props.panTo1}/>
+        <Places panTo1={props.panTo1} />
         <TextField
           label="Price"
           id="price"
@@ -203,57 +202,25 @@ export default function Post(props) {
         <TextField
           id="datetime-start-date"
           name="datetime-start-date"
-          style={{ width: 145 }}
+          style={{ width: 218 }}
           label="Start Date"
-          // type="datetime-local"
-          type="date"
+          type="datetime-local"
           defaultValue="--"
           className={classes.textField}
           InputLabelProps={{
             shrink: true,
-          }}
-        />
-        <TextField
-          id="datetime-time-start-date"
-          name="datetime-time-start-date"
-          style={{ width: 55 }}
-          label="Time"
-          type="time"
-          defaultValue="--"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          inputProps={{
-            step: 300, // 5 min
           }}
         />
         <TextField
           id="datetime-end-date"
           name="datetime-end-date"
-          style={{ width: 145 }}
+          style={{ width: 218 }}
           label="End Date"
-          // type="datetime-local"
-          type="date"
+          type="datetime-local"
           defaultValue="--"
           className={classes.textField}
           InputLabelProps={{
             shrink: true,
-          }}
-        />
-        <TextField
-          id="datetime-time-end-date"
-          name="datetime-time-end-date"
-          style={{ width: 55 }}
-          label="Time"
-          type="time"
-          defaultValue="--"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          inputProps={{
-            step: 300, // 5 min
           }}
         />
 
