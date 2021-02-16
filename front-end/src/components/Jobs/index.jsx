@@ -8,6 +8,7 @@ import All from "./All";
 import JobToggle from "../JobToggle/JobToggle";
 import "./Jobs.css";
 import Chat from "../Chat/Chat";
+import ChatList from '../Chat/ChatList'
 // import { Transition } from "react-transition-group";
 
 // const POST = "POST";
@@ -51,7 +52,7 @@ export default function Jobs(props) {
       {props.state.jobView === "FIND" && <Find />}
       {props.state.jobView === "ALL" && <All />}
       {props.state.jobView === "MESSAGE" && (
-        <Chat messages={props.messages} sendMessage={props.sendMessage} />
+        <ChatList messages={props.messages} sendMessage={props.sendMessage} />
       )}
     </>
   );
