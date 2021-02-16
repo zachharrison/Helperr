@@ -14,9 +14,13 @@ export default function useAppData() {
     reviews,
     jobView: "POST",
     postcode: "",
+    // lat: 49.26800377076573,
+    // lng: -123.10571490809717,
   });
 
   const setJobView = (jobView) => setState({ ...state, jobView });
+  // const setLat = (lat) => setState({ ...state, lat });
+  // const setLng = (lng) => setState({ ...state, lng });
   const setPostCode = (postCode) => setState({ ...state, postCode });
 
   useEffect(() => {

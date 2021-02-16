@@ -48,7 +48,7 @@ export default function Jobs(props) {
   return (
     <>
       <JobToggle state={props.state} setJobView={props.setJobView} />
-      {props.state.jobView === "POST" && <Post state={props.state} />}
+      {props.state.jobView === "POST" && <Post state={props.state} panTo1={props.panTo1}/>}
       {props.state.jobView === "FIND" && <Find />}
       {props.state.jobView === "ALL" && <All />}
       {props.state.jobView === "MESSAGE" && (

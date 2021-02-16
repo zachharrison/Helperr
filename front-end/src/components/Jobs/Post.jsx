@@ -170,7 +170,7 @@ export default function Post(props) {
           fullWidth
           onChange={(event) => setPostalCode(event.target.value)}
         /> */}
-        <Places panTo={panTo}/>
+        <Places panTo1={props.panTo1}/>
         <TextField
           label="Price"
           id="price"

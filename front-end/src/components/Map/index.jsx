@@ -1,5 +1,5 @@
 import mapStyles from "../../mapStyles";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState, useEffect } from "react";
 import "./Map.css";
 
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
@@ -65,6 +65,7 @@ export default function Map(props) {
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
+    console.log("current", mapRef.current);
     mapRef.current = map;
   }, []);
 
@@ -72,6 +73,15 @@ export default function Map(props) {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
   }, []);
+
+  useEffect(() => {
+    console.log("You are hitting useEffect");
+    console.log("THE LAT: ", props.coord.lat);
+    console.log("THE LNG: ", props.coord.lng);
+    const lat = props.coord.lat;
+    const lng = props.coord.lng;
+    // panTo({ lat, lng });
+  }, [props.coord]);
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading maps";
@@ -86,8 +96,8 @@ export default function Map(props) {
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
-{/*         <Search panTo={panTo} /> */}
-        <Places panTo={panTo}/>
+        {/*     <Search panTo={panTo} /> */}
+        <Places panTo1={props.panTo1} />
         <Locate panTo={panTo} />
         <Markers
           markers={markers}
