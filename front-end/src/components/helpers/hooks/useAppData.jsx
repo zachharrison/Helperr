@@ -43,7 +43,7 @@ export default function useAppData() {
         categories: all[2].data,
         offers: all[3].data,
         reviews: all[4].data,
-        messages: all[4].data,
+        // messages: all[5].data,
       }));
     });
   }, []);
@@ -100,24 +100,10 @@ export default function useAppData() {
     }
   }
 
+  function postJob(job) {
+    return axios.put(`/api/jobs/`, job).then(setState({ ...state, job }));
+  }
 
   return { state, setJobView, setPostCode, getConversations, getMessages, setChat, setCurrentUser, removeCurrentUser, cookies, setMessages };
-  /*   function bookInterview(id, interview) {
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview },
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
 
-    const days = displaySpots(state.days, appointments);
-
-    return axios
-      .put(`/api/appointments/${id}`, appointment)
-      .then(setState({ ...state, days, appointments }));
-  } */
-
-  return { state, setJobView };
 }

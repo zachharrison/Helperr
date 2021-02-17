@@ -104,6 +104,7 @@ export default function App() {
             setCurrentUser={setCurrentUser} 
             removeCurrentUser={removeCurrentUser}
             setMessages={setMessages}
+            saveJob={saveJob}
           />
           <ChatNav setJobView={setJobView} />
         </div>

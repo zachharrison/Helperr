@@ -2,9 +2,6 @@
 import Post from "./Post";
 import Find from "./Find";
 import All from "./All";
-// import Error from "./Error";
-// import Status from "./Status";
-// import useVisualMode from "../helpers/hooks/useVisualMode";
 import JobToggle from "../JobToggle/JobToggle";
 import "./Jobs.css";
 import Chat from "../Chat/Chat";
@@ -12,9 +9,23 @@ import ChatList from '../Chat/ChatList'
 // import useAppData from "../helpers/hooks/useAppData"
 import { DomainPropTypes } from "@material-ui/pickers/constants/prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-// import { Transition } from "react-transition-group";
 import Login from '../Login/Login'
 import { useCookies, withCookies } from 'react-cookie'
+
+export default function Jobs(props) {
+    const [cookies] = useCookies()
+  function dropPin(job) {
+    const newJob = {
+      job,
+    };
+    props
+      .saveJob(props.id)
+      .then(() => props.setJobView("ALL"))
+      .catch((error) => console.log(error));
+  }
+
+// import { Transition } from "react-transition-group";
+
 
 // const POST = "POST";
 // const FIND = "FIND";
@@ -23,6 +34,7 @@ import { useCookies, withCookies } from 'react-cookie'
 // const ERROR_SAVE = "ERROR_SAVE";
 // const ERROR_DELETE = "ERROR_DELETE";
 
+<<<<<<< HEAD
 function Jobs(props) {
   const {
     state,
@@ -44,6 +56,10 @@ function Jobs(props) {
   // console.log('THIS IS THE SET CURRENT USER ', setCurrentUser)
   // console.log(props)
   // const [cookies] = useCookies()
+=======
+
+
+>>>>>>> e5232e45bb121d3b8a258ed41a20c718d3a381aa
 
   // const [jobView, setJobView] = useState(ALL)
   // const { mode, transition, back } = useVisualMode(ALL);
@@ -71,6 +87,7 @@ function Jobs(props) {
   //     // .catch((error) => transition(ERROR_SAVE, true));
   // }
 
+
   return (
     <>
       <JobToggle state={state} setJobView={setJobView} />
@@ -84,9 +101,16 @@ function Jobs(props) {
           >
             <div>
               <Post
+<<<<<<< HEAD
                 state={state}
                 setCoord={setCoord}
                 coord={coord}
+=======
+                state={props.state}
+                setCoord={props.setCoord}
+                coord={props.coord}
+                onSave={dropPin}
+>>>>>>> e5232e45bb121d3b8a258ed41a20c718d3a381aa
               />
             </div>
           </CSSTransition>
@@ -133,7 +157,7 @@ function Jobs(props) {
             in={state.jobView === "FIND"}
           >
             <div>
-              <Find />
+              <Find state={props.state} />
             </div>
           </CSSTransition>
         )}
@@ -166,6 +190,7 @@ function Jobs(props) {
   );
 }
 
+<<<<<<< HEAD
 export default Jobs;
 
 /* 
@@ -176,3 +201,5 @@ offers,
 messages,
 reviews,
 */
+=======
+>>>>>>> e5232e45bb121d3b8a258ed41a20c718d3a381aa

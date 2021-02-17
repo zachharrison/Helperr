@@ -1,9 +1,28 @@
-INSERT INTO users (name, avatar, email, password )
-VALUES ('BobTheBuilder', 'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/bob-the-builder.png?raw=true', 'Bob@BobsBuilding.com', 'password'),
-('Mrs.Doubtfire', 'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/mrs-doubtfire.png?raw=true', 'robinwilliams@ripthegoat.com', 'password'),
-('Harry n'' Marv', 'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/the-wet-bantis-homealone.png?raw=true', 'harrynmarv@notascam.com', 'password'),
-('Tom Brady', 'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/tom-brady.png?raw=true', 'Tom@balldeflator.com', 'password');
-
+INSERT INTO users (name, avatar, email, password)
+VALUES (
+    'BobTheBuilder',
+    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/bob-the-builder.png?raw=true',
+    'Bob@BobsBuilding.com',
+    'password'
+  ),
+  (
+    'Mrs.Doubtfire',
+    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/mrs-doubtfire.png?raw=true',
+    'robinwilliams@ripthegoat.com',
+    'password'
+  ),
+  (
+    'Harry n'' Marv',
+    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/the-wet-bantis-homealone.png?raw=true',
+    'harrynmarv@notascam.com',
+    'password'
+  ),
+  (
+    'Tom Brady',
+    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/tom-brady.png?raw=true',
+    'Tom@balldeflator.com',
+    'password'
+  );
 INSERT INTO categories (name)
 VALUES ('Light-labour'),
 ('Cleaning'),
@@ -49,8 +68,5 @@ VALUES (2, 1, 'User sent an offer 2000'), -- 2 sends message to 1 for offer 1
 (1, 1, 'Sounds great!'),
 (3, 2, 'I am very intrested in your position!'),
 (4, 3, "Lets chat tomorrow");
-
-INSERT INTO reviews (user_id, job_id, stars, who, details)
-VALUES (2, 1, '5', 'helper', 'RIP Robin Williams');
 
 -- GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;

@@ -1,12 +1,13 @@
 const PORT = process.env.PORT || 8001;
 const ENV = require("./environment");
-const app = require("./application")('development');
+const app = require("./application")("development");
 const server = require("http").Server(app);
-const express = require('express')()
-const io = require('socket.io')(server);
+const express = require("express")();
+const io = require("socket.io")(server);
 let sockets = [];
 express.use(app);
 
+<<<<<<< HEAD
 // SOCKET HANDSHAKE??
 
 io.on("connection", socket => {
@@ -24,6 +25,22 @@ io.on("connection", socket => {
     // EMIT MESSAGE TO CORRECT ROOM
     sockets.forEach(s => {
       s.emit('message', { name, message });
+=======
+io.on("connection", (socket) => {
+  sockets.push(socket);
+  console.log(`Client Connected, there is ${sockets.length} sockets connected`);
+
+  socket.on("disconnect", () => {
+    sockets = sockets.filter((s) => s !== socket);
+    console.log(
+      `Client Disconnected, there are ${sockets.length} sockets remaining`
+    );
+  });
+
+  socket.on("message", ({ name, message }) => {
+    sockets.forEach((s) => {
+      s.emit("message", { name, message });
+>>>>>>> e5232e45bb121d3b8a258ed41a20c718d3a381aa
     });
   });
 });

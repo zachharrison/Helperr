@@ -87,15 +87,12 @@ export default function Places(props) {
     fetch({ input: inputValue }, (results) => {
       if (active) {
         let newOptions = [];
-
         if (value) {
           newOptions = [value];
         }
-
         if (results) {
           newOptions = [...newOptions, ...results];
         }
-
         setOptions(newOptions);
       }
     });
@@ -125,8 +122,7 @@ export default function Places(props) {
         try {
           const results = await getGeocode({ address });
           const { lat, lng } = await getLatLng(results[0]);
-          props.setCoord({ lat: lat, lng: lng });
-          panTo({ lat, lng });
+          props.setCoord({ lat, lng });
         } catch (error) {
           console.log("Error!", error);
         }
