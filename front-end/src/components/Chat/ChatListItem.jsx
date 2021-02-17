@@ -10,6 +10,8 @@ export default function ChatListItem(props) {
 
     const { id, name, message } = props.data;
 
+    console.log('THE CHAT ID IS ',id)
+
      return (
       <div className="conversation-list-item" onClick={() => props.setChat(id)}>
         <div className="conversation-info">

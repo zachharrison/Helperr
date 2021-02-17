@@ -24,7 +24,8 @@ const Chat = ({ messages, sendMessage, getMessages, state, cookies }) => {
 
   const messageList = getMessages(state.chatId)
   const messageListDisplay = messageList.map((message, index) => {
-    const currentAuthor = 'Natasha'
+    const currentAuthor = cookies.user == 1 ? "Natasha" : "Zach"
+    console.log(currentAuthor)
     return (
       <div className="chat">
         <div className={[`${message.name == currentAuthor ? 'mine' : 'yours'}`, 'messages'].join(' ')} key={index}>
@@ -74,5 +75,4 @@ export default Chat;
   - Need ui for job seekers and and job creaters to look at all message threads
   - Maybe we should have a seperate database table for inqueries
   - Instead of pushing a socket connection by itself we will need to push a socket connection along with some data about the socket. Example (this socket will belong to user 8 which is inquiring about job 4) 
-  
   */

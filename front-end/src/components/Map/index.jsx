@@ -70,7 +70,7 @@ export default function Map(props) {
   }, []);
 
   useEffect(() => {
-    console.log("LAT: ", props.coord.lat, "LNG: ", props.coord.lng);
+    // console.log("LAT: ", props.coord.lat, "LNG: ", props.coord.lng);
     const lat = props.coord.lat;
     const lng = props.coord.lng;
     panTo({ lat, lng });

@@ -2,15 +2,15 @@ import { Marker, InfoWindow } from "@react-google-maps/api";
 import "./Map.css";
 
 export default function Markers({ selected, setSelected, coord, jobMarkers }) {
-  console.log("Job Markers inside array", jobMarkers);
+  // console.log("Job Markers inside array", jobMarkers);
   return (
     <>
       {jobMarkers.map(
         (marker) => (
-          console.log("marker==>", marker),
-          console.log(marker.id),
-          console.log(marker.lat),
-          console.log(marker.lng),
+          // console.log("marker==>", marker),
+          // console.log(marker.id),
+          // console.log(marker.lat),
+          // console.log(marker.lng),
           (
             <Marker
               key={marker.id}
@@ -22,7 +22,7 @@ export default function Markers({ selected, setSelected, coord, jobMarkers }) {
                 anchor: new window.google.maps.Point(10, 10),
               }}
               onClick={() => {
-                console.log("MARKER CLICKED");
+                // console.log("MARKER CLICKED");
                 setSelected(marker);
               }}
             />

@@ -126,21 +126,24 @@ const fixtures = {
   chats: [
     {
       id: 1,
-      userName: 1,
+      userId: 1,
       messages: [
       {
         id: 1,
-        name: 1,
-        message: "Message 1 hey there!"
+        name: "Natasha",
+        userId: 1,
+        message: "Yo"
       },
       {
         id: 2,
-        name: 2,
+        name: 'Zach',
+        userId: 2,
         message: "Morning!"
       },
       {
         id: 3,
-        name: 1,
+        name: "Natasha",
+        userId: 1,
         message: "What's up dude?"
       }
     ],
@@ -148,43 +151,49 @@ const fixtures = {
     },
      {
       id: 2,
-      userName: 1,
+      userId: 1,
       messages: [
       {
         id: 1,
-        name: 3,
-        message: "Message 2 hey there!"
+        name: "John",
+        userId: 3,
+        message: "This chat is so cool bruh!"
       },
       {
         id: 2,
-        name: 1,
-        message: "Morning!"
+        name: "Natasha",
+        userId: 1,
+        message: "I know right!"
       },
       {
         id: 3,
-        name: 3,
-        message: "What's up dude?"
+        name: "John",
+        userId: 3,
+        message: "Best chat application ever made!!"
       }
     ],
       
     },
    {
       id: 3,
-      userName: 2,
+      userId: 2,
       messages: [
       {
         id: 1,
-        name: 5,
+        name: 'Zach',
+        userId: 2,
         message: "Message 3 hey there!"
       },
       {
         id: 2,
-        name: 1,
+        name: 'Jeff',
+        userId: 4,
         message: "Morning!"
       },
       {
         id: 1,
-        name: "Bob",
+        name: 'Zach',
+        userId: 2,
         message: "What's up dude?"
       }
     ],
@@ -192,44 +201,50 @@ const fixtures = {
     },
     {
       id: 4,
-      userName: 1,
+      userId: 2,
       messages: [
       {
         id: 1,
-        name: 1,
-        message: "Message 4 hey there!"
+        name: 'Zach',
+        userId: 2,
+        message: "Whaaaaaaadddddduuuup???"
       },
       {
         id: 2,
-        name: 2,
-        message: "Morning!"
+        name: 'Sam',
+        userId: 3,
+        message: "Just kickin it wbu?!?!"
       },
       {
         id: 3,
-        name: 1,
-        message: "What's up dude?"
+        name: 'Zach',
+        userId: 2,
+        message: "∫®ø˚∂ß¬©˙∂˚ø©u"
       }
     ],
       
     },
     {
       id: 5,
-      userName: 2,
+      userId: 1,
       messages: [
       {
         id: 1,
-        name: 2,
-        message: "Message 5 hey there!"
+        name: "Jessie",
+        userId: 5,
+        message: "Can you help me fix my car?"
       },
       {
         id: 2,
-        name: 1,
-        message: "Morning!"
+        name: "Natasha",
+        userId: 1,
+        message: "Sure what seems to be the issue??"
       },
       {
         id: 3,
-        name: 2,
-        message: "What's up dude?"
+        name: "Jessie",
+        userId: 5,
+        message: "It makes this afhaghghgh sound when I start it"
       }
     ],
       
