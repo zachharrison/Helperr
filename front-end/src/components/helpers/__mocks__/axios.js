@@ -126,21 +126,21 @@ const fixtures =  {
   chats: [
     {
       id: 1,
-      userName: "Natasha",
+      userName: 1,
       messages: [
       {
         id: 1,
-        name: "Natasha",
+        name: 1,
         message: "Message 1 hey there!"
       },
       {
         id: 2,
-        name: "Zach",
+        name: 2,
         message: "Morning!"
       },
       {
         id: 3,
-        name: "Natasha",
+        name: 1,
         message: "What's up dude?"
       }
     ],
@@ -148,21 +148,21 @@ const fixtures =  {
     },
      {
       id: 2,
-      userName: "Natasha",
+      userName: 1,
       messages: [
       {
         id: 1,
-        name: "Joe Smith",
+        name: 3,
         message: "Message 2 hey there!"
       },
       {
         id: 2,
-        name: "Natasha",
+        name: 1,
         message: "Morning!"
       },
       {
         id: 3,
-        name: "Joe Smith",
+        name: 3,
         message: "What's up dude?"
       }
     ],
@@ -170,20 +170,20 @@ const fixtures =  {
     },
    {
       id: 3,
-      userName: "Bob",
+      userName: 2,
       messages: [
       {
         id: 1,
-        name: "Bob",
+        name: 5,
         message: "Message 3 hey there!"
       },
       {
         id: 2,
-        name: "Natasha",
+        name: 1,
         message: "Morning!"
       },
       {
-        id: 3,
+        id: 1,
         name: "Bob",
         message: "What's up dude?"
       }
@@ -192,21 +192,21 @@ const fixtures =  {
     },
     {
       id: 4,
-      userName: "Natasha",
+      userName: 1,
       messages: [
       {
         id: 1,
-        name: "Natasha",
+        name: 1,
         message: "Message 4 hey there!"
       },
       {
         id: 2,
-        name: "John",
+        name: 2,
         message: "Morning!"
       },
       {
         id: 3,
-        name: "Natasha",
+        name: 1,
         message: "What's up dude?"
       }
     ],
@@ -214,21 +214,21 @@ const fixtures =  {
     },
     {
       id: 5,
-      userName: "Natasha",
+      userName: 2,
       messages: [
       {
         id: 1,
-        name: "Natasha",
+        name: 2,
         message: "Message 5 hey there!"
       },
       {
         id: 2,
-        name: "Harry",
+        name: 1,
         message: "Morning!"
       },
       {
         id: 3,
-        name: "Natasha",
+        name: 2,
         message: "What's up dude?"
       }
     ],
