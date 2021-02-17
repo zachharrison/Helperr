@@ -9,6 +9,7 @@ import JobToggle from "../JobToggle/JobToggle";
 import "./Jobs.css";
 import Chat from "../Chat/Chat";
 import ChatList from '../Chat/ChatList'
+import { DomainPropTypes } from "@material-ui/pickers/constants/prop-types";
 // import { Transition } from "react-transition-group";
 
 // const POST = "POST";
@@ -19,6 +20,7 @@ import ChatList from '../Chat/ChatList'
 // const ERROR_DELETE = "ERROR_DELETE";
 
 export default function Jobs(props) {
+
   // const [jobView, setJobView] = useState(ALL)
   // const { mode, transition, back } = useVisualMode(ALL);
 
@@ -52,9 +54,9 @@ export default function Jobs(props) {
       {props.state.jobView === "FIND" && <Find />}
       {props.state.jobView === "ALL" && <All />}
       {props.state.jobView === "MESSAGE" && (
-        <ChatList messages={props.messages} sendMessage={props.sendMessage} setJobView={props.setJobView} getConversations={props.getConversations}/>
-      )}
-      {props.state.jobView === "CHAT" && <Chat />}
+        <ChatList sendMessage={props.sendMessage} setJobView={props.setJobView} getConversations={props.getConversations} setChat={props.setChat}/>
+        )}
+        {props.state.jobView === "CHAT" && <Chat getMessages={props.getMessages} state={props.state} sendMessage={props.sendMessage}/>}
     </>
   );
 }

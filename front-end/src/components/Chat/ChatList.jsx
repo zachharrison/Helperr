@@ -9,15 +9,16 @@ import './ChatList.css';
 
 export default function ChatList(props) {
 
-  const { getConversations } = props;
+  const { getConversations, setChat, setJobView } = props;
 
   const chatListData = getConversations();
 
-  const chatListItems = chatListData.map((item, index) => <ChatListItem
-      key={index}
-      data={{name: item.name, message: item.message}}
-      setJobView={props.setJobView}
-      />
+    const chatListItems = chatListData.map((item) => <ChatListItem
+        key={item.id}
+        data={{id: item.id, name: item.name, message: item.message}}
+        setJobView={setJobView}
+        setChat={setChat}
+        />
     );
 
     return (

@@ -175,7 +175,7 @@ const fixtures =  {
       {
         id: 1,
         name: "Bob",
-        message: "hey there!"
+        message: "Message 3 hey there!"
       },
       {
         id: 2,
@@ -197,7 +197,7 @@ const fixtures =  {
       {
         id: 1,
         name: "Natasha",
-        message: "Message 2 hey there!"
+        message: "Message 4 hey there!"
       },
       {
         id: 2,
@@ -219,7 +219,7 @@ const fixtures =  {
       {
         id: 1,
         name: "Natasha",
-        message: "Message 2 hey there!"
+        message: "Message 5 hey there!"
       },
       {
         id: 2,

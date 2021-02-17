@@ -14,8 +14,9 @@ export default function useAppData() {
     reviews,
     jobView: "FIND",
     postcode: "",
+    chatId: null
   });
-  
+
   // useEffect(() => {
   //   getConversations()
   // },[])
@@ -43,7 +44,7 @@ export default function useAppData() {
 
   const setJobView = (jobView) => setState({ ...state, jobView });
   const setPostCode = (postCode) => setState({ ...state, postCode });
-  const setChatView = (chatView) => setState({ ...state, chatView });
+  const setChat = (chatId) => setState({ ...state, chatId, jobView: "CHAT" })
 
 
 
@@ -53,9 +54,10 @@ export default function useAppData() {
     
     const chatData = usersConversations.map(chat => {
       const otherUser = chat.messages.find(message => message.name !== currentUser);
+      const id = chat.id;
       const name = otherUser.name;
       const message = chat.messages[chat.messages.length - 1].message;
-      const chatObj = { name, message };
+      const chatObj = { id, name, message };
 
       return chatObj
 
@@ -64,5 +66,38 @@ export default function useAppData() {
     return chatData;
 
   }
-  return { state, setJobView, setPostCode, setChatView, getConversations };
+
+  const getMessages = (id) => {
+    for (const chat of chats) {
+      if (chat.id === id) {
+        return chat.messages;
+      }
+    }
+  }
+
+
+  return { state, setJobView, setPostCode, getConversations, getMessages, setChat };
 }
+
+// {
+//   id: 1,
+//   userName: "Natasha",
+//   messages: [
+//   {
+//     id: 1,
+//     name: "Natasha",
+//     message: "Message 1 hey there!"
+//   },
+//   {
+//     id: 2,
+//     name: "Zach",
+//     message: "Morning!"
+//   },
+//   {
+//     id: 3,
+//     name: "Natasha",
+//     message: "What's up dude?"
+//   }
+// ],
+  
+// },
