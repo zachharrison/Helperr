@@ -8,11 +8,24 @@ import Chat from "./Chat/Chat";
 import fixtures from "./helpers/__mocks__/axios";
 import ChatList from "./Chat/ChatList";
 import useAppData from "./helpers/hooks/useAppData";
+import { useCookies } from "react-cookie";
+import Login from './Login/Login'
+// import { Input } from "@material-ui/core";
+// import fixtures from "./helpers/__mocks__/axios";
+const _socket = io.connect("http://localhost:8001", {
+  transports: ["websocket"],
+});
+
+
+// how to have the state start with the state from useAppData - can we pass this into a chat socket?
+// if so how since it one is not a child of the other
+
 import { getJobsFiltered } from "./helpers/selectors";
 
 const _socket = io.connect("http://localhost:8001", {
   transports: ["websocket"],
 });
+
 const useChatSocket = () => {
   const [messages, setMessages] = useState([]);
   const socketRef = useRef(_socket);
@@ -33,6 +46,14 @@ const useChatSocket = () => {
 
 export default function App() {
   const { messages, sendMessage } = useChatSocket();
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
+  function handleCookie(id) {
+    setCookie("user", id, {
+      path: "/"
+    })
+  }
+
   const [coord, setCoord] = useState({
     lat: 49.26800377076573,
     lng: -123.10571490809717,
@@ -48,7 +69,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar handleCookie={handleCookie} removeCookie={removeCookie}/>
       <div className="containers">
         <div className="map-container">
           <Map
@@ -70,6 +91,7 @@ export default function App() {
             getConversations={getConversations}
             getMessages={getMessages}
             setChat={setChat}
+            cookies={cookies}  
             setCoord={setCoord}
             coord={coord}
           />

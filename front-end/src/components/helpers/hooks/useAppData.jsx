@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import fixtures from "../__mocks__/axios";
 import axios from "axios";
+import { useCookies } from 'react-cookie';
 
 export default function useAppData() {
+  // const { getCookies } = useCookies();
   const { users, jobs, categories, offers, reviews, chats } = fixtures;
   
   const [state, setState] = useState({
@@ -49,11 +51,13 @@ export default function useAppData() {
   const setJobView = (jobView) => setState({ ...state, jobView });
   const setPostCode = (postCode) => setState({ ...state, postCode });
   const setChat = (chatId) => setState({ ...state, chatId, jobView: "CHAT" })
+  // const setMessages = (message) => setState({...state, messages: [...state.messages, message]})
 
 
 
   const getConversations = () => {
-    const currentUser = "Natasha"
+    // THIS CURRENT IS HARDCODED FOR NOW HOW CAN WE GET THE COOKIE FROM HERE????
+    const currentUser = 1
     const usersConversations = chats.filter(chat => chat.userName === currentUser)
     
     const chatData = usersConversations.map(chat => {
@@ -100,26 +104,3 @@ export default function useAppData() {
 
   return { state, setJobView };
 }
-
-// {
-//   id: 1,
-//   userName: "Natasha",
-//   messages: [
-//   {
-//     id: 1,
-//     name: "Natasha",
-//     message: "Message 1 hey there!"
-//   },
-//   {
-//     id: 2,
-//     name: "Zach",
-//     message: "Morning!"
-//   },
-//   {
-//     id: 3,
-//     name: "Natasha",
-//     message: "What's up dude?"
-//   }
-// ],
-  
-// },

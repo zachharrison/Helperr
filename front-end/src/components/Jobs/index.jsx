@@ -12,6 +12,8 @@ import ChatList from '../Chat/ChatList'
 import { DomainPropTypes } from "@material-ui/pickers/constants/prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 // import { Transition } from "react-transition-group";
+import Login from '../Login/Login'
+import { useCookies, withCookies } from 'react-cookie'
 
 // const POST = "POST";
 // const FIND = "FIND";
@@ -20,7 +22,9 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 // const ERROR_SAVE = "ERROR_SAVE";
 // const ERROR_DELETE = "ERROR_DELETE";
 
-export default function Jobs(props) {
+function Jobs(props) {
+  console.log(props)
+  const [cookies] = useCookies()
 
   // const [jobView, setJobView] = useState(ALL)
   // const { mode, transition, back } = useVisualMode(ALL);
@@ -51,13 +55,14 @@ export default function Jobs(props) {
   return (
     <>
       <JobToggle state={props.state} setJobView={props.setJobView} />
-      {props.state.jobView === "POST" && <Post state={props.state} />}
       {props.state.jobView === "FIND" && <Find />}
-      {props.state.jobView === "ALL" && <All />}
-      {props.state.jobView === "MESSAGE" && (
+      {!props.cookies.user && props.state.jobView !== "FIND" &&<Login cookies={cookies} removeCookie={props.removeCookie}/>}
+      {props.state.jobView === "POST" && props.cookies.user && <Post state={props.state} />}
+      {props.state.jobView === "ALL" && cookies.user && <All />}
+      {props.state.jobView === "MESSAGE" && cookies.user && (
         <ChatList sendMessage={props.sendMessage} setJobView={props.setJobView} getConversations={props.getConversations} setChat={props.setChat}/>
         )}
-        {props.state.jobView === "CHAT" && <Chat getMessages={props.getMessages} state={props.state} sendMessage={props.sendMessage}/>}
+        {props.state.jobView === "CHAT" && cookies.user && <Chat getMessages={props.getMessages} state={props.state} setMessages={props.setMessages} sendMessage={props.sendMessage} cookies={cookies}/>}
       <TransitionGroup className="job-container">
         {props.state.jobView === "POST" && (
           <CSSTransition
@@ -115,6 +120,9 @@ export default function Jobs(props) {
     </>
   );
 }
+
+
+export default Jobs;
 
 /* 
 users,
