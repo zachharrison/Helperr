@@ -10,6 +10,7 @@ import "./Jobs.css";
 import Chat from "../Chat/Chat";
 import ChatList from '../Chat/ChatList'
 import { DomainPropTypes } from "@material-ui/pickers/constants/prop-types";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 // import { Transition } from "react-transition-group";
 
 // const POST = "POST";
@@ -57,6 +58,60 @@ export default function Jobs(props) {
         <ChatList sendMessage={props.sendMessage} setJobView={props.setJobView} getConversations={props.getConversations} setChat={props.setChat}/>
         )}
         {props.state.jobView === "CHAT" && <Chat getMessages={props.getMessages} state={props.state} sendMessage={props.sendMessage}/>}
+      <TransitionGroup className="job-container">
+        {props.state.jobView === "POST" && (
+          <CSSTransition
+            key={1}
+            timeout={500}
+            classNames="slide"
+            in={props.state.jobView === "POST"}
+          >
+            <div>
+              <Post
+                state={props.state}
+                setCoord={props.setCoord}
+                coord={props.coord}
+              />
+            </div>
+          </CSSTransition>
+        )}
+        {props.state.jobView === "FIND" && (
+          <CSSTransition
+            key={2}
+            timeout={500}
+            classNames="slide"
+            in={props.state.jobView === "FIND"}
+          >
+            <div>
+              <Find />
+            </div>
+          </CSSTransition>
+        )}
+        {props.state.jobView === "ALL" && (
+          <CSSTransition
+            key={3}
+            timeout={500}
+            classNames="slide"
+            in={props.state.jobView === "ALL"}
+          >
+            <div>
+              <All />
+            </div>
+          </CSSTransition>
+        )}
+        {props.state.jobView === "MESSAGE" && (
+          <CSSTransition
+            key={4}
+            timeout={500}
+            classNames="slide"
+            in={props.state.jobView === "MESSAGE"}
+          >
+            <div>
+              <Chat messages={props.messages} sendMessage={props.sendMessage} />
+            </div>
+          </CSSTransition>
+        )}
+      </TransitionGroup>
     </>
   );
 }

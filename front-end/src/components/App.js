@@ -6,14 +6,13 @@ import { io } from "socket.io-client";
 import Jobs from "./Jobs";
 import Chat from "./Chat/Chat";
 import fixtures from "./helpers/__mocks__/axios";
-import ChatList from './Chat/ChatList'
+import ChatList from "./Chat/ChatList";
 import useAppData from "./helpers/hooks/useAppData";
-// import { Input } from "@material-ui/core";
-// import fixtures from "./helpers/__mocks__/axios";
+import { getJobsFiltered } from "./helpers/selectors";
+
 const _socket = io.connect("http://localhost:8001", {
   transports: ["websocket"],
 });
-
 const useChatSocket = () => {
   const [messages, setMessages] = useState([]);
   const socketRef = useRef(_socket);
@@ -34,17 +33,31 @@ const useChatSocket = () => {
 
 export default function App() {
   const { messages, sendMessage } = useChatSocket();
-
+  const [coord, setCoord] = useState({
+    lat: 49.26800377076573,
+    lng: -123.10571490809717,
+  });
   // fixtures has: users, jobs, categories, offers, messages, reviews
   // const { users, jobs, categories, offers, messages, reviews } = fixtures;
   const { state, setJobView, setMessageView, getConversations, getMessages, setChat } = useAppData();
+
+
+  const jobMarkers = getJobsFiltered(state, []); // replace with state for filters
+
+  console.log("jobsFIltered", jobMarkers);
 
   return (
     <div className="App">
       <Navbar />
       <div className="containers">
         <div className="map-container">
-          <Map />
+          <Map
+            state={state}
+            setJobView={setJobView}
+            setCoord={setCoord}
+            coord={coord}
+            jobMarkers={jobMarkers}
+          />
         </div>
 
         <div className="jobs-container">
@@ -57,6 +70,8 @@ export default function App() {
             getConversations={getConversations}
             getMessages={getMessages}
             setChat={setChat}
+            setCoord={setCoord}
+            coord={coord}
           />
           <ChatNav setJobView={setJobView} />
         </div>
