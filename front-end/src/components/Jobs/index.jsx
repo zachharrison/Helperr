@@ -5,8 +5,11 @@ import All from "./All";
 import JobToggle from "../JobToggle/JobToggle";
 import "./Jobs.css";
 import Chat from "../Chat/Chat";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import ChatList from "../Chat/ChatList";
+import { DomainPropTypes } from "@material-ui/pickers/constants/prop-types";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import Login from "../Login/Login";
+import { useCookies, withCookies } from "react-cookie";
 
 export default function Jobs(props) {
   function dropPin(job) {
@@ -19,16 +22,18 @@ export default function Jobs(props) {
       .catch((error) => console.log(error));
   }
 
+  const [cookies] = useCookies();
+
   return (
     <>
       <JobToggle state={props.state} setJobView={props.setJobView} />
       <TransitionGroup className="job-container">
-        {props.state.jobView === "POST" && (
+        {props.state.jobView === "POST" && props.cookies.user && (
           <CSSTransition
             key={1}
             timeout={500}
             classNames="slide"
-            in={props.state.jobView === "POST"}
+            in={props.state.jobView === "POST" && props.cookies.user}
           >
             <div>
               <Post
@@ -37,6 +42,35 @@ export default function Jobs(props) {
                 coord={props.coord}
                 onSave={dropPin}
               />
+            </div>
+          </CSSTransition>
+        )}
+        {props.state.jobView === "MESSAGE" && cookies.user && (
+          <CSSTransition
+            key={1}
+            timeout={500}
+            classNames="slide"
+            in={props.state.jobView === "MESSAGE" && cookies.user}
+          >
+            <div>
+              <ChatList
+                sendMessage={props.sendMessage}
+                setJobView={props.setJobView}
+                getConversations={props.getConversations}
+                setChat={props.setChat}
+              />
+            </div>
+          </CSSTransition>
+        )}
+        {!props.cookies.user && props.state.jobView !== "FIND" && (
+          <CSSTransition
+            key={1}
+            timeout={500}
+            classNames="slide"
+            in={!props.cookies.user && props.state.jobView !== "FIND"}
+          >
+            <div>
+              <Login cookies={cookies} removeCookie={props.removeCookie} />
             </div>
           </CSSTransition>
         )}
@@ -52,27 +86,33 @@ export default function Jobs(props) {
             </div>
           </CSSTransition>
         )}
-        {props.state.jobView === "ALL" && (
+        {props.state.jobView === "ALL" && cookies.user && (
           <CSSTransition
             key={3}
             timeout={500}
             classNames="slide"
-            in={props.state.jobView === "ALL"}
+            in={props.state.jobView === "ALL" && cookies.user}
           >
             <div>
               <All />
             </div>
           </CSSTransition>
         )}
-        {props.state.jobView === "MESSAGE" && (
+        {props.state.jobView === "CHAT" && cookies.user && (
           <CSSTransition
             key={4}
             timeout={500}
             classNames="slide"
-            in={props.state.jobView === "MESSAGE"}
+            in={props.state.jobView === "CHAT" && cookies.user}
           >
             <div>
-              <Chat messages={props.messages} sendMessage={props.sendMessage} />
+              <Chat
+                getMessages={props.getMessages}
+                state={props.state}
+                setMessages={props.setMessages}
+                sendMessage={props.sendMessage}
+                cookies={cookies}
+              />
             </div>
           </CSSTransition>
         )}

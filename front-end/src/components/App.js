@@ -8,11 +8,18 @@ import Chat from "./Chat/Chat";
 import fixtures from "./helpers/__mocks__/axios";
 import ChatList from "./Chat/ChatList";
 import useAppData from "./helpers/hooks/useAppData";
+import { useCookies } from "react-cookie";
+import Login from "./Login/Login";
 import { getJobsFiltered } from "./helpers/selectors";
-
+// import { Input } from "@material-ui/core";
+// import fixtures from "./helpers/__mocks__/axios";
 const _socket = io.connect("http://localhost:8001", {
   transports: ["websocket"],
 });
+
+// how to have the state start with the state from useAppData - can we pass this into a chat socket?
+// if so how since it one is not a child of the other
+
 const useChatSocket = () => {
   const [messages, setMessages] = useState([]);
   const socketRef = useRef(_socket);
@@ -33,18 +40,35 @@ const useChatSocket = () => {
 
 export default function App() {
   const { messages, sendMessage } = useChatSocket();
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+
+  function handleCookie(id) {
+    setCookie("user", id, {
+      path: "/",
+    });
+  }
+
   const [coord, setCoord] = useState({
     lat: 49.26800377076573,
     lng: -123.10571490809717,
   });
-
-  const { state, setJobView, saveJob } = useAppData();
+  // fixtures has: users, jobs, categories, offers, messages, reviews
+  // const { users, jobs, categories, offers, messages, reviews } = fixtures;
+  const {
+    state,
+    setJobView,
+    setMessageView,
+    getConversations,
+    getMessages,
+    setChat,
+    saveJob,
+  } = useAppData();
 
   const jobMarkers = getJobsFiltered(state, []); // replace with state for filters
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar handleCookie={handleCookie} removeCookie={removeCookie} />
       <div className="containers">
         <div className="map-container">
           <Map
@@ -62,11 +86,15 @@ export default function App() {
             setJobView={setJobView}
             messages={messages}
             sendMessage={sendMessage}
+            setMessageView={setMessageView}
+            getConversations={getConversations}
+            getMessages={getMessages}
+            setChat={setChat}
+            cookies={cookies}
             setCoord={setCoord}
             coord={coord}
             saveJob={saveJob}
           />
-          {/* {<ChatList messages={messages} sendMessage={sendMessage} /> } */}
           <ChatNav setJobView={setJobView} />
         </div>
       </div>

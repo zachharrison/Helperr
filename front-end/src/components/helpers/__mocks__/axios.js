@@ -113,20 +113,6 @@ const fixtures = {
       status: "ACCEPTED",
     },
   },
-  messages: {
-    1: {
-      id: 1,
-      offer_id: 1,
-      user_id: 1,
-      message: "Yo! I'm a woman",
-    },
-    2: {
-      id: 2,
-      offer_id: 1,
-      user_id: 2,
-      message: "Um ok?",
-    },
-  },
   reviews: {
     1: {
       id: 1,
@@ -137,6 +123,118 @@ const fixtures = {
       details: "details",
     },
   },
+  chats: [
+    {
+      id: 1,
+      userName: 1,
+      messages: [
+      {
+        id: 1,
+        name: 1,
+        message: "Message 1 hey there!"
+      },
+      {
+        id: 2,
+        name: 2,
+        message: "Morning!"
+      },
+      {
+        id: 3,
+        name: 1,
+        message: "What's up dude?"
+      }
+    ],
+      
+    },
+     {
+      id: 2,
+      userName: 1,
+      messages: [
+      {
+        id: 1,
+        name: 3,
+        message: "Message 2 hey there!"
+      },
+      {
+        id: 2,
+        name: 1,
+        message: "Morning!"
+      },
+      {
+        id: 3,
+        name: 3,
+        message: "What's up dude?"
+      }
+    ],
+      
+    },
+   {
+      id: 3,
+      userName: 2,
+      messages: [
+      {
+        id: 1,
+        name: 5,
+        message: "Message 3 hey there!"
+      },
+      {
+        id: 2,
+        name: 1,
+        message: "Morning!"
+      },
+      {
+        id: 1,
+        name: "Bob",
+        message: "What's up dude?"
+      }
+    ],
+      
+    },
+    {
+      id: 4,
+      userName: 1,
+      messages: [
+      {
+        id: 1,
+        name: 1,
+        message: "Message 4 hey there!"
+      },
+      {
+        id: 2,
+        name: 2,
+        message: "Morning!"
+      },
+      {
+        id: 3,
+        name: 1,
+        message: "What's up dude?"
+      }
+    ],
+      
+    },
+    {
+      id: 5,
+      userName: 2,
+      messages: [
+      {
+        id: 1,
+        name: 2,
+        message: "Message 5 hey there!"
+      },
+      {
+        id: 2,
+        name: 1,
+        message: "Morning!"
+      },
+      {
+        id: 3,
+        name: 2,
+        message: "What's up dude?"
+      }
+    ],
+      
+    }
+  ]
 };
 
 export default fixtures;

@@ -1,23 +1,30 @@
 import { useState, useEffect } from "react";
 import fixtures from "../__mocks__/axios";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 export default function useAppData() {
-  const { users, jobs, categories, offers, messages, reviews } = fixtures;
+  // const { getCookies } = useCookies();
+  const { users, jobs, categories, offers, reviews, chats } = fixtures;
 
   const [state, setState] = useState({
     users,
     jobs,
     categories,
     offers,
-    messages,
+    chats,
     reviews,
-    jobView: "POST",
-    // lat: 49.26800377076573,
-    // lng: -123.10571490809717,
+    jobView: "FIND",
+    postcode: "",
+    chatId: null,
   });
 
-  const setJobView = (jobView) => setState({ ...state, jobView });
+  // useEffect(() => {
+  //   getConversations()
+  // },[])
+  // lat: 49.26800377076573,
+  // lng: -123.10571490809717,
+  //);
 
   useEffect(() => {
     Promise.all([
@@ -39,10 +46,67 @@ export default function useAppData() {
       }));
     });
   }, []);
+  const setJobView = (jobView) => setState({ ...state, jobView });
+  const setPostCode = (postCode) => setState({ ...state, postCode });
+  const setChat = (chatId) => setState({ ...state, chatId, jobView: "CHAT" });
+  // const setMessages = (message) => setState({...state, messages: [...state.messages, message]})
+
+  const getConversations = () => {
+    // THIS CURRENT IS HARDCODED FOR NOW HOW CAN WE GET THE COOKIE FROM HERE????
+    const currentUser = 1;
+    const usersConversations = chats.filter(
+      (chat) => chat.userName === currentUser
+    );
+
+    const chatData = usersConversations.map((chat) => {
+      const otherUser = chat.messages.find(
+        (message) => message.name !== currentUser
+      );
+      const id = chat.id;
+      const name = otherUser.name;
+      const message = chat.messages[chat.messages.length - 1].message;
+      const chatObj = { id, name, message };
+
+      return chatObj;
+    });
+
+    return chatData;
+  };
+
+  const getMessages = (id) => {
+    for (const chat of chats) {
+      if (chat.id === id) {
+        return chat.messages;
+      }
+    }
+  };
 
   function postJob(job) {
     return axios.put(`/api/jobs/`, job).then(setState({ ...state, job }));
   }
+  /*   function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview },
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+    
+    const days = displaySpots(state.days, appointments);
+    
+    return axios
+    .put(`/api/appointments/${id}`, appointment)
+    .then(setState({ ...state, days, appointments }));
+  } */
 
-  return { state, setJobView };
+  return {
+    state,
+    setJobView,
+    setPostCode,
+    getConversations,
+    getMessages,
+    setChat,
+  };
 }
