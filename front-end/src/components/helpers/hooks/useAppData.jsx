@@ -42,7 +42,7 @@ export default function useAppData() {
         categories: all[2].data,
         offers: all[3].data,
         reviews: all[4].data,
-        // messages: all[4].data,
+        // messages: all[5].data,
       }));
     });
   }, []);
@@ -82,7 +82,12 @@ export default function useAppData() {
   }
 
 
-  return { state, setJobView, setPostCode, getConversations, getMessages, setChat };
+
+  function postJob(job) {
+    return axios.put(`/api/jobs/`, job).then(setState({ ...state, job }));
+  }
+
+
   /*   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -100,5 +105,6 @@ export default function useAppData() {
       .then(setState({ ...state, days, appointments }));
   } */
 
-  return { state, setJobView };
+
+  return { state, setJobView, setPostCode, getConversations, getMessages, setChat };
 }

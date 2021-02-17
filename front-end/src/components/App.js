@@ -56,12 +56,9 @@ export default function App() {
   });
   // fixtures has: users, jobs, categories, offers, messages, reviews
   // const { users, jobs, categories, offers, messages, reviews } = fixtures;
-  const { state, setJobView, setMessageView, getConversations, getMessages, setChat } = useAppData();
-
+  const { state, setJobView, setMessageView, getConversations, getMessages, setChat, saveJob } = useAppData();
 
   const jobMarkers = getJobsFiltered(state, []); // replace with state for filters
-
-  console.log("jobsFIltered", jobMarkers);
 
   return (
     <div className="App">
@@ -90,6 +87,7 @@ export default function App() {
             cookies={cookies}  
             setCoord={setCoord}
             coord={coord}
+            saveJob={saveJob}
           />
           <ChatNav setJobView={setJobView} />
         </div>

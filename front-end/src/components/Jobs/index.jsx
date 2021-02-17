@@ -2,18 +2,29 @@
 import Post from "./Post";
 import Find from "./Find";
 import All from "./All";
-// import Error from "./Error";
-// import Status from "./Status";
-// import useVisualMode from "../helpers/hooks/useVisualMode";
 import JobToggle from "../JobToggle/JobToggle";
 import "./Jobs.css";
 import Chat from "../Chat/Chat";
 import ChatList from '../Chat/ChatList'
 import { DomainPropTypes } from "@material-ui/pickers/constants/prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-// import { Transition } from "react-transition-group";
 import Login from '../Login/Login'
 import { useCookies, withCookies } from 'react-cookie'
+
+export default function Jobs(props) {
+    const [cookies] = useCookies()
+  function dropPin(job) {
+    const newJob = {
+      job,
+    };
+    props
+      .saveJob(props.id)
+      .then(() => props.setJobView("ALL"))
+      .catch((error) => console.log(error));
+  }
+
+// import { Transition } from "react-transition-group";
+
 
 // const POST = "POST";
 // const FIND = "FIND";
@@ -22,9 +33,8 @@ import { useCookies, withCookies } from 'react-cookie'
 // const ERROR_SAVE = "ERROR_SAVE";
 // const ERROR_DELETE = "ERROR_DELETE";
 
-function Jobs(props) {
-  console.log(props)
-  const [cookies] = useCookies()
+
+
 
   // const [jobView, setJobView] = useState(ALL)
   // const { mode, transition, back } = useVisualMode(ALL);
@@ -52,6 +62,7 @@ function Jobs(props) {
   //     // .catch((error) => transition(ERROR_SAVE, true));
   // }
 
+
   return (
     <>
       <JobToggle state={props.state} setJobView={props.setJobView} />
@@ -68,6 +79,7 @@ function Jobs(props) {
                 state={props.state}
                 setCoord={props.setCoord}
                 coord={props.coord}
+                onSave={dropPin}
               />
             </div>
           </CSSTransition>
@@ -108,7 +120,7 @@ function Jobs(props) {
             in={props.state.jobView === "FIND"}
           >
             <div>
-              <Find />
+              <Find state={props.state} />
             </div>
           </CSSTransition>
         )}
@@ -141,14 +153,3 @@ function Jobs(props) {
   );
 }
 
-
-export default Jobs;
-
-/* 
-users,
-jobs,
-categories,
-offers,
-messages,
-reviews,
-*/
