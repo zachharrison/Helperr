@@ -6,7 +6,7 @@ import { io } from "socket.io-client";
 import Jobs from "./Jobs";
 import Chat from "./Chat/Chat";
 import fixtures from "./helpers/__mocks__/axios";
-import ChatList from './Chat/ChatList'
+import ChatList from "./Chat/ChatList";
 import useAppData from "./helpers/hooks/useAppData";
 import { useCookies } from "react-cookie";
 import Login from './Login/Login'
@@ -19,6 +19,12 @@ const _socket = io.connect("http://localhost:8001", {
 
 // how to have the state start with the state from useAppData - can we pass this into a chat socket?
 // if so how since it one is not a child of the other
+
+import { getJobsFiltered } from "./helpers/selectors";
+
+const _socket = io.connect("http://localhost:8001", {
+  transports: ["websocket"],
+});
 
 const useChatSocket = () => {
   const [messages, setMessages] = useState([]);
@@ -48,16 +54,31 @@ export default function App() {
     })
   }
 
+  const [coord, setCoord] = useState({
+    lat: 49.26800377076573,
+    lng: -123.10571490809717,
+  });
   // fixtures has: users, jobs, categories, offers, messages, reviews
   // const { users, jobs, categories, offers, messages, reviews } = fixtures;
   const { state, setJobView, setMessageView, getConversations, getMessages, setChat } = useAppData();
+
+
+  const jobMarkers = getJobsFiltered(state, []); // replace with state for filters
+
+  console.log("jobsFIltered", jobMarkers);
 
   return (
     <div className="App">
       <Navbar handleCookie={handleCookie} removeCookie={removeCookie}/>
       <div className="containers">
         <div className="map-container">
-          <Map />
+          <Map
+            state={state}
+            setJobView={setJobView}
+            setCoord={setCoord}
+            coord={coord}
+            jobMarkers={jobMarkers}
+          />
         </div>
 
         <div className="jobs-container">
@@ -71,6 +92,8 @@ export default function App() {
             getMessages={getMessages}
             setChat={setChat}
             cookies={cookies}  
+            setCoord={setCoord}
+            coord={coord}
           />
           <ChatNav setJobView={setJobView} />
         </div>

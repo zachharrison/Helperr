@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -11,8 +11,10 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import Places from "../Places/Places";
 import "./Jobs.css";
 import "date-fns";
+/* import { Marker, InfoWindow } from "@react-google-maps/api";
 
 import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
@@ -20,7 +22,7 @@ import {
   MuiPickersUtilsProvider,
   // KeyboardTimePicker,
   KeyboardDatePicker,
-} from "@material-ui/pickers";
+} from "@material-ui/pickers"; */
 
 const categories = [
   {
@@ -90,7 +92,6 @@ export default function Post(props) {
   );
   const [jobTitle, setJobTitle] = useState("");
   const [jobDescription, setJobDescription] = useState("");
-  const [postalCode, setPostalCode] = useState("");
   const [jobCategory, setJobCategory] = useState("");
   const [price, setPrice] = useState("");
 
@@ -98,7 +99,6 @@ export default function Post(props) {
     const job = {
       jobTitle,
       jobDescription,
-      postalCode,
       jobCategory,
       price,
       hourly,
@@ -115,7 +115,7 @@ export default function Post(props) {
   const handleEndDateChange = (date) => {
     setSelectedEndDate(date);
   };
-  // `https://maps.googleapis.com/maps/api/geocode/json?address=${post_code},+CA&key=${process.env.REACT_APP_GOOGLE_API_KEY}`
+
   return (
     <>
       <span>Post Help Request</span>
@@ -148,15 +148,11 @@ export default function Post(props) {
           style={{ width: 450, margin: 8 }}
           renderInput={(params) => <TextField {...params} label="Category" />}
         />
-        <TextField
-          id="postal-code"
-          name="postal-code"
-          style={{ width: 450, margin: 8 }}
-          label="Location"
-          placeholder="Enter Postal Code"
-          fullWidth
-          onChange={(event) => setPostalCode(event.target.value)}
-        />
+        <Places setCoord={props.setCoord} coord={props.coord} />
+
+        {/* <Marker position={{ lat: props.coord.lng, lng: props.coord.lng }} /> */}
+        <script>console.log(props.coord.lng)</script>
+
         <TextField
           label="Price"
           id="price"
@@ -186,64 +182,32 @@ export default function Post(props) {
         </FormControl>
         <br />
 
-        {/* <TextField
+        <TextField
           id="datetime-start-date"
           name="datetime-start-date"
-          style={{ width: 145 }}
+          style={{ width: 218 }}
           label="Start Date"
-          // type="datetime-local"
-          type="date"
+          type="datetime-local"
           defaultValue="--"
           className={classes.textField}
           InputLabelProps={{
             shrink: true,
-          }}
-        />
-        <TextField
-          id="datetime-time-start-date"
-          name="datetime-time-start-date"
-          style={{ width: 55 }}
-          label="Time"
-          type="time"
-          defaultValue="--"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          inputProps={{
-            step: 300, // 5 min
           }}
         />
         <TextField
           id="datetime-end-date"
           name="datetime-end-date"
-          style={{ width: 145 }}
+          style={{ width: 218 }}
           label="End Date"
-          // type="datetime-local"
-          type="date"
+          type="datetime-local"
           defaultValue="--"
           className={classes.textField}
           InputLabelProps={{
             shrink: true,
           }}
         />
-        <TextField
-          id="datetime-time-end-date"
-          name="datetime-time-end-date"
-          style={{ width: 55 }}
-          label="Time"
-          type="time"
-          defaultValue="--"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          inputProps={{
-            step: 300, // 5 min
-          }}
-        /> */}
 
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container justify="space-around">
             <KeyboardDatePicker
               style={{ width: 150, margin: 8 }}
@@ -276,7 +240,7 @@ export default function Post(props) {
               }}
             />
           </Grid>
-        </MuiPickersUtilsProvider>
+        </MuiPickersUtilsProvider> */}
 
         <br />
         <Button
