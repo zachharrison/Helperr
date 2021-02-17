@@ -1,28 +1,16 @@
-import { useCallback, useRef, useState } from "react";
+import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-// import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-// import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
-// import clsx from "clsx";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Places from "../Places/Places";
 import "./Jobs.css";
 import "date-fns";
-/* import { Marker, InfoWindow } from "@react-google-maps/api";
-
-import Grid from "@material-ui/core/Grid";
-import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  // KeyboardTimePicker,
-  KeyboardDatePicker,
-} from "@material-ui/pickers"; */
 
 export default function Post(props) {
   const classes = useStyles();
@@ -95,10 +83,6 @@ export default function Post(props) {
           renderInput={(params) => <TextField {...params} label="Category" />}
         />
         <Places setCoord={props.setCoord} coord={props.coord} />
-
-        {/* <Marker position={{ lat: props.coord.lng, lng: props.coord.lng }} /> */}
-        <script>console.log(props.coord.lng)</script>
-
         <TextField
           label="Price"
           id="price"

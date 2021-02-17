@@ -85,7 +85,6 @@ export default function Map(props) {
         zoom={13}
         center={center}
         options={options}
-        // onClick={onMapClick}
         onLoad={onMapLoad}
       >
         <Locate panTo={panTo} />

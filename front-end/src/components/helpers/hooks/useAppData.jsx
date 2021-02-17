@@ -35,7 +35,7 @@ export default function useAppData() {
         categories: all[2].data,
         offers: all[3].data,
         reviews: all[4].data,
-        // messages: all[4].data,
+        // messages: all[5].data,
       }));
     });
   }, []);

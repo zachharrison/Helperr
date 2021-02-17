@@ -2,23 +2,21 @@
 import Post from "./Post";
 import Find from "./Find";
 import All from "./All";
-// import Error from "./Error";
-// import Status from "./Status";
 import JobToggle from "../JobToggle/JobToggle";
 import "./Jobs.css";
 import Chat from "../Chat/Chat";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import ChatList from "../Chat/ChatList";
-// import { Transition } from "react-transition-group";
 
 export default function Jobs(props) {
   function dropPin(job) {
     const newJob = {
       job,
     };
-    // transition(SAVING);
-    props.saveJob(props.id).then(() => props.setJobView("ALL"));
-    // .catch((error) => transition(ERROR_SAVE, true));
+    props
+      .saveJob(props.id)
+      .then(() => props.setJobView("ALL"))
+      .catch((error) => console.log(error));
   }
 
   return (
@@ -50,7 +48,7 @@ export default function Jobs(props) {
             in={props.state.jobView === "FIND"}
           >
             <div>
-              <Find />
+              <Find state={props.state} />
             </div>
           </CSSTransition>
         )}

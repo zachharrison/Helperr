@@ -1,5 +1,4 @@
 import "./Jobs.css";
-
 // import { useState } from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Find() {
+export default function Find(props) {
   const classes = useStyles();
   // const [selectedCategories, setSelectedCategories] = useState("");
 
@@ -27,7 +26,7 @@ export default function Find() {
           style={{ width: 450, margin: 8 }}
           multiple
           id="filter-categories"
-          options={categories}
+          options={Object.values(props.state.categories)}
           getOptionLabel={(option) => option.name}
           renderInput={(params) => (
             <TextField
@@ -44,42 +43,3 @@ export default function Find() {
     </>
   );
 }
-
-const categories = [
-  {
-    id: 1,
-    name: "Light-labour",
-  },
-  {
-    id: 2,
-    name: "Cleaning",
-  },
-  {
-    id: 3,
-    name: "Caregiving",
-  },
-  {
-    id: 4,
-    name: "AutoRepair",
-  },
-  {
-    id: 5,
-    name: "MinorRepair",
-  },
-  {
-    id: 6,
-    name: "Photography",
-  },
-  {
-    id: 7,
-    name: "Lessons",
-  },
-  {
-    id: 8,
-    name: "Delivery",
-  },
-  {
-    id: 9,
-    name: "Miscellaneous",
-  },
-];
