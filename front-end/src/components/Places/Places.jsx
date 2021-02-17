@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef } from "react";
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
@@ -9,10 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import parse from "autosuggest-highlight/parse";
 import throttle from "lodash/throttle";
 
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
+import { getGeocode, getLatLng } from "use-places-autocomplete";
 
 function loadScript(src, position, id) {
   if (!position) {
@@ -35,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Places() {
+export default function Places(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(null);
   const [inputValue, setInputValue] = React.useState("");
@@ -43,12 +40,11 @@ export default function Places() {
   const loaded = React.useRef(false);
 
   const mapRef = useRef();
-  const onMapLoad = useCallback((map) => {
+  /*   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
-  }, []);
+  }, []); */
 
   const panTo = useCallback(({ lat, lng }) => {
-    console.log("mapREF ====>", mapRef);
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
   }, []);
@@ -110,74 +106,68 @@ export default function Places() {
   }, [value, inputValue, fetch]);
 
   return (
-    console.log("options b4 autocomplete", options),
-    (
-      <Autocomplete
-        id="google-map-demo"
-        style={{ width: 300 }}
-        getOptionLabel={(option) =>
-          typeof option === "string" ? option : option.description
+    <Autocomplete
+      id="google-map-demo"
+      style={{ width: 300 }}
+      getOptionLabel={(option) =>
+        typeof option === "string" ? option : option.description
+      }
+      filterOptions={(x) => x}
+      options={options}
+      autoComplete
+      includeInputInList
+      filterSelectedOptions
+      getOptionSelected={(option, value) => option.place_id === value.place_id}
+      value={value}
+      onChange={async (event, newValue) => {
+        setOptions(newValue ? [newValue, ...options] : options);
+        const address = newValue.description;
+        try {
+          const results = await getGeocode({ address });
+          const { lat, lng } = await getLatLng(results[0]);
+          props.setCoord({ lat: lat, lng: lng });
+          panTo({ lat, lng });
+        } catch (error) {
+          console.log("Error!", error);
         }
-        filterOptions={(x) => x}
-        options={options}
-        autoComplete
-        includeInputInList
-        filterSelectedOptions
-        getOptionSelected={(option, value) =>
-          option.place_id === value.place_id
-        }
-        value={value}
-        onChange={async (event, newValue) => {
-          setOptions(newValue ? [newValue, ...options] : options);
-          const address = newValue.description;
-          console.log("fullAddress =>", address);
-          try {
-            const results = await getGeocode({ address });
-            console.log("results =>", lat, lng);
-            const { lat, lng } = await getLatLng(results[0]);
-            panTo({ lat, lng });
-          } catch (error) {
-            console.log("Error!");
-          }
-          setValue(newValue);
-        }}
-        onInputChange={(event, newInputValue) => {
-          setInputValue(newInputValue);
-        }}
-        renderInput={(params) => (
-          <TextField {...params} label="Address" variant="outlined" fullWidth />
-        )}
-        renderOption={(option) => {
-          const matches =
-            option.structured_formatting.main_text_matched_substrings;
-          const parts = parse(
-            option.structured_formatting.main_text,
-            matches.map((match) => [match.offset, match.offset + match.length])
-          );
+        setValue(newValue);
+      }}
+      onInputChange={(event, newInputValue) => {
+        setInputValue(newInputValue);
+      }}
+      renderInput={(params) => (
+        <TextField {...params} label="Address" variant="outlined" fullWidth />
+      )}
+      renderOption={(option) => {
+        const matches =
+          option.structured_formatting.main_text_matched_substrings;
+        const parts = parse(
+          option.structured_formatting.main_text,
+          matches.map((match) => [match.offset, match.offset + match.length])
+        );
 
-          return (
-            <Grid container alignItems="center">
-              <Grid item>
-                <LocationOnIcon className={classes.icon} />
-              </Grid>
-              <Grid item xs>
-                {parts.map((part, index) => (
-                  <span
-                    key={index}
-                    style={{ fontWeight: part.highlight ? 700 : 400 }}
-                  >
-                    {part.text}
-                  </span>
-                ))}
-
-                <Typography variant="body2" color="textSecondary">
-                  {option.structured_formatting.secondary_text}
-                </Typography>
-              </Grid>
+        return (
+          <Grid container alignItems="center">
+            <Grid item>
+              <LocationOnIcon className={classes.icon} />
             </Grid>
-          );
-        }}
-      />
-    )
+            <Grid item xs>
+              {parts.map((part, index) => (
+                <span
+                  key={index}
+                  style={{ fontWeight: part.highlight ? 700 : 400 }}
+                >
+                  {part.text}
+                </span>
+              ))}
+
+              <Typography variant="body2" color="textSecondary">
+                {option.structured_formatting.secondary_text}
+              </Typography>
+            </Grid>
+          </Grid>
+        );
+      }}
+    />
   );
 }

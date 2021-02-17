@@ -58,7 +58,11 @@ export default function Jobs(props) {
             in={props.state.jobView === "POST"}
           >
             <div>
-              <Post state={props.state} />
+              <Post
+                state={props.state}
+                setCoord={props.setCoord}
+                coord={props.coord}
+              />
             </div>
           </CSSTransition>
         )}
