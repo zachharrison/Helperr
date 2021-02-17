@@ -8,7 +8,7 @@ import fixtures from '../helpers/__mocks__/axios'
 const Chat = ({ messages, sendMessage, getMessages, state, cookies }) => {
   // SAVING MESSAGE IN STATE {message: 'Hello world', name: "2"}
   // cookie is a string and ID from DB is a number
-  const [messageState, setMessageState] = useState({ message: "", name: +cookies.user });
+  const [messageState, setMessageState] = useState({ message: "", name: ""});
 
 
   const onTextChange = (e) => {

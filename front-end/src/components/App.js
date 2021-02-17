@@ -10,6 +10,7 @@ import ChatList from "./Chat/ChatList";
 import useAppData from "./helpers/hooks/useAppData";
 import { useCookies } from "react-cookie";
 import Login from './Login/Login'
+import { getJobsFiltered } from "./helpers/selectors";
 // import { Input } from "@material-ui/core";
 // import fixtures from "./helpers/__mocks__/axios";
 const _socket = io.connect("http://localhost:8001", {
@@ -20,11 +21,6 @@ const _socket = io.connect("http://localhost:8001", {
 // how to have the state start with the state from useAppData - can we pass this into a chat socket?
 // if so how since it one is not a child of the other
 
-import { getJobsFiltered } from "./helpers/selectors";
-
-const _socket = io.connect("http://localhost:8001", {
-  transports: ["websocket"],
-});
 
 const useChatSocket = () => {
   const [messages, setMessages] = useState([]);

@@ -24,9 +24,7 @@ export default function useAppData() {
   // },[])
     // lat: 49.26800377076573,
     // lng: -123.10571490809717,
-  });
-
-  const setJobView = (jobView) => setState({ ...state, jobView });
+  //);
 
   useEffect(() => {
     Promise.all([
