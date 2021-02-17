@@ -8,6 +8,7 @@ import Chat from "./Chat/Chat";
 import fixtures from "./helpers/__mocks__/axios";
 import ChatList from "./Chat/ChatList";
 import useAppData from "./helpers/hooks/useAppData";
+import { getJobsFiltered } from "./helpers/selectors";
 
 const _socket = io.connect("http://localhost:8001", {
   transports: ["websocket"],
@@ -37,7 +38,11 @@ export default function App() {
     lng: -123.10571490809717,
   });
 
-  const { state, setJobView, setPostCode } = useAppData();
+  const { state, setJobView } = useAppData();
+
+  const jobMarkers = getJobsFiltered(state, []); // replace with state for filters
+
+  console.log("jobsFIltered", jobMarkers);
 
   return (
     <div className="App">
@@ -46,10 +51,10 @@ export default function App() {
         <div className="map-container">
           <Map
             state={state}
-            setPostCode={setPostCode}
             setJobView={setJobView}
             setCoord={setCoord}
             coord={coord}
+            jobMarkers={jobMarkers}
           />
         </div>
 

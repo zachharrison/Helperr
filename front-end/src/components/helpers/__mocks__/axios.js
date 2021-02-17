@@ -1,4 +1,4 @@
-const fixtures =  {
+const fixtures = {
   users: {
     1: {
       id: 1,
@@ -42,7 +42,7 @@ const fixtures =  {
       name: "Babysit a lil' brat",
       description: "Take care of this POS for me thanks",
       lat: 49.28129,
-      lng: 123.115121,
+      lng: -123.115121,
       price: 1000,
       per_hr: "FALSE",
       start_time: "2021-02-26 18:00:00",
@@ -55,9 +55,9 @@ const fixtures =  {
       helper_id: 4,
       category_id: 7,
       name: '"fix" kids football',
-      description: "please suck some air out of my sons balls",
+      description: "please suck some air out of my footballs",
       lat: 49.22129,
-      lng: 123.105121,
+      lng: -123.105121,
       price: 2000,
       per_hr: "TRUE",
       start_time: "2021-02-27 12:00:00",

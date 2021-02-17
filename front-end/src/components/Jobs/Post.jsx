@@ -14,7 +14,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import Places from "../Places/Places";
 import "./Jobs.css";
 import "date-fns";
-import { Marker, InfoWindow } from "@react-google-maps/api";
+/* import { Marker, InfoWindow } from "@react-google-maps/api";
 
 import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
@@ -22,7 +22,7 @@ import {
   MuiPickersUtilsProvider,
   // KeyboardTimePicker,
   KeyboardDatePicker,
-} from "@material-ui/pickers";
+} from "@material-ui/pickers"; */
 
 const categories = [
   {
@@ -92,7 +92,6 @@ export default function Post(props) {
   );
   const [jobTitle, setJobTitle] = useState("");
   const [jobDescription, setJobDescription] = useState("");
-  const [postalCode, setPostalCode] = useState("");
   const [jobCategory, setJobCategory] = useState("");
   const [price, setPrice] = useState("");
 
@@ -100,7 +99,6 @@ export default function Post(props) {
     const job = {
       jobTitle,
       jobDescription,
-      postalCode,
       jobCategory,
       price,
       hourly,
@@ -118,19 +116,6 @@ export default function Post(props) {
     setSelectedEndDate(date);
   };
 
-  const mapRef = useRef();
-  const onMapLoad = useCallback((map) => {
-    mapRef.current = map;
-  }, []);
-
-  const panTo = useCallback(({ lat, lng }) => {
-    if (mapRef.current) {
-      mapRef.current.panTo({ lat, lng });
-      mapRef.current.setZoom(14);
-    }
-  }, []);
-
-  // `https://maps.googleapis.com/maps/api/geocode/json?address=${post_code},+CA&key=${process.env.REACT_APP_GOOGLE_API_KEY}`
   return (
     <>
       <span>Post Help Request</span>

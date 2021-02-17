@@ -1,15 +1,10 @@
 import mapStyles from "../../mapStyles";
 import { useCallback, useRef, useState, useEffect } from "react";
 import "./Map.css";
-
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
-
 import "@reach/combobox/styles.css";
-
-import Search from "./Search";
 import Locate from "./Locate";
 import Markers from "./Markers";
-import Places from "../Places/Places";
 
 const mapContainerStyle = {
   width: "100%",
@@ -37,8 +32,7 @@ export default function Map(props) {
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState();
 
-  const onMapClick = useCallback((event) => {
-    props.setPostCode("Testing");
+  /*   const onMapClick = useCallback((event) => {
     props.setJobView("FIND");
     const lat = event.latLng.lat();
     const lng = event.latLng.lng();
@@ -54,14 +48,14 @@ export default function Map(props) {
       // .then(() => props.setJobView("Testing"))
       .then(() => console.log(props.state));
     setMarkers((current) => [
-      ...current,
+      current,
       {
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
         time: new Date(),
       },
     ]);
-  }, []);
+  }, []); */
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
@@ -92,7 +86,7 @@ export default function Map(props) {
         zoom={12}
         center={center}
         options={options}
-        onClick={onMapClick}
+        // onClick={onMapClick}
         onLoad={onMapLoad}
       >
         <Locate panTo={panTo} />
@@ -101,6 +95,7 @@ export default function Map(props) {
           setSelected={setSelected}
           selected={selected}
           coord={props.coord}
+          jobMarkers={props.jobMarkers}
         />
       </GoogleMap>
     </div>
