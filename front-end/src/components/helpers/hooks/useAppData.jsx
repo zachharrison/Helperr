@@ -40,22 +40,9 @@ export default function useAppData() {
     });
   }, []);
 
-  /*   function bookInterview(id, interview) {
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview },
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
-
-    const days = displaySpots(state.days, appointments);
-
-    return axios
-      .put(`/api/appointments/${id}`, appointment)
-      .then(setState({ ...state, days, appointments }));
-  } */
+  function postJob(job) {
+    return axios.put(`/api/jobs/`, job).then(setState({ ...state, job }));
+  }
 
   return { state, setJobView };
 }

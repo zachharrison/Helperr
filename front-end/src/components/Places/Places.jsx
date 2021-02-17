@@ -87,15 +87,12 @@ export default function Places(props) {
     fetch({ input: inputValue }, (results) => {
       if (active) {
         let newOptions = [];
-
         if (value) {
           newOptions = [value];
         }
-
         if (results) {
           newOptions = [...newOptions, ...results];
         }
-
         setOptions(newOptions);
       }
     });

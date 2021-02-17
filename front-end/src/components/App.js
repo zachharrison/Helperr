@@ -38,11 +38,9 @@ export default function App() {
     lng: -123.10571490809717,
   });
 
-  const { state, setJobView } = useAppData();
+  const { state, setJobView, saveJob } = useAppData();
 
   const jobMarkers = getJobsFiltered(state, []); // replace with state for filters
-
-  console.log("jobsFIltered", jobMarkers);
 
   return (
     <div className="App">
@@ -66,6 +64,7 @@ export default function App() {
             sendMessage={sendMessage}
             setCoord={setCoord}
             coord={coord}
+            saveJob={saveJob}
           />
           {/* {<ChatList messages={messages} sendMessage={sendMessage} /> } */}
           <ChatNav setJobView={setJobView} />

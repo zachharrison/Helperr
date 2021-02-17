@@ -24,60 +24,6 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers"; */
 
-const categories = [
-  {
-    id: 1,
-    name: "Light-labour",
-  },
-  {
-    id: 2,
-    name: "Cleaning",
-  },
-  {
-    id: 3,
-    name: "Caregiving",
-  },
-  {
-    id: 4,
-    name: "AutoRepair",
-  },
-  {
-    id: 5,
-    name: "MinorRepair",
-  },
-  {
-    id: 6,
-    name: "Photography",
-  },
-  {
-    id: 7,
-    name: "Lessons",
-  },
-  {
-    id: 8,
-    name: "Delivery",
-  },
-  {
-    id: 9,
-    name: "Miscellaneous",
-  },
-];
-/* 
-function onPin() {
-  if (name === "" && interviewer === null) {
-    setError("Student name and Instructor selection cannot be blank");
-    return;
-  } else if (name === "") {
-    setError("Student name cannot be blank");
-    return;
-  } else if (interviewer === null) {
-    setError("Instructor selection cannot be blank");
-    return;
-  }
-  setError("");
-  props.onSave(name, interviewer);
-} */
-
 export default function Post(props) {
   const classes = useStyles();
   const [hourly, setHourly] = useState();
@@ -143,7 +89,7 @@ export default function Post(props) {
           onChange={(event, value) => setJobCategory(value ? value.name : "")}
           id="category-search"
           name="category-search"
-          options={categories}
+          options={Object.values(props.state.categories)}
           getOptionLabel={(option) => option.name}
           style={{ width: 450, margin: 8 }}
           renderInput={(params) => <TextField {...params} label="Category" />}
@@ -187,6 +133,8 @@ export default function Post(props) {
           name="datetime-start-date"
           style={{ width: 218 }}
           label="Start Date"
+          value={selectedStartDate}
+          onChange={handleStartDateChange}
           type="datetime-local"
           defaultValue="--"
           className={classes.textField}
@@ -199,6 +147,8 @@ export default function Post(props) {
           name="datetime-end-date"
           style={{ width: 218 }}
           label="End Date"
+          value={selectedEndDate}
+          onChange={handleEndDateChange}
           type="datetime-local"
           defaultValue="--"
           className={classes.textField}
@@ -206,42 +156,6 @@ export default function Post(props) {
             shrink: true,
           }}
         />
-
-        {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Grid container justify="space-around">
-            <KeyboardDatePicker
-              style={{ width: 150, margin: 8 }}
-              disableToolbar
-              variant="inline"
-              format="MM/dd/yyyy"
-              margin="normal"
-              id="date-picker-start-date"
-              name="date-picker-start-date"
-              label="Start Date"
-              value={selectedStartDate}
-              onChange={handleStartDateChange}
-              KeyboardButtonProps={{
-                "aria-label": "change date",
-              }}
-            />
-            <KeyboardDatePicker
-              style={{ width: 150, margin: 8, marginLeft: 30 }}
-              disableToolbar
-              variant="inline"
-              format="MM/dd/yyyy"
-              margin="normal"
-              id="date-picker-end-date"
-              name="date-picker-end-date"
-              label="End Date"
-              value={selectedEndDate}
-              onChange={handleEndDateChange}
-              KeyboardButtonProps={{
-                "aria-label": "change date",
-              }}
-            />
-          </Grid>
-        </MuiPickersUtilsProvider> */}
-
         <br />
         <Button
           onClick={onSubmit}
