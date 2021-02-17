@@ -37,8 +37,10 @@ export default function App() {
     lat: 49.26800377076573,
     lng: -123.10571490809717,
   });
+  // fixtures has: users, jobs, categories, offers, messages, reviews
+  // const { users, jobs, categories, offers, messages, reviews } = fixtures;
+  const { state, setJobView, setMessageView, getConversations, getMessages, setChat } = useAppData();
 
-  const { state, setJobView } = useAppData();
 
   const jobMarkers = getJobsFiltered(state, []); // replace with state for filters
 
@@ -64,10 +66,13 @@ export default function App() {
             setJobView={setJobView}
             messages={messages}
             sendMessage={sendMessage}
+            setMessageView={setMessageView}
+            getConversations={getConversations}
+            getMessages={getMessages}
+            setChat={setChat}
             setCoord={setCoord}
             coord={coord}
           />
-          {/* {<ChatList messages={messages} sendMessage={sendMessage} /> } */}
           <ChatNav setJobView={setJobView} />
         </div>
       </div>

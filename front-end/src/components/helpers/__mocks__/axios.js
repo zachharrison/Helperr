@@ -113,20 +113,6 @@ const fixtures = {
       status: "ACCEPTED",
     },
   },
-  messages: {
-    1: {
-      id: 1,
-      offer_id: 1,
-      user_id: 1,
-      message: "Yo! I'm a woman",
-    },
-    2: {
-      id: 2,
-      offer_id: 1,
-      user_id: 2,
-      message: "Um ok?",
-    },
-  },
   reviews: {
     1: {
       id: 1,
@@ -137,6 +123,118 @@ const fixtures = {
       details: "details",
     },
   },
+  chats: [
+    {
+      id: 1,
+      userName: "Natasha",
+      messages: [
+      {
+        id: 1,
+        name: "Natasha",
+        message: "Message 1 hey there!"
+      },
+      {
+        id: 2,
+        name: "Zach",
+        message: "Morning!"
+      },
+      {
+        id: 3,
+        name: "Natasha",
+        message: "What's up dude?"
+      }
+    ],
+      
+    },
+     {
+      id: 2,
+      userName: "Natasha",
+      messages: [
+      {
+        id: 1,
+        name: "Joe Smith",
+        message: "Message 2 hey there!"
+      },
+      {
+        id: 2,
+        name: "Natasha",
+        message: "Morning!"
+      },
+      {
+        id: 3,
+        name: "Joe Smith",
+        message: "What's up dude?"
+      }
+    ],
+      
+    },
+   {
+      id: 3,
+      userName: "Bob",
+      messages: [
+      {
+        id: 1,
+        name: "Bob",
+        message: "Message 3 hey there!"
+      },
+      {
+        id: 2,
+        name: "Natasha",
+        message: "Morning!"
+      },
+      {
+        id: 3,
+        name: "Bob",
+        message: "What's up dude?"
+      }
+    ],
+      
+    },
+    {
+      id: 4,
+      userName: "Natasha",
+      messages: [
+      {
+        id: 1,
+        name: "Natasha",
+        message: "Message 4 hey there!"
+      },
+      {
+        id: 2,
+        name: "John",
+        message: "Morning!"
+      },
+      {
+        id: 3,
+        name: "Natasha",
+        message: "What's up dude?"
+      }
+    ],
+      
+    },
+    {
+      id: 5,
+      userName: "Natasha",
+      messages: [
+      {
+        id: 1,
+        name: "Natasha",
+        message: "Message 5 hey there!"
+      },
+      {
+        id: 2,
+        name: "Harry",
+        message: "Morning!"
+      },
+      {
+        id: 3,
+        name: "Natasha",
+        message: "What's up dude?"
+      }
+    ],
+      
+    }
+  ]
 };
 
 export default fixtures;

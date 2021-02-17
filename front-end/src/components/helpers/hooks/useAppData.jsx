@@ -3,16 +3,23 @@ import fixtures from "../__mocks__/axios";
 import axios from "axios";
 
 export default function useAppData() {
-  const { users, jobs, categories, offers, messages, reviews } = fixtures;
-
+  const { users, jobs, categories, offers, reviews, chats } = fixtures;
+  
   const [state, setState] = useState({
     users,
     jobs,
     categories,
     offers,
-    messages,
+    chats,
     reviews,
-    jobView: "POST",
+    jobView: "FIND",
+    postcode: "",
+    chatId: null
+  });
+
+  // useEffect(() => {
+  //   getConversations()
+  // },[])
     // lat: 49.26800377076573,
     // lng: -123.10571490809717,
   });
@@ -39,7 +46,41 @@ export default function useAppData() {
       }));
     });
   }, []);
+  const setJobView = (jobView) => setState({ ...state, jobView });
+  const setPostCode = (postCode) => setState({ ...state, postCode });
+  const setChat = (chatId) => setState({ ...state, chatId, jobView: "CHAT" })
 
+
+
+  const getConversations = () => {
+    const currentUser = "Natasha"
+    const usersConversations = chats.filter(chat => chat.userName === currentUser)
+    
+    const chatData = usersConversations.map(chat => {
+      const otherUser = chat.messages.find(message => message.name !== currentUser);
+      const id = chat.id;
+      const name = otherUser.name;
+      const message = chat.messages[chat.messages.length - 1].message;
+      const chatObj = { id, name, message };
+
+      return chatObj
+
+    })
+
+    return chatData;
+
+  }
+
+  const getMessages = (id) => {
+    for (const chat of chats) {
+      if (chat.id === id) {
+        return chat.messages;
+      }
+    }
+  }
+
+
+  return { state, setJobView, setPostCode, getConversations, getMessages, setChat };
   /*   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -59,3 +100,26 @@ export default function useAppData() {
 
   return { state, setJobView };
 }
+
+// {
+//   id: 1,
+//   userName: "Natasha",
+//   messages: [
+//   {
+//     id: 1,
+//     name: "Natasha",
+//     message: "Message 1 hey there!"
+//   },
+//   {
+//     id: 2,
+//     name: "Zach",
+//     message: "Morning!"
+//   },
+//   {
+//     id: 3,
+//     name: "Natasha",
+//     message: "What's up dude?"
+//   }
+// ],
+  
+// },
