@@ -8,14 +8,14 @@ export default function ChatListItem(props) {
   //   shave('.conversation-snippet', 20);
   // })
 
-    const { id, name, message } = props.data;
+    const { id, title, message } = props.data;
 
     console.log('THE CHAT ID IS ',id)
 
      return (
       <div className="conversation-list-item" onClick={() => props.setChat(id)}>
-        <div className="conversation-info">
-          <h1 className="conversation-title">{ name }</h1>
+        <div key={id} className="conversation-info">
+          <h1 className="conversation-title">{ title }</h1>
           <p className="conversation-snippet">{ message }</p>
         </div>
       </div>
