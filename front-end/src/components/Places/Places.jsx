@@ -58,7 +58,7 @@ export default function Places(props) {
         place_id,
         structured_formatting: { main_text, secondary_text },
       } = suggestion;
-
+      /* wrap the below in a menuItem tag */
       return (
         <Grid
           container
@@ -84,7 +84,7 @@ export default function Places(props) {
         placeholder="Where are you going?"
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
-      {status === "OK" && renderSuggestions()}
+      {status === "OK" && renderSuggestions()} {/* wrap this in select tag */}
     </div>
   );
 }
