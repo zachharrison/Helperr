@@ -4,23 +4,14 @@ import Map from "./Map";
 import ChatNav from "./Chat/ChatNav";
 import { io } from "socket.io-client";
 import Jobs from "./Jobs";
-import Chat from "./Chat/Chat";
-import fixtures from "./helpers/__mocks__/axios";
-import ChatList from "./Chat/ChatList";
 import useAppData from "./helpers/hooks/useAppData";
-import { useCookies } from "react-cookie";
-import Login from './Login/Login'
 import { getJobsFiltered } from "./helpers/selectors";
-// import { Input } from "@material-ui/core";
-// import fixtures from "./helpers/__mocks__/axios";
 const _socket = io.connect("http://localhost:8001", {
   transports: ["websocket"],
 });
 
-
 // how to have the state start with the state from useAppData - can we pass this into a chat socket?
 // if so how since it one is not a child of the other
-
 
 const useChatSocket = () => {
   const [messages, setMessages] = useState([]);
@@ -42,44 +33,36 @@ const useChatSocket = () => {
 
 export default function App() {
   const { messages, sendMessage } = useChatSocket();
-  // const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
-  // function handleCookie(id) {
-  //   setCookie("user", id, {
-  //     path: "/"
-  //   })
-  // }
-
-  // THIS WAS BEING PASSED AS A PROP BUT IT IS NOT DEFINED ANYWHERE??????
   /* saveJob={saveJob} */
 
   const [coord, setCoord] = useState({
     lat: 49.26800377076573,
     lng: -123.10571490809717,
   });
-  // fixtures has: users, jobs, categories, offers, messages, reviews
-  // const { users, jobs, categories, offers, messages, reviews } = fixtures;
-  const { 
-    state, 
+
+  const {
+    state,
     setJobView,
     setMessageView,
     getConversations,
-    getMessages, 
+    getMessages,
     setChat,
     setCurrentUser,
-    removeCurrentUser, 
-    cookies, 
-    setMessages
+    removeCurrentUser,
+    cookies,
+    setMessages,
+    postJob,
   } = useAppData();
-
 
   const jobMarkers = getJobsFiltered(state, []); // replace with state for filters
 
-  // console.log("jobsFIltered", jobMarkers);
-
   return (
     <div className="App">
-      <Navbar setCurrentUser={setCurrentUser} removeCurrentUser={removeCurrentUser}/>
+      <Navbar
+        setCurrentUser={setCurrentUser}
+        removeCurrentUser={removeCurrentUser}
+      />
       <div className="containers">
         <div className="map-container">
           <Map
@@ -104,9 +87,10 @@ export default function App() {
             setCoord={setCoord}
             coord={coord}
             cookies={cookies}
-            setCurrentUser={setCurrentUser} 
+            setCurrentUser={setCurrentUser}
             removeCurrentUser={removeCurrentUser}
             setMessages={setMessages}
+            postJob={postJob}
           />
           <ChatNav setJobView={setJobView} />
         </div>

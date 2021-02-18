@@ -7,25 +7,6 @@ const io = require("socket.io")(server);
 let sockets = [];
 express.use(app);
 
-<<<<<<< HEAD
-// SOCKET HANDSHAKE??
-
-io.on("connection", socket => {
-  // PUSH ALL SOCKET CONNECTIONS TO AN ARRAY
-  sockets.push(socket);
-  console.log(`Client Connected, there is ${sockets.length} sockets connected`);
-  console.log(socket.handshake.headers.cookie)
-  
-  socket.on('disconnect', () => {
-    sockets = sockets.filter(s => s !== socket);
-    console.log(`Client Disconnected, there are ${sockets.length} sockets remaining`);
-  });
-  // SENDS MESSAGE CLIENT SIDE
-  socket.on('message', ({ name, message }) => {
-    // EMIT MESSAGE TO CORRECT ROOM
-    sockets.forEach(s => {
-      s.emit('message', { name, message });
-=======
 io.on("connection", (socket) => {
   sockets.push(socket);
   console.log(`Client Connected, there is ${sockets.length} sockets connected`);
@@ -40,7 +21,6 @@ io.on("connection", (socket) => {
   socket.on("message", ({ name, message }) => {
     sockets.forEach((s) => {
       s.emit("message", { name, message });
->>>>>>> e5232e45bb121d3b8a258ed41a20c718d3a381aa
     });
   });
 });
@@ -49,12 +29,12 @@ server.listen(8001, () => {
   console.log(`Listening on port ${PORT} in ${ENV} mode.`);
 });
 
-// TRAVERSY MEDIA PROJECT EXAMPLE 
+// TRAVERSY MEDIA PROJECT EXAMPLE
 // https://github.com/bradtraversy/chatcord/blob/master/public/js/main.js
 
 // create a function that when clicking on messages will query db/state whatever our situation is and then return the ones for that user based on cookie
 // state should have the messages so should hopefully be able to hve them show up depending how they come out of DB
- 
+
 // when clicking on a chat will hhave to do
 // io.on('connection', socket => {
 //   socket.join('CHATID');
@@ -71,5 +51,5 @@ server.listen(8001, () => {
 // // sending to all clients in "game" room, including sender
 // io.in("game").emit("big-announcement", "the game will start soon");
 
-// if we are sending a message to someone that is not currently connected, 
+// if we are sending a message to someone that is not currently connected,
 // is this still a socket connection or is it just posting to the DB and updating state instead?
