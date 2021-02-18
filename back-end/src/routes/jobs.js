@@ -19,32 +19,32 @@ module.exports = (db) => {
     }
     console.log("Response body in backend =========>", request.body);
     const {
-      // category_id,
-      jobTitle,
-      jobDescription,
-      // lat,
-      // lng,
-      // price,
-      // per_hr,
+      category,
+      name,
+      description,
+      lat,
+      lng,
+      price,
+      payType,
       // start_time,
       // end_time,
-      // status,
+      status,
     } = request.body.job; // sent from FE
     db.query(
       `
-      INSERT INTO jobs ( name, description, price) VALUES ($1::text, $2::text, $3::integer)
+      INSERT INTO jobs ( category_id, name, description, lat, lng, price, per_hr, status) VALUES ($1::integer, $2::text, $3::text, $4::float, $5::float, $6::integer, $7::pay_type, $8::job_status)
     `,
       [
-        // category_id,
-        jobTitle,
-        jobDescription,
-        // lat,
-        // lng,
-        100,
-        // per_hr,
+        category,
+        name,
+        description,
+        lat,
+        lng,
+        price,
+        payType,
         // start_time,
         // end_time,
-        // status,
+        "POSTED",
       ] // Number(request.params.id) for id? idk
     ) // INSERT INTO jobs (category_id, name, description, lat, lng, price, per_hr, start_time, end_time, status) VALUES ($1::integer, $2::text, $3::integer, $4::integer, $5::integer, $6::integer, $7::text, $8::integer, $9::integer, $10::text
       .then(() => {

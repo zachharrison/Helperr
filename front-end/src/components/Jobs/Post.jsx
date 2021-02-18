@@ -12,49 +12,59 @@ import Places from "../Places/Places";
 import "./Jobs.css";
 import "date-fns";
 
+import Grid from "@material-ui/core/Grid";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  // KeyboardTimePicker,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
+
 export default function Post(props) {
   const classes = useStyles();
-  const [hourly, setHourly] = useState();
-  const handleChange = (event) => {
-    setHourly(event.target.value);
-  };
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [price, setPrice] = useState("");
+  const [payType, setPayType] = useState("");
   const [selectedStartDate, setSelectedStartDate] = useState(
     new Date("2021-02-18T21:11:54")
-  );
+  ); // new Date("2021-02-18T21:11:54")
   const [selectedEndDate, setSelectedEndDate] = useState(
     new Date("2021-02-18T21:11:54")
   );
-  const [jobTitle, setJobTitle] = useState("");
-  const [jobDescription, setJobDescription] = useState("");
-  const [jobCategory, setJobCategory] = useState("");
-  const [price, setPrice] = useState("");
+
+  const [error, setError] = useState("");
 
   function validate() {
     const newJob = {
-      jobTitle,
-      jobDescription,
-      // jobCategory,
-      // price,
-      // hourly,
-      // selectedStartDate,
-      // selectedEndDate,
+      name,
+      description,
+      lat: props.coord.lat,
+      lng: props.coord.lng,
+      category,
+      price,
+      payType,
+      selectedStartDate,
+      selectedEndDate,
     };
-    console.log(newJob);
-
-    /*     if (
-      jobTitle === "" ||
-      jobDescription === "" ||
-      jobCategory === "" ||
+    console.log("Form submission", newJob);
+    if (
+      name === "" ||
+      description === "" ||
+      category === "" ||
       price === "" ||
-      hourly === ""
+      payType === ""
     ) {
-      console.log(
-        "Required Post form item left blank, consider using shceduler setError"
-      );
-    } */
-    console.log("newJob from post ForM", newJob);
+      setError("Please fill out some stuff but not everything.. idk");
+      return;
+    }
+    setError("");
     props.onSave(newJob);
   }
+  const handleChange = (event) => {
+    setPayType(event.target.value);
+  };
 
   const handleStartDateChange = (date) => {
     setSelectedStartDate(date);
@@ -69,12 +79,12 @@ export default function Post(props) {
       <span>Post Help Request</span>
       <form action="">
         <TextField
-          id="job-title"
+          id="job-name"
           style={{ width: 450, margin: 8 }}
           label="Job"
           placeholder="What do you need help with?"
           fullWidth
-          onChange={(event) => setJobTitle(event.target.value)}
+          onChange={(event) => setName(event.target.value)}
         />
         <TextField
           id="job-descripton"
@@ -85,12 +95,13 @@ export default function Post(props) {
           fullWidth
           multiline
           rowsMax="10"
-          onChange={(event) => setJobDescription(event.target.value)}
+          onChange={(event) => setDescription(event.target.value)}
         />
         <Autocomplete
-          onChange={(event, value) => setJobCategory(value ? value.name : "")}
+          onChange={(event, value) => setCategory(value ? value.id : "")}
           id="category-search"
           name="category-search"
+          value={props.state.category}
           options={Object.values(props.state.categories)}
           getOptionLabel={(option) => option.name}
           style={{ width: 450, margin: 8 }}
@@ -117,44 +128,110 @@ export default function Post(props) {
             labelId="demo-simple-select-label"
             id="pay-type-select"
             name="pay-type-select"
-            value={props.state.per_hr}
+            value={props.state.payType}
             onChange={handleChange}
           >
-            <MenuItem value={"hourly"}>Hourly</MenuItem>
-            <MenuItem value={"perJob"}>Per Job</MenuItem>
+            <MenuItem value={"/hr"}>Per Hour</MenuItem>
+            <MenuItem value={"total"}>Total</MenuItem>
           </Select>
         </FormControl>
         <br />
 
-        <TextField
+        {/*         <TextField
           id="datetime-start-date"
           name="datetime-start-date"
           style={{ width: 218 }}
           label="Start Date"
           value={selectedStartDate}
           onChange={handleStartDateChange}
-          type="datetime-local"
+          type="date"
+          // type="datetime-local"
           defaultValue="--"
           className={classes.textField}
           InputLabelProps={{
             shrink: true,
           }}
-        />
-        <TextField
+        /> */}
+        {/* <TextField
+            id="time"
+            style={{ width: 55 }}
+            label="Time"
+            type="time"
+            defaultValue="--"
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{
+              step: 300, // 5 min
+            }}
+          /> */}
+        {/*         <TextField
           id="datetime-end-date"
           name="datetime-end-date"
           style={{ width: 218 }}
           label="End Date"
           value={selectedEndDate}
           onChange={handleEndDateChange}
-          type="datetime-local"
+          type="date"
+          // type="datetime-local"
           defaultValue="--"
           className={classes.textField}
           InputLabelProps={{
             shrink: true,
           }}
-        />
+        /> */}
+        {/* <TextField
+            id="time"
+            style={{ width: 55 }}
+            label="Time"
+            type="time"
+            defaultValue="--"
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            inputProps={{
+              step: 300, // 5 min
+            }}
+          /> */}
+
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container justify="space-around">
+            <KeyboardDatePicker
+              style={{ width: 205, margin: 8 }}
+              disableToolbar
+              variant="inline"
+              format="yyyy/MM/dd"
+              margin="normal"
+              id="date-picker-start-date"
+              name="date-picker-start-date"
+              label="Start Date"
+              value={selectedStartDate}
+              onChange={handleStartDateChange}
+              KeyboardButtonProps={{
+                "aria-label": "change date",
+              }}
+            />
+            <KeyboardDatePicker
+              style={{ width: 205, margin: 8, marginLeft: 30 }}
+              disableToolbar
+              variant="inline"
+              format="yyyy/MM/dd"
+              margin="normal"
+              id="date-picker-end-date"
+              name="date-picker-end-date"
+              label="End Date"
+              value={selectedEndDate}
+              onChange={handleEndDateChange}
+              KeyboardButtonProps={{
+                "aria-label": "change date",
+              }}
+            />
+          </Grid>
+        </MuiPickersUtilsProvider>
         <br />
+        <span>{error}</span>
         <Button
           onClick={validate}
           variant="contained"
