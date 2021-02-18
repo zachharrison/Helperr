@@ -24,11 +24,10 @@ const Chat = ({ messages, sendMessage, getMessages, state, cookies }) => {
 
   const messageList = getMessages(state.chatId)
   const messageListDisplay = messageList.map((message, index) => {
-    const currentAuthor = cookies.user == 1 ? "Natasha" : "Zach"
-    console.log(currentAuthor)
+    const currentAuthor = +cookies.user
     return (
       <div className="chat">
-        <div className={[`${message.name == currentAuthor ? 'mine' : 'yours'}`, 'messages'].join(' ')} key={index}>
+        <div className={[`${message.user_id == currentAuthor ? 'mine' : 'yours'}`, 'messages'].join(' ')} key={index}>
             <div className="message last">
               { message.message }
             </div>

@@ -79,7 +79,6 @@ function Login(props) {
 // };
 
 export default function SimpleDialogDemo(props) {
-  console.log("PROPS FROM SIMPLEDIALGOD", props)
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(users[1]);
 

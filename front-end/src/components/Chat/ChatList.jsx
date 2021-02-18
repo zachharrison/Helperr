@@ -15,7 +15,7 @@ export default function ChatList(props) {
 
     const chatListItems = chatListData.map((item) => <ChatListItem
         key={item.id}
-        data={{id: item.id, name: item.name, message: item.message}}
+        data={{id: item.id, title: item.title, message: item.message}}
         setJobView={setJobView}
         setChat={setChat}
         />

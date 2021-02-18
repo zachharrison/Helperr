@@ -125,131 +125,60 @@ const fixtures = {
   },
   chats: [
     {
-      id: 1,
-      userId: 1,
-      messages: [
-      {
-        id: 1,
-        name: "Natasha",
-        userId: 1,
-        message: "Yo"
-      },
-      {
-        id: 2,
-        name: 'Zach',
-        userId: 2,
-        message: "Morning!"
-      },
-      {
-        id: 3,
-        name: "Natasha",
-        userId: 1,
-        message: "What's up dude?"
-      }
-    ],
-      
-    },
-     {
-      id: 2,
-      userId: 1,
-      messages: [
-      {
-        id: 1,
-        name: "John",
-        userId: 3,
-        message: "This chat is so cool bruh!"
-      },
-      {
-        id: 2,
-        name: "Natasha",
-        userId: 1,
-        message: "I know right!"
-      },
-      {
-        id: 3,
-        name: "John",
-        userId: 3,
-        message: "Best chat application ever made!!"
-      }
-    ],
-      
-    },
-   {
-      id: 3,
-      userId: 2,
-      messages: [
-      {
-        id: 1,
-        name: 'Zach',
-        userId: 2,
-        message: "Message 3 hey there!"
-      },
-      {
-        id: 2,
-        name: 'Jeff',
-        userId: 4,
-        message: "Morning!"
-      },
-      {
-        id: 1,
-        name: 'Zach',
-        userId: 2,
-        message: "What's up dude?"
-      }
-    ],
-      
+    id: 1,
+    user_id: 2,
+    offer_id: 1,
+    message: "User sent an offer 2000",
+    timestamp: "2021-02-15T17:13:58.223Z",
+    name: "BobTheBuilder",
+    title: "Babysit a lil brat"
     },
     {
-      id: 4,
-      userId: 2,
-      messages: [
-      {
-        id: 1,
-        name: 'Zach',
-        userId: 2,
-        message: "Whaaaaaaadddddduuuup???"
-      },
-      {
-        id: 2,
-        name: 'Sam',
-        userId: 3,
-        message: "Just kickin it wbu?!?!"
-      },
-      {
-        id: 3,
-        name: 'Zach',
-        userId: 2,
-        message: "∫®ø˚∂ß¬©˙∂˚ø©u"
-      }
-    ],
-      
+    id: 8,
+    user_id: 1,
+    offer_id: 1,
+    message: "Sounds great!",
+    timestamp: "2021-02-15T17:14:28.223Z",
+    name: "BobTheBuilder",
+    title: "Babysit a lil brat"
     },
     {
-      id: 5,
-      userId: 1,
-      messages: [
-      {
-        id: 1,
-        name: "Jessie",
-        userId: 5,
-        message: "Can you help me fix my car?"
-      },
-      {
-        id: 2,
-        name: "Natasha",
-        userId: 1,
-        message: "Sure what seems to be the issue??"
-      },
-      {
-        id: 3,
-        name: "Jessie",
-        userId: 5,
-        message: "It makes this afhaghghgh sound when I start it"
-      }
-    ],
-      
+    id: 2,
+    user_id: 1,
+    offer_id: 2,
+    message: "User sent an offer 15000",
+    timestamp: "2021-02-16T17:12:38.223Z",
+    name: "Harry n' Marv",
+    title: "Grocery shopping"
+    },
+    {
+    id: 7,
+    user_id: 2,
+    offer_id: 1,
+    message: "Hey I am available to fill your babysitting position!",
+    timestamp: "2021-02-17T17:12:38.223Z",
+    name: "BobTheBuilder",
+    title: "Babysit a lil brat"
+    },
+    {
+    id: 5,
+    user_id: 2,
+    offer_id: 5,
+    message: "User sent an offer 3000",
+    timestamp: "2021-02-17T17:16:42.223Z",
+    name: "BobTheBuilder",
+    title: "Babysit a lil brat"
+    },
+    {
+    id: 9,
+    user_id: 3,
+    offer_id: 2,
+    message: "I am very intrested in your position!",
+    timestamp: "2021-02-18T17:12:38.223Z",
+    name: "Harry n' Marv",
+    title: "Grocery shopping"
     }
-  ]
+    ]
 };
 
 export default fixtures;
