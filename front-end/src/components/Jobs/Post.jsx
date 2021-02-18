@@ -29,17 +29,31 @@ export default function Post(props) {
   const [jobCategory, setJobCategory] = useState("");
   const [price, setPrice] = useState("");
 
-  function onSubmit() {
-    const job = {
+  function validate() {
+    const newJob = {
       jobTitle,
       jobDescription,
-      jobCategory,
-      price,
-      hourly,
-      selectedStartDate,
-      selectedEndDate,
+      // jobCategory,
+      // price,
+      // hourly,
+      // selectedStartDate,
+      // selectedEndDate,
     };
-    console.log(job);
+    console.log(newJob);
+
+    /*     if (
+      jobTitle === "" ||
+      jobDescription === "" ||
+      jobCategory === "" ||
+      price === "" ||
+      hourly === ""
+    ) {
+      console.log(
+        "Required Post form item left blank, consider using shceduler setError"
+      );
+    } */
+    console.log("newJob from post ForM", newJob);
+    props.onSave(newJob);
   }
 
   const handleStartDateChange = (date) => {
@@ -142,7 +156,7 @@ export default function Post(props) {
         />
         <br />
         <Button
-          onClick={onSubmit}
+          onClick={validate}
           variant="contained"
           color="primary"
           style={{ margin: 8 }}
