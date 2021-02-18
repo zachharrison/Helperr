@@ -39,12 +39,12 @@ server.listen(8001, () => {
   console.log(`Listening on port ${PORT} in ${ENV} mode.`);
 });
 
-// TRAVERSY MEDIA PROJECT EXAMPLE 
+// TRAVERSY MEDIA PROJECT EXAMPLE
 // https://github.com/bradtraversy/chatcord/blob/master/public/js/main.js
 
 // create a function that when clicking on messages will query db/state whatever our situation is and then return the ones for that user based on cookie
 // state should have the messages so should hopefully be able to hve them show up depending how they come out of DB
- 
+
 // when clicking on a chat will hhave to do
 // io.on('connection', socket => {
 //   socket.join('CHATID');

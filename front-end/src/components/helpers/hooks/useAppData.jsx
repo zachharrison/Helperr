@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import fixtures from "../__mocks__/axios";
 import axios from "axios";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 
 export default function useAppData() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
@@ -16,15 +16,14 @@ export default function useAppData() {
     jobView: "FIND",
     postcode: "",
     chatId: null,
-    currentUser: null
+    currentUser: null,
   });
-
 
   // useEffect(() => {
   //   getConversations()
   // },[])
-    // lat: 49.26800377076573,
-    // lng: -123.10571490809717,
+  // lat: 49.26800377076573,
+  // lng: -123.10571490809717,
   //);
 
   useEffect(() => {
@@ -53,8 +52,8 @@ export default function useAppData() {
  
   const setJobView = (jobView) => setState({ ...state, jobView });
   const setPostCode = (postCode) => setState({ ...state, postCode });
-  const setChat = (chatId) => setState({ ...state, chatId, jobView: "CHAT" })
-  
+  const setChat = (chatId) => setState({ ...state, chatId, jobView: "CHAT" });
+
   const setCurrentUser = (currentUser) => {
     setCookie("user", currentUser, {
       path: "/"
@@ -77,9 +76,9 @@ export default function useAppData() {
   }
 
   const removeCurrentUser = () => {
-    setState({...state, currentUser: null})
-    removeCookie("user")
-  }
+    setState({ ...state, currentUser: null });
+    removeCookie("user");
+  };
 
   const setMessages = (message) => setState({...state, messages: [...state.messages, message]})
 
@@ -124,9 +123,21 @@ export default function useAppData() {
   }
 
   function postJob(job) {
-    return axios.put(`/api/jobs/`, job).then(setState({ ...state, job }));
+    console.log("post job from APP DATA", job);
+    return axios.post(`/api/jobs/`, { job }).then(setState({ ...state, job })); // should be jobs, which should be jobs + job
   }
 
-  return { state, setJobView, setPostCode, getConversations, getMessages, setChat, setCurrentUser, removeCurrentUser, cookies, setMessages };
-
+  return {
+    state,
+    setJobView,
+    setPostCode,
+    getConversations,
+    getMessages,
+    setChat,
+    setCurrentUser,
+    removeCurrentUser,
+    cookies,
+    setMessages,
+    postJob,
+  };
 }
