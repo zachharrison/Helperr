@@ -16,7 +16,7 @@ import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
-  // KeyboardTimePicker,
+  KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 
@@ -27,12 +27,8 @@ export default function Post(props) {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [payType, setPayType] = useState("");
-  const [selectedStartDate, setSelectedStartDate] = useState(
-    new Date("2021-02-18T21:11:54")
-  ); // new Date("2021-02-18T21:11:54")
-  const [selectedEndDate, setSelectedEndDate] = useState(
-    new Date("2021-02-18T21:11:54")
-  );
+  const [selectedStartDate, setSelectedStartDate] = useState(new Date()); // new Date("2021-02-18T21:11:54")
+  const [selectedEndDate, setSelectedEndDate] = useState(new Date());
 
   const [error, setError] = useState("");
 
@@ -136,76 +132,14 @@ export default function Post(props) {
           </Select>
         </FormControl>
         <br />
-
-        {/*         <TextField
-          id="datetime-start-date"
-          name="datetime-start-date"
-          style={{ width: 218 }}
-          label="Start Date"
-          value={selectedStartDate}
-          onChange={handleStartDateChange}
-          type="date"
-          // type="datetime-local"
-          defaultValue="--"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        /> */}
-        {/* <TextField
-            id="time"
-            style={{ width: 55 }}
-            label="Time"
-            type="time"
-            defaultValue="--"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{
-              step: 300, // 5 min
-            }}
-          /> */}
-        {/*         <TextField
-          id="datetime-end-date"
-          name="datetime-end-date"
-          style={{ width: 218 }}
-          label="End Date"
-          value={selectedEndDate}
-          onChange={handleEndDateChange}
-          type="date"
-          // type="datetime-local"
-          defaultValue="--"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        /> */}
-        {/* <TextField
-            id="time"
-            style={{ width: 55 }}
-            label="Time"
-            type="time"
-            defaultValue="--"
-            className={classes.textField}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            inputProps={{
-              step: 300, // 5 min
-            }}
-          /> */}
-
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container justify="space-around">
             <KeyboardDatePicker
-              style={{ width: 205, margin: 8 }}
+              style={{ width: 145, margin: 8 }}
               disableToolbar
               variant="inline"
               format="yyyy/MM/dd"
               margin="normal"
-              id="date-picker-start-date"
-              name="date-picker-start-date"
               label="Start Date"
               value={selectedStartDate}
               onChange={handleStartDateChange}
@@ -213,19 +147,38 @@ export default function Post(props) {
                 "aria-label": "change date",
               }}
             />
+            <KeyboardTimePicker
+              style={{ width: 100, margin: 8 }}
+              margin="normal"
+              label="Start Time"
+              value={selectedStartDate}
+              onChange={handleStartDateChange}
+              KeyboardButtonProps={{
+                "aria-label": "change time",
+              }}
+            />
+            <br />
             <KeyboardDatePicker
-              style={{ width: 205, margin: 8, marginLeft: 30 }}
+              style={{ width: 145, margin: 8 }}
               disableToolbar
               variant="inline"
               format="yyyy/MM/dd"
               margin="normal"
-              id="date-picker-end-date"
-              name="date-picker-end-date"
               label="End Date"
               value={selectedEndDate}
               onChange={handleEndDateChange}
               KeyboardButtonProps={{
                 "aria-label": "change date",
+              }}
+            />
+            <KeyboardTimePicker
+              style={{ width: 100, margin: 8 }}
+              margin="normal"
+              label="End Time"
+              value={selectedEndDate}
+              onChange={handleEndDateChange}
+              KeyboardButtonProps={{
+                "aria-label": "change time",
               }}
             />
           </Grid>

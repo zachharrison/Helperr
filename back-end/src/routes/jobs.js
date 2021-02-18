@@ -26,13 +26,13 @@ module.exports = (db) => {
       lng,
       price,
       payType,
-      // start_time,
-      // end_time,
-      status,
+      // status, not needed
+      selectedStartDate,
+      selectedEndDate,
     } = request.body.job; // sent from FE
     db.query(
       `
-      INSERT INTO jobs ( category_id, name, description, lat, lng, price, per_hr, status) VALUES ($1::integer, $2::text, $3::text, $4::float, $5::float, $6::integer, $7::pay_type, $8::job_status)
+      INSERT INTO jobs ( category_id, name, description, lat, lng, price, per_hr, status, start_time, end_time ) VALUES ($1::integer, $2::text, $3::text, $4::float, $5::float, $6::integer, $7::pay_type, $8::job_status, $9::timestamp, $10::timestamp)
     `,
       [
         category,
@@ -42,9 +42,9 @@ module.exports = (db) => {
         lng,
         price,
         payType,
-        // start_time,
-        // end_time,
         "POSTED",
+        selectedStartDate,
+        selectedEndDate,
       ] // Number(request.params.id) for id? idk
     ) // INSERT INTO jobs (category_id, name, description, lat, lng, price, per_hr, start_time, end_time, status) VALUES ($1::integer, $2::text, $3::integer, $4::integer, $5::integer, $6::integer, $7::text, $8::integer, $9::integer, $10::text
       .then(() => {
@@ -53,7 +53,10 @@ module.exports = (db) => {
         // updateAppointment(Number(request.params.id), request.body.interview);
         // }, 1000);
       })
-      .catch((error) => console.log("========>.catch in jobs post", error));
+      .catch((error) => {
+        console.log("========>.catch in jobs post", error);
+        response.status(500).json(error);
+      });
   });
 
   router.delete("/jobs", (request, response) => {
