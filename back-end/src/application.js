@@ -16,7 +16,9 @@ const categories = require("./routes/categories");
 const offers = require("./routes/offers");
 const messages = require("./routes/messages");
 const reviews = require("./routes/reviews");
-const login = require("./routes/login");
+const loginMessages = require("./routes/login-messages");
+const loginJobs = require("./routes/login-jobs");
+const loginOffers = require("./routes/login-offers");
 
 function read(file) {
   return new Promise((resolve, reject) => {
@@ -45,7 +47,9 @@ module.exports = function application(ENV, actions = { updateJobs: () => {} }) {
   app.use("/api", messages(db));
   app.use("/api", reviews(db));
   app.use("/api", offers(db));
-  app.use("/api", login(db));
+  app.use("/api", loginMessages(db));
+  app.use("/api", loginJobs(db));
+  app.use("/api", loginOffers(db));
 
   app.get("/", (req, res) => {
     res.send({ response: "I am alive" }).status(200);

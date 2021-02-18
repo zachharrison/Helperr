@@ -53,19 +53,23 @@ export default function useAppData() {
   const setChat = (chatId) => setState({ ...state, chatId, jobView: "CHAT" })
   
   const setCurrentUser = (currentUser) => {
-    
-    // setState({...state, currentUser})
-    // setCookie("user", currentUser, {
-    //   path: "/"
-    // }
-    axios
-    .get(`/api/login/1`)
-    .then(response => {
-        console.log("RES:", response.data)
+    setCookie("user", currentUser, {
+      path: "/"
     })
-    .catch(function(error) {
-        console.log("error", error);
+    Promise.all([
+      axios.get(`/api/login/messages/${currentUser}`),
+      axios.get(`/api/login/offers/${currentUser}`),
+      axios.get(`/api/login/jobs/${currentUser}`),
+    ]).then((all) => {
+      setState((prev) => ({
+        ...prev,
+        userMessages: all[0].data,
+        userJobs: all[1].data,
+        userOffers: all[2].data,
+        currentUser
+      }));
     });
+
   }
 
     // const response = await axios.get(`/api/login/1`);
