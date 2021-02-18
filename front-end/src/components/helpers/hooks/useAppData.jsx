@@ -34,7 +34,7 @@ export default function useAppData() {
       axios.get("/api/categories"),
       axios.get("/api/offers"),
       axios.get("/api/reviews"),
-      axios.get("/api/messages"),
+      // axios.get("/api/login/1"),
     ]).then((all) => {
       setState((prev) => ({
         ...prev,
@@ -43,20 +43,45 @@ export default function useAppData() {
         categories: all[2].data,
         offers: all[3].data,
         reviews: all[4].data,
-        // messages: all[5].data,
+        // login: all[5].data,
       }));
     });
   }, []);
+ 
   const setJobView = (jobView) => setState({ ...state, jobView });
   const setPostCode = (postCode) => setState({ ...state, postCode });
   const setChat = (chatId) => setState({ ...state, chatId, jobView: "CHAT" })
   
   const setCurrentUser = (currentUser) => {
-    setState({...state, currentUser})
-    setCookie("user", currentUser, {
-      path: "/"
+    
+    // setState({...state, currentUser})
+    // setCookie("user", currentUser, {
+    //   path: "/"
+    // }
+    axios
+    .get(`/api/login/1`)
+    .then(response => {
+        console.log("RES:", response.data)
     })
+    .catch(function(error) {
+        console.log("error", error);
+    });
   }
+
+    // const response = await axios.get(`/api/login/1`);
+
+    // axios.get(`/api/login/${currentUser}`)å
+    // .then(res => console.log("RESPONSE: ", res))
+    // .catch(error => console.log(error))
+  // }
+
+  // const response = await axios.get(`/api/login/1`);
+
+  // console.log("RESPONSE: ", response);
+
+    // .then(res => console.log("RESPONSE: ", res))
+    // .then(console.log("you got there"))
+    // .catch(error => console.log("ERROR: ", error))
 
   const removeCurrentUser = () => {
     setState({...state, currentUser: null})

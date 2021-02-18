@@ -1,13 +1,12 @@
 const PORT = process.env.PORT || 8001;
 const ENV = require("./environment");
-const app = require("./application")("development");
+const app = require("./application")('development');
 const server = require("http").Server(app);
-const express = require("express")();
-const io = require("socket.io")(server);
+const express = require('express')()
+const io = require('socket.io')(server);
 let sockets = [];
 express.use(app);
 
-<<<<<<< HEAD
 // SOCKET HANDSHAKE??
 
 io.on("connection", socket => {
@@ -15,6 +14,13 @@ io.on("connection", socket => {
   sockets.push(socket);
   console.log(`Client Connected, there is ${sockets.length} sockets connected`);
   console.log(socket.handshake.headers.cookie)
+
+  // WILL NEED TO SET USERNAME TO THE VALUE OF THE COOKIE
+
+  //  --------------> //   socket.on("set username", (username) => {
+                        //     socket.username = username;
+                        //   });
+                        // });
   
   socket.on('disconnect', () => {
     sockets = sockets.filter(s => s !== socket);
@@ -25,22 +31,6 @@ io.on("connection", socket => {
     // EMIT MESSAGE TO CORRECT ROOM
     sockets.forEach(s => {
       s.emit('message', { name, message });
-=======
-io.on("connection", (socket) => {
-  sockets.push(socket);
-  console.log(`Client Connected, there is ${sockets.length} sockets connected`);
-
-  socket.on("disconnect", () => {
-    sockets = sockets.filter((s) => s !== socket);
-    console.log(
-      `Client Disconnected, there are ${sockets.length} sockets remaining`
-    );
-  });
-
-  socket.on("message", ({ name, message }) => {
-    sockets.forEach((s) => {
-      s.emit("message", { name, message });
->>>>>>> e5232e45bb121d3b8a258ed41a20c718d3a381aa
     });
   });
 });
@@ -73,3 +63,26 @@ server.listen(8001, () => {
 
 // if we are sending a message to someone that is not currently connected, 
 // is this still a socket connection or is it just posting to the DB and updating state instead?
+
+// **** HANDSHAKE DETAILS ****
+// {
+//   headers: /* the headers sent as part of the handshake */,
+//   time: /* the date of creation (as string) */,
+//   address: /* the ip of the client */,
+//   xdomain: /* whether the connection is cross-domain */,
+//   secure: /* whether the connection is secure */,
+//   issued: /* the date of creation (as unix timestamp) */,
+//   url: /* the request URL string */,
+//   query: /* the query params of the first request */,
+//   auth: /* the authentication payload */
+// }
+
+// io.use((socket, next) => {
+//   let handshake = socket.handshake;
+//   // ...
+// });
+
+// io.on('connection', (socket) => {
+//   let handshake = socket.handshake;
+//   // ...
+// });
