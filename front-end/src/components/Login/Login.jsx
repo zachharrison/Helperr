@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -13,7 +13,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
-import { useCookies } from "react-cookie";
+import { useCookies, withCookies } from 'react-cookie'
 
 const users = ['user1@gmail.com', 'user2@gmail.com'];
 const useStyles = makeStyles({
@@ -31,18 +31,17 @@ function Login(props) {
       path: "/"
     })
   }
-  console.log(props)
   const classes = useStyles();
-  const { onClose, selectedValue, open } = props;
-  console.log('THIS IS THE HANDLE COOKIE FUNCTION ', handleCookie)
+  const { onClose, selectedValue, open, setCurrentUser } = props;
+
 
   const handleClose = () => {
     onClose(selectedValue);
   };
 
   const handleListItemClick = (value) => {
-    onClose(value);
-    value === 'user1@gmail.com' ? handleCookie(1) : handleCookie(2)
+    // onClose(value);
+    value === 'user1@gmail.com' ? setCurrentUser(1) : setCurrentUser(2)
   };
 
   return (
@@ -79,9 +78,10 @@ function Login(props) {
 //   selectedValue: PropTypes.string.isRequired,
 // };
 
-export default function SimpleDialogDemo() {
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(users[1]);
+export default function SimpleDialogDemo(props) {
+  console.log("PROPS FROM SIMPLEDIALGOD", props)
+  const [open, setOpen] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(users[1]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -99,7 +99,19 @@ export default function SimpleDialogDemo() {
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Please Log in first
       </Button>
-      <Login selectedValue={selectedValue} open={open} onClose={handleClose} />
+      <Login setCurrentUser={props.setCurrentUser} removeCurrentUser={props.removeCurrentUser} selectedValue={selectedValue} open={open} onClose={handleClose} />
     </div>
   );
 }
+
+// return (
+//   <div>
+//     <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
+//     <br />
+//     <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+//       Open simple dialog
+//     </Button>
+//     <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+//   </div>
+// );
+

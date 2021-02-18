@@ -4,9 +4,8 @@ import axios from "axios";
 import { useCookies } from 'react-cookie';
 
 export default function useAppData() {
-  // const { getCookies } = useCookies();
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const { users, jobs, categories, offers, reviews, chats } = fixtures;
-  
   const [state, setState] = useState({
     users,
     jobs,
@@ -16,8 +15,10 @@ export default function useAppData() {
     reviews,
     jobView: "FIND",
     postcode: "",
-    chatId: null
+    chatId: null,
+    currentUser: null
   });
+
 
   // useEffect(() => {
   //   getConversations()
@@ -33,7 +34,7 @@ export default function useAppData() {
       axios.get("/api/categories"),
       axios.get("/api/offers"),
       axios.get("/api/reviews"),
-      // axios.get("/api/messages"),
+      axios.get("/api/messages"),
     ]).then((all) => {
       setState((prev) => ({
         ...prev,
@@ -49,13 +50,31 @@ export default function useAppData() {
   const setJobView = (jobView) => setState({ ...state, jobView });
   const setPostCode = (postCode) => setState({ ...state, postCode });
   const setChat = (chatId) => setState({ ...state, chatId, jobView: "CHAT" })
-  // const setMessages = (message) => setState({...state, messages: [...state.messages, message]})
+  
+  const setCurrentUser = (currentUser) => {
+    setState({...state, currentUser})
+    setCookie("user", currentUser, {
+      path: "/"
+    })
+  }
 
+  const removeCurrentUser = () => {
+    setState({...state, currentUser: null})
+    removeCookie("user")
+  }
 
+  // function handleCookie(id) {
+  //   setCookie("user", id, {
+  //     path: "/"
+  //   })
+  // }
+  const setMessages = (message) => setState({...state, messages: [...state.messages, message]})
+
+  // setCurrentUser(2)
 
   const getConversations = () => {
     // THIS CURRENT IS HARDCODED FOR NOW HOW CAN WE GET THE COOKIE FROM HERE????
-    const currentUser = 1
+    const currentUser = +cookies.user
     const usersConversations = chats.filter(chat => chat.userName === currentUser)
     
     const chatData = usersConversations.map(chat => {
@@ -81,30 +100,10 @@ export default function useAppData() {
     }
   }
 
-
-
   function postJob(job) {
     return axios.put(`/api/jobs/`, job).then(setState({ ...state, job }));
   }
 
+  return { state, setJobView, setPostCode, getConversations, getMessages, setChat, setCurrentUser, removeCurrentUser, cookies, setMessages };
 
-  /*   function bookInterview(id, interview) {
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview },
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
-
-    const days = displaySpots(state.days, appointments);
-
-    return axios
-      .put(`/api/appointments/${id}`, appointment)
-      .then(setState({ ...state, days, appointments }));
-  } */
-
-
-  return { state, setJobView, setPostCode, getConversations, getMessages, setChat };
 }

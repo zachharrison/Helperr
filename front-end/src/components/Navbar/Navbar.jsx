@@ -106,12 +106,12 @@ export default function PrimarySearchAppBar(props) {
   };
 
   const handleLogin = (id) => {
-    props.handleCookie(id);
+    props.setCurrentUser(id);
     handleMenuClose();
   }
 
   const handleLogout = () => {
-    props.removeCookie('user');
+    props.removeCurrentUser();
     handleMenuClose();
   }
 

@@ -42,13 +42,16 @@ const useChatSocket = () => {
 
 export default function App() {
   const { messages, sendMessage } = useChatSocket();
-  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  // const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
-  function handleCookie(id) {
-    setCookie("user", id, {
-      path: "/"
-    })
-  }
+  // function handleCookie(id) {
+  //   setCookie("user", id, {
+  //     path: "/"
+  //   })
+  // }
+
+  // THIS WAS BEING PASSED AS A PROP BUT IT IS NOT DEFINED ANYWHERE??????
+  /* saveJob={saveJob} */
 
   const [coord, setCoord] = useState({
     lat: 49.26800377076573,
@@ -56,13 +59,27 @@ export default function App() {
   });
   // fixtures has: users, jobs, categories, offers, messages, reviews
   // const { users, jobs, categories, offers, messages, reviews } = fixtures;
-  const { state, setJobView, setMessageView, getConversations, getMessages, setChat, saveJob } = useAppData();
+  const { 
+    state, 
+    setJobView,
+    setMessageView,
+    getConversations,
+    getMessages, 
+    setChat,
+    setCurrentUser,
+    removeCurrentUser, 
+    cookies, 
+    setMessages
+  } = useAppData();
+
 
   const jobMarkers = getJobsFiltered(state, []); // replace with state for filters
 
+  // console.log("jobsFIltered", jobMarkers);
+
   return (
     <div className="App">
-      <Navbar handleCookie={handleCookie} removeCookie={removeCookie}/>
+      <Navbar setCurrentUser={setCurrentUser} removeCurrentUser={removeCurrentUser}/>
       <div className="containers">
         <div className="map-container">
           <Map
@@ -84,10 +101,12 @@ export default function App() {
             getConversations={getConversations}
             getMessages={getMessages}
             setChat={setChat}
-            cookies={cookies}  
             setCoord={setCoord}
             coord={coord}
-            saveJob={saveJob}
+            cookies={cookies}
+            setCurrentUser={setCurrentUser} 
+            removeCurrentUser={removeCurrentUser}
+            setMessages={setMessages}
           />
           <ChatNav setJobView={setJobView} />
         </div>

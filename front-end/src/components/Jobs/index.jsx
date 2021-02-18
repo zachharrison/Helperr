@@ -6,26 +6,39 @@ import JobToggle from "../JobToggle/JobToggle";
 import "./Jobs.css";
 import Chat from "../Chat/Chat";
 import ChatList from '../Chat/ChatList'
+// import useAppData from "../helpers/hooks/useAppData"
 import { DomainPropTypes } from "@material-ui/pickers/constants/prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Login from '../Login/Login'
-import { useCookies, withCookies } from 'react-cookie'
+// import { useCookies, withCookies } from 'react-cookie'
 
 export default function Jobs(props) {
-    const [cookies] = useCookies()
-  function dropPin(job) {
-    const newJob = {
-      job,
-    };
-    props
-      .saveJob(props.id)
-      .then(() => props.setJobView("ALL"))
-      .catch((error) => console.log(error));
-  }
+  const {
+    state,
+    setJobView,
+    messages,
+    sendMessage,
+    setMessageView,
+    getConversations,
+    getMessages,
+    setChat,
+    setCoord,
+    coord,
+    cookies,
+    setCurrentUser,
+    removeCurrentUser,
+    setMessages,
+    saveJob
+  } = props;
 
-// import { Transition } from "react-transition-group";
 
-
+  // const [cookies] = useCookies()
+//   function dropPin(job) {
+//   const newJob = { job };
+//   saveJob(props.id)
+//   .then(() => props.setJobView("ALL"))
+//   .catch((error) => console.log(error));
+// }
 // const POST = "POST";
 // const FIND = "FIND";
 // const ALL = "ALL";
@@ -35,6 +48,8 @@ export default function Jobs(props) {
 
 
 
+  // console.log(props)
+  // const [cookies] = useCookies()
 
   // const [jobView, setJobView] = useState(ALL)
   // const { mode, transition, back } = useVisualMode(ALL);
@@ -61,90 +76,99 @@ export default function Jobs(props) {
   //     .then(() => setJobView(ALL))
   //     // .catch((error) => transition(ERROR_SAVE, true));
   // }
+  // onSave={dropPin}
 
 
   return (
     <>
-      <JobToggle state={props.state} setJobView={props.setJobView} />
+      <JobToggle state={state} setJobView={setJobView} />
       <TransitionGroup className="job-container">
-        {props.state.jobView === "POST" && props.cookies.user && (
+        {state.jobView === "POST" && cookies.user && (
           <CSSTransition
             key={1}
             timeout={500}
             classNames="slide"
-            in={props.state.jobView === "POST" && props.cookies.user}
+            in={state.jobView === "POST" && cookies.user}
           >
             <div>
               <Post
-                state={props.state}
-                setCoord={props.setCoord}
-                coord={props.coord}
-                onSave={dropPin}
+                state={state}
+                setCoord={setCoord}
+                coord={coord}
+                state={state}
+                setCoord={setCoord}
+                coord={coord}
               />
             </div>
           </CSSTransition>
         )}
-        {props.state.jobView === "MESSAGE" && cookies.user && (
+        {state.jobView === "MESSAGE" && cookies.user && (
           <CSSTransition
             key={1}
             timeout={500}
             classNames="slide"
-            in={props.state.jobView === "MESSAGE" && cookies.user}
+            in={state.jobView === "MESSAGE" && cookies.user}
           >
             <div>
             <ChatList 
-            sendMessage={props.sendMessage} 
-            setJobView={props.setJobView} 
-            getConversations={props.getConversations} 
-            setChat={props.setChat}/>
+              sendMessage={sendMessage} 
+              setJobView={setJobView} 
+              getConversations={getConversations} 
+              setChat={setChat}
+              setMessageView={setMessageView}
+            />
             </div>
           </CSSTransition>
         )}
-        {!props.cookies.user && props.state.jobView !== "FIND" && (
+        {!cookies.user && state.jobView !== "FIND" && (
           <CSSTransition
             key={1}
             timeout={500}
             classNames="slide"
-            in={!props.cookies.user && props.state.jobView !== "FIND"}
+            in={!cookies.user && state.jobView !== "FIND"}
           >
             <div>
-            <Login cookies={cookies} removeCookie={props.removeCookie}/>
+            <Login 
+              cookies={cookies} 
+              removeCurrentUser={removeCurrentUser} 
+              setCurrentUser={setCurrentUser}
+            />
             </div>
           </CSSTransition>
         )}
-        {props.state.jobView === "FIND" && (
+        {state.jobView === "FIND" && (
           <CSSTransition
             key={2}
             timeout={500}
             classNames="slide"
-            in={props.state.jobView === "FIND"}
+            in={state.jobView === "FIND"}
           >
             <div>
-              <Find state={props.state} />
+              <Find state={state}/>
             </div>
           </CSSTransition>
         )}
-        {props.state.jobView === "ALL" && cookies.user && (
+        {state.jobView === "ALL" && cookies.user && (
           <CSSTransition
             key={3}
             timeout={500}
             classNames="slide"
-            in={props.state.jobView === "ALL" && cookies.user}
+            in={state.jobView === "ALL" && cookies.user}
           >
             <div>
               <All />
             </div>
           </CSSTransition>
         )}
-        {props.state.jobView === "CHAT" && cookies.user && (
+        {state.jobView === "CHAT" && cookies.user && (
           <CSSTransition
             key={4}
             timeout={500}
             classNames="slide"
-            in={props.state.jobView === "CHAT" && cookies.user}
+            in={state.jobView === "CHAT" && cookies.user}
           >
             <div>
-              <Chat getMessages={props.getMessages} state={props.state} setMessages={props.setMessages} sendMessage={props.sendMessage} cookies={cookies} />
+              <Chat getMessages={getMessages} state={state} setMessages={setMessages} sendMessage={sendMessage} cookies={cookies} />
             </div>
           </CSSTransition>
         )}
