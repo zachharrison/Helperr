@@ -10,32 +10,9 @@ import ChatList from '../Chat/ChatList'
 import { DomainPropTypes } from "@material-ui/pickers/constants/prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Login from '../Login/Login'
-import { useCookies, withCookies } from 'react-cookie'
+// import { useCookies, withCookies } from 'react-cookie'
 
 export default function Jobs(props) {
-    const [cookies] = useCookies()
-  function dropPin(job) {
-    const newJob = {
-      job,
-    };
-    props
-      .saveJob(props.id)
-      .then(() => props.setJobView("ALL"))
-      .catch((error) => console.log(error));
-  }
-
-// import { Transition } from "react-transition-group";
-
-
-// const POST = "POST";
-// const FIND = "FIND";
-// const ALL = "ALL";
-// const SAVING = "SAVING";
-// const ERROR_SAVE = "ERROR_SAVE";
-// const ERROR_DELETE = "ERROR_DELETE";
-
-<<<<<<< HEAD
-function Jobs(props) {
   const {
     state,
     setJobView,
@@ -51,15 +28,28 @@ function Jobs(props) {
     setCurrentUser,
     removeCurrentUser,
     setMessages,
+    saveJob
   } = props;
 
-  // console.log('THIS IS THE SET CURRENT USER ', setCurrentUser)
+
+  // const [cookies] = useCookies()
+//   function dropPin(job) {
+//   const newJob = { job };
+//   saveJob(props.id)
+//   .then(() => props.setJobView("ALL"))
+//   .catch((error) => console.log(error));
+// }
+// const POST = "POST";
+// const FIND = "FIND";
+// const ALL = "ALL";
+// const SAVING = "SAVING";
+// const ERROR_SAVE = "ERROR_SAVE";
+// const ERROR_DELETE = "ERROR_DELETE";
+
+
+
   // console.log(props)
   // const [cookies] = useCookies()
-=======
-
-
->>>>>>> e5232e45bb121d3b8a258ed41a20c718d3a381aa
 
   // const [jobView, setJobView] = useState(ALL)
   // const { mode, transition, back } = useVisualMode(ALL);
@@ -86,6 +76,7 @@ function Jobs(props) {
   //     .then(() => setJobView(ALL))
   //     // .catch((error) => transition(ERROR_SAVE, true));
   // }
+  // onSave={dropPin}
 
 
   return (
@@ -101,16 +92,12 @@ function Jobs(props) {
           >
             <div>
               <Post
-<<<<<<< HEAD
                 state={state}
                 setCoord={setCoord}
                 coord={coord}
-=======
-                state={props.state}
-                setCoord={props.setCoord}
-                coord={props.coord}
-                onSave={dropPin}
->>>>>>> e5232e45bb121d3b8a258ed41a20c718d3a381aa
+                state={state}
+                setCoord={setCoord}
+                coord={coord}
               />
             </div>
           </CSSTransition>
@@ -157,7 +144,7 @@ function Jobs(props) {
             in={state.jobView === "FIND"}
           >
             <div>
-              <Find state={props.state} />
+              <Find state={state}/>
             </div>
           </CSSTransition>
         )}
@@ -190,16 +177,3 @@ function Jobs(props) {
   );
 }
 
-<<<<<<< HEAD
-export default Jobs;
-
-/* 
-users,
-jobs,
-categories,
-offers,
-messages,
-reviews,
-*/
-=======
->>>>>>> e5232e45bb121d3b8a258ed41a20c718d3a381aa

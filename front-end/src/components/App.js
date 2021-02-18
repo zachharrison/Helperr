@@ -50,6 +50,9 @@ export default function App() {
   //   })
   // }
 
+  // THIS WAS BEING PASSED AS A PROP BUT IT IS NOT DEFINED ANYWHERE??????
+  /* saveJob={saveJob} */
+
   const [coord, setCoord] = useState({
     lat: 49.26800377076573,
     lng: -123.10571490809717,
@@ -65,7 +68,7 @@ export default function App() {
     setChat,
     setCurrentUser,
     removeCurrentUser, 
-    cookies , 
+    cookies, 
     setMessages
   } = useAppData();
 
@@ -104,7 +107,6 @@ export default function App() {
             setCurrentUser={setCurrentUser} 
             removeCurrentUser={removeCurrentUser}
             setMessages={setMessages}
-            saveJob={saveJob}
           />
           <ChatNav setJobView={setJobView} />
         </div>
