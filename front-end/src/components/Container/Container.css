@@ -16,8 +16,10 @@
   height: 90vh;
   /* padding-right: 20px; */
   margin: 0 auto;
+  overflow: scroll;
 }
 
 .containers {
   display: flex;
 }
+

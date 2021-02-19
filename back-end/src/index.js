@@ -48,7 +48,7 @@ io.on("connection", socket => {
   
   const userCookies = getCurrentCookies()
   const {currentUser, currentRoom} = userCookies;
-  console.log(`Connected: ${currentRoom} as user ${currentUser}`);
+  // console.log(`Connected: ${currentRoom} as user ${currentUser}`);
   
   // socket.on("disconnect", () => console.log("Disconnected"));
 
@@ -56,9 +56,9 @@ io.on("connection", socket => {
     console.log(`Socket ${socket.id} joining ${room}`)
     socket.join(room);
     socket.on('chat', (data) => {
-      console.log("You are chatting ", data)
+      // console.log("You are chatting ", data)
       const { message, room, user_id } = data.message;
-      console.log(`msg: ${message}, room: ${room}, user: ${user_id}`);
+      // console.log(`msg: ${message}, room: ${room}, user: ${user_id}`);
       io.to(room).emit('chat', {message, user_id});
    });
   });
