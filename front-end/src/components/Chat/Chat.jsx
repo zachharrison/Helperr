@@ -22,32 +22,18 @@ const Chat = (props) => {
     // messageState,
     // setMessageState
   } = props;
-  // SAVING MESSAGE IN STATE {message: 'Hello world', name: "2"}
-  // cookie is a string and ID from DB is a number
-  // const [messageState, setMessageState] = useState({ message: "", name: ""});
-  // const [messageState, setMessageState] = useState({ room: cookies.room, user: cookies.user});
 
-
-  // const onTextChange = (e) => {
-  //   setMessageState({ ...messageState, [e.target.name]: e.target.value }); 
-  // };
-
-  // const onMessageSubmit = (e) => {
-  //   e.preventDefault();
-  //   const { name, message } = messageState;
-  //   sendMessage({ name, message });
-  //   setMessageState({ message: "", name });
-  // };
 
 
 
   const onMessageSubmit = () => {
-    const user = cookies.user;
+    const user_id = cookies.user;
     const room = state.chatId;
-    // const { room, user } = messageState;
-    sendMessage({ message, room, user });
-    addMessage({offer_id: room, user, message})
-    console.log({ message, room, user });
+
+    sendMessage({ message, room, user_id });
+    setCurrentChat(oldChats => [message, ...oldChats])
+    addMessage({offer_id: room, user_id, message})
+    console.log({ message, room, user_id });
     setMessage('');
   };
 
@@ -89,6 +75,24 @@ const Chat = (props) => {
 }
 
 export default Chat;
+
+
+  // SAVING MESSAGE IN STATE {message: 'Hello world', name: "2"}
+  // cookie is a string and ID from DB is a number
+  // const [messageState, setMessageState] = useState({ message: "", name: ""});
+  // const [messageState, setMessageState] = useState({ room: cookies.room, user: cookies.user});
+
+
+  // const onTextChange = (e) => {
+  //   setMessageState({ ...messageState, [e.target.name]: e.target.value }); 
+  // };
+
+  // const onMessageSubmit = (e) => {
+  //   e.preventDefault();
+  //   const { name, message } = messageState;
+  //   sendMessage({ name, message });
+  //   setMessageState({ message: "", name });
+  // };
 
 /* 
   - Sockets are currently in an array. How could we change this?

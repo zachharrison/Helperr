@@ -6,6 +6,7 @@ import { useCookies } from "react-cookie";
 export default function useAppData() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const { users, jobs, categories, offers, reviews, chats } = fixtures;
+  const [room, setRoom] = useState('');
   // const [messageState, setMessageState] = useState({ room: cookies.room, user: cookies.user});
   const [state, setState] = useState({
     users,
@@ -55,6 +56,7 @@ export default function useAppData() {
   const setJobView = (jobView) => setState({ ...state, jobView });
   const setPostCode = (postCode) => setState({ ...state, postCode });
   const setChat = (chatId) => {
+    setRoom(chatId)
     setState({ ...state, chatId, jobView: "CHAT" })
     setCookie("room", chatId, {
       path: "/"
@@ -89,7 +91,8 @@ export default function useAppData() {
 
   const setMessages = (message) => setState({...state, messages: [...state.messages, message]})
 
-  const addMessage = (message) => setState({...state, userMessages: [...state.userMessages, message]})
+  const addMessage = (message) => {
+    setState({...state, userMessages: [...state.userMessages, message]})}
 
   const getConversations = () => {
     const currentUser = +cookies.user
@@ -146,6 +149,8 @@ export default function useAppData() {
     cookies,
     setMessages,
     postJob,
-    addMessage
+    addMessage,
+    room,
+    setRoom
   };
 }

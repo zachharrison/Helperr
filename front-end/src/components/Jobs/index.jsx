@@ -38,25 +38,6 @@ export default function Jobs(props) {
     addMessage
   } = props;
 
-  // const [cookies] = useCookies()
-  //   function dropPin(job) {
-  //   const newJob = { job };
-  //   saveJob(props.id)
-  //   .then(() => props.setJobView("ALL"))
-  //   .catch((error) => console.log(error));
-  // }
-  // const POST = "POST";
-  // const FIND = "FIND";
-  // const ALL = "ALL";
-  // const SAVING = "SAVING";
-  // const ERROR_SAVE = "ERROR_SAVE";
-  // const ERROR_DELETE = "ERROR_DELETE";
-
-  // console.log(props)
-  // const [cookies] = useCookies()
-
-  // const [jobView, setJobView] = useState(ALL)
-  // const { mode, transition, back } = useVisualMode(ALL);
 
   function saveJob(newJob) {
     // transition(SAVING);
@@ -174,3 +155,24 @@ export default function Jobs(props) {
     </>
   );
 }
+
+
+  // const [cookies] = useCookies()
+  //   function dropPin(job) {
+  //   const newJob = { job };
+  //   saveJob(props.id)
+  //   .then(() => props.setJobView("ALL"))
+  //   .catch((error) => console.log(error));
+  // }
+  // const POST = "POST";
+  // const FIND = "FIND";
+  // const ALL = "ALL";
+  // const SAVING = "SAVING";
+  // const ERROR_SAVE = "ERROR_SAVE";
+  // const ERROR_DELETE = "ERROR_DELETE";
+
+  // console.log(props)
+  // const [cookies] = useCookies()
+
+  // const [jobView, setJobView] = useState(ALL)
+  // const { mode, transition, back } = useVisualMode(ALL);

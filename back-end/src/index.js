@@ -3,37 +3,35 @@ const ENV = require("./environment");
 const app = require("./application")('development');
 const server = require("http").Server(app);
 const express = require('express')()
-const io = require('socket.io')(server);
-express.use(app);
-
-// SOCKET HANDSHAKE??
+const io = require('socket.io')(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
 
 /************************** BACK END HELPERS ***********************/
 let sockets = [];
 const users = [];
 
-// JOIN USER TO A ROOM AND RETURN THE USER
-const userJoin = (userId, roomId) => {
-  const user = { userId, roomId };
-  users.push(user)
-  return user;
-};
+// // JOIN USER TO A ROOM AND RETURN THE USER
+// const userJoin = (userId, roomId) => {
+//   const user = { userId, roomId };
+//   users.push(user)
+//   return user;
+// };
 
-// GET THE CURRENT USER
-// const getCurrentUser = () => {
-//   const cookies = socket.handshake.headers.cookie.split(" ");
-//   return cookies
-// }
-
-// console.log(getCurrentUser())
-
-
-// GET USERS IN ROOM 
-const getRoomUsers = (room) => users.filter(user => user.roomId === room);
+// // GET USERS IN ROOM 
+// const getRoomUsers = (room) => users.filter(user => user.roomId === room);
 
 io.on("connection", socket => {
   
+  sockets.push(socket);
+
+  
+  
   const getCurrentCookies = () => {
+    // console.log(socket.handshake.headers)
     const cookies = socket.handshake.headers.cookie.split(" ");
     let currentUser;
     let currentRoom;
@@ -44,41 +42,54 @@ io.on("connection", socket => {
         currentRoom = cookie;
       }
     }
-
+    
     return { currentUser, currentRoom }
   }
-
-  // console.log('user ', user)
-  // consso
   
   const userCookies = getCurrentCookies()
   const {currentUser, currentRoom} = userCookies;
-  // let currentUser = socket.handshake.headers.cookie.split(" ")[0];
-  // let currentRoom = socket.handshake.headers.cookie.split(" ")[1];
-
-
   console.log(`Connected: ${currentRoom} as user ${currentUser}`);
   
-  socket.on("disconnect", () => console.log("Disconnected"));
+  // socket.on("disconnect", () => console.log("Disconnected"));
 
   socket.on("join", (room) => {
-    console.log(`Socket ${socket.id} joining ${room}`);
+    console.log(`Socket ${socket.id} joining ${room}`)
+    socket.join(room);
+    socket.on('chat', (data) => {
+      console.log("You are chatting ", data)
+      const { message, room, user_id } = data.message;
+      console.log(`msg: ${message}, room: ${room}, user: ${user_id}`);
+      io.to(room).emit('chat', {message, user_id});
+   });
   });
 
-  socket.on('chat', (data) => {
-    const { message, room, user } = data;
-    console.log(`msg: ${message}, room: ${room}, user: ${user}`);
-    io.to(room).emit('chat', message);
- });
+  
 })
 
+server.listen(8001, () => {
+  console.log(`Listening on port ${PORT} in ${ENV} mode.`);
+});
 
 
 
 
 
+// // Emit switch event on Socket.js with relevant rooms:
+// export const switchRooms = (prevRoom, nextRoom) => {
+//   if (socket) socket.emit('switch', { prevRoom, nextRoom });
+// }
+// // Consume switch event on server and make necessary room change:
+// socket.on('switch', (data) => {
+//   const { prevRoom, nextRoom } = data;
+//   if (prevRoom) socket.leave(prevRoom);
+//   if (nextRoom) socket.join(nextRoom);
+//   socketRoom = nextRoom;
+// });
 
-  // PUSH ALL SOCKET CONNECTIONS TO AN ARRAY
+
+
+
+// PUSH ALL SOCKET CONNECTIONS TO AN ARRAY
   // sockets.push(socket);
   // console.log(`Client Connected, there is ${sockets.length} sockets connected`);
   // console.log(socket.handshake.headers.cookie)
@@ -133,10 +144,6 @@ io.on("connection", socket => {
 // });
 
 // io.in("game").emit("big-announcement", "the game will start soon");
-
-server.listen(8001, () => {
-  console.log(`Listening on port ${PORT} in ${ENV} mode.`);
-});
 
 // TRAVERSY MEDIA PROJECT EXAMPLE
 // https://github.com/bradtraversy/chatcord/blob/master/public/js/main.js

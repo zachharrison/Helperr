@@ -7,80 +7,8 @@ import Jobs from "./Jobs";
 import useAppData from "./helpers/hooks/useAppData";
 import { getJobsFiltered } from "./helpers/selectors";
 
-// const _socket = io.connect("http://localhost:8001", {
-//   transports: ["websocket"],
-// });
-// const socketRef = useRef(_socket);
-// const socket = socketRef.current;
-
-// how to have the state start with the state from useAppData - can we pass this into a chat socket?
-// if so how since it one is not a child of the other
-
-// const useChatSocket = () => {
-//   const [messages, setMessages] = useState([]);
-//   const socketRef = useRef(_socket);
-//   const socket = socketRef.current;
-
-//   const sendMessage = ({ userId, message }) => {
-//     return socket.emit("message", { userId, message });
-//   };
-
-//   useEffect(() => {room
-//     socket.removeAllListeners();
-//     socket.on("message", (message) => {
-//       setMessages([...messages, message]);
-//     });
-//     socket.on('connectToRoom', (room) => {
-//       console.log(room)
-//     })
-  
-//   });
-//   return { messages, sendMessage };
-// };
-
-
-
-
 
 export default function App() {
-  // const { messages, sendMessage } = useChatSocket();
-  /* saveJob={saveJob} */
-
-  // const {
-  //   state,
-  //   setJobView,
-  //   setMessageView,
-  //   getConversations,
-  //   getMessages,
-  //   setChat,
-  //   setCurrentUser,
-  //   removeCurrentUser,
-  //   cookies,
-  //   setMessages,
-  //   postJob,
-  // } = useAppData();
-
-  let socket;
-  const initiateSocket = (room) => {
-    socket = io("http://localhost:8001");
-    console.log(`Connecting socket...`);
-    if (socket && room) socket.emit('join', room);
-  }
-  const disconnectSocket = () => {
-    console.log('Disconnecting socket...');
-    if(socket) socket.disconnect();
-  }
-  const joinChat = (cb) => {
-    if (!socket) return(true);
-    socket.on('chat', msg => {
-      console.log('Websocket event received!');
-      return cb(null, msg);
-    });
-  }
-  const sendMessage = (message, room, user ) => {
-    if (socket) socket.emit('chat', { message, room, user });
-  }
-
 
   const {
     state,
@@ -94,19 +22,61 @@ export default function App() {
     cookies,
     setMessages,
     postJob,
-    addMessage
+    addMessage,
+    room,
+    setRoom
   } = useAppData();
 
+  const [socket, setSocket] = useState('')
 
-  const [room, setRoom] = useState('');
+  const initiateSocket = (room) => {
+    const socket = io("http://localhost:8001", { transports: ["websocket"] });
+    setSocket(socket);
+    console.log(`Connecting socket...`);
+    if (socket && room) socket.emit('join', room);
+    socket.on('chat', msg => {
+      console.log('A chat repsonse', msg);
+      // cb(null, msg);
+      // WHAT DO WE WANT TO DO!!!?????!!!!
+      // add to db server side
+      // on receive of message do the same for the other person
+    });
+  }
+  const disconnectSocket = () => {
+    console.log('Disconnecting socket...', !!socket);
+    if(socket) socket.disconnect();
+    setSocket(null);
+  }
+  const joinChat = (cb) => {
+    console.log("socket in joinchat", socket)
+    if (!socket) {
+      console.log("joinchat has no socket")
+      return(true);
+    } 
+    socket.on('chat', msg => {
+      console.log('Websocket event received!');
+      return cb(null, msg);
+    });
+  }
+  const sendMessage = (message, room, user ) => {
+    console.log('SOCKET TEST ',  socket);
+    if (socket) socket.emit('chat', { message, room, user });
+  }
+
+
+  // const [room, setRoom] = useState('');
   const [message, setMessage] = useState('');
   const [currentChat, setCurrentChat] = useState([]);
   useEffect(() => {
     if (state.chatId) initiateSocket(room);
-    joinChat((err, data) => {
-      if(err) return;
-      setChat(oldChats =>[data, ...oldChats])
-    });
+    // console.log(socket)
+    // // socket.on('chat', msg => {
+    // //   console.log('TESTING RESPONSE FROM USE EFFECT', msg);
+    // // });
+    // joinChat((err, data) => {
+    //   if(err) console.log("error:", err);
+    //   setChat(oldChats =>[data, ...oldChats])
+    // });
     return () => {
       disconnectSocket();
     }
@@ -167,3 +137,37 @@ export default function App() {
     </div>
   );
 }
+
+
+
+
+// const _socket = io.connect("http://localhost:8001", {
+//   transports: ["websocket"],
+// });
+// const socketRef = useRef(_socket);
+// const socket = socketRef.current;
+
+// how to have the state start with the state from useAppData - can we pass this into a chat socket?
+// if so how since it one is not a child of the other
+
+// const useChatSocket = () => {
+//   const [messages, setMessages] = useState([]);
+//   const socketRef = useRef(_socket);
+//   const socket = socketRef.current;
+
+//   const sendMessage = ({ userId, message }) => {
+//     return socket.emit("message", { userId, message });
+//   };
+
+//   useEffect(() => {room
+//     socket.removeAllListeners();
+//     socket.on("message", (message) => {
+//       setMessages([...messages, message]);
+//     });
+//     socket.on('connectToRoom', (room) => {
+//       console.log(room)
+//     })
+  
+//   });
+//   return { messages, sendMessage };
+// };
