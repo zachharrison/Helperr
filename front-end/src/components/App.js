@@ -4,11 +4,16 @@ import Map from "./Map";
 import ChatNav from "./Chat/ChatNav";
 import { io } from "socket.io-client";
 import Jobs from "./Jobs";
-import useAppData from "./helpers/hooks/useAppData";
+import useAppData from "./hooks/useAppData";
 import { getJobsFiltered } from "./helpers/selectors";
 
 
 export default function App() {
+  const [categoryFilter, setCategoryFilter] = useState([]);
+  const [coord, setCoord] = useState({
+    lat: 49.26800377076573,
+    lng: -123.10571490809717,
+  });
 
   const {
     state,
@@ -92,12 +97,8 @@ export default function App() {
     }
   }, [room]);
 
-  const [coord, setCoord] = useState({
-    lat: 49.26800377076573,
-    lng: -123.10571490809717,
-  });
-
   const jobMarkers = getJobsFiltered(state, []); // replace with state for filters
+  const jobsFiltered = getJobsFiltered(state, categoryFilter);
 
   return (
     <div className="App">
@@ -112,7 +113,7 @@ export default function App() {
             setJobView={setJobView}
             setCoord={setCoord}
             coord={coord}
-            jobMarkers={jobMarkers}
+            jobMarkers={jobsFiltered}
           />
         </div>
 
@@ -134,6 +135,8 @@ export default function App() {
             setChat={setChat}
             setCoord={setCoord}
             coord={coord}
+            jobsFiltered={jobsFiltered}
+            setCategoryFilter={setCategoryFilter}
             cookies={cookies}
             setCurrentUser={setCurrentUser}
             removeCurrentUser={removeCurrentUser}

@@ -19,7 +19,7 @@ export default function Places(props) {
     clearSuggestions,
   } = usePlacesAutocomplete({
     requestOptions: {
-      /* Define search scope here */
+      /* Define search scope here if we want to */
     },
     debounce: 300,
   });
@@ -44,11 +44,10 @@ export default function Places(props) {
     getGeocode({ address: description })
       .then((results) => getLatLng(results[0]))
       .then(({ lat, lng }) => {
-        console.log("📍 Coordinates: ", { lat, lng });
         props.setCoord({ lat, lng });
       })
       .catch((error) => {
-        console.log("😱 Error: ", error);
+        console.log("Error: ", error);
       });
   };
 
@@ -58,7 +57,7 @@ export default function Places(props) {
         place_id,
         structured_formatting: { main_text, secondary_text },
       } = suggestion;
-      /* wrap the below in a menuItem tag */
+      /* wrap the below in a menuItem tag to make arrowkey dropdown */
       return (
         <Grid
           container
@@ -81,7 +80,7 @@ export default function Places(props) {
         value={value}
         onChange={handleInput}
         disabled={!ready}
-        placeholder="Where are you going?"
+        placeholder="Where do you need help?"
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === "OK" && renderSuggestions()} {/* wrap this in select tag */}

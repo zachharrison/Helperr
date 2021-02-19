@@ -15,7 +15,7 @@ export default function Markers({ selected, setSelected, coord, jobMarkers }) {
             anchor: new window.google.maps.Point(10, 10),
           }}
           onClick={() => {
-            // console.log("MARKER CLICKED");
+            console.log("MARKER CLICKED");
             setSelected(marker);
           }}
         />

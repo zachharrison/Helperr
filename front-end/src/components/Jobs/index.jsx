@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import Post from "./Post";
 import Find from "./Find";
 import All from "./All";
@@ -6,8 +5,6 @@ import JobToggle from "../JobToggle/JobToggle";
 import "./Jobs.css";
 import Chat from "../Chat/Chat";
 import ChatList from "../Chat/ChatList";
-// import useAppData from "../helpers/hooks/useAppData"
-import { DomainPropTypes } from "@material-ui/pickers/constants/prop-types";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Login from "../Login/Login";
 // import { useCookies, withCookies } from 'react-cookie'
@@ -16,7 +13,6 @@ export default function Jobs(props) {
   const {
     state,
     setJobView,
-    // messages,
     getConversations,
     getMessages,
     setChat,
@@ -35,16 +31,18 @@ export default function Jobs(props) {
     currentChat,
     setCurrentChat,
     setMessageView,
-    addMessage
+    addMessage,
+    setCategoryFilter,
+    jobsFiltered,
   } = props;
-
-
+  
   function saveJob(newJob) {
-    // transition(SAVING);
-    postJob(newJob).then(() => setJobView("ALL"));
-    // .catch((error) => transition(ERROR_SAVE, true));
+    postJob(newJob)
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
   }
-
+  console.log("jobsFiltered HERE", jobsFiltered);
   return (
     <>
       <JobToggle state={state} setJobView={setJobView} />
@@ -108,7 +106,11 @@ export default function Jobs(props) {
             in={state.jobView === "FIND"}
           >
             <div>
-              <Find state={state} />
+              <Find
+                state={state}
+                jobsFiltered={jobsFiltered}
+                setCategoryFilter={setCategoryFilter}
+              />
             </div>
           </CSSTransition>
         )}
@@ -120,7 +122,11 @@ export default function Jobs(props) {
             in={state.jobView === "ALL" && cookies.user}
           >
             <div>
-              <All />
+              <All
+                state={state}
+                jobsFiltered={jobsFiltered}
+                setCategoryFilter={setCategoryFilter}
+              />
             </div>
           </CSSTransition>
         )}

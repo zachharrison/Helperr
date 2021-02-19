@@ -26,9 +26,9 @@ export default function Post(props) {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
-  const [payType, setPayType] = useState("");
-  const [selectedStartDate, setSelectedStartDate] = useState(new Date()); // new Date("2021-02-18T21:11:54")
-  const [selectedEndDate, setSelectedEndDate] = useState(new Date());
+  const [pay_type, setPayType] = useState("");
+  const [start_time, setStartDate] = useState(new Date()); // new Date("2021-02-18T21:11:54")
+  const [end_time, setEndDate] = useState(new Date());
 
   const [error, setError] = useState("");
 
@@ -40,17 +40,18 @@ export default function Post(props) {
       lng: props.coord.lng,
       category,
       price,
-      payType,
-      selectedStartDate,
-      selectedEndDate,
+      pay_type,
+      start_time,
+      end_time,
     };
-    console.log("Form submission", newJob);
     if (
       name === "" ||
       description === "" ||
       category === "" ||
       price === "" ||
-      payType === ""
+      pay_type === "" ||
+      start_time === "" ||
+      end_time === ""
     ) {
       setError("Please fill out some stuff but not everything.. idk");
       return;
@@ -63,11 +64,11 @@ export default function Post(props) {
   };
 
   const handleStartDateChange = (date) => {
-    setSelectedStartDate(date);
+    setStartDate(date);
   };
 
   const handleEndDateChange = (date) => {
-    setSelectedEndDate(date);
+    setEndDate(date);
   };
 
   return (
@@ -124,11 +125,11 @@ export default function Post(props) {
             labelId="demo-simple-select-label"
             id="pay-type-select"
             name="pay-type-select"
-            value={props.state.payType}
+            value={props.state.pay_type}
             onChange={handleChange}
           >
             <MenuItem value={"/hr"}>Per Hour</MenuItem>
-            <MenuItem value={"total"}>Total</MenuItem>
+            <MenuItem value={" total"}>Total</MenuItem>
           </Select>
         </FormControl>
         <br />
@@ -141,7 +142,7 @@ export default function Post(props) {
               format="yyyy/MM/dd"
               margin="normal"
               label="Start Date"
-              value={selectedStartDate}
+              value={start_time}
               onChange={handleStartDateChange}
               KeyboardButtonProps={{
                 "aria-label": "change date",
@@ -151,7 +152,7 @@ export default function Post(props) {
               style={{ width: 100, margin: 8 }}
               margin="normal"
               label="Start Time"
-              value={selectedStartDate}
+              value={start_time}
               onChange={handleStartDateChange}
               KeyboardButtonProps={{
                 "aria-label": "change time",
@@ -165,7 +166,7 @@ export default function Post(props) {
               format="yyyy/MM/dd"
               margin="normal"
               label="End Date"
-              value={selectedEndDate}
+              value={end_time}
               onChange={handleEndDateChange}
               KeyboardButtonProps={{
                 "aria-label": "change date",
@@ -175,7 +176,7 @@ export default function Post(props) {
               style={{ width: 100, margin: 8 }}
               margin="normal"
               label="End Time"
-              value={selectedEndDate}
+              value={end_time}
               onChange={handleEndDateChange}
               KeyboardButtonProps={{
                 "aria-label": "change time",

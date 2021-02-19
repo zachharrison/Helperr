@@ -1,13 +1,6 @@
-export const getJobsFiltered = (state, filterArr) => {
-  if (filterArr.length === 0) {
-    return Object.values(state.jobs);
-  }
-  const jobsFiltered = [];
-  state.jobs.forEach((job) => {
-    if (filterArr.includes(job.category_id)) {
-      jobsFiltered.push(job);
-    }
-  });
-
-  return jobsFiltered;
-};
+export const getJobsFiltered = (state, filterArr) =>
+  filterArr.length === 0
+    ? Object.values(state.jobs)
+    : Object.values(state.jobs).filter((job) =>
+        filterArr.some((filter) => filter.id === job.category_id)
+      );

@@ -32,7 +32,7 @@ const Chat = (props) => {
 
     sendMessage({ message, room, user_id });
     setCurrentChat(oldChats => [message, ...oldChats])
-    addMessage({offer_id: room, user_id, message})
+    // addMessage({offer_id: room, user_id, message})
     console.log({ message, room, user_id });
     setMessage('');
   };

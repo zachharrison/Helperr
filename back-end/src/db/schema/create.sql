@@ -21,7 +21,7 @@ CREATE TABLE categories (
   name VARCHAR(255) NOT NULL
 );
 CREATE TYPE job_status AS ENUM('POSTED', 'FILLED', 'COMPLETED');
-CREATE TYPE pay_type AS ENUM('/hr', 'total');
+CREATE TYPE pay_type AS ENUM('/hr', ' total');
 CREATE TABLE jobs (
   id SERIAL PRIMARY KEY NOT NULL,
   client_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
