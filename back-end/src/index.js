@@ -4,16 +4,113 @@ const app = require("./application")('development');
 const server = require("http").Server(app);
 const express = require('express')()
 const io = require('socket.io')(server);
-let sockets = [];
 express.use(app);
 
 // SOCKET HANDSHAKE??
 
+/************************** BACK END HELPERS ***********************/
+let sockets = [];
+const users = [];
+
+// JOIN USER TO A ROOM AND RETURN THE USER
+const userJoin = (userId, roomId) => {
+  const user = { userId, roomId };
+  users.push(user)
+  return user;
+};
+
+// GET THE CURRENT USER
+// const getCurrentUser = () => {
+//   const cookies = socket.handshake.headers.cookie.split(" ");
+//   return cookies
+// }
+
+// console.log(getCurrentUser())
+
+
+// GET USERS IN ROOM 
+const getRoomUsers = (room) => users.filter(user => user.roomId === room);
+
 io.on("connection", socket => {
+  
+  const getCurrentCookies = () => {
+    const cookies = socket.handshake.headers.cookie.split(" ");
+    let currentUser;
+    let currentRoom;
+    for (const cookie of cookies) {
+      if (cookie.includes("user")) {
+        currentUser = cookie;
+      } else {
+        currentRoom = cookie;
+      }
+    }
+
+    return { currentUser, currentRoom }
+  }
+
+  // console.log('user ', user)
+  // consso
+  
+  const userCookies = getCurrentCookies()
+  const {currentUser, currentRoom} = userCookies;
+  // let currentUser = socket.handshake.headers.cookie.split(" ")[0];
+  // let currentRoom = socket.handshake.headers.cookie.split(" ")[1];
+
+
+  console.log(`Connected: ${currentRoom} as user ${currentUser}`);
+  
+  socket.on("disconnect", () => console.log("Disconnected"));
+
+  socket.on("join", (room) => {
+    console.log(`Socket ${socket.id} joining ${room}`);
+  });
+
+  socket.on('chat', (data) => {
+    const { message, room, user } = data;
+    console.log(`msg: ${message}, room: ${room}, user: ${user}`);
+    io.to(room).emit('chat', message);
+ });
+})
+
+
+
+
+
+
+
   // PUSH ALL SOCKET CONNECTIONS TO AN ARRAY
-  sockets.push(socket);
-  console.log(`Client Connected, there is ${sockets.length} sockets connected`);
-  console.log(socket.handshake.headers.cookie)
+  // sockets.push(socket);
+  // console.log(`Client Connected, there is ${sockets.length} sockets connected`);
+  // console.log(socket.handshake.headers.cookie)
+
+  // GET THE USER ID AND ROOM ID FROM THE COOKIES ON FRONT END
+//   let currentUser = socket.handshake.headers.cookie.split(" ")[0];
+//   let currentRoom = socket.handshake.headers.cookie.split(" ")[1];
+
+//   socket.on('joinRoom', ({ user, room }) => {
+//     const user = userJoin(currentUser, currentRoom);
+//     socket.join(user.roomId);
+
+//     // SEND USERS AND ROOM INFO
+//     io.to(user.roomId).emit('roomUsers', {
+//       room: user.roomId,
+//       users: getRoomUsers(user.roomId)
+//     });
+
+//     // LISTEN FOR CHAT MESSAGE
+//     socket.on('chatMessage', ({ currentUser, message} ) => {
+//       const user = getCurrentUser(currentUser);
+//       console.log(`msg: ${message}, from user: ${currentUser} to room: ${room}`);
+//       io.to(user.roomId).emit('message', { currentUser, message });
+//     });
+//   });
+// });
+  // socket.on('connectToRoom', room => {
+    
+  // })
+  // io.to(currentRoom).emit('connectToRoom', `You are connected to room ${currentRoom}`);
+
+  // console.log("CURRENTROOM", currentRoom)
 
   // WILL NEED TO SET USERNAME TO THE VALUE OF THE COOKIE
 
@@ -22,18 +119,20 @@ io.on("connection", socket => {
                         //   });
                         // });
   
-  socket.on('disconnect', () => {
-    sockets = sockets.filter(s => s !== socket);
-    console.log(`Client Disconnected, there are ${sockets.length} sockets remaining`);
-  });
-  // SENDS MESSAGE CLIENT SIDE
-  socket.on('message', ({ name, message }) => {
-    // EMIT MESSAGE TO CORRECT ROOM
-    sockets.forEach(s => {
-      s.emit('message', { name, message });
-    });
-  });
-});
+  // socket.on('disconnect', () => {
+  //   sockets = sockets.filter(s => s !== socket);
+  //   console.log(`Client Disconnected, there are ${sockets.length} sockets remaining`);
+  // });
+//   // SENDS MESSAGE CLIENT SIDE
+//   socket.on('message', ({ name, message }) => {
+//     // EMIT MESSAGE TO CORRECT ROOM
+//     sockets.forEach(s => {
+//       s.emit('message', { name, message });
+//     });
+//   });
+// });
+
+// io.in("game").emit("big-announcement", "the game will start soon");
 
 server.listen(8001, () => {
   console.log(`Listening on port ${PORT} in ${ENV} mode.`);

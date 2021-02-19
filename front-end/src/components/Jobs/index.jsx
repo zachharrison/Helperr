@@ -16,9 +16,7 @@ export default function Jobs(props) {
   const {
     state,
     setJobView,
-    messages,
-    sendMessage,
-    setMessageView,
+    // messages,
     getConversations,
     getMessages,
     setChat,
@@ -29,6 +27,15 @@ export default function Jobs(props) {
     removeCurrentUser,
     setMessages,
     postJob,
+    message,
+    sendMessage,
+    room,
+    setRoom,
+    setMessage,
+    currentChat,
+    setCurrentChat,
+    setMessageView,
+    addMessage
   } = props;
 
   // const [cookies] = useCookies()
@@ -145,11 +152,20 @@ export default function Jobs(props) {
           >
             <div>
               <Chat
+                message={message}
+                sendMessage={sendMessage}
+                room={room}
+                setRoom={setRoom}
+                setMessage={setMessage}
+                currentChat={currentChat}
+                setCurrentChat={setCurrentChat}
+                setMessageView={setMessageView}
                 getMessages={getMessages}
                 state={state}
                 setMessages={setMessages}
                 sendMessage={sendMessage}
                 cookies={cookies}
+                addMessage={addMessage}
               />
             </div>
           </CSSTransition>

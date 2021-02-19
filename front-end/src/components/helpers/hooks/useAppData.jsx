@@ -6,6 +6,7 @@ import { useCookies } from "react-cookie";
 export default function useAppData() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const { users, jobs, categories, offers, reviews, chats } = fixtures;
+  // const [messageState, setMessageState] = useState({ room: cookies.room, user: cookies.user});
   const [state, setState] = useState({
     users,
     jobs,
@@ -34,7 +35,8 @@ export default function useAppData() {
       axios.get("/api/offers"),
       axios.get("/api/reviews"),
       // axios.get("/api/login/1"),
-    ]).then((all) => {
+ 
+   ]).then((all) => {
       setState((prev) => ({
         ...prev,
         users: all[0].data,
@@ -52,7 +54,12 @@ export default function useAppData() {
  
   const setJobView = (jobView) => setState({ ...state, jobView });
   const setPostCode = (postCode) => setState({ ...state, postCode });
-  const setChat = (chatId) => setState({ ...state, chatId, jobView: "CHAT" });
+  const setChat = (chatId) => {
+    setState({ ...state, chatId, jobView: "CHAT" })
+    setCookie("room", chatId, {
+      path: "/"
+    })
+  };
 
   const setCurrentUser = (currentUser) => {
     setCookie("user", currentUser, {
@@ -82,6 +89,7 @@ export default function useAppData() {
 
   const setMessages = (message) => setState({...state, messages: [...state.messages, message]})
 
+  const addMessage = (message) => setState({...state, userMessages: [...state.userMessages, message]})
 
   const getConversations = () => {
     const currentUser = +cookies.user
@@ -113,17 +121,16 @@ export default function useAppData() {
     const offerMessages = []
     const userMessages = state.userMessages;
     for (const message of userMessages) {
-      console.log(message)
       if (message.offer_id === id) {
         offerMessages.push(message)
       }
     }
-    console.log(offerMessages)
+    // console.log(offerMessages)
     return offerMessages
   }
 
   function postJob(job) {
-    console.log("post job from APP DATA", job);
+    // console.log("post job from APP DATA", job);
     return axios.post(`/api/jobs/`, { job }).then(setState({ ...state, job })); // should be jobs, which should be jobs + job
   }
 
@@ -139,5 +146,6 @@ export default function useAppData() {
     cookies,
     setMessages,
     postJob,
+    addMessage
   };
 }
