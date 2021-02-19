@@ -6,6 +6,8 @@ import { useCookies } from "react-cookie";
 export default function useAppData() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   // const { users, jobs, categories, offers, reviews, chats } = fixtures;
+  const [room, setRoom] = useState('');
+  // const [messageState, setMessageState] = useState({ room: cookies.room, user: cookies.user});
   const [state, setState] = useState({
     users: {},
     jobs: {},
@@ -26,7 +28,8 @@ export default function useAppData() {
       axios.get("/api/offers"),
       axios.get("/api/reviews"),
       // axios.get("/api/login/1"),
-    ]).then((all) => {
+ 
+   ]).then((all) => {
       setState((prev) => ({
         ...prev,
         users: all[0].data,
@@ -42,10 +45,17 @@ export default function useAppData() {
     }
   }, []);
 
+  
   const setJobView = (jobView) =>
-    setState((previous) => ({ ...previous, jobView })); // swap to ...previous, like this, if there is a state bug****
-  const setChat = (chatId) => setState({ ...state, chatId, jobView: "CHAT" });
-
+  setState((previous) => ({ ...previous, jobView })); // swap to ...previous, like this, if there is a state bug****
+  const setChat = (chatId) => {
+    setRoom(chatId)
+    setState({ ...state, chatId, jobView: "CHAT" })
+    setCookie("room", chatId, {
+      path: "/"
+    })
+  };
+  
   const setCurrentUser = (currentUser) => {
     setCookie("user", currentUser, {
       path: "/",
@@ -71,8 +81,10 @@ export default function useAppData() {
     removeCookie("user");
   };
 
-  const setMessages = (message) =>
-    setState({ ...state, messages: [...state.messages, message] });
+  const setMessages = (message) => setState({...state, messages: [...state.messages, message]})
+
+  const addMessage = (message) => {
+    setState(prev => ({...prev, userMessages: [...prev.userMessages, message]}))}
 
   const getConversations = () => {
     const currentUser = +cookies.user;
@@ -107,14 +119,14 @@ export default function useAppData() {
     const offerMessages = [];
     const userMessages = state.userMessages;
     for (const message of userMessages) {
-      console.log(message);
       if (message.offer_id === id) {
         offerMessages.push(message);
       }
     }
-    console.log(offerMessages);
-    return offerMessages;
-  };
+    // console.log(offerMessages)
+    return offerMessages
+  }
+
 
   function postJob(job) {
     return axios.post(`/api/jobs/`, { job }).then(() => {
@@ -129,8 +141,10 @@ export default function useAppData() {
     });
   }
 
+
   return {
     state,
+    setState,
     setJobView,
     getConversations,
     getMessages,
@@ -138,7 +152,13 @@ export default function useAppData() {
     setCurrentUser,
     removeCurrentUser,
     cookies,
+    setCookie,
+    removeCookie,
+    room,
+    setRoom,
     setMessages,
     postJob,
+    addMessage,
   };
+
 }

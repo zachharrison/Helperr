@@ -5,21 +5,36 @@ import "./Chat.css";
 // import { io } from "socket.io-client";
 import fixtures from '../helpers/__mocks__/axios'
 
-const Chat = ({ messages, sendMessage, getMessages, state, cookies }) => {
-  // SAVING MESSAGE IN STATE {message: 'Hello world', name: "2"}
-  // cookie is a string and ID from DB is a number
-  const [messageState, setMessageState] = useState({ message: "", name: ""});
+const Chat = (props) => {
+  const { 
+    messages,
+    getMessages, 
+    state, 
+    cookies,
+    message,
+    sendMessage,
+    room,
+    setRoom,
+    setMessage,
+    currentChat,
+    setCurrentChat,
+    addMessage
+    // messageState,
+    // setMessageState
+  } = props;
 
 
-  const onTextChange = (e) => {
-    setMessageState({ ...messageState, [e.target.name]: e.target.value }); 
-  };
 
-  const onMessageSubmit = (e) => {
-    e.preventDefault();
-    const { name, message } = messageState;
-    sendMessage({ name, message });
-    setMessageState({ message: "", name });
+
+  const onMessageSubmit = () => {
+    const user_id = cookies.user;
+    const room = state.chatId;
+
+    sendMessage({ message, room, user_id });
+    setCurrentChat(oldChats => [message, ...oldChats])
+    // addMessage({offer_id: room, user_id, message})
+    console.log({ message, room, user_id });
+    setMessage('');
   };
 
   const messageList = getMessages(state.chatId)
@@ -41,19 +56,17 @@ const Chat = ({ messages, sendMessage, getMessages, state, cookies }) => {
         <Toolbar
           title="Conversation Title"
         />
-        <form onSubmit={onMessageSubmit}>
           <div>
             <TextField
               name="message"
-              onChange={(e) => onTextChange(e)}
-              value={messageState.message}
+              onChange={(e) => setMessage(e.target.value)}
+              value={message}
               id="outlined-multiline-static"
               variant="outlined"
               label="Message"
             />
           </div>
-          <button>Send Message</button>
-        </form>
+          <button onClick={() => onMessageSubmit()}>Send Message</button>
         <div className="chat-body">
           {messageListDisplay}
         </div>
@@ -62,6 +75,24 @@ const Chat = ({ messages, sendMessage, getMessages, state, cookies }) => {
 }
 
 export default Chat;
+
+
+  // SAVING MESSAGE IN STATE {message: 'Hello world', name: "2"}
+  // cookie is a string and ID from DB is a number
+  // const [messageState, setMessageState] = useState({ message: "", name: ""});
+  // const [messageState, setMessageState] = useState({ room: cookies.room, user: cookies.user});
+
+
+  // const onTextChange = (e) => {
+  //   setMessageState({ ...messageState, [e.target.name]: e.target.value }); 
+  // };
+
+  // const onMessageSubmit = (e) => {
+  //   e.preventDefault();
+  //   const { name, message } = messageState;
+  //   sendMessage({ name, message });
+  //   setMessageState({ message: "", name });
+  // };
 
 /* 
   - Sockets are currently in an array. How could we change this?

@@ -7,29 +7,37 @@ import Chat from "../Chat/Chat";
 import ChatList from "../Chat/ChatList";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Login from "../Login/Login";
+// import { useCookies, withCookies } from 'react-cookie'
 
-export default function Jobs({
-  state,
-  setJobView,
-  messages,
-  sendMessage,
-  setMessageView,
-  getConversations,
-  getMessages,
-  setChat,
-  setCoord,
-  coord,
-  jobsFiltered,
-  setCategoryFilter,
-  cookies,
-  setCurrentUser,
-  removeCurrentUser,
-  setMessages,
-  postJob,
-}) {
+export default function Jobs(props) {
+  const {
+    state,
+    setJobView,
+    getConversations,
+    getMessages,
+    setChat,
+    setCoord,
+    coord,
+    cookies,
+    setCurrentUser,
+    removeCurrentUser,
+    setMessages,
+    postJob,
+    message,
+    sendMessage,
+    room,
+    setRoom,
+    setMessage,
+    currentChat,
+    setCurrentChat,
+    setMessageView,
+    addMessage,
+    setCategoryFilter,
+    jobsFiltered,
+  } = props;
+  
   function saveJob(newJob) {
     postJob(newJob)
-      .then(() => setJobView("ALL"))
       .catch((error) => {
         console.log("Error: ", error);
       });
@@ -131,11 +139,20 @@ export default function Jobs({
           >
             <div>
               <Chat
+                message={message}
+                sendMessage={sendMessage}
+                room={room}
+                setRoom={setRoom}
+                setMessage={setMessage}
+                currentChat={currentChat}
+                setCurrentChat={setCurrentChat}
+                setMessageView={setMessageView}
                 getMessages={getMessages}
                 state={state}
                 setMessages={setMessages}
                 sendMessage={sendMessage}
                 cookies={cookies}
+                addMessage={addMessage}
               />
             </div>
           </CSSTransition>
@@ -144,3 +161,24 @@ export default function Jobs({
     </>
   );
 }
+
+
+  // const [cookies] = useCookies()
+  //   function dropPin(job) {
+  //   const newJob = { job };
+  //   saveJob(props.id)
+  //   .then(() => props.setJobView("ALL"))
+  //   .catch((error) => console.log(error));
+  // }
+  // const POST = "POST";
+  // const FIND = "FIND";
+  // const ALL = "ALL";
+  // const SAVING = "SAVING";
+  // const ERROR_SAVE = "ERROR_SAVE";
+  // const ERROR_DELETE = "ERROR_DELETE";
+
+  // console.log(props)
+  // const [cookies] = useCookies()
+
+  // const [jobView, setJobView] = useState(ALL)
+  // const { mode, transition, back } = useVisualMode(ALL);

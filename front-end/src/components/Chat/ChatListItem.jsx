@@ -4,13 +4,13 @@ import {useEffect} from 'react';
 import './ChatListItem.css';
 
 export default function ChatListItem(props) {
-  // useEffect(() => {
+    // useEffect(() => {
   //   shave('.conversation-snippet', 20);
   // })
 
     const { id, title, message } = props.data;
 
-    console.log('THE CHAT ID IS ',id)
+    // console.log('THE CHAT ID IS ',id)
 
      return (
       <div className="conversation-list-item" onClick={() => props.setChat(id)}>
