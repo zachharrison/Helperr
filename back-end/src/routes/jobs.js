@@ -28,9 +28,9 @@ module.exports = (db) => {
       lat,
       lng,
       price,
-      payType,
-      startDate,
-      endDate,
+      pay_type,
+      start_date,
+      end_date,
     } = request.body.job;
     db.query(
       `
@@ -43,10 +43,10 @@ module.exports = (db) => {
         lat,
         lng,
         price,
-        payType,
+        pay_type,
         "POSTED",
-        startDate,
-        endDate,
+        start_date,
+        end_date,
       ]
     )
       .then(() => {

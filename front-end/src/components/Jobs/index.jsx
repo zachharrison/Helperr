@@ -114,7 +114,11 @@ export default function Jobs({
             in={state.jobView === "ALL" && cookies.user}
           >
             <div>
-              <All />
+              <All
+                state={state}
+                jobsFiltered={jobsFiltered}
+                setCategoryFilter={setCategoryFilter}
+              />
             </div>
           </CSSTransition>
         )}
