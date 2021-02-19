@@ -32,31 +32,6 @@ export default function Map(props) {
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState();
 
-  /*   const onMapClick = useCallback((event) => {
-    props.setJobView("FIND");
-    const lat = event.latLng.lat();
-    const lng = event.latLng.lng();
-    fetch(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${lng},${lat}.json?access_token=${process.env.REACT_APP_MAPBOX_API_KEY}`
-    )
-      .then((response) => response.json())
-      .then(
-        (data) => console.log(data.features[1].context[0].text)
-        // setPostCode(data.features[1].context[0].text)
-      )
-      // .then((data) => setPostCode(data.features[1].context[0].text))
-      // .then(() => props.setJobView("Testing"))
-      .then(() => console.log(props.state));
-    setMarkers((current) => [
-      current,
-      {
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng(),
-        time: new Date(),
-      },
-    ]);
-  }, []); */
-
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
@@ -99,5 +74,3 @@ export default function Map(props) {
     </div>
   );
 }
-
-

@@ -58,7 +58,7 @@ VALUES (
     1000,
     '/hr',
     '2021-02-26 18:00:00',
-    '2021-02-27 00:00:00',
+    '2021-02-27 24:00:00',
     'POSTED'
   ),
   (
@@ -72,7 +72,7 @@ VALUES (
     1000,
     '/hr',
     '2021-02-26 18:00:00',
-    '2021-02-27 00:00:00',
+    '2021-02-27 24:00:00',
     'FILLED'
   ),
   (
@@ -84,9 +84,9 @@ VALUES (
     48.428421,
     -123.3656461,
     15000,
-    '/hr',
+    ' total',
     '2021-02-26 18:00:00',
-    '2021-02-27 00:00:00',
+    '2021-02-27 24:00:00',
     'COMPLETED'
   ),
   (
@@ -100,7 +100,7 @@ VALUES (
     5000,
     '/hr',
     '2021-02-26 18:00:00',
-    '2021-02-27 00:00:00',
+    '2021-02-27 24:00:00',
     'POSTED'
   ),
   (
@@ -112,9 +112,9 @@ VALUES (
     45.631060,
     -122.671570,
     10000,
-    'total',
+    ' total',
     '2021-02-26 18:00:00',
-    '2021-02-27 00:00:00',
+    '2021-02-27 24:00:00',
     'POSTED'
   );
 -- JOB 1 by posted by 1
@@ -137,21 +137,66 @@ VALUES (2, 1, 2000, 'TRUE', 'ACCEPTED'),
   (4, 2, 2500, 'FALSE', 'SENT');
 -- 4 and 3
 INSERT INTO messages (user_id, offer_id, message, timestamp)
-VALUES (2, 1, 'User sent an offer 2000', '2021-02-15T09:13:58.223Z'),
+VALUES (
+    2,
+    1,
+    'User sent an offer 2000',
+    '2021-02-15T09:13:58.223Z'
+  ),
   -- 2 sends message to 1 for offer 1
-  (2, 2, 'User sent an offer 15000', '2021-02-16T09:12:38.223Z'),
-  (2, 3, 'User sent an offer 2000', '2021-02-16T09:12:38.223Z'),
-  (3, 4, 'User sent an offer 20000', '2021-02-15T09:12:38.223Z'),
-  (2, 5, 'User sent an offer 3000', '2021-02-17T09:16:42.223Z'),
-  (4, 6, 'User sent an offer 2500', '2021-02-17T09:14:39.223Z'),
+  (
+    2,
+    2,
+    'User sent an offer 15000',
+    '2021-02-16T09:12:38.223Z'
+  ),
+  (
+    2,
+    3,
+    'User sent an offer 2000',
+    '2021-02-16T09:12:38.223Z'
+  ),
+  (
+    3,
+    4,
+    'User sent an offer 20000',
+    '2021-02-15T09:12:38.223Z'
+  ),
+  (
+    2,
+    5,
+    'User sent an offer 3000',
+    '2021-02-17T09:16:42.223Z'
+  ),
+  (
+    4,
+    6,
+    'User sent an offer 2500',
+    '2021-02-17T09:14:39.223Z'
+  ),
   (
     2,
     1,
-    'Hey I am available to fill your babysitting position!', '2021-02-17T09:12:38.223Z'
+    'Hey I am available to fill your babysitting position!',
+    '2021-02-17T09:12:38.223Z'
   ),
-  (1, 1, 'Sounds great!', '2021-02-17T09:14:28.223Z'),
-  (3, 2, 'I am very intrested in your position!', '2021-02-18T09:12:38.223Z'),
-  (4, 3, 'Lets chat tomorrow', '2021-02-17T09:12:38.223Z');
+  (
+    1,
+    1,
+    'Sounds great!',
+    '2021-02-17T09:14:28.223Z'
+  ),
+  (
+    3,
+    2,
+    'I am very intrested in your position!',
+    '2021-02-18T09:12:38.223Z'
+  ),
+  (
+    4,
+    3,
+    'Lets chat tomorrow',
+    '2021-02-17T09:12:38.223Z'
+  );
 -- GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
-
 -- "timestamp": "2021-02-18T09:12:38.223Z",

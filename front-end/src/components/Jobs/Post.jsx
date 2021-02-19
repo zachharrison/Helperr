@@ -27,8 +27,8 @@ export default function Post(props) {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [payType, setPayType] = useState("");
-  const [selectedStartDate, setSelectedStartDate] = useState(new Date()); // new Date("2021-02-18T21:11:54")
-  const [selectedEndDate, setSelectedEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date()); // new Date("2021-02-18T21:11:54")
+  const [endDate, setEndDate] = useState(new Date());
 
   const [error, setError] = useState("");
 
@@ -41,16 +41,17 @@ export default function Post(props) {
       category,
       price,
       payType,
-      selectedStartDate,
-      selectedEndDate,
+      startDate,
+      endDate,
     };
-    console.log("Form submission", newJob);
     if (
       name === "" ||
       description === "" ||
       category === "" ||
       price === "" ||
-      payType === ""
+      payType === "" ||
+      startDate === "" ||
+      endDate === ""
     ) {
       setError("Please fill out some stuff but not everything.. idk");
       return;
@@ -63,11 +64,11 @@ export default function Post(props) {
   };
 
   const handleStartDateChange = (date) => {
-    setSelectedStartDate(date);
+    setStartDate(date);
   };
 
   const handleEndDateChange = (date) => {
-    setSelectedEndDate(date);
+    setEndDate(date);
   };
 
   return (
@@ -128,7 +129,7 @@ export default function Post(props) {
             onChange={handleChange}
           >
             <MenuItem value={"/hr"}>Per Hour</MenuItem>
-            <MenuItem value={"total"}>Total</MenuItem>
+            <MenuItem value={" total"}>Total</MenuItem>
           </Select>
         </FormControl>
         <br />
@@ -141,7 +142,7 @@ export default function Post(props) {
               format="yyyy/MM/dd"
               margin="normal"
               label="Start Date"
-              value={selectedStartDate}
+              value={startDate}
               onChange={handleStartDateChange}
               KeyboardButtonProps={{
                 "aria-label": "change date",
@@ -151,7 +152,7 @@ export default function Post(props) {
               style={{ width: 100, margin: 8 }}
               margin="normal"
               label="Start Time"
-              value={selectedStartDate}
+              value={startDate}
               onChange={handleStartDateChange}
               KeyboardButtonProps={{
                 "aria-label": "change time",
@@ -165,7 +166,7 @@ export default function Post(props) {
               format="yyyy/MM/dd"
               margin="normal"
               label="End Date"
-              value={selectedEndDate}
+              value={endDate}
               onChange={handleEndDateChange}
               KeyboardButtonProps={{
                 "aria-label": "change date",
@@ -175,7 +176,7 @@ export default function Post(props) {
               style={{ width: 100, margin: 8 }}
               margin="normal"
               label="End Time"
-              value={selectedEndDate}
+              value={endDate}
               onChange={handleEndDateChange}
               KeyboardButtonProps={{
                 "aria-label": "change time",
