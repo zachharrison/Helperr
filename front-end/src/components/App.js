@@ -12,6 +12,7 @@ export default function App() {
 
   const {
     state,
+    setState,
     setJobView,
     setMessageView,
     getConversations,
@@ -32,34 +33,43 @@ export default function App() {
   const initiateSocket = (room) => {
     const socket = io("http://localhost:8001", { transports: ["websocket"] });
     setSocket(socket);
-    console.log(`Connecting socket...`);
+    // console.log(`Connecting socket...`);
     if (socket && room) socket.emit('join', room);
     socket.on('chat', msg => {
-      console.log('A chat repsonse', msg);
+      // console.log('A chat repsonse', msg);
       // cb(null, msg);
+      // console.log('THIS IS A STATE TEST ', state)
+
+      // const newMessage = { offer_id: state.chatId, user_id: msg.user_id,  message: msg.message }
+      // setState({...state, userMessages: [...state.userMessages, newMessage]});
+      // getConversations();
+      addMessage({offer_id: room, user_id: msg.user_id, message: msg.message})
+
+      // console.log('THIS IS A STATE TEST FOR THE SECOND TIME ', state)
+
       // WHAT DO WE WANT TO DO!!!?????!!!!
       // add to db server side
       // on receive of message do the same for the other person
     });
   }
   const disconnectSocket = () => {
-    console.log('Disconnecting socket...', !!socket);
+    // console.log('Disconnecting socket...', !!socket);
     if(socket) socket.disconnect();
     setSocket(null);
   }
   const joinChat = (cb) => {
-    console.log("socket in joinchat", socket)
+    // console.log("socket in joinchat", socket)
     if (!socket) {
       console.log("joinchat has no socket")
       return(true);
     } 
     socket.on('chat', msg => {
-      console.log('Websocket event received!');
+      // console.log('Websocket event received!');
       return cb(null, msg);
     });
   }
   const sendMessage = (message, room, user ) => {
-    console.log('SOCKET TEST ',  socket);
+    // console.log('SOCKET TEST ',  socket);
     if (socket) socket.emit('chat', { message, room, user });
   }
 

@@ -92,7 +92,7 @@ export default function useAppData() {
   const setMessages = (message) => setState({...state, messages: [...state.messages, message]})
 
   const addMessage = (message) => {
-    setState({...state, userMessages: [...state.userMessages, message]})}
+    setState(prev => ({...prev, userMessages: [...prev.userMessages, message]}))}
 
   const getConversations = () => {
     const currentUser = +cookies.user
@@ -139,6 +139,7 @@ export default function useAppData() {
 
   return {
     state,
+    setState,
     setJobView,
     setPostCode,
     getConversations,
