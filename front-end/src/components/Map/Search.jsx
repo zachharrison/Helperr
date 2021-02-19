@@ -29,11 +29,9 @@ function Search({ panTo }) {
     <Combobox
       onSelect={async (address) => {
         setValue(address, false);
-        console.log("combo addy ===>", address);
         clearSuggestions();
         try {
           const results = await getGeocode({ address });
-          console.log("combo result ===>", results);
           const { lat, lng } = await getLatLng(results[0]);
           panTo({ lat, lng });
         } catch (error) {

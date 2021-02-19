@@ -1,30 +1,22 @@
 import { useState, useEffect } from "react";
-import fixtures from "../__mocks__/axios";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+// import fixtures from "../helpers/__mocks__/axios";
 
 export default function useAppData() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
-  const { users, jobs, categories, offers, reviews, chats } = fixtures;
+  // const { users, jobs, categories, offers, reviews, chats } = fixtures;
   const [state, setState] = useState({
-    users,
-    jobs,
-    categories,
-    offers,
-    chats,
-    reviews,
+    users: {},
+    jobs: {},
+    categories: {},
+    offers: {},
+    chats: {},
+    reviews: {},
     jobView: "FIND",
-    postcode: "",
     chatId: null,
     currentUser: null,
   });
-
-  // useEffect(() => {
-  //   getConversations()
-  // },[])
-  // lat: 49.26800377076573,
-  // lng: -123.10571490809717,
-  //);
 
   useEffect(() => {
     Promise.all([
@@ -46,18 +38,18 @@ export default function useAppData() {
       }));
     });
     if (cookies && cookies.user) {
-      setCurrentUser(+cookies.user)
+      setCurrentUser(+cookies.user);
     }
   }, []);
- 
-  const setJobView = (jobView) => setState({ ...state, jobView });
-  const setPostCode = (postCode) => setState({ ...state, postCode });
+
+  const setJobView = (jobView) =>
+    setState((previous) => ({ ...previous, jobView })); // swap to ...previous, like this, if there is a state bug****
   const setChat = (chatId) => setState({ ...state, chatId, jobView: "CHAT" });
 
   const setCurrentUser = (currentUser) => {
     setCookie("user", currentUser, {
-      path: "/"
-    })
+      path: "/",
+    });
     Promise.all([
       axios.get(`/api/login/messages/${currentUser}`),
       axios.get(`/api/login/offers/${currentUser}`),
@@ -69,68 +61,77 @@ export default function useAppData() {
         userMessages: all[0].data,
         userJobs: all[1].data,
         userOffers: all[2].data,
-        currentUser
+        currentUser,
       }));
     });
-
-  }
+  };
 
   const removeCurrentUser = () => {
     setState({ ...state, currentUser: null });
     removeCookie("user");
   };
 
-  const setMessages = (message) => setState({...state, messages: [...state.messages, message]})
-
+  const setMessages = (message) =>
+    setState({ ...state, messages: [...state.messages, message] });
 
   const getConversations = () => {
-    const currentUser = +cookies.user
+    const currentUser = +cookies.user;
     const usersMessages = state.userMessages;
     const result = {};
 
     for (const offer of usersMessages) {
       if (!result.hasOwnProperty(offer.offer_id)) {
-        result[offer.offer_id] = {offerId: offer.offer_id, title: offer.title, messages: [offer.message]}
+        result[offer.offer_id] = {
+          offerId: offer.offer_id,
+          title: offer.title,
+          messages: [offer.message],
+        };
       } else {
-        result[offer.offer_id].messages.push(offer.message)
+        result[offer.offer_id].messages.push(offer.message);
       }
     }
 
-    const conversations = Object.keys(result).map(key => result[key])
+    const conversations = Object.keys(result).map((key) => result[key]);
 
-
-    return conversations.map(conversation => {
+    return conversations.map((conversation) => {
       const id = conversation.offerId;
       const title = conversation.title;
-      const lastMessage = conversation.messages[conversation.messages.length - 1];
-        
-      return {id, title, message: lastMessage}
+      const lastMessage =
+        conversation.messages[conversation.messages.length - 1];
 
+      return { id, title, message: lastMessage };
     });
-  }
+  };
 
   const getMessages = (id) => {
-    const offerMessages = []
+    const offerMessages = [];
     const userMessages = state.userMessages;
     for (const message of userMessages) {
-      console.log(message)
+      console.log(message);
       if (message.offer_id === id) {
-        offerMessages.push(message)
+        offerMessages.push(message);
       }
     }
-    console.log(offerMessages)
-    return offerMessages
-  }
+    console.log(offerMessages);
+    return offerMessages;
+  };
 
   function postJob(job) {
-    console.log("post job from APP DATA", job);
-    return axios.post(`/api/jobs/`, { job }).then(setState({ ...state, job })); // should be jobs, which should be jobs + job
+    return axios.post(`/api/jobs/`, { job }).then(() => {
+      const id = Object.keys(state.jobs).length + 1;
+      setState({
+        ...state,
+        jobs: {
+          ...state.jobs,
+          [id]: { ...job, id },
+        },
+      });
+    });
   }
 
   return {
     state,
     setJobView,
-    setPostCode,
     getConversations,
     getMessages,
     setChat,

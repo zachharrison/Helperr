@@ -4,7 +4,7 @@ import Map from "./Map";
 import ChatNav from "./Chat/ChatNav";
 import { io } from "socket.io-client";
 import Jobs from "./Jobs";
-import useAppData from "./helpers/hooks/useAppData";
+import useAppData from "./hooks/useAppData";
 import { getJobsFiltered } from "./helpers/selectors";
 const _socket = io.connect("http://localhost:8001", {
   transports: ["websocket"],
@@ -33,9 +33,7 @@ const useChatSocket = () => {
 
 export default function App() {
   const { messages, sendMessage } = useChatSocket();
-
-  /* saveJob={saveJob} */
-
+  const [categoryFilter, setCategoryFilter] = useState([]);
   const [coord, setCoord] = useState({
     lat: 49.26800377076573,
     lng: -123.10571490809717,
@@ -55,7 +53,7 @@ export default function App() {
     postJob,
   } = useAppData();
 
-  const jobMarkers = getJobsFiltered(state, []); // replace with state for filters
+  const jobsFiltered = getJobsFiltered(state, categoryFilter);
 
   return (
     <div className="App">
@@ -70,7 +68,7 @@ export default function App() {
             setJobView={setJobView}
             setCoord={setCoord}
             coord={coord}
-            jobMarkers={jobMarkers}
+            jobMarkers={jobsFiltered}
           />
         </div>
 
@@ -86,6 +84,8 @@ export default function App() {
             setChat={setChat}
             setCoord={setCoord}
             coord={coord}
+            jobsFiltered={jobsFiltered}
+            setCategoryFilter={setCategoryFilter}
             cookies={cookies}
             setCurrentUser={setCurrentUser}
             removeCurrentUser={removeCurrentUser}

@@ -41,7 +41,7 @@ module.exports = function application(ENV, actions = { updateJobs: () => {} }) {
   app.use(bodyparser.json());
 
   app.use("/api", users(db));
-  app.use("/api", jobs(db /* , actions.updateJobs */));
+  app.use("/api", jobs(db));
   app.use("/api", categories(db));
   app.use("/api", offers(db));
   app.use("/api", messages(db));
