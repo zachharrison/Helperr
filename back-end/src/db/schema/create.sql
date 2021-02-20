@@ -18,7 +18,8 @@ CREATE TABLE users (
 );
 CREATE TABLE categories (
   id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL
+  name VARCHAR(255) NOT NULL,
+  marker VARCHAR(255) NOT NULL
 );
 CREATE TYPE job_status AS ENUM('POSTED', 'FILLED', 'COMPLETED');
 CREATE TYPE pay_type AS ENUM('/hr', ' total');

@@ -64,6 +64,7 @@ export default function Map(props) {
       >
         <Locate panTo={panTo} />
         <Markers
+          state={props.state}
           markers={markers}
           setSelected={setSelected}
           selected={selected}
