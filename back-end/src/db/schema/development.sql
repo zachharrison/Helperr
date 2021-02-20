@@ -42,7 +42,7 @@ INSERT INTO jobs (
     lat,
     lng,
     price,
-    per_hr,
+    pay_type,
     start_time,
     end_time,
     status
@@ -123,7 +123,7 @@ VALUES (
 -- JOB 4 posted by 3
 -- JOB 5 posted by 2
 -- status: 'SENT', 'ACCEPTED', 'DECLINED'
-INSERT INTO offers (helper_id, job_id, price, per_hr, status)
+INSERT INTO offers (helper_id, job_id, price, pay_type, status)
 VALUES (2, 1, 2000, 'TRUE', 'ACCEPTED'),
   -- 2 and 1 OFFERER THEN POSTER 
   (1, 2, 15000, 'FALSE', 'SENT'),

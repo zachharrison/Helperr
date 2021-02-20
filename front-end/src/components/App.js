@@ -7,7 +7,6 @@ import Jobs from "./Jobs";
 import useAppData from "./hooks/useAppData";
 import { getJobsFiltered } from "./helpers/selectors";
 
-
 export default function App() {
   const [categoryFilter, setCategoryFilter] = useState([]);
   const [coord, setCoord] = useState({
@@ -30,17 +29,17 @@ export default function App() {
     postJob,
     addMessage,
     room,
-    setRoom
+    setRoom,
   } = useAppData();
 
-  const [socket, setSocket] = useState('')
+  const [socket, setSocket] = useState("");
 
   const initiateSocket = (room) => {
     const socket = io("http://localhost:8001", { transports: ["websocket"] });
     setSocket(socket);
     // console.log(`Connecting socket...`);
-    if (socket && room) socket.emit('join', room);
-    socket.on('chat', msg => {
+    if (socket && room) socket.emit("join", room);
+    socket.on("chat", (msg) => {
       // console.log('A chat repsonse', msg);
       // cb(null, msg);
       // console.log('THIS IS A STATE TEST ', state)
@@ -48,7 +47,11 @@ export default function App() {
       // const newMessage = { offer_id: state.chatId, user_id: msg.user_id,  message: msg.message }
       // setState({...state, userMessages: [...state.userMessages, newMessage]});
       // getConversations();
-      addMessage({offer_id: room, user_id: msg.user_id, message: msg.message})
+      addMessage({
+        offer_id: room,
+        user_id: msg.user_id,
+        message: msg.message,
+      });
 
       // console.log('THIS IS A STATE TEST FOR THE SECOND TIME ', state)
 
@@ -56,31 +59,30 @@ export default function App() {
       // add to db server side
       // on receive of message do the same for the other person
     });
-  }
+  };
   const disconnectSocket = () => {
     // console.log('Disconnecting socket...', !!socket);
-    if(socket) socket.disconnect();
+    if (socket) socket.disconnect();
     setSocket(null);
-  }
+  };
   const joinChat = (cb) => {
     // console.log("socket in joinchat", socket)
     if (!socket) {
-      console.log("joinchat has no socket")
-      return(true);
-    } 
-    socket.on('chat', msg => {
+      console.log("joinchat has no socket");
+      return true;
+    }
+    socket.on("chat", (msg) => {
       // console.log('Websocket event received!');
       return cb(null, msg);
     });
-  }
-  const sendMessage = (message, room, user ) => {
+  };
+  const sendMessage = (message, room, user) => {
     // console.log('SOCKET TEST ',  socket);
-    if (socket) socket.emit('chat', { message, room, user });
-  }
-
+    if (socket) socket.emit("chat", { message, room, user });
+  };
 
   // const [room, setRoom] = useState('');
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [currentChat, setCurrentChat] = useState([]);
   useEffect(() => {
     if (state.chatId) initiateSocket(room);
@@ -94,10 +96,10 @@ export default function App() {
     // });
     return () => {
       disconnectSocket();
-    }
+    };
   }, [room]);
 
-  const jobMarkers = getJobsFiltered(state, []); // replace with state for filters
+  // const jobMarkers = getJobsFiltered(state, []); // replace with state for filters
   const jobsFiltered = getJobsFiltered(state, categoryFilter);
 
   return (
@@ -151,9 +153,6 @@ export default function App() {
   );
 }
 
-
-
-
 // const _socket = io.connect("http://localhost:8001", {
 //   transports: ["websocket"],
 // });
@@ -180,7 +179,7 @@ export default function App() {
 //     socket.on('connectToRoom', (room) => {
 //       console.log(room)
 //     })
-  
+
 //   });
 //   return { messages, sendMessage };
 // };

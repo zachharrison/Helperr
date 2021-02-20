@@ -24,7 +24,7 @@ export default function Post(props) {
   const classes = useStyles();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  const [category_id, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [pay_type, setPayType] = useState("");
   const [start_time, setStartDate] = useState(new Date()); // new Date("2021-02-18T21:11:54")
@@ -34,20 +34,22 @@ export default function Post(props) {
 
   function validate() {
     const newJob = {
+      client_id: props.state.currentUser,
       name,
+      category_id,
       description,
       lat: props.coord.lat,
       lng: props.coord.lng,
-      category,
       price,
       pay_type,
+      status: "POSTED",
       start_time,
       end_time,
     };
     if (
       name === "" ||
+      category_id === "" ||
       description === "" ||
-      category === "" ||
       price === "" ||
       pay_type === "" ||
       start_time === "" ||
@@ -58,6 +60,7 @@ export default function Post(props) {
     }
     setError("");
     props.onSave(newJob);
+    props.setJobView("ALL");
   }
   const handleChange = (event) => {
     setPayType(event.target.value);
@@ -98,7 +101,7 @@ export default function Post(props) {
           onChange={(event, value) => setCategory(value ? value.id : "")}
           id="category-search"
           name="category-search"
-          value={props.state.category}
+          value={props.state.category_id}
           options={Object.values(props.state.categories)}
           getOptionLabel={(option) => option.name}
           style={{ width: 450, margin: 8 }}

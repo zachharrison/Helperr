@@ -108,12 +108,12 @@ export default function PrimarySearchAppBar(props) {
   const handleLogin = (id) => {
     props.setCurrentUser(id);
     handleMenuClose();
-  }
+  };
 
   const handleLogout = () => {
     props.removeCurrentUser();
     handleMenuClose();
-  }
+  };
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
