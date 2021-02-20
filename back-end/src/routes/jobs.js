@@ -2,11 +2,7 @@ const router = require("express").Router();
 
 module.exports = (db) => {
   router.get("/jobs", (request, response) => {
-    db.query(
-      `SELECT jobs.*, categories.name AS category_name
-    FROM jobs
-    JOIN categories ON category_id = categories.id;`
-    ).then(({ rows: jobs }) => {
+    db.query(`SELECT * FROM jobs;`).then(({ rows: jobs }) => {
       response.json(
         jobs.reduce(
           (previous, current) => ({ ...previous, [current.id]: current }),
@@ -22,7 +18,7 @@ module.exports = (db) => {
       return;
     }
     const {
-      category,
+      category_id,
       name,
       description,
       lat,
@@ -34,10 +30,10 @@ module.exports = (db) => {
     } = request.body.job;
     db.query(
       `
-      INSERT INTO jobs ( category_id, name, description, lat, lng, price, per_hr, status, start_time, end_time ) VALUES ($1::integer, $2::text, $3::text, $4::float, $5::float, $6::integer, $7::pay_type, $8::job_status, $9::timestamp, $10::timestamp)
+      INSERT INTO jobs ( category_id, name, description, lat, lng, price, pay_type, status, start_time, end_time ) VALUES ($1::integer, $2::text, $3::text, $4::float, $5::float, $6::integer, $7::pay_type, $8::job_status, $9::timestamp, $10::timestamp)
     `,
       [
-        category,
+        category_id,
         name,
         description,
         lat,

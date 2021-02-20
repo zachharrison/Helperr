@@ -32,7 +32,7 @@ CREATE TABLE jobs (
   lat FLOAT,
   lng FLOAT,
   price INTEGER NOT NULL,
-  per_hr pay_type,
+  pay_type pay_type,
   start_time TIMESTAMP,
   end_time TIMESTAMP,
   --tags VARCHAR(255) NOT NULL, --will this take an array of #'s
@@ -48,7 +48,7 @@ CREATE TABLE offers (
   job_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
   price INTEGER NOT NULL,
   --add if we are allowing counter offers
-  per_hr BOOLEAN DEFAULT 'FALSE',
+  pay_type BOOLEAN DEFAULT 'FALSE',
   -- per hour or per job
   status offer_status,
   timestamp TIMESTAMP NOT NULL DEFAULT NOW()::timestamp
