@@ -18,6 +18,7 @@ module.exports = (db) => {
       return;
     }
     const {
+      client_id,
       category_id,
       name,
       description,
@@ -30,9 +31,10 @@ module.exports = (db) => {
     } = request.body.job;
     db.query(
       `
-      INSERT INTO jobs ( category_id, name, description, lat, lng, price, pay_type, status, start_time, end_time ) VALUES ($1::integer, $2::text, $3::text, $4::float, $5::float, $6::integer, $7::pay_type, $8::job_status, $9::timestamp, $10::timestamp)
+      INSERT INTO jobs ( client_id, category_id, name, description, lat, lng, price, pay_type, status, start_time, end_time ) VALUES ($1::integer, $2::integer, $3::text, $4::text, $5::float, $6::float, $7::integer, $8::pay_type, $9::job_status, $10::timestamp, $11::timestamp)
     `,
       [
+        client_id,
         category_id,
         name,
         description,

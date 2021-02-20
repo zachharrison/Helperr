@@ -23,16 +23,16 @@ VALUES (
     'Tom@balldeflator.com',
     'password'
   );
-INSERT INTO categories (name)
-VALUES ('Light-labour'),
-  ('Cleaning'),
-  ('Caregiving'),
-  ('AutoRepair'),
-  ('MinorRepair'),
-  ('Photography'),
-  ('Lessons'),
-  ('Delivery'),
-  ('Miscellaneous');
+INSERT INTO categories (name, marker)
+VALUES ('Light-labour', '/hard-hat-solid.svg'),
+  ('Cleaning', '/hand-sparkles-solid.svg'),
+  ('Caregiving', '/baby-carriage-solid.svg'),
+  ('AutoRepair', '/car-crash-solid.svg'),
+  ('MinorRepair', '/tools-solid.svg'),
+  ('Photography', '/camera-retro-solid.svg'),
+  ('Lessons', '/user-graduate-solid.svg'),
+  ('Delivery', '/shipping-fast-solid.svg'),
+  ('Miscellaneous', '/question-solid.svg');
 INSERT INTO jobs (
     client_id,
     helper_id,

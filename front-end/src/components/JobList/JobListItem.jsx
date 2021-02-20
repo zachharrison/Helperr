@@ -15,12 +15,8 @@ export default function jobListItem(props) {
   if (!categories) return null;
 
   const categoryName = categories[category_id - 1].name;
-
-  console.log("USERS and client", users, client_id);
-  console.log("Client", users[client_id - 1], name);
   const userAvatar = users[client_id - 1].avatar;
   const userName = users[client_id - 1].name;
-
   const startDate = Intl.DateTimeFormat("en-US", {
     month: "short",
     day: "2-digit",
