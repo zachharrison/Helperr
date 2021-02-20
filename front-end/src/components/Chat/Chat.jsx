@@ -4,6 +4,10 @@ import Toolbar from '../Chat/Toolbar'
 import "./Chat.css";
 // import { io } from "socket.io-client";
 import fixtures from '../helpers/__mocks__/axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+
+// const FA = require('react-fontawesome')
 
 const Chat = (props) => {
   const { 
@@ -22,9 +26,6 @@ const Chat = (props) => {
     // messageState,
     // setMessageState
   } = props;
-
-
-
 
   const onMessageSubmit = () => {
     const user_id = cookies.user;
@@ -56,20 +57,20 @@ const Chat = (props) => {
         <Toolbar
           title="Conversation Title"
         />
-          <div>
-            <TextField
-              name="message"
-              onChange={(e) => setMessage(e.target.value)}
-              value={message}
-              id="outlined-multiline-static"
-              variant="outlined"
-              label="Message"
-            />
-          </div>
-          <button onClick={() => onMessageSubmit()}>Send Message</button>
         <div className="chat-body">
           {messageListDisplay}
         </div>
+        <div className="message-container">
+            <input
+              className="message-input" 
+              type="text"
+              name="message"
+              onChange={(e) => setMessage(e.target.value)}
+              value={message}
+              placeholder="Message"
+            />
+          <button className="message-btn" onClick={() => onMessageSubmit()}>Send <FontAwesomeIcon icon={faPaperPlane} /></button>
+          </div>
       </div>
     );
 }

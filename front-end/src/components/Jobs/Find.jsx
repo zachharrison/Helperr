@@ -18,13 +18,14 @@ export default function Find(props) {
   const classes = useStyles();
 
   return (
-    <>
-      <div className={classes.root}>
+    <div className="find-container">
+    <div className="category-box">
+      <div className={classes.root} >
         <Autocomplete
           onChange={(event, value) => {
             setCategoryFilter(value || []);
           }}
-          style={{ width: 450, margin: 8 }}
+          style={{ width: 450, marginBottom: 8 }}
           multiple
           id="filter-categories"
           options={Object.values(props.state.categories)}
@@ -39,9 +40,12 @@ export default function Find(props) {
           )}
         />
       </div>
+      </div>
+      <div>
       {jobsFiltered.map((job) => (
         <JobListItem {...job} />
       ))}
-    </>
+      </div>
+    </div>
   );
 }

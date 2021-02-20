@@ -6,6 +6,7 @@ import { io } from "socket.io-client";
 import Jobs from "./Jobs";
 import useAppData from "./hooks/useAppData";
 import { getJobsFiltered } from "./helpers/selectors";
+import JobToggle from "./JobToggle/JobToggle"
 
 
 export default function App() {
@@ -106,7 +107,7 @@ export default function App() {
         setCurrentUser={setCurrentUser}
         removeCurrentUser={removeCurrentUser}
       />
-      <div className="containers">
+      <div className="page-containers">
         <div className="map-container">
           <Map
             state={state}
@@ -117,7 +118,11 @@ export default function App() {
           />
         </div>
 
-        <div className="jobs-container">
+        <div className="right-container">
+          <div>
+          <JobToggle state={state} setJobView={setJobView} />
+          </div>
+          <div className="jobs-container">
           <Jobs
             state={state}
             setJobView={setJobView}
@@ -144,7 +149,8 @@ export default function App() {
             postJob={postJob}
             addMessage={addMessage}
           />
-          <ChatNav setJobView={setJobView} />
+          </div>
+          <div className="chat-container"><ChatNav setJobView={setJobView} /></div>
         </div>
       </div>
     </div>

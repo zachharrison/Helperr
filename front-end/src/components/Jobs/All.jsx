@@ -19,6 +19,7 @@ export default function Find(props) {
 
   return (
     <>
+    <div className="category-box">
       <div className={classes.root}>
         <Autocomplete
           onChange={(event, value) => {
@@ -39,6 +40,7 @@ export default function Find(props) {
           )}
         />
       </div>
+    </div>
       {jobsFiltered.map((job) => (
         <JobListItem {...job} />
       ))}

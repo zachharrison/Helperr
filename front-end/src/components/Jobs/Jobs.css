@@ -52,3 +52,12 @@
 .fade-exit-done {
   opacity: 0;
 }
+
+/* .category-box {
+  margin-bottom: 100px;
+  position: absolute;
+} */
+
+.find-container {
+  display: block;
+}

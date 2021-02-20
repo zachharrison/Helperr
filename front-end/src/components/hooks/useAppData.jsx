@@ -16,7 +16,7 @@ export default function useAppData() {
     offers: {},
     chats: {},
     reviews: {},
-    jobView: "FIND",
+    jobView: "REVIEWS",
     chatId: null,
     currentUser: null,
   });
