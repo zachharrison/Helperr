@@ -2,7 +2,7 @@ import "./Jobs.css";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import JobListItem from "../JobList/JobListItem";
+import FindJobListItem from "../JobList/JobListItem";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,6 +16,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Find(props) {
   const { jobsFiltered, setCategoryFilter } = props;
   const classes = useStyles();
+  const categories = Object.values(props.state.categories);
+  const users = Object.values(props.state.users);
 
   return (
     <>
@@ -40,7 +42,12 @@ export default function Find(props) {
         />
       </div>
       {jobsFiltered.map((job) => (
-        <JobListItem {...job} />
+        <FindJobListItem
+          {...job}
+          key={job.id}
+          categories={categories}
+          users={users}
+        />
       ))}
     </>
   );
