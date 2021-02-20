@@ -44,6 +44,13 @@ export default function JobToggle(props) {
         >
           FIND
         </Button>
+        <Button
+          onClick={() => {
+            props.setJobView("REVIEWS");
+          }}
+        >
+          REVIEWS
+        </Button>
       </ButtonGroup>
     </div>
   );

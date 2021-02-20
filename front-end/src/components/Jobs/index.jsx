@@ -1,6 +1,7 @@
 import Post from "./Post";
 import Find from "./Find";
 import All from "./All";
+import Reviews from "../Reviews/Reviews";
 import JobToggle from "../JobToggle/JobToggle";
 import "./Jobs.css";
 import Chat from "../Chat/Chat";
@@ -34,6 +35,7 @@ export default function Jobs(props) {
     addMessage,
     setCategoryFilter,
     jobsFiltered,
+    saveReview,
   } = props;
 
   console.log("JOB VIEW STATE", state);
@@ -45,7 +47,7 @@ export default function Jobs(props) {
   }
   return (
     <>
-      <JobToggle state={state} setJobView={setJobView} />
+   
       <TransitionGroup className="job-container">
         {state.jobView === "POST" && cookies.user && (
           <CSSTransition
@@ -62,6 +64,18 @@ export default function Jobs(props) {
                 onSave={saveJob}
                 setJobView={setJobView}
               />
+            </div>
+          </CSSTransition>
+        )}
+          {state.jobView === "REVIEWS" && cookies.user && (
+          <CSSTransition
+            key={1}
+            timeout={500}
+            classNames="slide"
+            in={state.jobView === "REVIEWS" && cookies.user}
+          >
+            <div>
+              <Reviews cookies={cookies}/>
             </div>
           </CSSTransition>
         )}
