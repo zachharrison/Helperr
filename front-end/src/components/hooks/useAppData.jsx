@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import { add } from "date-fns";
 // import fixtures from "../helpers/__mocks__/axios";
 
 export default function useAppData() {
@@ -15,7 +16,7 @@ export default function useAppData() {
     offers: {},
     chats: {},
     reviews: {},
-    // jobView: "ALL",
+    jobView: "REVIEWS",
     chatId: null,
     currentUser: null,
   });
@@ -85,11 +86,10 @@ export default function useAppData() {
     setState({ ...state, messages: [...state.messages, message] });
 
   const addMessage = (message) => {
-    setState((prev) => ({
-      ...prev,
-      userMessages: [...prev.userMessages, message],
-    }));
-  };
+    return axios
+    .post("/api/messages", {message})
+    .then((res) => setState(prev => ({...prev, userMessages: [...prev.userMessages, message]})))
+  }
 
   const getConversations = () => {
     const currentUser = +cookies.user;
@@ -131,6 +131,7 @@ export default function useAppData() {
     // console.log(offerMessages)
     return offerMessages;
   };
+
 
   function postJob(job) {
     return axios.post(`/api/jobs/`, { job }).then(() => {

@@ -3,7 +3,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import FindJobListItem from "../JobList/JobListItem";
-
+/******************** MAY NEED TO BE CHANGED LATER ***************************/
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 500,
@@ -20,13 +20,14 @@ export default function Find(props) {
   const users = Object.values(props.state.users);
 
   return (
-    <>
-      <div className={classes.root}>
+    <div className="find-container">
+    <div className="category-box">
+      <div className={classes.root} >
         <Autocomplete
           onChange={(event, value) => {
             setCategoryFilter(value || []);
           }}
-          style={{ width: 450, margin: 8 }}
+          style={{ width: 450, marginBottom: 8 }}
           multiple
           id="filter-categories"
           options={Object.values(props.state.categories)}
@@ -41,6 +42,8 @@ export default function Find(props) {
           )}
         />
       </div>
+      </div>
+      <div>
       {jobsFiltered.map((job) => (
         <FindJobListItem
           {...job}
@@ -49,6 +52,7 @@ export default function Find(props) {
           users={users}
         />
       ))}
-    </>
+      </div>
+    </div>
   );
 }

@@ -1,3 +1,7 @@
+.category-box {
+  margin-bottom: 45px;
+}
+
 .jobListItem {
   background-color: #00539cff;
   color: #f9cb9c;
@@ -32,3 +36,92 @@
   font-weight: bold;
   margin: 2px;
 }
+
+.accordion {
+  /* border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 2px; */
+  width: 90%;
+}
+
+.accordion__item + .accordion__item {
+  /* border-top: 1px solid rgba(0, 0, 0, 0.1); */
+}
+
+.accordion__item {
+  margin: 10px;
+}
+
+.accordion__button {
+  background-color: #00539cff;
+  color: #f9cb9c;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+}
+
+.accordion__button:hover {
+  /* background-color: #ddd; */
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  zoom: 1.05; */
+}
+
+.accordion__button:before {
+  display: inline-block;
+  content: '';
+  height: 10px;
+  width: 10px;
+  margin-right: 12px;
+  border-bottom: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(-45deg);
+}
+
+.accordion__button[aria-expanded='true']::before,
+.accordion__button[aria-selected='true']::before {
+  transform: rotate(45deg);
+}
+
+[hidden] {
+  display: none;
+}
+
+.accordion__panel {
+  width: 99%;
+  border-radius: 0px 0px 10px 10px;
+  padding: 20px;
+  background-color: #ace;
+  animation: fadein 0.35s ease-in;
+}
+
+.item-row-2 h1{
+  margin: 0;
+  font-size: 1.3em;
+}
+.item-row-2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accordion-category {
+  display: block;
+}
+
+/* -------------------------------------------------- */
+/* ---------------- Animation part ------------------ */
+/* -------------------------------------------------- */
+
+@keyframes fadein {
+  0% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 1;
+  }
+}
+
+
