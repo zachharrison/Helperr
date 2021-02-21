@@ -38,7 +38,7 @@ export default function Jobs(props) {
     saveReview,
   } = props;
 
-  console.log("JOB VIEW STATE", state);
+  // console.log("JOB VIEW STATE", state);
 
   function saveJob(newJob) {
     postJob(newJob).catch((error) => {
@@ -47,7 +47,7 @@ export default function Jobs(props) {
   }
   return (
     <>
-   
+
       <TransitionGroup className="job-container">
         {state.jobView === "POST" && cookies.user && (
           <CSSTransition

@@ -86,9 +86,10 @@ export default function useAppData() {
     setState({ ...state, messages: [...state.messages, message] });
 
   const addMessage = (message) => {
+    console.log(message)
     return axios
     .post("/api/messages", {message})
-    .then((res) => setState(prev => ({...prev, userMessages: [...prev.userMessages, message]})))
+    // .then((res) => setState(prev => ({...prev, userMessages: [...prev.userMessages, message]})))
   }
 
   const getConversations = () => {
