@@ -21,6 +21,7 @@ export default function Find(props) {
             categories={categories}
             users={users}
             state={props.state}
+            user={user}
           />
         ))}
       <h3>Applied Jobs</h3>

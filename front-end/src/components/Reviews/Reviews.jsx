@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Review({ cookies }) {
+export default function Review(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [review, setReview] = useState("");
@@ -63,8 +63,8 @@ export default function Review({ cookies }) {
   // review as details
   //  need job_id
 
-  const saveReview = (userId) => {
-    console.log(review, starValue, userId);
+  const saveReview = () => {
+    console.log(review, starValue, props.user);
   };
 
   return (
@@ -109,10 +109,7 @@ export default function Review({ cookies }) {
                 fullWidth
               />
               <div className="flex-container">
-                <button
-                  onClick={() => saveReview(+cookies.user)}
-                  className="add-icon"
-                >
+                <button onClick={() => saveReview()} className="add-icon">
                   +
                 </button>
               </div>

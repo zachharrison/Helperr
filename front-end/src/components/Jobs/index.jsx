@@ -56,7 +56,6 @@ export default function Jobs(props) {
 
   return (
     <>
-
       <TransitionGroup className="job-container">
         {state.jobView === "POST" && cookies.user && (
           <CSSTransition
@@ -107,6 +106,7 @@ export default function Jobs(props) {
                 jobsFiltered={jobsFiltered}
                 setCategoryFilter={setCategoryFilter}
                 setJobView={setJobView}
+                cookies={cookies}
               />
             </div>
           </CSSTransition>

@@ -31,6 +31,7 @@ export default function PostedListItem(props) {
     state,
     job_id,
     status,
+    user,
   } = props;
 
   const categoryName = categories[category_id - 1].name;
@@ -53,7 +54,7 @@ export default function PostedListItem(props) {
         <AccordionItem>
           <AccordionItemHeading>
             <AccordionItemButton>
-              <div className="item-row-2">
+              <div className="item-row">
                 <h1>{name}</h1>
                 <div className="pay">
                   <p>
@@ -62,8 +63,9 @@ export default function PostedListItem(props) {
                   </p>
                 </div>
               </div>
-              <div>
+              <div className="item-row">
                 <img
+                  className="avatar"
                   src={userAvatar}
                   alt="(╯°□°)╯︵ ┻━┻"
                   width="50"
@@ -76,17 +78,17 @@ export default function PostedListItem(props) {
               <div className="accordion-category">
                 <p>{categoryName}</p>
               </div>
-              <div>
+              <div className="posted-description">
                 <p>{description}</p>
               </div>
               <div>
                 <h6 className="date">
-                  {formattedDate(start_time)}
-                  -to-
-                  {formattedDate(end_time)}
+                  {/* {formattedDate(start_time)}
+                  -to- */}
+                  Expires {formattedDate(end_time)}
                 </h6>
-                {status}
-                <Reviews />
+                {/* {status} */}
+                {status !== "COMPLETED" && <Reviews user={user} />}
               </div>
             </AccordionItemButton>
           </AccordionItemHeading>

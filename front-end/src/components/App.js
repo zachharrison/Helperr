@@ -47,8 +47,15 @@ export default function App() {
       // cb(null, msg);
       // console.log('THIS IS A STATE TEST ', state)
 
-      const newMessage = { offer_id: state.chatId, user_id: msg.user_id,  message: msg.message }
-      setState(prev => ({...prev, userMessages: [...prev.userMessages, newMessage]}));
+      const newMessage = {
+        offer_id: state.chatId,
+        user_id: msg.user_id,
+        message: msg.message,
+      };
+      setState((prev) => ({
+        ...prev,
+        userMessages: [...prev.userMessages, newMessage],
+      }));
       // getConversations();
       // addMessage({msg})
       // addMessage({
@@ -56,7 +63,7 @@ export default function App() {
       //   user_id: msg.user_id,
       //   message: msg.message,
       // });
-      console.log(msg)
+      console.log(msg);
       // setState here becoz msg contains new message
       // debugger
       // setState(prev => ({...prev, userMessages: [...prev.userMessages, {...msg, room} ]}))
@@ -80,7 +87,7 @@ export default function App() {
   //   });
   // };
   const sendMessage = (message) => {
-    console.log('SENT')
+    console.log("SENT");
     // addMessage(message)
     // addMessage({
     //   offer_id: room,

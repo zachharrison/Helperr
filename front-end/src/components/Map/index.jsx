@@ -56,6 +56,7 @@ export default function Map(props) {
 
   return (
     <div className="google-map">
+      <div className="map-title">Job Map</div>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={13}
