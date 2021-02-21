@@ -1,5 +1,7 @@
-INSERT INTO users (name, avatar, email, password)
-VALUES (
+INSERT INTO users
+  (name, avatar, email, password)
+VALUES
+  (
     'BobTheBuilder',
     'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/bob-the-builder.png?raw=true',
     'Bob@BobsBuilding.com',
@@ -23,8 +25,10 @@ VALUES (
     'Tom@balldeflator.com',
     'password'
   );
-INSERT INTO categories (name, marker)
-VALUES ('Light-labour', '/hard-hat-solid.svg'),
+INSERT INTO categories
+  (name, marker)
+VALUES
+  ('Light-labour', '/hard-hat-solid.svg'),
   ('Cleaning', '/hand-sparkles-solid.svg'),
   ('Caregiving', '/baby-carriage-solid.svg'),
   ('AutoRepair', '/car-crash-solid.svg'),
@@ -33,23 +37,25 @@ VALUES ('Light-labour', '/hard-hat-solid.svg'),
   ('Lessons', '/user-graduate-solid.svg'),
   ('Delivery', '/shipping-fast-solid.svg'),
   ('Miscellaneous', '/question-solid.svg');
-INSERT INTO jobs (
-    client_id,
-    helper_id,
-    category_id,
-    name,
-    description,
-    lat,
-    lng,
-    price,
-    pay_type,
-    start_time,
-    end_time,
-    status
+INSERT INTO jobs
+  (
+  client_id,
+  helper_id,
+  category_id,
+  name,
+  description,
+  lat,
+  lng,
+  price,
+  pay_type,
+  start_time,
+  end_time,
+  status
   )
-VALUES (
+VALUES
+  (
     1,
-    null,
+    2,
     3,
     'Babysit a lil brat',
     'Take care of this POS for me thanks',
@@ -116,28 +122,55 @@ VALUES (
     '2021-02-26 18:00:00',
     '2021-02-27 24:00:00',
     'POSTED'
+  ),
+  (
+    1,
+    null,
+    5,
+    'Locksmith needed',
+    'Please fix our back door lock before we leave on vacation!',
+    49.275338,
+    -123.1491361,
+    10000,
+    ' total',
+    '2021-03-04 18:00:00',
+    '2021-03-08 18:00:00',
+    'POSTED'
+  ),
+  (
+    1,
+    null,
+    7,
+    'Teach my uncoordinated son to throw a football',
+    'He''s really bad at sports.. not even sure he''s mine',
+    49.3042584,
+    -123.1442522,
+    2000,
+    '/hr',
+    '2021-02-26 18:00:00',
+    '2021-02-27 24:00:00',
+    'POSTED'
   );
--- JOB 1 by posted by 1
--- JOB 2 by posted by 3
--- JOB 3 posted by 4
--- JOB 4 posted by 3
--- JOB 5 posted by 2
--- status: 'SENT', 'ACCEPTED', 'DECLINED'
-INSERT INTO offers (helper_id, job_id, price, pay_type, status)
-VALUES (2, 1, 2000, '/hr', 'ACCEPTED'),
-  -- 2 and 1 OFFERER THEN POSTER 
+
+
+INSERT INTO offers
+  (helper_id, job_id, price, pay_type, status)
+VALUES
+  (2, 1, 2000, '/hr', 'ACCEPTED'),
   (1, 2, 15000, ' total', 'PENDING'),
-  -- 1 and 3
   (2, 3, 2000, '/hr', 'PENDING'),
-  -- 2 and 4
   (3, 5, 20000, '/hr', 'ACCEPTED'),
-  -- 3 and 2
-  (2, 1, 3000, '/hr', 'DECLINED'),
-  -- 2 and 3
-  (4, 2, 2500, ' total', 'PENDING');
--- 4 and 3
-INSERT INTO messages (user_id, offer_id, message, timestamp)
-VALUES (
+  (4, 1, 3000, '/hr', 'DECLINED'),
+  (4, 2, 2500, ' total', 'PENDING'),
+  (3, 6, 100000, ' total', 'ACCEPTED'),
+  (4, 6, 10000, '/hr', 'PENDING'),
+  (2, 7, 3000, '/hr', 'PENDING'),
+  (4, 7, 1212, ' total', 'DECLINED');
+
+INSERT INTO messages
+  (user_id, offer_id, message, timestamp)
+VALUES
+  (
     2,
     1,
     'User sent an offer 2000',
