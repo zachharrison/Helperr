@@ -76,7 +76,7 @@ export default function Post(props) {
 
   return (
     <>
-      <span>Post Help Request</span>
+      {/* <span>Post Help Request</span> */}
       <form action="">
         <TextField
           id="job-name"
@@ -135,7 +135,7 @@ export default function Post(props) {
             <MenuItem value={" total"}>Total</MenuItem>
           </Select>
         </FormControl>
-        <br />
+
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container justify="space-around">
             <KeyboardDatePicker

@@ -1,7 +1,6 @@
 .find-me {
   position: relative;
   z-index: 2;
-
 }
 
 .find-me img {
@@ -17,4 +16,8 @@
 .google-map {
   object-fit: contain;
   width: 100%;
+}
+
+.map-title {
+  font-size: 2em;
 }
