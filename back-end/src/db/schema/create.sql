@@ -42,14 +42,14 @@ CREATE TABLE jobs (
   status job_status,
   timestamp TIMESTAMP NOT NULL DEFAULT NOW()::timestamp
 );
-CREATE TYPE offer_status AS ENUM('SENT', 'ACCEPTED', 'DECLINED');
+CREATE TYPE offer_status AS ENUM('PENDING', 'ACCEPTED', 'DECLINED');
 CREATE TABLE offers (
   id SERIAL PRIMARY KEY NOT NULL,
   helper_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   job_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
   price INTEGER NOT NULL,
   --add if we are allowing counter offers
-  pay_type BOOLEAN DEFAULT 'FALSE',
+  pay_type pay_type,
   -- per hour or per job
   status offer_status,
   timestamp TIMESTAMP NOT NULL DEFAULT NOW()::timestamp

@@ -24,6 +24,7 @@ export default function Jobs(props) {
     removeCurrentUser,
     setMessages,
     postJob,
+    postOffer,
     message,
     sendMessage,
     room,
@@ -38,16 +39,25 @@ export default function Jobs(props) {
     saveReview,
   } = props;
 
-  console.log("JOB VIEW STATE", state);
+  console.log("JOBVIEW", state.jobView);
 
   function saveJob(newJob) {
-    postJob(newJob).catch((error) => {
-      console.log("Error: ", error);
-    });
+    postJob(newJob)
+      .then(() => setJobView("ALL"))
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
   }
+  function saveOffer(newOffer) {
+    postOffer(newOffer)
+      .then(() => setJobView("ALL"))
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
+  }
+
   return (
     <>
-   
       <TransitionGroup className="job-container">
         {state.jobView === "POST" && cookies.user && (
           <CSSTransition
@@ -67,7 +77,42 @@ export default function Jobs(props) {
             </div>
           </CSSTransition>
         )}
-          {state.jobView === "REVIEWS" && cookies.user && (
+        {state.jobView === "FIND" && (
+          <CSSTransition
+            key={2}
+            timeout={500}
+            classNames="slide"
+            in={state.jobView === "FIND"}
+          >
+            <div>
+              <Find
+                state={state}
+                jobsFiltered={jobsFiltered}
+                setCategoryFilter={setCategoryFilter}
+                saveOffer={saveOffer}
+                setJobView={setJobView}
+              />
+            </div>
+          </CSSTransition>
+        )}
+        {state.jobView === "ALL" && cookies.user && (
+          <CSSTransition
+            key={3}
+            timeout={500}
+            classNames="slide"
+            in={state.jobView === "ALL" && cookies.user}
+          >
+            <div>
+              <All
+                state={state}
+                jobsFiltered={jobsFiltered}
+                setCategoryFilter={setCategoryFilter}
+                setJobView={setJobView}
+              />
+            </div>
+          </CSSTransition>
+        )}
+        {state.jobView === "REVIEWS" && cookies.user && (
           <CSSTransition
             key={1}
             timeout={500}
@@ -75,7 +120,7 @@ export default function Jobs(props) {
             in={state.jobView === "REVIEWS" && cookies.user}
           >
             <div>
-              <Reviews cookies={cookies}/>
+              <Reviews cookies={cookies} />
             </div>
           </CSSTransition>
         )}
@@ -113,38 +158,6 @@ export default function Jobs(props) {
             </div>
           </CSSTransition>
         )}
-        {state.jobView === "FIND" && (
-          <CSSTransition
-            key={2}
-            timeout={500}
-            classNames="slide"
-            in={state.jobView === "FIND"}
-          >
-            <div>
-              <Find
-                state={state}
-                jobsFiltered={jobsFiltered}
-                setCategoryFilter={setCategoryFilter}
-              />
-            </div>
-          </CSSTransition>
-        )}
-        {state.jobView === "ALL" && cookies.user && (
-          <CSSTransition
-            key={3}
-            timeout={500}
-            classNames="slide"
-            in={state.jobView === "ALL" && cookies.user}
-          >
-            <div>
-              <All
-                state={state}
-                jobsFiltered={jobsFiltered}
-                setCategoryFilter={setCategoryFilter}
-              />
-            </div>
-          </CSSTransition>
-        )}
         {state.jobView === "CHAT" && cookies.user && (
           <CSSTransition
             key={4}
@@ -176,23 +189,3 @@ export default function Jobs(props) {
     </>
   );
 }
-
-// const [cookies] = useCookies()
-//   function dropPin(job) {
-//   const newJob = { job };
-//   saveJob(props.id)
-//   .then(() => props.setJobView("ALL"))
-//   .catch((error) => console.log(error));
-// }
-// const POST = "POST";
-// const FIND = "FIND";
-// const ALL = "ALL";
-// const SAVING = "SAVING";
-// const ERROR_SAVE = "ERROR_SAVE";
-// const ERROR_DELETE = "ERROR_DELETE";
-
-// console.log(props)
-// const [cookies] = useCookies()
-
-// const [jobView, setJobView] = useState(ALL)
-// const { mode, transition, back } = useVisualMode(ALL);
