@@ -10,10 +10,10 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 // const FA = require('react-fontawesome')
 
 const Chat = (props) => {
-  const { 
+  const {
     messages,
-    getMessages, 
-    state, 
+    getMessages,
+    state,
     cookies,
     message,
     sendMessage,
@@ -30,10 +30,9 @@ const Chat = (props) => {
   const onMessageSubmit = () => {
     const user_id = cookies.user;
     const room = state.chatId;
-
+    addMessage({offer_id: room, user_id, message})
     sendMessage({ message, room, user_id });
     setCurrentChat(oldChats => [message, ...oldChats])
-    // addMessage({offer_id: room, user_id, message})
     console.log({ message, room, user_id });
     setMessage('');
   };
@@ -62,7 +61,7 @@ const Chat = (props) => {
         </div>
         <div className="message-container">
             <input
-              className="message-input" 
+              className="message-input"
               type="text"
               name="message"
               onChange={(e) => setMessage(e.target.value)}
@@ -85,7 +84,7 @@ export default Chat;
 
 
   // const onTextChange = (e) => {
-  //   setMessageState({ ...messageState, [e.target.name]: e.target.value }); 
+  //   setMessageState({ ...messageState, [e.target.name]: e.target.value });
   // };
 
   // const onMessageSubmit = (e) => {
@@ -95,7 +94,7 @@ export default Chat;
   //   setMessageState({ message: "", name });
   // };
 
-/* 
+/*
   - Sockets are currently in an array. How could we change this?
   - Sockets will need to be in pairs of two, how will we identify each socket?
   - When a socket connects we will need to identify a socket by a name or some type of id such as a cookie.
@@ -105,5 +104,5 @@ export default Chat;
   - If there is an existing enquiry we will place that message to the existing mail box or create a new one if it is the first message.
   - Need ui for job seekers and and job creaters to look at all message threads
   - Maybe we should have a seperate database table for inqueries
-  - Instead of pushing a socket connection by itself we will need to push a socket connection along with some data about the socket. Example (this socket will belong to user 8 which is inquiring about job 4) 
+  - Instead of pushing a socket connection by itself we will need to push a socket connection along with some data about the socket. Example (this socket will belong to user 8 which is inquiring about job 4)
   */

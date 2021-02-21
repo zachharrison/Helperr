@@ -84,13 +84,12 @@ export default function useAppData() {
     setState({ ...state, messages: [...state.messages, message] });
 
   const addMessage = (message) => {
-    return axios.post("/api/messages", { message }).then((res) =>
-      setState((prev) => ({
-        ...prev,
-        userMessages: [...prev.userMessages, message],
-      }))
-    );
-  };
+
+    console.log(message)
+    return axios
+    .post("/api/messages", {message})
+    // .then((res) => setState(prev => ({...prev, userMessages: [...prev.userMessages, message]})))
+  }
 
   const getConversations = () => {
     const currentUser = +cookies.user;

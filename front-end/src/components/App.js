@@ -47,20 +47,20 @@ export default function App() {
       // cb(null, msg);
       // console.log('THIS IS A STATE TEST ', state)
 
-      // const newMessage = { offer_id: state.chatId, user_id: msg.user_id,  message: msg.message }
-      // setState({...state, userMessages: [...state.userMessages, newMessage]});
+      const newMessage = { offer_id: state.chatId, user_id: msg.user_id,  message: msg.message }
+      setState(prev => ({...prev, userMessages: [...prev.userMessages, newMessage]}));
       // getConversations();
-      addMessage({
-        offer_id: room,
-        user_id: msg.user_id,
-        message: msg.message,
-      });
-
-      // console.log('THIS IS A STATE TEST FOR THE SECOND TIME ', state)
-
-      // WHAT DO WE WANT TO DO!!!?????!!!!
-      // add to db server side
-      // on receive of message do the same for the other person
+      // addMessage({msg})
+      // addMessage({
+      //   offer_id: room,
+      //   user_id: msg.user_id,
+      //   message: msg.message,
+      // });
+      console.log(msg)
+      // setState here becoz msg contains new message
+      // debugger
+      // setState(prev => ({...prev, userMessages: [...prev.userMessages, {...msg, room} ]}))
+      // setState(prev => ({...prev, userMessages: [...prev.userMessages, msg]}))
     });
   };
   const disconnectSocket = () => {
@@ -68,20 +68,25 @@ export default function App() {
     if (socket) socket.disconnect();
     setSocket(null);
   };
-  const joinChat = (cb) => {
-    // console.log("socket in joinchat", socket)
-    if (!socket) {
-      console.log("joinchat has no socket");
-      return true;
-    }
-    socket.on("chat", (msg) => {
-      // console.log('Websocket event received!');
-      return cb(null, msg);
-    });
-  };
-  const sendMessage = (message, room, user) => {
-    // console.log('SOCKET TEST ',  socket);
-    if (socket) socket.emit("chat", { message, room, user });
+  // const joinChat = (cb) => {
+  //   // console.log("socket in joinchat", socket)
+  //   if (!socket) {
+  //     console.log("joinchat has no socket");
+  //     return true;
+  //   }
+  //   socket.on("chat", (msg) => {
+  //     // console.log('Websocket event received!');
+  //     return cb(null, msg);
+  //   });
+  // };
+  const sendMessage = (message) => {
+    console.log('SENT')
+    // addMessage(message)
+    // addMessage({
+    //   offer_id: room,
+    //   user_id: user_id,
+    //   message: message,
+    // });
   };
 
   // const [room, setRoom] = useState('');
