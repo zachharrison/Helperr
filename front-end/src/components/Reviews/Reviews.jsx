@@ -10,6 +10,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { BottomNavigation } from '@material-ui/core';
 import './Reviews.css';
 import JobListItem2 from "../JobList/JobListItem2"
+import Profile from "../Profile/Profile"
 
 const useStyles = makeStyles((theme) => ({
   modal: {

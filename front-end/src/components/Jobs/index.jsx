@@ -2,6 +2,7 @@ import Post from "./Post";
 import Find from "./Find";
 import All from "./All";
 import Reviews from "../Reviews/Reviews";
+import Profile from "../Profile/Profile"
 import JobToggle from "../JobToggle/JobToggle";
 import "./Jobs.css";
 import Chat from "../Chat/Chat";
@@ -36,9 +37,8 @@ export default function Jobs(props) {
     setCategoryFilter,
     jobsFiltered,
     saveReview,
+    setProfile,
   } = props;
-
-  // console.log("JOB VIEW STATE", state);
 
   function saveJob(newJob) {
     postJob(newJob).catch((error) => {
@@ -64,6 +64,21 @@ export default function Jobs(props) {
                 onSave={saveJob}
                 setJobView={setJobView}
               />
+            </div>
+          </CSSTransition>
+        )}
+        {state.jobView === "PROFILE" && cookies.user && (
+          <CSSTransition
+            key={1}
+            timeout={500}
+            classNames="slide"
+            in={state.jobView === "PROFILE" && cookies.user}
+          >
+            <div>
+              <Profile 
+                state={state}
+                cookies={cookies}
+                />
             </div>
           </CSSTransition>
         )}
@@ -125,6 +140,8 @@ export default function Jobs(props) {
                 state={state}
                 jobsFiltered={jobsFiltered}
                 setCategoryFilter={setCategoryFilter}
+                setJobView={setJobView}
+                setProfile={setProfile}
               />
             </div>
           </CSSTransition>
@@ -141,6 +158,8 @@ export default function Jobs(props) {
                 state={state}
                 jobsFiltered={jobsFiltered}
                 setCategoryFilter={setCategoryFilter}
+                setJobView={setJobView}
+                setProfile={setProfile}
               />
             </div>
           </CSSTransition>

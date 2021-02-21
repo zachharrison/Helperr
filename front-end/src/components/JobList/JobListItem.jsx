@@ -10,6 +10,8 @@ export default function jobListItem(props) {
     category_id,
     categories,
     users,
+    setJobView,
+    setProfile
   } = props;
 
   if (!categories) return null;
@@ -30,6 +32,11 @@ export default function jobListItem(props) {
     minute: "2-digit",
   }).format(new Date(end_time));
 
+  const handleProfileClick = () => {
+    setJobView('PROFILE')
+     setProfile(userName)
+  };
+
   return (
     <div className="jobListItem">
       <div className="item-row">
@@ -42,7 +49,10 @@ export default function jobListItem(props) {
         </div>
       </div>
       <div className="item-row">
-        <img src={userAvatar} alt="(╯°□°)╯︵ ┻━┻" width="50" height="50" />
+        <div className="profile-container">
+          <img src={userAvatar} alt="profile" />
+          <button onClick={handleProfileClick} className="profile-btn">View Profile</button>
+        </div>
         <div className="pay">
           <h1 className="rate">{userName}</h1>
         </div>

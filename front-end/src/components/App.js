@@ -8,6 +8,7 @@ import useAppData from "./hooks/useAppData";
 import { getJobsFiltered } from "./helpers/selectors";
 import JobToggle from "./JobToggle/JobToggle"
 
+
 export default function App() {
   const [categoryFilter, setCategoryFilter] = useState([]);
   const [coord, setCoord] = useState({
@@ -31,7 +32,9 @@ export default function App() {
     addMessage,
     room,
     setRoom,
+    setProfile
   } = useAppData();
+
 
   const [socket, setSocket] = useState("");
 
@@ -155,6 +158,7 @@ export default function App() {
             setMessages={setMessages}
             postJob={postJob}
             addMessage={addMessage}
+            setProfile={setProfile}
           />
           </div>
           <div className="chat-container"><ChatNav setJobView={setJobView} /></div>

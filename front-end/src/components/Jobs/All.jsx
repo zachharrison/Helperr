@@ -2,7 +2,7 @@ import "./Jobs.css";
 import { makeStyles } from "@material-ui/core/styles";
 import JobListItem from "../JobList/JobListItem";
 
-export default function Find(props) {
+export default function All(props) {
   const user = props.state.currentUser;
   const users = Object.values(props.state.users);
   const jobs = Object.values(props.state.jobs);
@@ -19,6 +19,10 @@ export default function Find(props) {
             key={myPosts.id}
             categories={categories}
             users={users}
+            setJobView={props.setJobView}
+            cookies={props.cookies}
+            state={props.state}
+            setProfile={props.setProfile}
           />
         ))}
       <h3>Applied Jobs</h3>
@@ -30,6 +34,10 @@ export default function Find(props) {
             key={myPosts.id}
             categories={categories}
             users={users}
+            setJobView={props.setJobView}
+            cookies={props.cookies}
+            state={props.state}
+            setProfile={props.setProfile}
           />
         ))}
     </>

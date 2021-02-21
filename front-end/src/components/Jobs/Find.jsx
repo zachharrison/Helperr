@@ -38,6 +38,7 @@ export default function Find(props) {
               variant="standard" // whats this
               label="Category"
               placeholder="Job Type" // whats this
+              setJobView={props.setJobView}
             />
           )}
         />
@@ -50,6 +51,8 @@ export default function Find(props) {
           key={job.id}
           categories={categories}
           users={users}
+          setJobView={props.setJobView}
+          setProfile={props.setProfile}
         />
       ))}
       </div>

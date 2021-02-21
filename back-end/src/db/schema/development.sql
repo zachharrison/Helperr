@@ -200,3 +200,13 @@ VALUES (
   );
 -- GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
 -- "timestamp": "2021-02-18T09:12:38.223Z",
+
+INSERT INTO reviews (user_id, job_id, stars, who, details, timestamp)
+VALUES (
+  4,
+  3,
+  5,
+  'helper',
+  'Was on my way to go win another Super Bowl when I ran over a nail on the freeway. Without the help of Harry and Marv I would not be able to bring home the Lombardi trophy for the seventh time!',
+  '2021-02-27 24:00:00'
+);
