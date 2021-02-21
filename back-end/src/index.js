@@ -1,76 +1,4 @@
-const PORT = process.env.PORT || 8001;
-const ENV = require("./environment");
 const app = require("./application")('development');
-const server = require("http").Server(app);
-const express = require('express')()
-const io = require('socket.io')(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"]
-  }
-});
-
-/************************** BACK END HELPERS ***********************/
-let sockets = [];
-const users = [];
-
-// // JOIN USER TO A ROOM AND RETURN THE USER
-// const userJoin = (userId, roomId) => {
-//   const user = { userId, roomId };
-//   users.push(user)
-//   return user;
-// };
-
-// // GET USERS IN ROOM 
-// const getRoomUsers = (room) => users.filter(user => user.roomId === room);
-
-io.on("connection", socket => {
-  
-  sockets.push(socket);
-
-  
-  
-  const getCurrentCookies = () => {
-    // console.log(socket.handshake.headers)
-    const cookies = socket.handshake.headers.cookie.split(" ");
-    let currentUser;
-    let currentRoom;
-    for (const cookie of cookies) {
-      if (cookie.includes("user")) {
-        currentUser = cookie;
-      } else {
-        currentRoom = cookie;
-      }
-    }
-    
-    return { currentUser, currentRoom }
-  }
-  
-  const userCookies = getCurrentCookies()
-  const {currentUser, currentRoom} = userCookies;
-  // console.log(`Connected: ${currentRoom} as user ${currentUser}`);
-  
-  // socket.on("disconnect", () => console.log("Disconnected"));
-
-  socket.on("join", (room) => {
-    console.log(`Socket ${socket.id} joining ${room}`)
-    socket.join(room);
-    socket.on('chat', (data) => {
-      // console.log("You are chatting ", data)
-      const { message, room, user_id } = data.message;
-      // console.log(`msg: ${message}, room: ${room}, user: ${user_id}`);
-      io.to(room).emit('chat', {message, user_id});
-   });
-  });
-
-  
-})
-
-server.listen(8001, () => {
-  console.log(`Listening on port ${PORT} in ${ENV} mode.`);
-});
-
-
 
 
 
@@ -117,7 +45,7 @@ server.listen(8001, () => {
 //   });
 // });
   // socket.on('connectToRoom', room => {
-    
+
   // })
   // io.to(currentRoom).emit('connectToRoom', `You are connected to room ${currentRoom}`);
 
@@ -129,7 +57,7 @@ server.listen(8001, () => {
                         //     socket.username = username;
                         //   });
                         // });
-  
+
   // socket.on('disconnect', () => {
   //   sockets = sockets.filter(s => s !== socket);
   //   console.log(`Client Disconnected, there are ${sockets.length} sockets remaining`);
@@ -167,7 +95,7 @@ server.listen(8001, () => {
 // // sending to all clients in "game" room, including sender
 // io.in("game").emit("big-announcement", "the game will start soon");
 
-// if we are sending a message to someone that is not currently connected, 
+// if we are sending a message to someone that is not currently connected,
 // is this still a socket connection or is it just posting to the DB and updating state instead?
 
 // **** HANDSHAKE DETAILS ****

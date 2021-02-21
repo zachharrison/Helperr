@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-module.exports = (db) => {
+module.exports = (db, getSocket) => {
   router.get("/messages", (request, response) => {
     db.query(`SELECT * FROM messages`).then(({ rows: categories }) => {
       response.json(
@@ -17,15 +17,17 @@ module.exports = (db) => {
       setTimeout(() => response.status(500).json({}), 1000);
       return;
     }
+
     const {
-      offer_id, 
-      message, 
+      offer_id,
+      message,
       user_id
     } = request.body.message;
+
     db.query(
       `
       INSERT INTO messages (user_id, offer_id, message)
-      VALUES ($1, $2, $3);
+      VALUES ($1, $2, $3) returning *;
     `,
       [
         +user_id,
@@ -33,7 +35,11 @@ module.exports = (db) => {
         message
        ]
     )
-      .then(() => {
+      .then((dbRes) => {
+        const message = dbRes.rows[0]
+        const socket = getSocket()
+        console.log({...message} )
+        socket.emit('chat', {...message, offer_id: offer_id} );
         response.status(204).json({});
       })
       .catch((error) => {
