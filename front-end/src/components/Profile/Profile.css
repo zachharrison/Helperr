@@ -10,60 +10,75 @@
 .card-name-container {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  width: 500px;
+}
+
+.stars-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-/* .profile-card-4 .card-img-block{
-  float:left;
-  width:100%;
-  height:150px;
-  overflow:hidden;
+.card-title {
+  color: #02539b;
+  font-size: 20px;
+  margin-top: 0px;
 }
-.profile-card-4 .card-body{
-  position:relative;
+
+.stars-container .card-title {
+  margin-bottom: 10px;
 }
-.profile-card-4 .profile {
+
+.profile-info .card-title {
+  margin-bottom: 10px;
+}
+
+.stars {
+  font-size: 36px;
+  color: chocolate;
+  font-weight: bold;
+}
+
+.profile {
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
-  position: absolute;
-  top: -62px;
-  left: 50%;
-  width:100px;
-  border: 3px solid rgba(255, 255, 255, 1);
-  margin-left: -50px;
 }
-.profile-card-4 .card-img-block{
-  position:relative;
+
+.reviews {
+  margin-top: 25px;
 }
-.profile-card-4 .card-img-block > .info-box{
-  position:absolute;
-  background:rgba(217,11,225,0.6);
-  width:100%;
-  height:100%;
-  color:#fff;
-  padding:20px;
-  text-align:center;
-  font-size:14px;
- -webkit-transition: 1s ease;
-  transition: 1s ease;
-  opacity:0;
+
+.job-details {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 15px;
+  border-top: 1px solid chocolate;
 }
-.profile-card-4 .card-img-block:hover > .info-box{
-  opacity:1;
-  -webkit-transition: all 1s ease;
-  transition: all 1s ease;
+
+.job-details p {
+  color: #02539b;
+  font-weight: bold;
 }
-.profile-card-4 h5{
-  font-weight:600;
-  color:#9fc5e7;
+
+.job-feedback p {
+  color: black;
+  text-align: center;
+  letter-spacing: 1px;
+  font-size: 15px;
+  margin: 5px;
+  width: 85%;
 }
-.profile-card-4 .card-text{
-  font-weight:300;
-  font-size:15px;
+
+.review-title {
+  color: #02539b;
+  font-weight: bold;
 }
-.profile-card-4 .icon-block{
-  float:left;
-  width:100%;
-}
-.profile-card-4 .icon-block a{
-  text-decoration:none;
-} */

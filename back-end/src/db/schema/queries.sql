@@ -40,3 +40,7 @@ VALUES (
   ),
 
 INSERT INTO reviews (user_id, job_id, stars, who, details)
+
+SELECT reviews.*, jobs.name
+FROM reviews
+JOIN jobs ON jobs.id = job_id;
