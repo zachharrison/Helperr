@@ -60,7 +60,7 @@ export default function Post(props) {
     }
     setError("");
     props.onSave(newJob);
-    props.setJobView("ALL");
+    // props.setJobView("ALL");
   }
   const handleChange = (event) => {
     setPayType(event.target.value);

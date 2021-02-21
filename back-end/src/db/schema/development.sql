@@ -124,17 +124,17 @@ VALUES (
 -- JOB 5 posted by 2
 -- status: 'SENT', 'ACCEPTED', 'DECLINED'
 INSERT INTO offers (helper_id, job_id, price, pay_type, status)
-VALUES (2, 1, 2000, 'TRUE', 'ACCEPTED'),
+VALUES (2, 1, 2000, '/hr', 'ACCEPTED'),
   -- 2 and 1 OFFERER THEN POSTER 
-  (1, 2, 15000, 'FALSE', 'SENT'),
+  (1, 2, 15000, ' total', 'PENDING'),
   -- 1 and 3
-  (2, 3, 2000, 'TRUE', 'SENT'),
+  (2, 3, 2000, '/hr', 'PENDING'),
   -- 2 and 4
-  (3, 5, 20000, 'TRUE', 'ACCEPTED'),
+  (3, 5, 20000, '/hr', 'ACCEPTED'),
   -- 3 and 2
-  (2, 1, 3000, 'TRUE', 'DECLINED'),
+  (2, 1, 3000, '/hr', 'DECLINED'),
   -- 2 and 3
-  (4, 2, 2500, 'FALSE', 'SENT');
+  (4, 2, 2500, ' total', 'PENDING');
 -- 4 and 3
 INSERT INTO messages (user_id, offer_id, message, timestamp)
 VALUES (

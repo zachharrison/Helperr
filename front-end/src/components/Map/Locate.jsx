@@ -1,7 +1,8 @@
-import './Map.css'
+import "./Map.css";
 export default function Locate(props) {
   return (
-    <button className="find-me"
+    <button
+      className="find-me"
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
@@ -14,7 +15,8 @@ export default function Locate(props) {
         );
       }}
     >
-      <img src="my-location.jpg" alt="my location" />
+      <img src="./compass-regular.svg" alt="my location" />
+      {/* remove outline of button and increase icon size */}
     </button>
   );
 }

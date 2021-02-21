@@ -2,11 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { add } from "date-fns";
-// import fixtures from "../helpers/__mocks__/axios";
 
 export default function useAppData() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
-  // const { users, jobs, categories, offers, reviews, chats } = fixtures;
   const [room, setRoom] = useState("");
   // const [messageState, setMessageState] = useState({ room: cookies.room, user: cookies.user});
   const [state, setState] = useState({
@@ -16,7 +14,7 @@ export default function useAppData() {
     offers: {},
     chats: {},
     reviews: {},
-    jobView: "REVIEWS",
+    jobView: "ALL",
     chatId: null,
     currentUser: null,
   });
@@ -32,7 +30,7 @@ export default function useAppData() {
     ]).then((all) => {
       setState((prev) => ({
         ...prev,
-        jobView: "FIND",
+        jobView: "ALL",
         users: all[0].data,
         jobs: all[1].data,
         categories: all[2].data,
@@ -86,6 +84,7 @@ export default function useAppData() {
     setState({ ...state, messages: [...state.messages, message] });
 
   const addMessage = (message) => {
+
     console.log(message)
     return axios
     .post("/api/messages", {message})
@@ -133,7 +132,6 @@ export default function useAppData() {
     return offerMessages;
   };
 
-
   function postJob(job) {
     return axios.post(`/api/jobs/`, { job }).then(() => {
       const id = Object.keys(state.jobs).length + 1;
@@ -142,6 +140,18 @@ export default function useAppData() {
         jobs: {
           ...state.jobs,
           [id]: { ...job, id },
+        },
+      });
+    });
+  }
+  function postOffer(offer) {
+    return axios.post(`/api/offers/`, { offer }).then(() => {
+      const id = Object.keys(state.offers).length + 1;
+      setState({
+        ...state,
+        offers: {
+          ...state.offers,
+          [id]: { ...offer, id },
         },
       });
     });
@@ -163,6 +173,7 @@ export default function useAppData() {
     setRoom,
     setMessages,
     postJob,
+    postOffer,
     addMessage,
   };
 }

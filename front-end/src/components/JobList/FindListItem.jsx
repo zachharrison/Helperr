@@ -1,6 +1,10 @@
-export default function jobListItem(props) {
+import { useState } from "react";
+import Button from "@material-ui/core/Button";
+
+export default function FindListItem(props) {
   const {
     name,
+    helper_id,
     client_id,
     description,
     price,
@@ -10,25 +14,45 @@ export default function jobListItem(props) {
     category_id,
     categories,
     users,
+    onSave,
+    setJobView,
+    jobView,
+    state,
+    job_id,
+    status,
   } = props;
+
+  const [error, setError] = useState("");
+  function application() {
+    const newOffer = {
+      helper_id: props.state.currentUser,
+      job_id,
+      price,
+      pay_type,
+      status: "SENT",
+    };
+    if (helper_id === "") {
+      setError("Please login");
+      return;
+    }
+    setError("");
+    onSave(newOffer);
+    setJobView("ALL");
+  }
 
   if (!categories) return null;
 
   const categoryName = categories[category_id - 1].name;
   const userAvatar = users[client_id - 1].avatar;
   const userName = users[client_id - 1].name;
-  const startDate = Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(new Date(start_time));
-  const endDate = Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(new Date(end_time));
+  const formattedDate = (date) => {
+    return Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(new Date(date));
+  };
 
   return (
     <div className="jobListItem">
@@ -55,11 +79,21 @@ export default function jobListItem(props) {
       </div>
       <div className="item-row">
         <h6 className="date">
-          {startDate}
+          {formattedDate(start_time)}
           -to-
-          {endDate}
+          {formattedDate(end_time)}
         </h6>
       </div>
+      {status}
+      {/* {state.jobView === "FIND" && ( */}
+      <Button
+        onClick={application}
+        variant="contained"
+        color="primary"
+        style={{ margin: 8 }}
+      >
+        Apply
+      </Button>
     </div>
   );
 }

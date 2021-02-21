@@ -7,9 +7,9 @@ export default function Markers({
   coord,
   jobMarkers,
   state,
+  jobView,
 }) {
   const icon = Object.values(state.categories);
-
   return (
     <>
       {jobMarkers.map((job) => (
@@ -28,13 +28,20 @@ export default function Markers({
           }}
         />
       ))}
-      {/* <Marker
-        icon={null}
-        position={{ lat: coord.lat, lng: coord.lng }}
-        onChange={() => {
-          setSelected(coord);
-        }}
-      /> */}
+      {state.jobView === "POST" && (
+        <Marker
+          icon={{
+            url: "./map-pin-solid.svg",
+            scaledSize: new window.google.maps.Size(20, 20),
+            origin: new window.google.maps.Point(0, 0),
+            anchor: new window.google.maps.Point(10, 10),
+          }}
+          position={{ lat: coord.lat, lng: coord.lng }}
+          onChange={() => {
+            setSelected(coord);
+          }}
+        />
+      )}
       {selected ? (
         <InfoWindow
           position={{ lat: selected.lat, lng: selected.lng }}
