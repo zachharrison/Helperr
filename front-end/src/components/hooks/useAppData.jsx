@@ -48,9 +48,9 @@ export default function useAppData() {
     setState((previous) => ({ ...previous, jobView })); // swap to ...previous, like this, if there is a state bug****
 
   const setProfile = (profile) => {
-    setState((prev) => ({...prev, profile}))
+    setState((prev) => ({ ...prev, profile }));
     // .then(console.log(profile))
-  }
+  };
 
   const setChat = (chatId) => {
     setRoom(chatId);
@@ -89,9 +89,8 @@ export default function useAppData() {
     setState({ ...state, messages: [...state.messages, message] });
 
   const addMessage = (message) => {
-    return axios
-    .post("/api/messages", {message})
-  }
+    return axios.post("/api/messages", { message });
+  };
 
   const getConversations = () => {
     const currentUser = +cookies.user;
@@ -158,6 +157,19 @@ export default function useAppData() {
       });
     });
   }
+  function postReview(review) {
+    console.log("REVIEW POSTED");
+    return axios.post(`/api/reviews/`, { review }).then(() => {
+      const id = Object.keys(state.reviews).length + 1;
+      setState({
+        ...state,
+        reviews: {
+          ...state.reviews,
+          [id]: { ...review, id },
+        },
+      });
+    });
+  }
 
   return {
     state,
@@ -176,7 +188,8 @@ export default function useAppData() {
     setMessages,
     postJob,
     postOffer,
+    postReview,
     addMessage,
-    setProfile
+    setProfile,
   };
 }

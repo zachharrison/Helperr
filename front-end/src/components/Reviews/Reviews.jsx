@@ -9,7 +9,6 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import { BottomNavigation } from "@material-ui/core";
 import "./Reviews.css";
-import JobListItem2 from "../JobList/JobListItem2";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -35,11 +34,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Review(props) {
+export default function Reviews(props) {
+  console.log("PROPS INSIDE REVIEW", props);
+  const { helper_id, job_id, onSave } = props;
+
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [review, setReview] = useState("");
   const [starValue, setStarValue] = useState();
+  const [error, setError] = useState("");
 
   const reviewInput = useRef(null);
   const handleOpen = () => {
@@ -58,21 +61,23 @@ export default function Review(props) {
     },
   });
 
-  Review = withStyles(styles)(Review);
+  Reviews = withStyles(styles)(Reviews);
 
-  const saveReview = () => {
-    console.log(
-      "review",
-      review,
-      "stars",
-      starValue,
-      "user",
-      props.user,
-      "jobId",
-      props.job_id
-    );
+  function validate() {
+    if (review === "" || starValue === "") {
+      setError("Please fill out the full review");
+      return;
+    }
+    setError("");
+    const newReview = {
+      details: review,
+      stars: starValue,
+      helper_id,
+      job_id,
+    };
+    onSave(newReview);
     handleClose();
-  };
+  }
 
   return (
     <div>
@@ -116,8 +121,9 @@ export default function Review(props) {
                 variant="filled"
                 fullWidth
               />
+              <span>{error}</span>
               <div className="flex-container">
-                <button onClick={() => saveReview()} className="add-icon">
+                <button onClick={validate} className="add-icon">
                   +
                 </button>
               </div>

@@ -1,7 +1,7 @@
-export default function OfferListItem(props) {
-  // console.log("props from job item", props);
-  const { state, offer_id, helper_id, status } = props;
+import Reviews from "../../Reviews/Reviews";
 
+export default function OfferListItem(props) {
+  const { state, offer_id, job_id, helper_id, status, postReview } = props;
   const helperAvatar = state.users[helper_id].avatar;
   const helperName = state.users[helper_id].name;
 
@@ -24,9 +24,20 @@ export default function OfferListItem(props) {
           </div>
         )}
         {status === "ACCEPTED" && (
-          <div>
-            <button className="status-element">ACCEPT</button>
-          </div>
+          <>
+            <div>
+              {status !== "COMPLETED" && (
+                <Reviews
+                  job_id={job_id}
+                  helper_id={helper_id}
+                  onSave={postReview}
+                />
+              )}
+            </div>
+            <div>
+              <button className="status-element">ACCEPT</button>
+            </div>
+          </>
         )}
         {status === "DECLINED" && (
           <div>
