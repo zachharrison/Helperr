@@ -18,6 +18,9 @@ export default function PostedListItem(props) {
     helper_id,
     client_id,
     description,
+    lat,
+    lng,
+    setCoord,
     price,
     pay_type,
     start_time,
@@ -54,25 +57,31 @@ export default function PostedListItem(props) {
         <AccordionItem>
           <AccordionItemHeading>
             <AccordionItemButton>
-              <div className="item-row">
-                <h1>{name}</h1>
-                <div className="pay">
-                  <p>
-                    ${price}
-                    {pay_type}
-                  </p>
+              <div
+                onClick={() => {
+                  props.setCoord({ lat, lng });
+                }}
+              >
+                <div className="item-row">
+                  <h1>{name}</h1>
+                  <div className="pay">
+                    <p>
+                      ${price}
+                      {pay_type}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="item-row">
-                <img
-                  className="avatar"
-                  src={userAvatar}
-                  alt="(╯°□°)╯︵ ┻━┻"
-                  width="50"
-                  height="50"
-                />
-                <div>
-                  <h1>{userName}</h1>
+                <div className="item-row">
+                  <img
+                    className="avatar"
+                    src={userAvatar}
+                    alt="(╯°□°)╯︵ ┻━┻"
+                    width="50"
+                    height="50"
+                  />
+                  <div>
+                    <h1>{userName}</h1>
+                  </div>
                 </div>
               </div>
               <div className="accordion-category">

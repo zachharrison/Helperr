@@ -31,7 +31,6 @@ export default function Map(props) {
     libraries,
   });
   const [markers, setMarkers] = useState([]);
-  const [selected, setSelected] = useState();
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
@@ -41,7 +40,7 @@ export default function Map(props) {
   const panTo = useCallback(({ lat, lng }) => {
     if (mapRef.current) {
       mapRef.current.panTo({ lat, lng });
-      mapRef.current.setZoom(14);
+      mapRef.current.setZoom(16);
     }
   }, []);
 
@@ -71,8 +70,8 @@ export default function Map(props) {
         <Markers
           state={props.state}
           markers={markers}
-          setSelected={setSelected}
-          selected={selected}
+          setSelected={props.setSelected}
+          selected={props.selected}
           coord={props.coord}
           jobMarkers={props.jobMarkers}
         />

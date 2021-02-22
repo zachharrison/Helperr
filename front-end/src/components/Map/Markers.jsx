@@ -12,6 +12,7 @@ export default function Markers({
   const icon = Object.values(state.categories);
   return (
     <>
+      {console.log("jobMarkers", jobMarkers)}
       {jobMarkers.map((job) => (
         <Marker
           key={job.id}
@@ -42,7 +43,7 @@ export default function Markers({
           }}
         />
       )}
-      {selected ? (
+      {selected && (
         <InfoWindow
           position={{ lat: selected.lat, lng: selected.lng }}
           onCloseClick={() => {
@@ -50,10 +51,10 @@ export default function Markers({
           }}
         >
           <div>
-            <h2>ugh</h2>
+            <h2>{selected.name}</h2>
           </div>
         </InfoWindow>
-      ) : null}
+      )}
     </>
   );
 }

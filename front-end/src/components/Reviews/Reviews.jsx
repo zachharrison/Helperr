@@ -5,8 +5,11 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import Stars from "./Stars";
 import TextField from "@material-ui/core/TextField";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+import { BottomNavigation } from "@material-ui/core";
 import "./Reviews.css";
-// import JobListItem2 from "../JobList/JobListItem2";
+import JobListItem2 from "../JobList/JobListItem2";
 
 const useStyles = makeStyles((theme) => ({
   modal: {

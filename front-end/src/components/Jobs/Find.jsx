@@ -4,6 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import FindListItem from "../JobList/FindListItem";
 
+import { Accordion } from "react-accessible-accordion";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 500,
@@ -40,12 +42,13 @@ export default function Find(props) {
                 variant="standard" // whats this
                 label="Category"
                 placeholder="Job Type" // whats this
+                setJobView={props.setJobView}
               />
             )}
           />
         </div>
       </div>
-      <div>
+      <Accordion allowZeroExpanded allowMultipleExpanded={false}>
         {jobsFiltered
           .filter((job) => job.client_id !== user)
           .map((job) => (
@@ -57,9 +60,12 @@ export default function Find(props) {
               onSave={props.saveOffer}
               setJobView={props.setJobView}
               state={props.state}
+              setCoord={props.setCoord}
+              isSelected={props.selected && props.selected.id === job.id}
+              setSelected={props.setSelected}
             />
           ))}
-      </div>
+      </Accordion>
     </div>
   );
 }
