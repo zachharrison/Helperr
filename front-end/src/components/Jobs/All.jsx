@@ -9,12 +9,19 @@ export default function Find(props) {
   const jobs = Object.values(props.state.jobs);
   const categories = Object.values(props.state.categories);
 
+  const applied = jobs.filter((job) => job.helper_id === user);
+  const posted = jobs.filter(
+    (job) => job.client_id === user && job.status === "POSTED"
+  );
+  const completed = jobs.filter(
+    (job) => job.client_id === user && job.status === "COMPLETED"
+  );
+
   return (
     <>
       <h3>Posted Jobs</h3>
-      {jobs
-        .filter((job) => job.client_id === user)
-        .map((myPosts) => (
+      {posted.length > 0 &&
+        posted.map((myPosts) => (
           <PostedListItem
             {...myPosts}
             job_id={myPosts.id}
@@ -24,10 +31,10 @@ export default function Find(props) {
             user={user}
           />
         ))}
+      {posted.length < 1 && <div>You have no posted jobs.</div>}
       <h3>Applied Jobs</h3>
-      {jobs
-        .filter((job) => job.helper_id === user)
-        .map((myApps) => (
+      {applied.length > 0 &&
+        applied.map((myApps) => (
           <AppliedListItem
             {...myApps}
             key={myApps.id}
@@ -36,6 +43,20 @@ export default function Find(props) {
             state={props.state}
           />
         ))}
+      {applied.length < 1 && <div>You have no applied jobs.</div>}
+      <h3>Completed Jobs</h3>
+      {completed.length > 0 &&
+        completed.map((myPosts) => (
+          <PostedListItem
+            {...myPosts}
+            job_id={myPosts.id}
+            categories={categories}
+            users={users}
+            state={props.state}
+            user={user}
+          />
+        ))}
+      {completed.length < 1 && <div>You have no completed jobs.</div>}
     </>
   );
 }

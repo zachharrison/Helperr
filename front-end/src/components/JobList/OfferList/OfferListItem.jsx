@@ -25,7 +25,7 @@ export default function OfferListItem(props) {
         )}
         {status === "ACCEPTED" && (
           <div>
-            <button className="status-element">ACCEPTED</button>
+            <button className="status-element">ACCEPT</button>
           </div>
         )}
         {status === "DECLINED" && (

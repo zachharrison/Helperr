@@ -15,7 +15,7 @@ export default function Locate(props) {
         );
       }}
     >
-      <img src="./compass-regular.svg" alt="my location" />
+      <img className="compass" src="./compass-regular.svg" alt="my location" />
       {/* remove outline of button and increase icon size */}
     </button>
   );

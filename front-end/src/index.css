@@ -11,9 +11,15 @@ body {
   /* font-family: "Josefin Sans", sans-serif; */
   /* overflow: scroll; */
   overflow: hidden;
+  margin: 0;
+  height: 100vh;
 }
 
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* make scrollbar transparent */
+}
+
+.App {
+  height: 100vh;
 }

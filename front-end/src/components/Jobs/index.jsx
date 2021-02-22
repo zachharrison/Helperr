@@ -55,136 +55,85 @@ export default function Jobs(props) {
   }
 
   return (
-    <>
-      <TransitionGroup className="job-container">
-        {state.jobView === "POST" && cookies.user && (
-          <CSSTransition
-            key={1}
-            timeout={500}
-            classNames="slide"
-            in={state.jobView === "POST" && cookies.user}
-          >
-            <div>
-              <Post
-                state={state}
-                setCoord={setCoord}
-                coord={coord}
-                onSave={saveJob}
-                setJobView={setJobView}
-              />
-            </div>
-          </CSSTransition>
-        )}
-        {state.jobView === "FIND" && (
-          <CSSTransition
-            key={2}
-            timeout={500}
-            classNames="slide"
-            in={state.jobView === "FIND"}
-          >
-            <div>
-              <Find
-                state={state}
-                jobsFiltered={jobsFiltered}
-                setCategoryFilter={setCategoryFilter}
-                saveOffer={saveOffer}
-                setJobView={setJobView}
-              />
-            </div>
-          </CSSTransition>
-        )}
-        {state.jobView === "ALL" && cookies.user && (
-          <CSSTransition
-            key={3}
-            timeout={500}
-            classNames="slide"
-            in={state.jobView === "ALL" && cookies.user}
-          >
-            <div>
-              <All
-                state={state}
-                jobsFiltered={jobsFiltered}
-                setCategoryFilter={setCategoryFilter}
-                setJobView={setJobView}
-                cookies={cookies}
-              />
-            </div>
-          </CSSTransition>
-        )}
-        {state.jobView === "REVIEWS" && cookies.user && (
-          <CSSTransition
-            key={1}
-            timeout={500}
-            classNames="slide"
-            in={state.jobView === "REVIEWS" && cookies.user}
-          >
-            <div>
-              <Reviews cookies={cookies} />
-            </div>
-          </CSSTransition>
-        )}
-        {state.jobView === "MESSAGE" && cookies.user && (
-          <CSSTransition
-            key={1}
-            timeout={500}
-            classNames="slide"
-            in={state.jobView === "MESSAGE" && cookies.user}
-          >
-            <div>
-              <ChatList
-                sendMessage={sendMessage}
-                setJobView={setJobView}
-                getConversations={getConversations}
-                setChat={setChat}
-                setMessageView={setMessageView}
-              />
-            </div>
-          </CSSTransition>
-        )}
-        {!cookies.user && state.jobView !== "FIND" && (
-          <CSSTransition
-            key={1}
-            timeout={500}
-            classNames="slide"
-            in={!cookies.user && state.jobView !== "FIND"}
-          >
-            <div>
-              <Login
-                cookies={cookies}
-                removeCurrentUser={removeCurrentUser}
-                setCurrentUser={setCurrentUser}
-              />
-            </div>
-          </CSSTransition>
-        )}
-        {state.jobView === "CHAT" && cookies.user && (
-          <CSSTransition
-            key={4}
-            timeout={500}
-            classNames="slide"
-            in={state.jobView === "CHAT" && cookies.user}
-          >
-            <div>
-              <Chat
-                message={message}
-                sendMessage={sendMessage}
-                room={room}
-                setRoom={setRoom}
-                setMessage={setMessage}
-                currentChat={currentChat}
-                setCurrentChat={setCurrentChat}
-                setMessageView={setMessageView}
-                getMessages={getMessages}
-                state={state}
-                setMessages={setMessages}
-                sendMessage={sendMessage}
-                cookies={cookies}
-                addMessage={addMessage}
-              />
-            </div>
-          </CSSTransition>
-        )}
-      </TransitionGroup>
-    </>
+    <div className="job-container">
+      {state.jobView === "POST" && cookies.user && (
+        <div>
+          <Post
+            state={state}
+            setCoord={setCoord}
+            coord={coord}
+            onSave={saveJob}
+            setJobView={setJobView}
+          />
+        </div>
+      )}
+      {state.jobView === "FIND" && (
+        <div>
+          <Find
+            state={state}
+            jobsFiltered={jobsFiltered}
+            setCategoryFilter={setCategoryFilter}
+            saveOffer={saveOffer}
+            setJobView={setJobView}
+          />
+        </div>
+      )}
+      {state.jobView === "ALL" && cookies.user && (
+        <div>
+          <All
+            state={state}
+            jobsFiltered={jobsFiltered}
+            setCategoryFilter={setCategoryFilter}
+            setJobView={setJobView}
+            cookies={cookies}
+          />
+        </div>
+      )}
+      {state.jobView === "REVIEWS" && cookies.user && (
+        <div>
+          <Reviews cookies={cookies} />
+        </div>
+      )}
+      {state.jobView === "MESSAGE" && cookies.user && (
+        <div>
+          <ChatList
+            sendMessage={sendMessage}
+            setJobView={setJobView}
+            getConversations={getConversations}
+            setChat={setChat}
+            setMessageView={setMessageView}
+          />
+        </div>
+      )}
+      {!cookies.user && state.jobView !== "FIND" && (
+        <div>
+          <Login
+            cookies={cookies}
+            removeCurrentUser={removeCurrentUser}
+            setCurrentUser={setCurrentUser}
+          />
+        </div>
+      )}
+      {state.jobView === "CHAT" && cookies.user && (
+        <div>
+          <Chat
+            message={message}
+            sendMessage={sendMessage}
+            room={room}
+            setRoom={setRoom}
+            setMessage={setMessage}
+            currentChat={currentChat}
+            setCurrentChat={setCurrentChat}
+            setMessageView={setMessageView}
+            getMessages={getMessages}
+            state={state}
+            setMessages={setMessages}
+            sendMessage={sendMessage}
+            cookies={cookies}
+            addMessage={addMessage}
+          />
+        </div>
+      )}
+    </div>
   );
 }

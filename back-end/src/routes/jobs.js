@@ -55,6 +55,30 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/jobs/:id", (request, response) => {
+    if (process.env.TEST_ERROR) {
+      setTimeout(() => response.status(500).json({}), 1000);
+      return;
+    }
+    const job_id = request.params.id;
+    const { status, helper_id } = request.body.job;
+
+    db.query(
+      `
+      UPDATE jobs
+      SET status = $1, helper_id = $2
+      WHERE id = $3;
+    `,
+      [status, helper_id, job_id]
+    )
+      .then(() => {
+        response.status(204).json({});
+      })
+      .catch((error) => {
+        response.status(500).json(error);
+      });
+  });
+
   router.delete("/jobs", (request, response) => {
     if (process.env.TEST_ERROR) {
       setTimeout(() => response.status(500).json({}), 1000);

@@ -43,8 +43,8 @@ export default function PostedListItem(props) {
     return Intl.DateTimeFormat("en-US", {
       month: "short",
       day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
+      // hour: "2-digit",
+      // minute: "2-digit",
     }).format(new Date(date));
   };
 
@@ -82,13 +82,18 @@ export default function PostedListItem(props) {
                 <p>{description}</p>
               </div>
               <div>
-                <h6 className="date">
-                  {/* {formattedDate(start_time)}
+                {status !== "COMPLETED" && (
+                  <h6 className="date">
+                    {/* {formattedDate(start_time)}
                   -to- */}
-                  Expires {formattedDate(end_time)}
-                </h6>
+                    Expires {formattedDate(end_time)}
+                  </h6>
+                )}
+
                 {/* {status} */}
-                {status !== "COMPLETED" && <Reviews user={user} />}
+                {status !== "COMPLETED" && (
+                  <Reviews user={user} job_id={job_id} />
+                )}
               </div>
             </AccordionItemButton>
           </AccordionItemHeading>
@@ -97,7 +102,6 @@ export default function PostedListItem(props) {
               .filter((offer) => offer.job_id === job_id)
               .map((offers) => (
                 <div className="offers">
-                  {console.log("offer HEREEEE")}
                   <OfferListItem
                     offer_id={offers.id}
                     helper_id={offers.helper_id}

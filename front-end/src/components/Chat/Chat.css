@@ -7,9 +7,10 @@
 
 .message-container {
   position: fixed;
-  bottom: 200px;
-  width: 50%;
+  bottom: 5px;
+  width: 60%;
   overflow: hidden;
+  margin-right: 100px;
 }
 
 .message-input {
@@ -68,20 +69,24 @@ span {
 }
 
 .bottom-nav {
-  width: 45vw;
+  width: 160px;
   background-color: #ace;
-  /* position: absolute; */
+  position: absolute;
+  /* top: 85px; */
   bottom: 0;
   cursor: pointer;
   box-shadow: 0px -2px 5px 0px rgba(170, 204, 238, 1),
     0px -4px 5px 0px rgba(160, 185, 219, 1);
-  border-radius: 8px 0px;
+  border-radius: 8px;
   transition: 0.2s;
   z-index: 10;
+  right: 0px;
+  height: 48px;
 }
 
 .bottom-nav:hover {
   background-color: rgb(153, 185, 218);
+  width: 300px;
   box-shadow: 0px -3px 5px 0px rgba(153, 185, 218, 1),
     0px -5px 5px 0px rgb(115, 123, 133);
   transition: 0.2s;
@@ -100,7 +105,7 @@ span {
 
 body {
   font-family: helvetica;
-  display: flex ;
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -168,7 +173,7 @@ body {
 .mine .message {
   color: white;
   margin-left: 25%;
-  background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);
+  background: linear-gradient(to bottom, #00d0ea 0%, #0085d1 100%);
   background-attachment: fixed;
   position: relative;
   overflow-wrap: break-word;
@@ -182,7 +187,7 @@ body {
   right: -8px;
   height: 20px;
   width: 20px;
-  background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);
+  background: linear-gradient(to bottom, #00d0ea 0%, #0085d1 100%);
   background-attachment: fixed;
   border-bottom-left-radius: 15px;
 }
@@ -205,3 +210,8 @@ body {
   align-items: center;
   overflow: scroll;
 }
+
+/* .message-list {
+  padding-bottom: 100px;
+  margin-bottom: 100px;
+} */
