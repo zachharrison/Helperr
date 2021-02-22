@@ -2,7 +2,6 @@ import Post from "./Post";
 import Find from "./Find";
 import All from "./All";
 import Reviews from "../Reviews/Reviews";
-import Profile from "../Profile/Profile";
 import JobToggle from "../JobToggle/JobToggle";
 import "./Jobs.css";
 import Chat from "../Chat/Chat";
@@ -38,9 +37,6 @@ export default function Jobs(props) {
     setCategoryFilter,
     jobsFiltered,
     saveReview,
-    selected,
-    setSelected,
-    setProfile,
   } = props;
 
   function saveJob(newJob) {
@@ -59,7 +55,7 @@ export default function Jobs(props) {
   }
 
   return (
-    <>
+    <div>
       <TransitionGroup className="job-container">
         {state.jobView === "POST" && cookies.user && (
           <CSSTransition
@@ -79,18 +75,6 @@ export default function Jobs(props) {
             </div>
           </CSSTransition>
         )}
-        {state.jobView === "PROFILE" && cookies.user && (
-          <CSSTransition
-            key={1}
-            timeout={500}
-            classNames="slide"
-            in={state.jobView === "PROFILE" && cookies.user}
-          >
-            <div>
-              <Profile state={state} cookies={cookies} />
-            </div>
-          </CSSTransition>
-        )}
         {state.jobView === "FIND" && (
           <CSSTransition
             key={2}
@@ -105,10 +89,6 @@ export default function Jobs(props) {
                 setCategoryFilter={setCategoryFilter}
                 saveOffer={saveOffer}
                 setJobView={setJobView}
-                setCoord={setCoord}
-                selected={selected}
-                setSelected={setSelected}
-                setProfile={setProfile}
               />
             </div>
           </CSSTransition>
@@ -127,8 +107,6 @@ export default function Jobs(props) {
                 setCategoryFilter={setCategoryFilter}
                 setJobView={setJobView}
                 cookies={cookies}
-                setCoord={setCoord}
-                setProfile={setProfile}
               />
             </div>
           </CSSTransition>
@@ -207,6 +185,6 @@ export default function Jobs(props) {
           </CSSTransition>
         )}
       </TransitionGroup>
-    </>
+    </div>
   );
 }

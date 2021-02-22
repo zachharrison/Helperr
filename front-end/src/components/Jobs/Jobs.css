@@ -1,4 +1,4 @@
-.MuiGrid-container {
+/* .MuiGrid-container {
   display: block !important;
 }
 .slide-enter {
@@ -21,7 +21,7 @@
 }
 
 /* appear - on page load */
-.fade-appear {
+/* .fade-appear {
   opacity: 0;
   z-index: 1;
 }
@@ -31,17 +31,17 @@
 }
 
 /* enter */
-.fade-enter {
+/* .fade-enter {
   opacity: 0;
   z-index: 1;
 }
 .fade-enter.fade-enter-active {
   opacity: 1;
-  transition: opacity 5000ms linear 5000ms;
-}
+  transition: opacity 5000ms linear 5000ms; */
+/* }
 
 /* exit */
-.fade-exit {
+/* .fade-exit {
   opacity: 1;
   position: absolute;
 }
@@ -50,8 +50,8 @@
   transition: opacity 5000ms linear;
 }
 .fade-exit-done {
-  opacity: 0;
-}
+  opacity: 0;  */
+/* } */
 
 /* .category-box {
   margin-bottom: 100px;
@@ -60,4 +60,9 @@
 
 .find-container {
   display: block;
+}
+
+.job-container h3 {
+  border-bottom: 1px solid gray;
+  margin-right: 50px;
 }

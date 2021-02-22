@@ -150,6 +150,20 @@ VALUES
     '2021-02-26 18:00:00',
     '2021-02-27 24:00:00',
     'POSTED'
+  ),
+   (
+    1,
+    3,
+    4,
+    'Put my bumper back on',
+    'My son is learning how to drive and backed into my garage, would really appreciate if someone could help me re-attach my bumper. Should be pretty easy, not too worried about how it looks as long as its on',
+    49.282740,
+    -123.133260,
+    150,
+    ' total',
+    '2021-02-20 18:00:00',
+    '2021-02-27 24:00:00',
+    'COMPLETED'
   );
 
 
@@ -165,7 +179,8 @@ VALUES
   (3, 6, 100000, ' total', 'ACCEPTED'),
   (4, 6, 10000, '/hr', 'PENDING'),
   (2, 7, 3000, '/hr', 'PENDING'),
-  (4, 7, 1212, ' total', 'DECLINED');
+  (4, 7, 1212, ' total', 'DECLINED'),
+  (3, 8, 150, ' total', 'ACCEPTED');
 
 INSERT INTO messages
   (user_id, offer_id, message, timestamp)

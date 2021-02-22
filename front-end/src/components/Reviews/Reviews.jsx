@@ -1,15 +1,15 @@
-import {useState} from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import Stars from './Stars';
-import TextField from '@material-ui/core/TextField';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import { BottomNavigation } from '@material-ui/core';
-import './Reviews.css';
-import JobListItem2 from "../JobList/JobListItem2"
+import { useState, useRef } from "react";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
+import Stars from "./Stars";
+import TextField from "@material-ui/core/TextField";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+import { BottomNavigation } from "@material-ui/core";
+import "./Reviews.css";
+import JobListItem2 from "../JobList/JobListItem2";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -41,7 +41,9 @@ export default function Review(props) {
   const [review, setReview] = useState("");
   const [starValue, setStarValue] = useState();
 
+  const reviewInput = useRef(null);
   const handleOpen = () => {
+    // reviewInput.current.focus();
     setOpen(true);
   };
 
@@ -58,13 +60,18 @@ export default function Review(props) {
 
   Review = withStyles(styles)(Review);
 
-  // review_stars AS ENUM('0', '1', '2', '3', '4', '5');
-  // review_who AS ENUM('helper', 'client');
-  // review as details
-  //  need job_id
-
   const saveReview = () => {
-    console.log(review, starValue, props.user);
+    console.log(
+      "review",
+      review,
+      "stars",
+      starValue,
+      "user",
+      props.user,
+      "jobId",
+      props.job_id
+    );
+    handleClose();
   };
 
   return (
@@ -98,6 +105,7 @@ export default function Review(props) {
                 We appreciate your feedback.
               </p>
               <TextField
+                ref={reviewInput}
                 className={classes.paragraph}
                 style={{ fontSize: "5rem" }}
                 id="standard-basic"

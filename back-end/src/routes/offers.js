@@ -34,6 +34,30 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/offers/:id", (request, response) => {
+    if (process.env.TEST_ERROR) {
+      setTimeout(() => response.status(500).json({}), 1000);
+      return;
+    }
+    const offer_id = request.params.id;
+    const status = request.body;
+
+    db.query(
+      `
+      UPDATE offers
+      SET status = $1
+      WHERE id = $2;
+    `,
+      [status, offer_id]
+    )
+      .then(() => {
+        response.status(204).json({});
+      })
+      .catch((error) => {
+        response.status(500).json(error);
+      });
+  });
+
   router.delete("/offers", (request, response) => {
     if (process.env.TEST_ERROR) {
       setTimeout(() => response.status(500).json({}), 1000);
