@@ -1,6 +1,11 @@
-export default function jobListItem(props) {
+import { useState } from "react";
+import Button from "@material-ui/core/Button";
+import './JobList.css'
+export default function AppliedListItem(props) {
+  // console.log("props from job item", props);
   const {
     name,
+    helper_id,
     client_id,
     description,
     price,
@@ -10,27 +15,26 @@ export default function jobListItem(props) {
     category_id,
     categories,
     users,
+    setProfile,
+    onSave,
     setJobView,
-    setProfile
+    jobView,
+    state,
+    job_id,
+    status,
   } = props;
-
-  if (!categories) return null;
 
   const categoryName = categories[category_id - 1].name;
   const userAvatar = users[client_id - 1].avatar;
   const userName = users[client_id - 1].name;
-  const startDate = Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(new Date(start_time));
-  const endDate = Intl.DateTimeFormat("en-US", {
-    month: "short",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(new Date(end_time));
+  const formattedDate = (date) => {
+    return Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(new Date(date));
+  };
 
   const handleProfileClick = () => {
     setJobView('PROFILE')
@@ -65,11 +69,12 @@ export default function jobListItem(props) {
       </div>
       <div className="item-row">
         <h6 className="date">
-          {startDate}
+          {formattedDate(start_time)}
           -to-
-          {endDate}
+          {formattedDate(end_time)}
         </h6>
       </div>
+      {status}
     </div>
   );
 }

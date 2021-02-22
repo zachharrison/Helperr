@@ -1,6 +1,7 @@
 import "./Jobs.css";
 import { makeStyles } from "@material-ui/core/styles";
-import JobListItem from "../JobList/JobListItem";
+import PostedListItem from "../JobList/PostedListItem";
+import AppliedListItem from "../JobList/AppliedListItem";
 
 export default function All(props) {
   const user = props.state.currentUser;
@@ -14,24 +15,25 @@ export default function All(props) {
       {jobs
         .filter((job) => job.client_id === user)
         .map((myPosts) => (
-          <JobListItem
+          <PostedListItem
             {...myPosts}
-            key={myPosts.id}
+            job_id={myPosts.id}
             categories={categories}
             users={users}
             setJobView={props.setJobView}
             cookies={props.cookies}
             state={props.state}
             setProfile={props.setProfile}
+            user={user}
           />
         ))}
       <h3>Applied Jobs</h3>
       {jobs
         .filter((job) => job.helper_id === user)
-        .map((myPosts) => (
-          <JobListItem
-            {...myPosts}
-            key={myPosts.id}
+        .map((myApps) => (
+          <AppliedListItem
+            {...myApps}
+            key={myApps.id}
             categories={categories}
             users={users}
             setJobView={props.setJobView}

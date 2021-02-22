@@ -5,6 +5,7 @@ import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import "@reach/combobox/styles.css";
 import Locate from "./Locate";
 import Markers from "./Markers";
+import Search from "./Search";
 
 const mapContainerStyle = {
   width: "100%",
@@ -55,6 +56,7 @@ export default function Map(props) {
 
   return (
     <div className="google-map">
+      <div className="map-title">Job Map</div>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={13}
@@ -62,7 +64,10 @@ export default function Map(props) {
         options={options}
         onLoad={onMapLoad}
       >
-        <Locate panTo={panTo} />
+        <div className="rowplz">
+          <Search panTo={panTo} />
+          <Locate panTo={panTo} />
+        </div>
         <Markers
           state={props.state}
           markers={markers}

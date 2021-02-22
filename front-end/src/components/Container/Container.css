@@ -1,11 +1,11 @@
 .map-container {
   box-sizing: border-box;
   display: flex;
-  width: 60vw;
+  width: 55vw;
   height: 90vh;
   /* border: 3px solid #ffb663; */
   /* border-right: 1px solid gray; */
-  padding-right: 20px;
+  padding-right: 60px;
   padding-top: 20px;
 }
 
@@ -13,9 +13,9 @@
   margin-top: 500px;
   box-sizing: border-box;
   /* border: 3px solid #02539b; */
-  width: 100%;
+  width: 45vw;
   height: 85vh;
-  /* padding-right: 20px; */
+  padding-left: 20px;
   margin: 0 auto;
   overflow: scroll;
   overflow-x: hidden;
@@ -41,6 +41,5 @@
 }
 
 .chat-container {
-  height: 48px;
+  margin-top: 6px;
 }
-  

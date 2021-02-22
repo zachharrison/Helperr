@@ -52,6 +52,7 @@ const Profile = ({ state }) => {
     }
   }
 
+
   const reviewDisplay = userReviews.length > 0 ? 
     reviews.map(review => (
         <div className="reviews">

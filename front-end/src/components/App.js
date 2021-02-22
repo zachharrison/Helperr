@@ -6,7 +6,7 @@ import { io } from "socket.io-client";
 import Jobs from "./Jobs";
 import useAppData from "./hooks/useAppData";
 import { getJobsFiltered } from "./helpers/selectors";
-import JobToggle from "./JobToggle/JobToggle"
+import JobToggle from "./JobToggle/JobToggle";
 
 
 export default function App() {
@@ -20,6 +20,7 @@ export default function App() {
     state,
     setState,
     setJobView,
+    jobView,
     setMessageView,
     getConversations,
     getMessages,
@@ -29,6 +30,7 @@ export default function App() {
     cookies,
     setMessages,
     postJob,
+    postOffer,
     addMessage,
     room,
     setRoom,
@@ -48,8 +50,15 @@ export default function App() {
       // cb(null, msg);
       // console.log('THIS IS A STATE TEST ', state)
 
-      const newMessage = { offer_id: state.chatId, user_id: msg.user_id,  message: msg.message }
-      setState(prev => ({...prev, userMessages: [...prev.userMessages, newMessage]}));
+      const newMessage = {
+        offer_id: state.chatId,
+        user_id: msg.user_id,
+        message: msg.message,
+      };
+      setState((prev) => ({
+        ...prev,
+        userMessages: [...prev.userMessages, newMessage],
+      }));
       // getConversations();
       // addMessage({msg})
       // addMessage({
@@ -57,7 +66,7 @@ export default function App() {
       //   user_id: msg.user_id,
       //   message: msg.message,
       // });
-      console.log(msg)
+      console.log(msg);
       // setState here becoz msg contains new message
       // debugger
       // setState(prev => ({...prev, userMessages: [...prev.userMessages, {...msg, room} ]}))
@@ -81,7 +90,7 @@ export default function App() {
   //   });
   // };
   const sendMessage = (message) => {
-    console.log('SENT')
+    console.log("SENT");
     // addMessage(message)
     // addMessage({
     //   offer_id: room,
@@ -108,7 +117,6 @@ export default function App() {
     };
   }, [room]);
 
-  // const jobMarkers = getJobsFiltered(state, []); // replace with state for filters
   const jobsFiltered = getJobsFiltered(state, categoryFilter);
 
   return (
@@ -122,6 +130,7 @@ export default function App() {
           <Map
             state={state}
             setJobView={setJobView}
+            jobView={jobView}
             setCoord={setCoord}
             coord={coord}
             jobMarkers={jobsFiltered}
@@ -130,7 +139,7 @@ export default function App() {
 
         <div className="right-container">
           <div>
-          <JobToggle state={state} setJobView={setJobView} />
+            <JobToggle state={state} setJobView={setJobView} />
           </div>
           <div className="jobs-container">
           <Jobs
@@ -160,8 +169,10 @@ export default function App() {
             addMessage={addMessage}
             setProfile={setProfile}
           />
+          <div className="chat-container">
+            <ChatNav setJobView={setJobView} />
           </div>
-          <div className="chat-container"><ChatNav setJobView={setJobView} /></div>
+          </div>
         </div>
       </div>
     </div>

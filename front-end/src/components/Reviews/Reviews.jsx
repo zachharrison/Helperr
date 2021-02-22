@@ -10,38 +10,35 @@ import AddIcon from '@material-ui/icons/Add';
 import { BottomNavigation } from '@material-ui/core';
 import './Reviews.css';
 import JobListItem2 from "../JobList/JobListItem2"
-import Profile from "../Profile/Profile"
 
 const useStyles = makeStyles((theme) => ({
   modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
   text: {
-    textAlign: 'center;',
-    fontSize: '16px;'
+    textAlign: "center;",
+    fontSize: "16px;",
   },
   paragraph: {
-    fontSize: '46px;'
+    fontSize: "46px;",
   },
   button: {
-    textAlign: 'center;'
-  }
+    textAlign: "center;",
+  },
 }));
 
-
-
-export default function Review({ cookies }) {
+export default function Review(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [review, setReview] = useState('')
+  const [review, setReview] = useState("");
   const [starValue, setStarValue] = useState();
 
   const handleOpen = () => {
@@ -52,58 +49,74 @@ export default function Review({ cookies }) {
     setOpen(false);
   };
 
-  const styles = theme => ({
+  const styles = (theme) => ({
     TheInput: {
       fontSize: 30,
-      lineHeight: 2.4
-    }
+      lineHeight: 2.4,
+    },
   });
-  
 
   Review = withStyles(styles)(Review);
-  
+
   // review_stars AS ENUM('0', '1', '2', '3', '4', '5');
   // review_who AS ENUM('helper', 'client');
   // review as details
   //  need job_id
 
-  const saveReview = (userId) => {
-    console.log(review, starValue, userId)
+  const saveReview = () => {
+    console.log(review, starValue, props.user);
   };
 
   return (
     <div>
-    <div>
-      <button type="button" onClick={handleOpen}>
-        Leave a Review
-      </button>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open} starValue={starValue} setStarValue={setStarValue} review={review} setReview={setReview}>
-          <div className={classes.paper}>
-            <Stars starValue={starValue} setStarValue={setStarValue}/>
-            <p id="transition-modal-description" className={classes.text}>We appreciate your feedback.</p>
-            <TextField className={classes.paragraph} style={{ fontSize: '5rem' }} id="standard-basic" label="Review" onChange={(event) => setReview(event.target.value)} multiline rows={4} variant="filled" fullWidth/>
-            <div className='flex-container'>
-              <button onClick={() => saveReview(+cookies.user)} className='add-icon'>+</button>
+      <div>
+        <button type="button" onClick={handleOpen}>
+          Completed
+        </button>
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          className={classes.modal}
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade
+            in={open}
+            starValue={starValue}
+            setStarValue={setStarValue}
+            review={review}
+            setReview={setReview}
+          >
+            <div className={classes.paper}>
+              <Stars starValue={starValue} setStarValue={setStarValue} />
+              <p id="transition-modal-description" className={classes.text}>
+                We appreciate your feedback.
+              </p>
+              <TextField
+                className={classes.paragraph}
+                style={{ fontSize: "5rem" }}
+                id="standard-basic"
+                label="Review"
+                onChange={(event) => setReview(event.target.value)}
+                multiline
+                rows={4}
+                variant="filled"
+                fullWidth
+              />
+              <div className="flex-container">
+                <button onClick={() => saveReview()} className="add-icon">
+                  +
+                </button>
+              </div>
             </div>
-          </div>
-        </Fade>
-
-
-      </Modal>
-    </div>
-    <JobListItem2/>
+          </Fade>
+        </Modal>
+      </div>
     </div>
   );
 }
