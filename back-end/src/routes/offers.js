@@ -41,7 +41,7 @@ module.exports = (db) => {
       return;
     }
     const offer_id = request.params.id;
-    const status = request.body.offer.status;
+    const status = request.body.offer.offer_status;
 
     console.log("STATUSSSS", status);
 

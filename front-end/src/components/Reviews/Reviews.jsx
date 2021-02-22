@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Reviews(props) {
   console.log("PROPS INSIDE REVIEW", props);
-  const { helper_id, job_id, onSave } = props;
+  const { helper_id, job_id, offer_id, onSave } = props;
 
   const classes = useStyles();
   const [open, setOpen] = useState(false);
@@ -63,7 +63,7 @@ export default function Reviews(props) {
 
   Reviews = withStyles(styles)(Reviews);
 
-  function validate() {
+  function validate(isCompleted) {
     if (review === "" || starValue === "") {
       setError("Please fill out the full review");
       return;
@@ -72,8 +72,11 @@ export default function Reviews(props) {
     const newReview = {
       details: review,
       stars: starValue,
-      helper_id,
       job_id,
+      helper_id,
+      job_status: isCompleted,
+      offer_id,
+      offer_status: isCompleted === "COMPLETED" ? "REVIEWED" : "DECLINED",
     };
     onSave(newReview);
     handleClose();
@@ -83,7 +86,7 @@ export default function Reviews(props) {
     <div>
       <div>
         <button type="button" onClick={handleOpen}>
-          Completed
+          Review
         </button>
         <Modal
           aria-labelledby="transition-modal-title"
@@ -123,9 +126,8 @@ export default function Reviews(props) {
               />
               <span>{error}</span>
               <div className="flex-container">
-                <button onClick={validate} className="add-icon">
-                  +
-                </button>
+                <button onClick={() => validate("COMPLETED")}>Completed</button>
+                <button onClick={() => validate("POSTED")}>Repost</button>
               </div>
             </div>
           </Fade>

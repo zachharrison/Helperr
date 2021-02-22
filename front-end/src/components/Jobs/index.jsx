@@ -96,7 +96,6 @@ export default function Jobs(props) {
         <div>
           <All
             state={state}
-            jobsFiltered={jobsFiltered}
             setCategoryFilter={setCategoryFilter}
             setJobView={setJobView}
             cookies={cookies}

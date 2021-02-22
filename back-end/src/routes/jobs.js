@@ -56,12 +56,14 @@ module.exports = (db) => {
   });
 
   router.post("/jobs/:id", (request, response) => {
+    console.log("reqbody response for jobs UPDATE:", request.body);
     if (process.env.TEST_ERROR) {
       setTimeout(() => response.status(500).json({}), 1000);
       return;
     }
     const job_id = request.params.id;
-    const { status, helper_id } = request.body.job;
+    const status = request.body.job.job_status;
+    const helper_id = request.body.job.helper_id;
 
     db.query(
       `

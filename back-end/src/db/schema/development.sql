@@ -164,13 +164,14 @@ VALUES (2, 1, 2000, '/hr', 'PENDING'),
   (1, 2, 15000, ' total', 'PENDING'),
   (2, 3, 2000, '/hr', 'PENDING'),
   (3, 5, 20000, '/hr', 'ACCEPTED'),
-  (4, 1, 3000, '/hr', 'DECLINED'),
+  (4, 1, 3000, '/hr', 'PENDING'),
   (4, 2, 2500, ' total', 'PENDING'),
   (3, 6, 100000, ' total', 'ACCEPTED'),
   (4, 6, 10000, '/hr', 'PENDING'),
   (2, 7, 3000, '/hr', 'PENDING'),
   (4, 7, 1212, ' total', 'DECLINED'),
-  (3, 8, 150, ' total', 'ACCEPTED');
+  (3, 8, 150, ' total', 'ACCEPTED'),
+  (3, 1, 3000, '/hr', 'PENDING');
 INSERT INTO messages (user_id, offer_id, message, timestamp)
 VALUES (
     2,

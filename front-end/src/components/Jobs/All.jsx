@@ -11,7 +11,9 @@ export default function All(props) {
 
   const applied = jobs.filter((job) => job.helper_id === user);
   const posted = jobs.filter(
-    (job) => job.client_id === user && job.status === "POSTED"
+    (job) =>
+      job.client_id === user &&
+      (job.status === "POSTED" || job.status === "FILLED")
   );
   const completed = jobs.filter(
     (job) => job.client_id === user && job.status === "COMPLETED"
@@ -26,15 +28,15 @@ export default function All(props) {
             {...myPosts}
             job_id={myPosts.id}
             categories={categories}
-            users={users}
-            setJobView={props.setJobView}
-            cookies={props.cookies}
-            state={props.state}
-            setProfile={props.setProfile}
             user={user}
+            users={users}
+            state={props.state}
             setCoord={props.setCoord}
-            postReview={props.postReview}
             updateOffer={props.updateOffer}
+            postReview={props.postReview}
+            setProfile={props.setProfile}
+            // cookies={props.cookies}
+            // setJobView={props.setJobView}
           />
         ))}
       {posted.length < 1 && <div>You have no posted jobs.</div>}
@@ -46,11 +48,11 @@ export default function All(props) {
             key={myApps.id}
             categories={categories}
             users={users}
-            setJobView={props.setJobView}
-            cookies={props.cookies}
             state={props.state}
+            setJobView={props.setJobView}
             setCoord={props.setCoord}
             setProfile={props.setProfile}
+            // cookies={props.cookies}
           />
         ))}
       {applied.length < 1 && <div>You have no applied jobs.</div>}
@@ -61,9 +63,11 @@ export default function All(props) {
             {...myPosts}
             job_id={myPosts.id}
             categories={categories}
+            user={user}
             users={users}
             state={props.state}
-            user={user}
+            setCoord={props.setCoord}
+            updateOffer={props.updateOffer}
             setProfile={props.setProfile}
           />
         ))}

@@ -145,6 +145,7 @@ export default function useAppData() {
       });
     });
   }
+
   function postOffer(offer) {
     return axios.post(`/api/offers/`, { offer }).then(() => {
       const id = Object.keys(state.offers).length + 1;
@@ -158,31 +159,54 @@ export default function useAppData() {
     });
   }
 
-  function updateOffer(offer) {
+  function updateOffer(update) {
+    changeOfferStatus(update);
+    changeJobStatus(update);
+  }
+
+  function changeOfferStatus(offer) {
     return axios.post(`/api/offers/${offer.offer_id}`, { offer }).then(() => {
-      setState({
-        ...state,
+      setState((prevState) => ({
+        ...prevState,
         offers: {
-          ...state.offers,
+          ...prevState.offers,
           [offer.offer_id]: {
-            ...state.offers[offer.offer_id],
-            status: offer.status,
+            ...prevState.offers[offer.offer_id],
+            status: offer.offer_status,
           },
         },
-      });
+      }));
     });
   }
+  function changeJobStatus(job) {
+    return axios.post(`/api/jobs/${job.job_id}`, { job }).then(() => {
+      setState((prevState) => ({
+        ...prevState,
+        jobs: {
+          ...prevState.jobs,
+          [job.job_id]: {
+            ...prevState.jobs[job.job_id],
+            status: job.job_status,
+            helper_id: job.helper_id,
+          },
+        },
+      }));
+    });
+  }
+
   function postReview(review) {
-    console.log("REVIEW POSTED");
+    console.log("REVIEW POSTED", review);
+    changeJobStatus(review);
+    changeOfferStatus(review);
     return axios.post(`/api/reviews/`, { review }).then(() => {
       const id = Object.keys(state.reviews).length + 1;
-      setState({
-        ...state,
+      setState((prevState) => ({
+        ...prevState,
         reviews: {
-          ...state.reviews,
+          ...prevState.reviews,
           [id]: { ...review, id },
         },
-      });
+      }));
     });
   }
 

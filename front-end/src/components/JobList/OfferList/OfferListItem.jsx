@@ -13,10 +13,13 @@ export default function OfferListItem(props) {
   const helperAvatar = state.users[helper_id].avatar;
   const helperName = state.users[helper_id].name;
 
-  function approval(verdict) {
+  function approval(offer_status, job_status) {
     const isApproved = {
       offer_id,
-      status: verdict,
+      offer_status,
+      job_id,
+      job_status,
+      helper_id: offer_status === "ACCEPTED" ? helper_id : null,
     };
     updateOffer(isApproved);
   }
@@ -31,10 +34,16 @@ export default function OfferListItem(props) {
         <div className="pay">{/* <h1 className="rate">{status}</h1> */}</div>
         {status !== "ACCEPTED" && status !== "DECLINED" && (
           <div>
-            <button className="accept" onClick={() => approval("ACCEPTED")}>
+            <button
+              className="accept"
+              onClick={() => approval("ACCEPTED", "FILLED")}
+            >
               Accept
             </button>
-            <button className="decline" onClick={() => approval("DECLINED")}>
+            <button
+              className="decline"
+              onClick={() => approval("DECLINED", "POSTED")}
+            >
               Decline
             </button>
           </div>
@@ -42,10 +51,11 @@ export default function OfferListItem(props) {
         {status === "ACCEPTED" && (
           <>
             <div>
-              {status !== "Mark Completed" && (
+              {status !== "COMPLETED" && (
                 <Reviews
                   job_id={job_id}
                   helper_id={helper_id}
+                  offer_id={offer_id}
                   onSave={postReview}
                 />
               )}
