@@ -23,42 +23,40 @@ export default function Find(props) {
 
   return (
     <div className="find-container">
-      <div className="category-box">
-        <div className={classes.root}>
-          <Autocomplete
-            onChange={(event, value) => {
-              setCategoryFilter(value || []);
-            }}
-            style={{ width: 450, marginBottom: 8 }}
-            multiple
-            id="filter-categories"
-            options={Object.values(props.state.categories)}
-            getOptionLabel={(option) => option.name}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                variant="standard" // whats this
-                label="Category"
-                placeholder="Job Type" // whats this
-              />
-            )}
-          />
-        </div>
+    <div className="category-box">
+      <div className={classes.root} >
+        <Autocomplete
+          onChange={(event, value) => {
+            setCategoryFilter(value || []);
+          }}
+          style={{ width: 450, marginBottom: 8 }}
+          multiple
+          id="filter-categories"
+          options={Object.values(props.state.categories)}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              variant="standard" // whats this
+              label="Category"
+              placeholder="Job Type" // whats this
+              setJobView={props.setJobView}
+            />
+          )}
+        />
+      </div>
       </div>
       <div>
-        {jobsFiltered
-          .filter((job) => job.client_id !== user)
-          .map((job) => (
-            <FindListItem
-              {...job}
-              job_id={job.id}
-              categories={categories}
-              users={users}
-              onSave={props.saveOffer}
-              setJobView={props.setJobView}
-              state={props.state}
-            />
-          ))}
+      {jobsFiltered.map((job) => (
+        <FindListItem
+          {...job}
+          key={job.id}
+          categories={categories}
+          users={users}
+          setJobView={props.setJobView}
+          setProfile={props.setProfile}
+        />
+      ))}
       </div>
     </div>
   );

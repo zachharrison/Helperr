@@ -69,21 +69,17 @@ CREATE TABLE jobs
     timestamp TIMESTAMP NOT NULL DEFAULT NOW()
     ::timestamp
 );
-    CREATE TYPE review_stars AS ENUM
-    ('0', '1', '2', '3', '4', '5');
-    CREATE TYPE review_who AS ENUM
-    ('helper', 'client');
-    CREATE TABLE reviews
-    (
-      id SERIAL PRIMARY KEY NOT NULL,
-      user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-      --this is who was reviewed
-      job_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
-      stars review_stars,
-      who review_who,
-      details VARCHAR(255) NOT NULL,
-      timestamp TIMESTAMP NOT NULL DEFAULT NOW()
-      ::timestamp
+
+CREATE TYPE review_who AS ENUM('helper', 'client');
+CREATE TABLE reviews (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  --this is who was reviewed
+  job_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
+  stars INTEGER,
+  who review_who,
+  details VARCHAR(255) NOT NULL,
+  timestamp TIMESTAMP NOT NULL DEFAULT NOW()::timestamp
 );
       CREATE TABLE messages
       (

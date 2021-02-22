@@ -8,6 +8,7 @@ import useAppData from "./hooks/useAppData";
 import { getJobsFiltered } from "./helpers/selectors";
 import JobToggle from "./JobToggle/JobToggle";
 
+
 export default function App() {
   const [categoryFilter, setCategoryFilter] = useState([]);
   const [coord, setCoord] = useState({
@@ -33,7 +34,9 @@ export default function App() {
     addMessage,
     room,
     setRoom,
+    setProfile
   } = useAppData();
+
 
   const [socket, setSocket] = useState("");
 
@@ -139,36 +142,36 @@ export default function App() {
             <JobToggle state={state} setJobView={setJobView} />
           </div>
           <div className="jobs-container">
-            <Jobs
-              state={state}
-              setJobView={setJobView}
-              // {messages={messages}}
-              message={message}
-              sendMessage={sendMessage}
-              room={room}
-              setRoom={setRoom}
-              setMessage={setMessage}
-              currentChat={currentChat}
-              setCurrentChat={setCurrentChat}
-              setMessageView={setMessageView}
-              getConversations={getConversations}
-              getMessages={getMessages}
-              setChat={setChat}
-              setCoord={setCoord}
-              coord={coord}
-              jobsFiltered={jobsFiltered}
-              setCategoryFilter={setCategoryFilter}
-              cookies={cookies}
-              setCurrentUser={setCurrentUser}
-              removeCurrentUser={removeCurrentUser}
-              setMessages={setMessages}
-              postJob={postJob}
-              postOffer={postOffer}
-              addMessage={addMessage}
-            />
-          </div>
+          <Jobs
+            state={state}
+            setJobView={setJobView}
+            // {messages={messages}}
+            message={message}
+            sendMessage={sendMessage}
+            room={room}
+            setRoom={setRoom}
+            setMessage={setMessage}
+            currentChat={currentChat}
+            setCurrentChat={setCurrentChat}
+            setMessageView={setMessageView}
+            getConversations={getConversations}
+            getMessages={getMessages}
+            setChat={setChat}
+            setCoord={setCoord}
+            coord={coord}
+            jobsFiltered={jobsFiltered}
+            setCategoryFilter={setCategoryFilter}
+            cookies={cookies}
+            setCurrentUser={setCurrentUser}
+            removeCurrentUser={removeCurrentUser}
+            setMessages={setMessages}
+            postJob={postJob}
+            addMessage={addMessage}
+            setProfile={setProfile}
+          />
           <div className="chat-container">
             <ChatNav setJobView={setJobView} />
+          </div>
           </div>
         </div>
       </div>
