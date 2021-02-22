@@ -1,9 +1,25 @@
 import Reviews from "../../Reviews/Reviews";
 
 export default function OfferListItem(props) {
-  const { state, offer_id, job_id, helper_id, status, postReview } = props;
+  const {
+    state,
+    offer_id,
+    job_id,
+    helper_id,
+    status,
+    postReview,
+    updateOffer,
+  } = props;
   const helperAvatar = state.users[helper_id].avatar;
   const helperName = state.users[helper_id].name;
+
+  function approval(verdict) {
+    const isApproved = {
+      offer_id,
+      status: verdict,
+    };
+    updateOffer(isApproved);
+  }
 
   return (
     <div className="offerlist-item">
@@ -15,10 +31,10 @@ export default function OfferListItem(props) {
         <div className="pay">{/* <h1 className="rate">{status}</h1> */}</div>
         {status !== "ACCEPTED" && status !== "DECLINED" && (
           <div>
-            <button className="accept" onClick={() => {}}>
+            <button className="accept" onClick={() => approval("ACCEPTED")}>
               Accept
             </button>
-            <button className="decline" onClick={() => {}}>
+            <button className="decline" onClick={() => approval("DECLINED")}>
               Decline
             </button>
           </div>
@@ -26,7 +42,7 @@ export default function OfferListItem(props) {
         {status === "ACCEPTED" && (
           <>
             <div>
-              {status !== "COMPLETED" && (
+              {status !== "Mark Completed" && (
                 <Reviews
                   job_id={job_id}
                   helper_id={helper_id}
@@ -35,7 +51,7 @@ export default function OfferListItem(props) {
               )}
             </div>
             <div>
-              <button className="status-element">ACCEPT</button>
+              <button className="status-element">ACCEPTED</button>
             </div>
           </>
         )}

@@ -157,6 +157,21 @@ export default function useAppData() {
       });
     });
   }
+
+  function updateOffer(offer) {
+    return axios.post(`/api/offers/${offer.offer_id}`, { offer }).then(() => {
+      setState({
+        ...state,
+        offers: {
+          ...state.offers,
+          [offer.offer_id]: {
+            ...state.offers[offer.offer_id],
+            status: offer.status,
+          },
+        },
+      });
+    });
+  }
   function postReview(review) {
     console.log("REVIEW POSTED");
     return axios.post(`/api/reviews/`, { review }).then(() => {
@@ -189,6 +204,7 @@ export default function useAppData() {
     postJob,
     postOffer,
     postReview,
+    updateOffer,
     addMessage,
     setProfile,
   };

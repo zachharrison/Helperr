@@ -27,6 +27,7 @@ export default function PostedListItem(props) {
     categories,
     users,
     postReview,
+    updateOffer,
     setJobView,
     jobView,
     state,
@@ -114,6 +115,7 @@ export default function PostedListItem(props) {
                     state={state}
                     status={offers.status}
                     postReview={postReview}
+                    updateOffer={updateOffer}
                   />
                 </div>
               ))}
