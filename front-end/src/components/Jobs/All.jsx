@@ -25,6 +25,7 @@ export default function All(props) {
             state={props.state}
             setProfile={props.setProfile}
             user={user}
+            setCoord={props.setCoord}
           />
         ))}
       <h3>Applied Jobs</h3>
@@ -39,6 +40,7 @@ export default function All(props) {
             setJobView={props.setJobView}
             cookies={props.cookies}
             state={props.state}
+            setCoord={props.setCoord}
             setProfile={props.setProfile}
           />
         ))}

@@ -2,7 +2,7 @@ import Post from "./Post";
 import Find from "./Find";
 import All from "./All";
 import Reviews from "../Reviews/Reviews";
-import Profile from "../Profile/Profile"
+import Profile from "../Profile/Profile";
 import JobToggle from "../JobToggle/JobToggle";
 import "./Jobs.css";
 import Chat from "../Chat/Chat";
@@ -38,6 +38,8 @@ export default function Jobs(props) {
     setCategoryFilter,
     jobsFiltered,
     saveReview,
+    selected,
+    setSelected,
     setProfile,
   } = props;
 
@@ -85,14 +87,11 @@ export default function Jobs(props) {
             in={state.jobView === "PROFILE" && cookies.user}
           >
             <div>
-              <Profile 
-                state={state}
-                cookies={cookies}
-                />
+              <Profile state={state} cookies={cookies} />
             </div>
           </CSSTransition>
         )}
-          {state.jobView === "FIND" && cookies.user && (
+        {state.jobView === "FIND" && cookies.user && (
           <CSSTransition
             key={2}
             timeout={500}
@@ -106,6 +105,9 @@ export default function Jobs(props) {
                 setCategoryFilter={setCategoryFilter}
                 saveOffer={saveOffer}
                 setJobView={setJobView}
+                setCoord={setCoord}
+                selected={selected}
+                setSelected={setSelected}
                 setProfile={setProfile}
               />
             </div>
@@ -125,6 +127,7 @@ export default function Jobs(props) {
                 setCategoryFilter={setCategoryFilter}
                 setJobView={setJobView}
                 cookies={cookies}
+                setCoord={setCoord}
                 setProfile={setProfile}
               />
             </div>
