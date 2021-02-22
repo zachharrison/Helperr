@@ -42,6 +42,7 @@ export default function Find(props) {
                 variant="standard" // whats this
                 label="Category"
                 placeholder="Job Type" // whats this
+                setJobView={props.setJobView}
               />
             )}
           />

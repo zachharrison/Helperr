@@ -47,6 +47,11 @@ export default function useAppData() {
   const setJobView = (jobView) =>
     setState((previous) => ({ ...previous, jobView })); // swap to ...previous, like this, if there is a state bug****
 
+  const setProfile = (profile) => {
+    setState((prev) => ({...prev, profile}))
+    // .then(console.log(profile))
+  }
+
   const setChat = (chatId) => {
     setRoom(chatId);
     setState({ ...state, chatId, jobView: "CHAT" });
@@ -84,11 +89,8 @@ export default function useAppData() {
     setState({ ...state, messages: [...state.messages, message] });
 
   const addMessage = (message) => {
-
-    console.log(message)
     return axios
     .post("/api/messages", {message})
-    // .then((res) => setState(prev => ({...prev, userMessages: [...prev.userMessages, message]})))
   }
 
   const getConversations = () => {
@@ -175,5 +177,6 @@ export default function useAppData() {
     postJob,
     postOffer,
     addMessage,
+    setProfile
   };
 }

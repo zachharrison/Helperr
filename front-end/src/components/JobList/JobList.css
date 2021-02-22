@@ -163,3 +163,34 @@
     opacity: 1;
   }
 }
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-container img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.profile-btn {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background: #9fc5e7;
+  outline: none;
+  color: #135ea2;
+  /* padding: 10px; */
+  border-radius: 5px;
+  height: 35px;
+  width: 65px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border: none;
+}

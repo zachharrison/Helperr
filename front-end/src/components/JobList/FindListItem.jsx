@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "@material-ui/core/Button";
+import "./JobList.css";
 
 import {
   Accordion,
@@ -32,6 +33,7 @@ export default function FindListItem(props) {
     job_id,
     status,
     isSelected,
+    setProfile,
   } = props;
 
   const [error, setError] = useState("");
@@ -66,6 +68,11 @@ export default function FindListItem(props) {
     }).format(new Date(date));
   };
 
+  const handleProfileClick = () => {
+    setJobView("PROFILE");
+    setProfile(userName);
+  };
+
   return (
     <div className="jobListItem">
       <AccordionItem dangerouslySetExpanded={isSelected}>
@@ -85,14 +92,16 @@ export default function FindListItem(props) {
                   </h1>
                 </div>
               </div>
-              <div className="user-info">
-                <img
-                  src={userAvatar}
-                  alt="(╯°□°)╯︵ ┻━┻"
-                  width="50"
-                  height="50"
-                />
-                <h4 className="rate">{userName}</h4>
+              <div className="item-row">
+                <div className="profile-container">
+                  <img src={userAvatar} alt="profile" />
+                  <button onClick={handleProfileClick} className="profile-btn">
+                    View Profile
+                  </button>
+                </div>
+                <div className="pay">
+                  <h1 className="rate">{userName}</h1>
+                </div>
               </div>
               <div className="item-row">
                 <h6 className="date">
