@@ -99,6 +99,7 @@ export default function App() {
   // const [room, setRoom] = useState('');
   const [message, setMessage] = useState("");
   const [currentChat, setCurrentChat] = useState([]);
+  const [selected, setSelected] = useState();
   useEffect(() => {
     if (state.chatId) initiateSocket(room);
     // console.log(socket)
@@ -131,6 +132,8 @@ export default function App() {
             setCoord={setCoord}
             coord={coord}
             jobMarkers={jobsFiltered}
+            setSelected={setSelected}
+            selected={selected}
           />
         </div>
 
@@ -157,6 +160,8 @@ export default function App() {
               setCoord={setCoord}
               coord={coord}
               jobsFiltered={jobsFiltered}
+              setSelected={setSelected}
+              selected={selected}
               setCategoryFilter={setCategoryFilter}
               cookies={cookies}
               setCurrentUser={setCurrentUser}

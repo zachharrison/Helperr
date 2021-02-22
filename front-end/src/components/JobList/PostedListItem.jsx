@@ -18,6 +18,9 @@ export default function PostedListItem(props) {
     helper_id,
     client_id,
     description,
+    lat,
+    lng,
+    setCoord,
     price,
     pay_type,
     start_time,
@@ -54,41 +57,47 @@ export default function PostedListItem(props) {
         <AccordionItem>
           <AccordionItemHeading>
             <AccordionItemButton>
-              <div className="item-row">
-                <h1>{name}</h1>
-                <div className="pay">
-                  <p>
-                    ${price}
-                    {pay_type}
-                  </p>
+              <div
+                onClick={() => {
+                  props.setCoord({ lat, lng });
+                }}
+              >
+                <div className="item-row">
+                  <h1>{name}</h1>
+                  <div className="pay">
+                    <p>
+                      ${price}
+                      {pay_type}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="item-row">
-                <img
-                  className="avatar"
-                  src={userAvatar}
-                  alt="(╯°□°)╯︵ ┻━┻"
-                  width="50"
-                  height="50"
-                />
+                <div className="item-row">
+                  <img
+                    className="avatar"
+                    src={userAvatar}
+                    alt="(╯°□°)╯︵ ┻━┻"
+                    width="50"
+                    height="50"
+                  />
+                  <div>
+                    <h1>{userName}</h1>
+                  </div>
+                </div>
+                <div className="accordion-category">
+                  <p>{categoryName}</p>
+                </div>
+                <div className="posted-description">
+                  <p>{description}</p>
+                </div>
                 <div>
-                  <h1>{userName}</h1>
-                </div>
-              </div>
-              <div className="accordion-category">
-                <p>{categoryName}</p>
-              </div>
-              <div className="posted-description">
-                <p>{description}</p>
-              </div>
-              <div>
-                <h6 className="date">
-                  {/* {formattedDate(start_time)}
+                  <h6 className="date">
+                    {/* {formattedDate(start_time)}
                   -to- */}
-                  Expires {formattedDate(end_time)}
-                </h6>
-                {/* {status} */}
-                {status !== "COMPLETED" && <Reviews user={user} />}
+                    Expires {formattedDate(end_time)}
+                  </h6>
+                  {/* {status} */}
+                  {status !== "COMPLETED" && <Reviews user={user} />}
+                </div>
               </div>
             </AccordionItemButton>
           </AccordionItemHeading>

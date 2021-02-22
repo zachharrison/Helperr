@@ -1,12 +1,23 @@
 import { useState } from "react";
 import Button from "@material-ui/core/Button";
 
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel,
+} from "react-accessible-accordion";
+
 export default function FindListItem(props) {
   const {
     name,
     helper_id,
     client_id,
     description,
+    lat,
+    lng,
+    setCoord,
     price,
     pay_type,
     start_time,
@@ -20,6 +31,7 @@ export default function FindListItem(props) {
     state,
     job_id,
     status,
+    isSelected,
   } = props;
 
   const [error, setError] = useState("");
@@ -56,44 +68,57 @@ export default function FindListItem(props) {
 
   return (
     <div className="jobListItem">
-      <div className="item-row">
-        <h1>{name}</h1>
-        <div className="pay">
-          <p className="rate">
-            ${price}
-            {pay_type}
-          </p>
-        </div>
-      </div>
-      <div className="item-row">
-        <img src={userAvatar} alt="(╯°□°)╯︵ ┻━┻" width="50" height="50" />
-        <div className="pay">
-          <h1 className="rate">{userName}</h1>
-        </div>
-      </div>
-      <div className="item-row">
-        <p className="date">{categoryName}</p>
-      </div>
-      <div className="item-row">
-        <p className="date">{description}</p>
-      </div>
-      <div className="item-row">
-        <h6 className="date">
-          {formattedDate(start_time)}
-          -to-
-          {formattedDate(end_time)}
-        </h6>
-      </div>
-      {status}
-      {/* {state.jobView === "FIND" && ( */}
-      <Button
-        onClick={application}
-        variant="contained"
-        color="primary"
-        style={{ margin: 8 }}
-      >
-        Apply
-      </Button>
+      <AccordionItem dangerouslySetExpanded={isSelected}>
+        <AccordionItemHeading>
+          <AccordionItemButton>
+            <div
+              onClick={() => {
+                props.setCoord({ lat, lng });
+              }}
+            >
+              <div className="item-row">
+                <h1>{name}</h1>
+                <div className="pay">
+                  <h1>
+                    {categoryName} for ${price}
+                    {pay_type}
+                  </h1>
+                </div>
+              </div>
+              <div className="user-info">
+                <img
+                  src={userAvatar}
+                  alt="(╯°□°)╯︵ ┻━┻"
+                  width="50"
+                  height="50"
+                />
+                <h4 className="rate">{userName}</h4>
+              </div>
+              <div className="item-row">
+                <h6 className="date">
+                  {formattedDate(start_time)}
+                  -to-
+                  {formattedDate(end_time)}
+                </h6>
+              </div>
+              {status}
+            </div>
+          </AccordionItemButton>
+        </AccordionItemHeading>
+        <AccordionItemPanel>
+          <div className="item-row">
+            <p className="date">{description}</p>
+          </div>
+          <Button
+            onClick={application}
+            variant="contained"
+            color="primary"
+            style={{ margin: 8 }}
+          >
+            Apply
+          </Button>
+        </AccordionItemPanel>
+      </AccordionItem>
     </div>
   );
 }

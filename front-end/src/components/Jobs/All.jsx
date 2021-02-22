@@ -22,6 +22,7 @@ export default function Find(props) {
             users={users}
             state={props.state}
             user={user}
+            setCoord={props.setCoord}
           />
         ))}
       <h3>Applied Jobs</h3>
@@ -34,6 +35,7 @@ export default function Find(props) {
             categories={categories}
             users={users}
             state={props.state}
+            setCoord={props.setCoord}
           />
         ))}
     </>

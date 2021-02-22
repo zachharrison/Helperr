@@ -8,6 +8,9 @@ export default function AppliedListItem(props) {
     helper_id,
     client_id,
     description,
+    lat,
+    lng,
+    setCoord,
     price,
     pay_type,
     start_time,
@@ -36,7 +39,12 @@ export default function AppliedListItem(props) {
   };
 
   return (
-    <div className="jobListItem">
+    <div
+      className="jobListItem"
+      onClick={() => {
+        props.setCoord({ lat, lng });
+      }}
+    >
       <div className="item-row">
         <h1>{name}</h1>
         <div className="pay">

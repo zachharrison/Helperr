@@ -37,6 +37,8 @@ export default function Jobs(props) {
     setCategoryFilter,
     jobsFiltered,
     saveReview,
+    selected,
+    setSelected,
   } = props;
 
   function saveJob(newJob) {
@@ -89,6 +91,9 @@ export default function Jobs(props) {
                 setCategoryFilter={setCategoryFilter}
                 saveOffer={saveOffer}
                 setJobView={setJobView}
+                setCoord={setCoord}
+                selected={selected}
+                setSelected={setSelected}
               />
             </div>
           </CSSTransition>
@@ -107,6 +112,7 @@ export default function Jobs(props) {
                 setCategoryFilter={setCategoryFilter}
                 setJobView={setJobView}
                 cookies={cookies}
+                setCoord={setCoord}
               />
             </div>
           </CSSTransition>
