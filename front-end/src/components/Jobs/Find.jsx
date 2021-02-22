@@ -63,6 +63,7 @@ export default function Find(props) {
               setCoord={props.setCoord}
               isSelected={props.selected && props.selected.id === job.id}
               setSelected={props.setSelected}
+              setProfile={props.setProfile}
             />
           ))}
       </Accordion>

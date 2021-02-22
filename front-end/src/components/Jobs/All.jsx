@@ -62,6 +62,7 @@ export default function All(props) {
             users={users}
             state={props.state}
             user={user}
+            setProfile={props.setProfile}
           />
         ))}
       {completed.length < 1 && <div>You have no completed jobs.</div>}

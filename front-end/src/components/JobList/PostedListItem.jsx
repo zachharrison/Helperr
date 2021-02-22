@@ -35,6 +35,7 @@ export default function PostedListItem(props) {
     job_id,
     status,
     user,
+    setProfile,
   } = props;
 
   const categoryName = categories[category_id - 1].name;
