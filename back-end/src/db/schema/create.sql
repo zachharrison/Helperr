@@ -42,7 +42,7 @@ CREATE TABLE jobs (
   status job_status,
   timestamp TIMESTAMP NOT NULL DEFAULT NOW()::timestamp
 );
-CREATE TYPE offer_status AS ENUM('PENDING', 'ACCEPTED', 'DECLINED');
+CREATE TYPE offer_status AS ENUM('PENDING', 'ACCEPTED', 'DECLINED', 'REVIEWED');
 CREATE TABLE offers (
   id SERIAL PRIMARY KEY NOT NULL,
   helper_id INTEGER REFERENCES users(id) ON DELETE CASCADE,

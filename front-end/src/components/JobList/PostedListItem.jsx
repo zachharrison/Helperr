@@ -28,8 +28,8 @@ export default function PostedListItem(props) {
     users,
     postReview,
     updateOffer,
-    setJobView,
-    jobView,
+    // setJobView,
+    // jobView,
     state,
     job_id,
     status,
@@ -41,7 +41,17 @@ export default function PostedListItem(props) {
   const userAvatar = users[client_id - 1].avatar;
   const userName = users[client_id - 1].name;
 
-  const jobOffers = Object.values(state.offers);
+  const allOffers = Object.values(state.offers)
+    .filter((offer) => offer.job_id === job_id)
+    .filter((offer) => offer.status !== "DECLINED");
+
+  const acceptedOffer = () => {
+    const accepted = allOffers.find(
+      (jobOffer) => jobOffer.status === "ACCEPTED"
+    );
+    return accepted ? [accepted] : allOffers;
+  };
+
   const formattedDate = (date) => {
     return Intl.DateTimeFormat("en-US", {
       month: "short",
@@ -104,21 +114,19 @@ export default function PostedListItem(props) {
             </AccordionItemButton>
           </AccordionItemHeading>
           <AccordionItemPanel>
-            {jobOffers
-              .filter((offer) => offer.job_id === job_id)
-              .map((offers) => (
-                <div className="offers">
-                  <OfferListItem
-                    offer_id={offers.id}
-                    job_id={job_id}
-                    helper_id={offers.helper_id}
-                    state={state}
-                    status={offers.status}
-                    postReview={postReview}
-                    updateOffer={updateOffer}
-                  />
-                </div>
-              ))}
+            {acceptedOffer().map((offers) => (
+              <div className="offers">
+                <OfferListItem
+                  offer_id={offers.id}
+                  job_id={job_id}
+                  helper_id={offers.helper_id}
+                  state={state}
+                  status={offers.status}
+                  postReview={postReview}
+                  updateOffer={updateOffer}
+                />
+              </div>
+            ))}
           </AccordionItemPanel>
         </AccordionItem>
       </Accordion>
