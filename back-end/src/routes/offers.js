@@ -35,12 +35,15 @@ module.exports = (db) => {
   });
 
   router.post("/offers/:id", (request, response) => {
+    console.log("reqbody response in offers UPDATE:", request.body);
     if (process.env.TEST_ERROR) {
       setTimeout(() => response.status(500).json({}), 1000);
       return;
     }
     const offer_id = request.params.id;
-    const status = request.body;
+    const status = request.body.offer.status;
+
+    console.log("STATUSSSS", status);
 
     db.query(
       `
@@ -56,18 +59,6 @@ module.exports = (db) => {
       .catch((error) => {
         response.status(500).json(error);
       });
-  });
-
-  router.delete("/offers", (request, response) => {
-    if (process.env.TEST_ERROR) {
-      setTimeout(() => response.status(500).json({}), 1000);
-      return;
-    }
-    db.query(`DELETE FROM offers WHERE offers.id = $1::integer`, [
-      request.params.id,
-    ]).then(() => {
-      response.status(204).json({});
-    });
   });
 
   return router;

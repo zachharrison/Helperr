@@ -27,6 +27,7 @@ export default function Jobs(props) {
     postJob,
     postOffer,
     postReview,
+    updateOffer,
     message,
     sendMessage,
     room,
@@ -102,6 +103,7 @@ export default function Jobs(props) {
             setCoord={setCoord}
             setProfile={setProfile}
             postReview={postReview}
+            updateOffer={updateOffer}
           />
         </div>
       )}

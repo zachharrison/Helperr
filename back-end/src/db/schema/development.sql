@@ -160,7 +160,7 @@ VALUES (
     'COMPLETED'
   );
 INSERT INTO offers (helper_id, job_id, price, pay_type, status)
-VALUES (2, 1, 2000, '/hr', 'ACCEPTED'),
+VALUES (2, 1, 2000, '/hr', 'PENDING'),
   (1, 2, 15000, ' total', 'PENDING'),
   (2, 3, 2000, '/hr', 'PENDING'),
   (3, 5, 20000, '/hr', 'ACCEPTED'),
