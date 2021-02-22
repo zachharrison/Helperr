@@ -1,7 +1,5 @@
-INSERT INTO users
-  (name, avatar, email, password)
-VALUES
-  (
+INSERT INTO users (name, avatar, email, password)
+VALUES (
     'BobTheBuilder',
     'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/bob-the-builder.png?raw=true',
     'Bob@BobsBuilding.com',
@@ -25,10 +23,8 @@ VALUES
     'Tom@balldeflator.com',
     'password'
   );
-INSERT INTO categories
-  (name, marker)
-VALUES
-  ('Light-labour', '/hard-hat-solid.svg'),
+INSERT INTO categories (name, marker)
+VALUES ('Light-labour', '/hard-hat-solid.svg'),
   ('Cleaning', '/hand-sparkles-solid.svg'),
   ('Caregiving', '/baby-carriage-solid.svg'),
   ('AutoRepair', '/car-crash-solid.svg'),
@@ -37,23 +33,21 @@ VALUES
   ('Lessons', '/user-graduate-solid.svg'),
   ('Delivery', '/shipping-fast-solid.svg'),
   ('Miscellaneous', '/question-solid.svg');
-INSERT INTO jobs
-  (
-  client_id,
-  helper_id,
-  category_id,
-  name,
-  description,
-  lat,
-  lng,
-  price,
-  pay_type,
-  start_time,
-  end_time,
-  status
+INSERT INTO jobs (
+    client_id,
+    helper_id,
+    category_id,
+    name,
+    description,
+    lat,
+    lng,
+    price,
+    pay_type,
+    start_time,
+    end_time,
+    status
   )
-VALUES
-  (
+VALUES (
     1,
     2,
     3,
@@ -151,7 +145,7 @@ VALUES
     '2021-02-27 24:00:00',
     'POSTED'
   ),
-   (
+  (
     1,
     3,
     4,
@@ -165,12 +159,8 @@ VALUES
     '2021-02-27 24:00:00',
     'COMPLETED'
   );
-
-
-INSERT INTO offers
-  (helper_id, job_id, price, pay_type, status)
-VALUES
-  (2, 1, 2000, '/hr', 'ACCEPTED'),
+INSERT INTO offers (helper_id, job_id, price, pay_type, status)
+VALUES (2, 1, 2000, '/hr', 'ACCEPTED'),
   (1, 2, 15000, ' total', 'PENDING'),
   (2, 3, 2000, '/hr', 'PENDING'),
   (3, 5, 20000, '/hr', 'ACCEPTED'),
@@ -181,11 +171,8 @@ VALUES
   (2, 7, 3000, '/hr', 'PENDING'),
   (4, 7, 1212, ' total', 'DECLINED'),
   (3, 8, 150, ' total', 'ACCEPTED');
-
-INSERT INTO messages
-  (user_id, offer_id, message, timestamp)
-VALUES
-  (
+INSERT INTO messages (user_id, offer_id, message, timestamp)
+VALUES (
     2,
     1,
     'User sent an offer 2000',
@@ -248,13 +235,11 @@ VALUES
   );
 -- GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
 -- "timestamp": "2021-02-18T09:12:38.223Z",
-
-INSERT INTO reviews (user_id, job_id, stars, who, details, timestamp)
+INSERT INTO reviews (helper_id, job_id, stars, details, timestamp)
 VALUES (
-  4,
-  3,
-  5,
-  'helper',
-  'Was on my way to go win another Super Bowl when I ran over a nail on the freeway. Without the help of Harry and Marv I would not be able to bring home the Lombardi trophy for the seventh time!',
-  '2021-02-27 24:00:00'
-);
+    4,
+    3,
+    5,
+    'Was on my way to go win another Super Bowl when I ran over a nail on the freeway. Without the help of Harry and Marv I would not be able to bring home the Lombardi trophy for the seventh time!',
+    '2021-02-27 24:00:00'
+  );

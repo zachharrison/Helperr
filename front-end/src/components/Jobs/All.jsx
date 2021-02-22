@@ -33,6 +33,7 @@ export default function All(props) {
             setProfile={props.setProfile}
             user={user}
             setCoord={props.setCoord}
+            postReview={props.postReview}
           />
         ))}
       {posted.length < 1 && <div>You have no posted jobs.</div>}

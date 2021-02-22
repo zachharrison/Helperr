@@ -23,7 +23,7 @@ module.exports = (db) => {
       `
       INSERT INTO offers ( helper_id, job_id, price, pay_type, status) VALUES ($1::integer, $2::integer, $3::integer, $4::pay_type, $5::offer_status);
     `,
-      [helper_id, job_id, price, pay_type, "SENT"]
+      [helper_id, job_id, price, pay_type, "PENDING"]
     )
       .then(() => {
         response.status(204).json({});

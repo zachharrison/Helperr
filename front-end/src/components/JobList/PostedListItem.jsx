@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Button from "@material-ui/core/Button";
 import OfferListItem from "./OfferList/OfferListItem";
-import Reviews from "../Reviews/Reviews";
 
 import {
   Accordion,
@@ -12,7 +11,6 @@ import {
 } from "react-accessible-accordion";
 
 export default function PostedListItem(props) {
-  // console.log("props from job item", props);
   const {
     name,
     helper_id,
@@ -28,7 +26,7 @@ export default function PostedListItem(props) {
     category_id,
     categories,
     users,
-    onSave,
+    postReview,
     setJobView,
     jobView,
     state,
@@ -101,9 +99,6 @@ export default function PostedListItem(props) {
                 )}
 
                 {/* {status} */}
-                {status !== "COMPLETED" && (
-                  <Reviews user={user} job_id={job_id} />
-                )}
               </div>
             </AccordionItemButton>
           </AccordionItemHeading>
@@ -114,9 +109,11 @@ export default function PostedListItem(props) {
                 <div className="offers">
                   <OfferListItem
                     offer_id={offers.id}
+                    job_id={job_id}
                     helper_id={offers.helper_id}
                     state={state}
                     status={offers.status}
+                    postReview={postReview}
                   />
                 </div>
               ))}
