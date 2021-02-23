@@ -14,7 +14,7 @@ export default function useAppData() {
     offers: {},
     chats: {},
     reviews: {},
-    jobView: "ALL",
+    jobView: "POST",
     chatId: null,
     currentUser: null,
   });
@@ -132,6 +132,16 @@ export default function useAppData() {
     // console.log(offerMessages)
     return offerMessages;
   };
+
+  // const getUserName = (id) => {
+  //   for (const user in state.users) {
+  //     if (user.id === id) {
+  //       return user.name;
+  //     }
+  //   }
+  // };
+
+  // console.log(getUserName(1));
 
   function postJob(job) {
     return axios.post(`/api/jobs/`, { job }).then(() => {

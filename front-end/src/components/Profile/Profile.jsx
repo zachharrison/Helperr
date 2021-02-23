@@ -1,4 +1,3 @@
-import React from "react";
 import "./Profile.css";
 
 const Profile = ({ state }) => {
@@ -43,8 +42,6 @@ const Profile = ({ state }) => {
       return "N/A";
     }
   };
-
-  console.log(userReviews);
 
   const reviewDisplay =
     userReviews.length > 0 ? (

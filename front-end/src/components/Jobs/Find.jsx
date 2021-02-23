@@ -25,50 +25,52 @@ export default function Find(props) {
   const users = Object.values(props.state.users);
 
   return (
-
-
-      <div className="find-container">
-        <div className="category-box">
-          <div className={classes.root}>
-            <Autocomplete
-              onChange={(event, value) => {
-                setCategoryFilter(value || []);
-              }}
-              style={{ width: 450, marginBottom: 8 }}
-              multiple
-              id="filter-categories"
-              options={Object.values(props.state.categories)}
-              getOptionLabel={(option) => option.name}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant="standard" // whats this
-                  label="Category"
-                  placeholder="Job Type" // whats this
-                  setJobView={props.setJobView}
-                />
-              )}
-            />
-          </div>
-        </div>
-          {jobsFiltered
-            .filter((job) => job.client_id !== user)
-            .map((job) => (
-              <FindListItem
-                {...job}
-                job_id={job.id}
-                categories={categories}
-                users={users}
-                onSave={props.saveOffer}
+    <div className="find-container">
+      <div className="category-box">
+        <div className={classes.root}>
+          <Autocomplete
+            onChange={(event, value) => {
+              setCategoryFilter(value || []);
+            }}
+            style={{
+              width: 450,
+              marginBottom: 8,
+              marginTop: 0,
+              marginLeft: 27,
+            }}
+            multiple
+            id="filter-categories"
+            options={Object.values(props.state.categories)}
+            getOptionLabel={(option) => option.name}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                variant="standard" // whats this
+                label="Category"
+                placeholder="Job Type" // whats this
                 setJobView={props.setJobView}
-                state={props.state}
-                setCoord={props.setCoord}
-                isSelected={props.selected && props.selected.id === job.id}
-                setSelected={props.setSelected}
-                setProfile={props.setProfile}
               />
-            ))}
+            )}
+          />
+        </div>
       </div>
-
+      {jobsFiltered
+        .filter((job) => job.client_id !== user)
+        .map((job) => (
+          <FindListItem
+            {...job}
+            job_id={job.id}
+            categories={categories}
+            users={users}
+            onSave={props.saveOffer}
+            setJobView={props.setJobView}
+            state={props.state}
+            setCoord={props.setCoord}
+            isSelected={props.selected && props.selected.id === job.id}
+            setSelected={props.setSelected}
+            setProfile={props.setProfile}
+          />
+        ))}
+    </div>
   );
 }

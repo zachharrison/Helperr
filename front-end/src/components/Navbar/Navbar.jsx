@@ -78,8 +78,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar(props) {
-  // const [text, setText] = useState("");
+export default function Navbar(props) {
+  const {
+    setCurrentUser,
+    removeCurrentUser,
+    setProfile,
+    setJobView,
+    state,
+    cookies,
+  } = props;
 
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -106,18 +113,32 @@ export default function PrimarySearchAppBar(props) {
   };
 
   const handleLogin = (id) => {
-    props.setCurrentUser(id);
+    setCurrentUser(id);
     handleMenuClose();
   };
 
   const handleLogout = () => {
-    props.removeCurrentUser();
+    removeCurrentUser();
+    handleMenuClose();
+  };
+
+  const handleProfileClick = (cookies, state) => {
+    const users = Object.values(state.users);
+    let userName;
+    for (const user of users) {
+      if (user.id === state.currentUser) {
+        userName = user.name;
+      }
+    }
+    setJobView("PROFILE");
+    setProfile(userName);
     handleMenuClose();
   };
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
+      state={state}
       anchorEl={anchorEl}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={menuId}
@@ -126,8 +147,9 @@ export default function PrimarySearchAppBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={() => handleProfileClick(cookies, state)}>
+        My Profile
+      </MenuItem>
       <MenuItem onClick={() => handleLogin(1)}>Login: User 1</MenuItem>
       <MenuItem onClick={() => handleLogin(2)}>Login: User 2</MenuItem>
       <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>

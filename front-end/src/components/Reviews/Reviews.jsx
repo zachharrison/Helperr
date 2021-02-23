@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Reviews(props) {
-  console.log("PROPS INSIDE REVIEW", props);
   const { helper_id, job_id, offer_id, onSave } = props;
 
   const classes = useStyles();
@@ -84,7 +83,6 @@ export default function Reviews(props) {
 
   return (
     <div>
-
       <div>
         <button className="btn" type="button" onClick={handleOpen}>
           Review

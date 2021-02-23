@@ -79,8 +79,9 @@ export default function Places(props) {
       <TextField
         value={value}
         onChange={handleInput}
+        style={{ width: 450, margin: 8 }}
         disabled={!ready}
-        placeholder="Where do you need help?"
+        label="Location"
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === "OK" && renderSuggestions()} {/* wrap this in select tag */}

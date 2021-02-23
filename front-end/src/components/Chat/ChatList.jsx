@@ -19,7 +19,7 @@ export default function ChatList(props) {
 
   return (
     <div className="conversation-list">
-      <Toolbar title="Messenger" />
+      <h3>Messages</h3>
       <ChatSearch />
 
       <div className="message-list-container">{chatListItems}</div>

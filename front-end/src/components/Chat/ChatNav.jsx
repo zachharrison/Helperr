@@ -4,7 +4,6 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 export default function ChatNav({ state, setJobView }) {
-  console.log("jobiew:", state.jobView);
   return (
     <div>
       {state.jobView !== "CHAT" && (

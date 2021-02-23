@@ -8,33 +8,29 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 import Collapsible from "react-collapsible";
 
-export default function PostedListItem(props) {
-  const {
-    name,
-    helper_id,
-    client_id,
-    description,
-    lat,
-    lng,
-    setCoord,
-    price,
-    pay_type,
-    start_time,
-    end_time,
-    category_id,
-    categories,
-    users,
-    postReview,
-    updateOffer,
-    // setJobView,
-    // jobView,
-    state,
-    job_id,
-    status,
-    user,
-    setProfile,
-  } = props;
-
+export default function PostedListItem({
+  name,
+  helper_id,
+  client_id,
+  description,
+  lat,
+  lng,
+  setCoord,
+  price,
+  pay_type,
+  start_time,
+  end_time,
+  category_id,
+  categories,
+  users,
+  postReview,
+  updateOffer,
+  state,
+  job_id,
+  status,
+  user,
+  setProfile,
+}) {
   const categoryName = categories[category_id - 1].name;
   const userAvatar = users[client_id - 1].avatar;
   const userName = users[client_id - 1].name;
@@ -60,7 +56,7 @@ export default function PostedListItem(props) {
   return (
     <div className="accordion-show">
       <div className="jobListItem">
-        <div onClick={() => props.setCoord({ lat, lng })}>
+        <div onClick={() => setCoord({ lat, lng })}>
           <div className="item-row">
             <h1>{name}</h1>
             <div className="pay">
@@ -123,7 +119,7 @@ export default function PostedListItem(props) {
             <AccordionItemButton>
               <div
                 onClick={() => {
-                  props.setCoord({ lat, lng });
+                  setCoord({ lat, lng });
                 }}
               >
                 <div className="item-row">

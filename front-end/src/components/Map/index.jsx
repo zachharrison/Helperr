@@ -63,7 +63,7 @@ export default function Map(props) {
         options={options}
         onLoad={onMapLoad}
       >
-        <div className="rowplz">
+        <div className="map-search-container">
           <Search panTo={panTo} />
           <Locate panTo={panTo} />
         </div>

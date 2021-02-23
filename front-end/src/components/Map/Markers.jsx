@@ -12,7 +12,6 @@ export default function Markers({
   const icon = Object.values(state.categories);
   return (
     <>
-      {console.log("jobMarkers", jobMarkers)}
       {jobMarkers.map((job) => (
         <Marker
           key={job.id}

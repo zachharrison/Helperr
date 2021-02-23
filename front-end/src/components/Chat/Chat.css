@@ -20,24 +20,28 @@
 }
 
 .message-input {
-  height: 10px;
+  height: 11px;
   width: 40%;
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 25px;
   background: #eeeeee;
   font-size: 16px;
   border: none;
-  margin-left: 135px;
+  margin-left: 115px;
   margin-bottom: 10px;
+  padding-left: 20px;
 }
 
 .message-btn {
   height: 40px;
   background: #03afdf;
   color: #fff;
-  font-size: 16px;
-  border-radius: 10px;
+  width: 85px;
+  height: 40px;
+  border-radius: 30px;
+  text-align: center;
   outline: none;
+  margin: 5px;
   border: none;
 }
 

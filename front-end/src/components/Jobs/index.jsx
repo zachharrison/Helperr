@@ -118,7 +118,7 @@ export default function Jobs(props) {
         </div>
       )}
       {!cookies.user && state.jobView !== "FIND" && (
-        <div>
+        <div className="accordion-show">
           <Login
             cookies={cookies}
             removeCurrentUser={removeCurrentUser}

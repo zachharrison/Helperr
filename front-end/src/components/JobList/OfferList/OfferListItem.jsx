@@ -34,26 +34,22 @@ export default function OfferListItem(props) {
         <div className="pay">{/* <h1 className="rate">{status}</h1> */}</div>
         {status !== "ACCEPTED" && status !== "DECLINED" && (
           <div className="btns">
-            <button className="btn-small accept" onClick={() => approval("ACCEPTED", "FILLED")}>
+            <button
+              className="btn-small accept"
+              onClick={() => approval("ACCEPTED", "FILLED")}
+            >
               Accept
             </button>
-            <button className="btn-small decline" onClick={() => approval("DECLINED", "POSTED")}>
+            <button
+              className="btn-small decline"
+              onClick={() => approval("DECLINED", "POSTED")}
+            >
               Decline
             </button>
           </div>
         )}
         {status === "ACCEPTED" && (
           <>
-            <div className="btn-status">
-              {status !== "COMPLETED" && (
-                <Reviews
-                  job_id={job_id}
-                  helper_id={helper_id}
-                  offer_id={offer_id}
-                  onSave={postReview}
-                />
-              )}
-            </div>
             <div>
               <button className="btn-status">ACCEPTED</button>
             </div>
