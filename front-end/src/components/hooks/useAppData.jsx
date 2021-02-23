@@ -53,11 +53,11 @@ export default function useAppData() {
   };
 
   const setChat = (chatId) => {
-    setRoom(chatId);
-    setState({ ...state, chatId, jobView: "CHAT" });
     setCookie("room", chatId, {
       path: "/",
     });
+    setRoom(chatId);
+    setState((prev) => ({ ...prev, chatId, jobView: "CHAT" }));
   };
 
   const setCurrentUser = (currentUser) => {
@@ -85,8 +85,12 @@ export default function useAppData() {
     removeCookie("user");
   };
 
-  const setMessages = (message) =>
-    setState({ ...state, messages: [...state.messages, message] });
+
+  const setMessages = (message) => {
+
+    console.log(message)
+    setState((prev) => ({ ...prev, messages: [...prev.messages, message] }));
+  }
 
   const addMessage = (message) => {
     return axios.post("/api/messages", { message });
