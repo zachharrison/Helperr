@@ -1,24 +1,36 @@
-import MailIcon from "@material-ui/icons/Mail";
-import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
 import "./Chat.css";
-// import useAppData from "../helpers/hooks/useAppData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
-export default function ChatNav(props) {
-  // const { state, setJobView } = useAppData();
+export default function ChatNav({ state, setJobView }) {
+  console.log("jobiew:", state.jobView);
   return (
-    <div
-      className="bottom-nav"
-      onClick={() => {
-        props.setJobView("MESSAGE");
-      }}
-    >
-      <IconButton aria-label="show 4 new mails" color="inherit">
-        <Badge badgeContent={4} color="secondary">
-          <MailIcon />
-        </Badge>
-      </IconButton>
-      Messages
+    <div>
+      {state.jobView !== "CHAT" && (
+        <div
+          className="bottom-nav"
+          onClick={() => {
+            setJobView("MESSAGE");
+          }}
+        >
+          <FontAwesomeIcon
+            className="fontawesome mail-icon"
+            icon={faEnvelope}
+          />
+        </div>
+      )}
+      {state.jobView === "CHAT" && (
+        <div
+          className="bottom-nav-back"
+          onClick={() => {
+            setJobView("MESSAGE");
+          }}
+        >
+          <div className="x-icon">X</div>
+          {/* <FontAwesomeIcon className="x-icon" icon={faTimes} /> */}
+        </div>
+      )}
     </div>
   );
 }

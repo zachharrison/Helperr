@@ -179,41 +179,10 @@ export default function App() {
             />
           </div>
           <div className="chat-container">
-            <ChatNav setJobView={setJobView} />
+            <ChatNav state={state} setJobView={setJobView} />
           </div>
         </div>
       </div>
     </div>
   );
 }
-
-// const _socket = io.connect("http://localhost:8001", {
-//   transports: ["websocket"],
-// });
-// const socketRef = useRef(_socket);
-// const socket = socketRef.current;
-
-// how to have the state start with the state from useAppData - can we pass this into a chat socket?
-// if so how since it one is not a child of the other
-
-// const useChatSocket = () => {
-//   const [messages, setMessages] = useState([]);
-//   const socketRef = useRef(_socket);
-//   const socket = socketRef.current;
-
-//   const sendMessage = ({ userId, message }) => {
-//     return socket.emit("message", { userId, message });
-//   };
-
-//   useEffect(() => {room
-//     socket.removeAllListeners();
-//     socket.on("message", (message) => {
-//       setMessages([...messages, message]);
-//     });
-//     socket.on('connectToRoom', (room) => {
-//       console.log(room)
-//     })
-
-//   });
-//   return { messages, sendMessage };
-// };

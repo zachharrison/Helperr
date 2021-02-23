@@ -1,3 +1,8 @@
+.conversation-list {
+  display: flex;
+  flex-direction: column;
+}
+
 .conversation-list-item {
   display: flex;
   align-items: center;
