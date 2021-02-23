@@ -75,7 +75,7 @@ export default function Post(props) {
   };
 
   return (
-    <>
+    <div className="post-form">
       {/* <span>Post Help Request</span> */}
       <form action="">
         <TextField
@@ -189,16 +189,17 @@ export default function Post(props) {
         </MuiPickersUtilsProvider>
         <br />
         <span>{error}</span>
-        <Button
+        {/* <Button
           onClick={validate}
           variant="contained"
           color="primary"
           style={{ margin: 8 }}
         >
           HELP ME!!!
-        </Button>
+        </Button> */}
+        <button onClick={validate} className="btn">POST</button>
       </form>
-    </>
+    </div>
   );
 }
 

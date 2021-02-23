@@ -1,14 +1,22 @@
 import { useState } from "react";
 import Button from "@material-ui/core/Button";
 import OfferListItem from "./OfferList/OfferListItem";
+import Reviews from "../Reviews/Reviews";
+import '../Reviews/Reviews.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemHeading,
-  AccordionItemButton,
-  AccordionItemPanel,
-} from "react-accessible-accordion";
+// import {
+//   Accordion,
+//   AccordionItem,
+//   AccordionItemHeading,
+//   AccordionItemButton,
+//   AccordionItemPanel,
+// } from "react-accessible-accordion";
+import Collapsible from 'react-collapsible';
+
+
+
 
 export default function PostedListItem(props) {
   const {
@@ -37,6 +45,8 @@ export default function PostedListItem(props) {
     setProfile,
   } = props;
 
+
+
   const categoryName = categories[category_id - 1].name;
   const userAvatar = users[client_id - 1].avatar;
   const userName = users[client_id - 1].name;
@@ -61,8 +71,68 @@ export default function PostedListItem(props) {
     }).format(new Date(date));
   };
 
+
   return (
-    <div className="jobListItem">
+      <div className="accordion-show">
+        <div className="jobListItem">
+          <div onClick={() => props.setCoord({ lat, lng })}>
+            <div className="item-row">
+              <h1>{name}</h1>
+              <div className="pay">
+                <h1>
+                  {categoryName} for ${price}
+                  {pay_type}
+                </h1>
+              </div>
+            </div>
+          <div className="profile-container">
+            <img src={userAvatar} alt="profile" />
+            <p className="username">{userName}</p>
+          </div>
+
+        </div>
+      {status !== "COMPLETED" && 
+      (
+        <h6 className="date">
+        {/* {formattedDate(start_time)}-to- */}
+        Expiry: {formattedDate(end_time)}
+        </h6>
+      )}
+
+    <Collapsible
+        name={name} 
+        trigger={<FontAwesomeIcon icon={faChevronDown} className="job-list-chevron"/>}>
+              {status === "FILLED" && (
+                  <div className="btns">
+                    <Reviews user={user} job_id={job_id} />
+                    <Reviews user={user} job_id={job_id} />
+                  </div>
+                )}
+              <div className="item-row">
+                <p className="job-description">{description}</p>
+              </div>
+              {acceptedOffer()
+              .map((offers) => (
+                <div className="offers">
+                  <OfferListItem
+                    offer_id={offers.id}
+                    job_id={job_id}
+                    helper_id={offers.helper_id}
+                    state={state}
+                    status={offers.status}
+                    postReview={postReview}
+                    updateOffer={updateOffer}
+                  />
+                </div>
+              ))}
+        </Collapsible>
+      </div>
+      </div>
+  );
+}
+
+
+{/* <div className="jobListItem">
       <Accordion allowZeroExpanded>
         <AccordionItem>
           <AccordionItemHeading>
@@ -105,31 +175,31 @@ export default function PostedListItem(props) {
                   <h6 className="date">
                     {/* {formattedDate(start_time)}
                   -to- */}
-                    Expires {formattedDate(end_time)}
+                    /*Expires {formattedDate(end_time)}
                   </h6>
                 )}
 
-                {/* {status} */}
-              </div>
-            </AccordionItemButton>
-          </AccordionItemHeading>
-          <AccordionItemPanel>
-            {acceptedOffer().map((offers) => (
-              <div className="offers">
-                <OfferListItem
-                  offer_id={offers.id}
-                  job_id={job_id}
-                  helper_id={offers.helper_id}
-                  state={state}
-                  status={offers.status}
-                  postReview={postReview}
-                  updateOffer={updateOffer}
-                />
-              </div>
-            ))}
-          </AccordionItemPanel>
-        </AccordionItem>
-      </Accordion>
-    </div>
-  );
-}
+                // {/* {status} */
+//               </div>
+//             </AccordionItemButton>
+//           </AccordionItemHeading>
+//           <AccordionItemPanel>
+//             {acceptedOffer().map((offers) => (
+//               <div className="offers">
+//                 <OfferListItem
+//                   offer_id={offers.id}
+//                   job_id={job_id}
+//                   helper_id={offers.helper_id}
+//                   state={state}
+//                   status={offers.status}
+//                   postReview={postReview}
+//                   updateOffer={updateOffer}
+//                 />
+//               </div>
+//             ))}
+//           </AccordionItemPanel>
+//         </AccordionItem>
+//       </Accordion>
+//     </div>
+//   );
+// }

@@ -84,8 +84,9 @@ export default function Reviews(props) {
 
   return (
     <div>
+
       <div>
-        <button type="button" onClick={handleOpen}>
+        <button className="btn" type="button" onClick={handleOpen}>
           Review
         </button>
         <Modal

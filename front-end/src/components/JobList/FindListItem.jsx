@@ -1,14 +1,19 @@
 import { useState } from "react";
 import Button from "@material-ui/core/Button";
 import "./JobList.css";
+import '../Jobs/Accordion/Accordion.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemHeading,
-  AccordionItemButton,
-  AccordionItemPanel,
-} from "react-accessible-accordion";
+// import {
+//   Accordion,
+//   AccordionItem,
+//   AccordionItemHeading,
+//   AccordionItemButton,
+//   AccordionItemPanel,
+// } from "react-accessible-accordion";
+
+import Collapsible from 'react-collapsible';
 
 export default function FindListItem(props) {
   const {
@@ -62,9 +67,7 @@ export default function FindListItem(props) {
   const formattedDate = (date) => {
     return Intl.DateTimeFormat("en-US", {
       month: "short",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
+      day: "2-digit"
     }).format(new Date(date));
   };
 
@@ -74,60 +77,40 @@ export default function FindListItem(props) {
   };
 
   return (
-    <div className="jobListItem">
-      <AccordionItem dangerouslySetExpanded={isSelected}>
-        <AccordionItemHeading>
-          <AccordionItemButton>
-            <div
-              onClick={() => {
-                props.setCoord({ lat, lng });
-              }}
-            >
-              <div className="item-row">
-                <h1>{name}</h1>
-                <div className="pay">
-                  <h1>
-                    {categoryName} for ${price}
-                    {pay_type}
-                  </h1>
-                </div>
-              </div>
-              <div className="item-row">
-                <div className="profile-container">
-                  <img src={userAvatar} alt="profile" />
-                  <button onClick={handleProfileClick} className="profile-btn">
-                    View Profile
-                  </button>
-                </div>
-                <div className="pay">
-                  <h1 className="rate">{userName}</h1>
-                </div>
-              </div>
-              <div className="item-row">
-                <h6 className="date">
-                  {formattedDate(start_time)}
-                  -to-
-                  {formattedDate(end_time)}
-                </h6>
-              </div>
-              {status}
-            </div>
-          </AccordionItemButton>
-        </AccordionItemHeading>
-        <AccordionItemPanel>
-          <div className="item-row">
-            <p className="date">{description}</p>
+    <div className="accordion-show">
+      <div className="jobListItem">
+        <div onClick={() => props.setCoord({ lat, lng })}>
+        <div className="item-row">
+          <h1 className="job-name">{name}</h1>
+          <div className="pay">
+            <h1>
+              {categoryName} for ${price}
+              {pay_type}
+            </h1>
           </div>
-          <Button
-            onClick={application}
-            variant="contained"
-            color="primary"
-            style={{ margin: 8 }}
-          >
-            Apply
-          </Button>
-        </AccordionItemPanel>
-      </AccordionItem>
+        </div>
+          <div className="profile-container">
+            <img src={userAvatar} alt="profile" />
+            <p className="username">{userName}</p>
+            <button onClick={handleProfileClick} className="btn">
+              View Profile
+            </button>
+          </div>
+          <div className="item-row">
+            <h6 className="date">
+              Expiry: {formattedDate(end_time)}
+            </h6>
+          </div>
+        </div>
+      <Collapsible 
+      trigger={<FontAwesomeIcon icon={faChevronDown} className="job-list-chevron"/>}>
+        <div className="item-row">
+          <p className="job-description">{description}</p>
+        </div>
+       <button onClick={application} className="btn">Apply</button>
+      </Collapsible>
     </div>
+    </div>
+    
   );
 }

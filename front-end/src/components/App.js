@@ -141,7 +141,7 @@ export default function App() {
         </div>
 
         <div className="right-container">
-          <div>
+          <div className="view-container">
             <JobToggle state={state} setJobView={setJobView} />
           </div>
           <div className="jobs-container">

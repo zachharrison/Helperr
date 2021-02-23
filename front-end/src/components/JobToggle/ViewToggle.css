@@ -1,0 +1,142 @@
+.toggle-btn-container .skin1 {
+  border: 3px solid #fe53bb;
+  color: #fe53bb;
+  background-color: #840151;
+}
+.toggle-btn-container .skin1:hover {
+  border-color: #fe86cf;
+  color: #fe86cf;
+  background-color: #b70170;
+}
+.toggle-btn-container .skin1:focus {
+  border-color: #fe86cf;
+  color: #fe86cf;
+  background-color: #b70170;
+  padding: 16px 16px;
+  outline: 0;
+  border-radius: 12px;
+}
+.toggle-btn-container .skin1:focus:first-of-type {
+  border-radius: 30px 12px 12px 30px;
+}
+.toggle-btn-container .skin1:focus:last-of-type {
+  border-radius: 12px 30px 30px 12px;
+}
+
+.toggle-btn-container .skin2 {
+  border: 3px solid #f5d300;
+  color: #f5d300;
+  background-color: #292300;
+}
+.toggle-btn-container .skin2:hover {
+  border-color: #ffe129;
+  color: #ffe129;
+  background-color: #5c4f00;
+}
+.toggle-btn-container .skin2:focus {
+  border-color: #ffe129;
+  color: #ffe129;
+  background-color: #5c4f00;
+  padding: 16px 16px;
+  outline: 0;
+  border-radius: 12px;
+}
+.toggle-btn-container .skin2:focus:first-of-type {
+  border-radius: 30px 12px 12px 30px;
+}
+.toggle-btn-container .skin2:focus:last-of-type {
+  border-radius: 12px 30px 30px 12px;
+}
+
+.toggle-btn-container .skin3 {
+  border: 3px solid #00d4ff;
+  color: #00d4ff;
+  background-color: #002a33;
+}
+.toggle-btn-container .skin3:hover {
+  border-color: #33ddff;
+  color: #33ddff;
+  background-color: #005566;
+}
+.toggle-btn-container .skin3:focus {
+  border-color: #33ddff;
+  color: #33ddff;
+  background-color: #005566;
+  padding: 16px 16px;
+  outline: 0;
+  border-radius: 12px;
+}
+.toggle-btn-container .skin3:focus:first-of-type {
+  border-radius: 30px 12px 12px 30px;
+}
+.skin3:focus:last-of-type {
+  border-radius: 12px 30px 30px 12px;
+}
+
+.toggle-btn-container .skin4 {
+  border: 3px solid #72ff00;
+  color: #72ff00;
+  background-color: #173300;
+}
+.toggle-btn-container .skin4:hover {
+  border-color: #8eff33;
+  color: #8eff33;
+  background-color: #2e6600;
+}
+.toggle-btn-container .skin4:focus {
+  border-color: #8eff33;
+  color: #8eff33;
+  background-color: #2e6600;
+  padding: 16px 16px;
+  outline: 0;
+  border-radius: 12px;
+}
+.toggle-btn-container .button:focus:first-of-type {
+  border-radius: 30px 12px 12px 30px;
+}
+.toggle-btn-container .skin4:focus:last-of-type {
+  border-radius: 12px 30px 30px 12px;
+}
+
+
+.toggle-btn-container .toggle-btn-container button::-moz-focus-inner {
+  border: 0;
+}
+
+.toggle-btn-container .toggle-btn-container button {
+  outline: 0;
+}
+
+.toggle-btn-container {
+  margin: 40px;
+  height: 70px;
+
+}
+
+
+.toggle-btn-container button {
+  font-weight: 800;
+  background: transparent;
+  min-width: 100px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  font-size: 15px;
+  display: inline-block;
+  padding: 10px 16px;
+  margin: 0 3px 0 0;
+  cursor: pointer;
+  transition-duration: 0.1s;
+  transition-timing-function: ease-in-out;
+}
+.toggle-btn-container button:first-of-type {
+  border-radius: 20px 8px 8px 20px;
+}
+.toggle-btn-container button:last-of-type {
+  border-radius: 8px 20px 20px 8px;
+}
+
+@media only screen and (max-width: 767px) {
+  button {
+    min-width: 80px;
+  }
+}

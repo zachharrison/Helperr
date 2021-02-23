@@ -46,7 +46,7 @@ export default function All(props) {
             // setJobView={props.setJobView}
           />
         ))}
-      {posted.length < 1 && <div>You have no posted jobs.</div>}
+      {posted.length < 1 && <p className="text-center">You have no posted jobs.</p>}
       <h3>Applied Jobs</h3>
       {applied.length > 0 &&
         applied.map((myApps) => (
@@ -62,7 +62,7 @@ export default function All(props) {
             // cookies={props.cookies}
           />
         ))}
-      {applied.length < 1 && <div>You have no applied jobs.</div>}
+      {applied.length < 1 && <p className="text-center">You have no applied jobs.</p>}
       <h3>Completed Jobs</h3>
       {completed.length > 0 &&
         completed.map((myPosts) => (
@@ -78,7 +78,7 @@ export default function All(props) {
             setProfile={props.setProfile}
           />
         ))}
-      {completed.length < 1 && <div>You have no completed jobs.</div>}
+      {completed.length < 1 && <p className="text-center">You have no completed jobs.</p>}
     </>
   );
 }

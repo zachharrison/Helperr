@@ -25,32 +25,26 @@ export default function OfferListItem(props) {
   }
 
   return (
-    <div className="offerlist-item">
+    <div className="offer-list-item">
       <div className="item-row">
-        <img src={helperAvatar} alt="(╯°□°)╯︵ ┻━┻" width="50" height="50" />
-        <div>
-          <h1>{helperName}</h1>
+        <div className="profile-container-inner">
+          <img src={helperAvatar} alt="profile" />
+          <p>{helperName}</p>
         </div>
         <div className="pay">{/* <h1 className="rate">{status}</h1> */}</div>
         {status !== "ACCEPTED" && status !== "DECLINED" && (
-          <div>
-            <button
-              className="accept"
-              onClick={() => approval("ACCEPTED", "FILLED")}
-            >
+          <div className="btns">
+            <button className="btn-small accept" onClick={() => approval("ACCEPTED", "FILLED")}>
               Accept
             </button>
-            <button
-              className="decline"
-              onClick={() => approval("DECLINED", "POSTED")}
-            >
+            <button className="btn-small decline" onClick={() => approval("DECLINED", "POSTED")}>
               Decline
             </button>
           </div>
         )}
         {status === "ACCEPTED" && (
           <>
-            <div>
+            <div className="btn-status">
               {status !== "COMPLETED" && (
                 <Reviews
                   job_id={job_id}
@@ -61,13 +55,13 @@ export default function OfferListItem(props) {
               )}
             </div>
             <div>
-              <button className="status-element">ACCEPTED</button>
+              <button className="btn-status">ACCEPTED</button>
             </div>
           </>
         )}
         {status === "DECLINED" && (
           <div>
-            <button className="status-element">DECLINED</button>
+            <button className="btn-status">DECLINED</button>
           </div>
         )}
       </div>
