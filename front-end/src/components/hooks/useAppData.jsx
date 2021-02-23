@@ -60,20 +60,16 @@ export default function useAppData() {
     setCookie("user", currentUser, {
       path: "/",
     });
-    Promise.all([
-      axios.get(`/api/login/messages/${currentUser}`),
-      axios.get(`/api/login/jobs/${currentUser}`),
-      axios.get(`/api/login/offers/${currentUser}`),
-    ]).then((all) => {
-      setState((prev) => ({
-        ...prev,
-        jobView: "ALL",
-        userMessages: all[0].data,
-        userJobs: all[1].data,
-        userOffers: all[2].data,
-        currentUser,
-      }));
-    });
+    Promise.all([axios.get(`/api/login/messages/${currentUser}`)]).then(
+      (all) => {
+        setState((prev) => ({
+          ...prev,
+          jobView: "ALL",
+          userMessages: all[0].data,
+          currentUser,
+        }));
+      }
+    );
   };
 
   const removeCurrentUser = () => {
@@ -81,12 +77,10 @@ export default function useAppData() {
     removeCookie("user");
   };
 
-
   const setMessages = (message) => {
-
-    console.log(message)
+    console.log(message);
     setState((prev) => ({ ...prev, messages: [...prev.messages, message] }));
-  }
+  };
 
   const addMessage = (message) => {
     return axios.post("/api/messages", { message });
