@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./Navbar/Navbar";
 import Map from "./Map";
 import ChatNav from "./Chat/ChatNav";

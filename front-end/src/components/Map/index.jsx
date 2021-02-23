@@ -25,7 +25,13 @@ const options = {
 
 const libraries = ["places"];
 
-export default function Map(props) {
+export default function Map({
+  coord,
+  state,
+  setSelected,
+  selected,
+  jobMarkers,
+}) {
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
     libraries,
@@ -45,10 +51,10 @@ export default function Map(props) {
   }, []);
 
   useEffect(() => {
-    const lat = props.coord.lat;
-    const lng = props.coord.lng;
+    const lat = coord.lat;
+    const lng = coord.lng;
     panTo({ lat, lng });
-  }, [props.coord]);
+  }, [coord]);
 
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading maps";
@@ -68,12 +74,12 @@ export default function Map(props) {
           <Locate panTo={panTo} />
         </div>
         <Markers
-          state={props.state}
+          state={state}
           markers={markers}
-          setSelected={props.setSelected}
-          selected={props.selected}
-          coord={props.coord}
-          jobMarkers={props.jobMarkers}
+          setSelected={setSelected}
+          selected={selected}
+          coord={coord}
+          jobMarkers={jobMarkers}
         />
       </GoogleMap>
     </div>

@@ -1,21 +1,18 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
-import PersonIcon from '@material-ui/icons/Person';
-import AddIcon from '@material-ui/icons/Add';
-import Typography from '@material-ui/core/Typography';
-import { blue } from '@material-ui/core/colors';
-import { useCookies, withCookies } from 'react-cookie'
+import { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Avatar from "@material-ui/core/Avatar";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import ListItemText from "@material-ui/core/ListItemText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Dialog from "@material-ui/core/Dialog";
+import PersonIcon from "@material-ui/icons/Person";
+import AddIcon from "@material-ui/icons/Add";
+import { blue } from "@material-ui/core/colors";
 
-const users = ['user1@gmail.com', 'user2@gmail.com'];
+const users = ["user1@gmail.com", "user2@gmail.com"];
 const useStyles = makeStyles({
   avatar: {
     backgroundColor: blue[100],
@@ -23,17 +20,8 @@ const useStyles = makeStyles({
   },
 });
 
-function Login(props) {
-  const [cookie, setCookie] = useCookies()
-
-  function handleCookie(id) {
-    setCookie("user", id, {
-      path: "/"
-    })
-  }
+function Login({ onClose, selectedValue, open, setCurrentUser }) {
   const classes = useStyles();
-  const { onClose, selectedValue, open, setCurrentUser } = props;
-
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -41,11 +29,15 @@ function Login(props) {
 
   const handleListItemClick = (value) => {
     // onClose(value);
-    value === 'user1@gmail.com' ? setCurrentUser(1) : setCurrentUser(2)
+    value === "user1@gmail.com" ? setCurrentUser(1) : setCurrentUser(2);
   };
 
   return (
-    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+    <Dialog
+      onClose={handleClose}
+      aria-labelledby="simple-dialog-title"
+      open={open}
+    >
       <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
       <List>
         {users.map((user) => (
@@ -59,7 +51,11 @@ function Login(props) {
           </ListItem>
         ))}
 
-        <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
+        <ListItem
+          autoFocus
+          button
+          onClick={() => handleListItemClick("addAccount")}
+        >
           <ListItemAvatar>
             <Avatar>
               <AddIcon />
@@ -78,7 +74,10 @@ function Login(props) {
 //   selectedValue: PropTypes.string.isRequired,
 // };
 
-export default function SimpleDialogDemo(props) {
+export default function SimpleDialogDemo({
+  setCurrentUser,
+  removeCurrentUser,
+}) {
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(users[1]);
 
@@ -98,7 +97,13 @@ export default function SimpleDialogDemo(props) {
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Please Log in first
       </Button>
-      <Login setCurrentUser={props.setCurrentUser} removeCurrentUser={props.removeCurrentUser} selectedValue={selectedValue} open={open} onClose={handleClose} />
+      <Login
+        setCurrentUser={setCurrentUser}
+        removeCurrentUser={removeCurrentUser}
+        selectedValue={selectedValue}
+        open={open}
+        onClose={handleClose}
+      />
     </div>
   );
 }
@@ -113,4 +118,3 @@ export default function SimpleDialogDemo(props) {
 //     <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
 //   </div>
 // );
-

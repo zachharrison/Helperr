@@ -78,7 +78,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar(props) {
+export default function PrimarySearchAppBar({
+  setCurrentUser,
+  removeCurrentUser,
+}) {
   // const [text, setText] = useState("");
 
   const classes = useStyles();
@@ -106,12 +109,12 @@ export default function PrimarySearchAppBar(props) {
   };
 
   const handleLogin = (id) => {
-    props.setCurrentUser(id);
+    setCurrentUser(id);
     handleMenuClose();
   };
 
   const handleLogout = () => {
-    props.removeCurrentUser();
+    removeCurrentUser();
     handleMenuClose();
   };
 

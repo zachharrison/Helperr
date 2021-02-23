@@ -1,15 +1,14 @@
 import Reviews from "../../Reviews/Reviews";
 
-export default function OfferListItem(props) {
-  const {
-    state,
-    offer_id,
-    job_id,
-    helper_id,
-    status,
-    postReview,
-    updateOffer,
-  } = props;
+export default function OfferListItem({
+  state,
+  offer_id,
+  job_id,
+  helper_id,
+  status,
+  postReview,
+  updateOffer,
+}) {
   const helperAvatar = state.users[helper_id].avatar;
   const helperName = state.users[helper_id].name;
 
@@ -34,10 +33,16 @@ export default function OfferListItem(props) {
         <div className="pay">{/* <h1 className="rate">{status}</h1> */}</div>
         {status !== "ACCEPTED" && status !== "DECLINED" && (
           <div className="btns">
-            <button className="btn-small accept" onClick={() => approval("ACCEPTED", "FILLED")}>
+            <button
+              className="btn-small accept"
+              onClick={() => approval("ACCEPTED", "FILLED")}
+            >
               Accept
             </button>
-            <button className="btn-small decline" onClick={() => approval("DECLINED", "POSTED")}>
+            <button
+              className="btn-small decline"
+              onClick={() => approval("DECLINED", "POSTED")}
+            >
               Decline
             </button>
           </div>

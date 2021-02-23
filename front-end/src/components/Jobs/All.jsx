@@ -1,13 +1,17 @@
 import "./Jobs.css";
-import { makeStyles } from "@material-ui/core/styles";
 import PostedListItem from "../JobList/PostedListItem";
 import AppliedListItem from "../JobList/AppliedListItem";
 
-export default function All(props) {
-  const user = props.state.currentUser;
-  const users = Object.values(props.state.users);
-  const jobs = Object.values(props.state.jobs);
-  const categories = Object.values(props.state.categories);
+export default function All({
+  state,
+  setCoord,
+  postReview,
+  updateOffer,
+  setProfile,
+  setJobView,
+}) {
+  const user = state.currentUser;
+  const jobs = Object.values(state.jobs);
 
   const posted = jobs.filter(
     (job) =>
@@ -15,7 +19,7 @@ export default function All(props) {
       (job.status === "POSTED" || job.status === "FILLED")
   );
 
-  const applied = Object.values(props.state.offers)
+  const applied = Object.values(state.offers)
     .filter((offer) => offer.helper_id === user)
     .map((myApps) =>
       jobs.find((job) => job.status !== "COMPLETED" && job.id === myApps.job_id)
@@ -34,51 +38,47 @@ export default function All(props) {
           <PostedListItem
             {...myPosts}
             job_id={myPosts.id}
-            categories={categories}
-            user={user}
-            users={users}
-            state={props.state}
-            setCoord={props.setCoord}
-            updateOffer={props.updateOffer}
-            postReview={props.postReview}
-            setProfile={props.setProfile}
-            // cookies={props.cookies}
-            // setJobView={props.setJobView}
+            state={state}
+            setCoord={setCoord}
+            postReview={postReview}
+            updateOffer={updateOffer}
+            setProfile={setProfile}
           />
         ))}
-      {posted.length < 1 && <p className="text-center">You have no posted jobs.</p>}
+      {posted.length < 1 && (
+        <p className="text-center">You have no posted jobs.</p>
+      )}
       <h3>Applied Jobs</h3>
       {applied.length > 0 &&
         applied.map((myApps) => (
           <AppliedListItem
             {...myApps}
             key={myApps.id}
-            categories={categories}
-            users={users}
-            state={props.state}
-            setJobView={props.setJobView}
-            setCoord={props.setCoord}
-            setProfile={props.setProfile}
-            // cookies={props.cookies}
+            state={state}
+            setCoord={setCoord}
+            setJobView={setJobView}
+            setProfile={setProfile}
           />
         ))}
-      {applied.length < 1 && <p className="text-center">You have no applied jobs.</p>}
+      {applied.length < 1 && (
+        <p className="text-center">You have no applied jobs.</p>
+      )}
       <h3>Completed Jobs</h3>
       {completed.length > 0 &&
         completed.map((myPosts) => (
           <PostedListItem
             {...myPosts}
             job_id={myPosts.id}
-            categories={categories}
-            user={user}
-            users={users}
-            state={props.state}
-            setCoord={props.setCoord}
-            updateOffer={props.updateOffer}
-            setProfile={props.setProfile}
+            state={state}
+            setCoord={setCoord}
+            postReview={postReview}
+            updateOffer={updateOffer}
+            setProfile={setProfile}
           />
         ))}
-      {completed.length < 1 && <p className="text-center">You have no completed jobs.</p>}
+      {completed.length < 1 && (
+        <p className="text-center">You have no completed jobs.</p>
+      )}
     </>
   );
 }
