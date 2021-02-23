@@ -36,7 +36,12 @@ export default function Find({
             onChange={(event, value) => {
               setCategoryFilter(value || []);
             }}
-            style={{ width: 450, marginBottom: 8 }}
+            style={{
+              width: 450,
+              marginBottom: 8,
+              marginTop: 0,
+              marginLeft: 27,
+            }}
             multiple
             id="filter-categories"
             options={categories}

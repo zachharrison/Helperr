@@ -49,16 +49,6 @@ export default function OfferListItem({
         )}
         {status === "ACCEPTED" && (
           <>
-            <div className="btn-status">
-              {status !== "COMPLETED" && (
-                <Reviews
-                  job_id={job_id}
-                  helper_id={helper_id}
-                  offer_id={offer_id}
-                  onSave={postReview}
-                />
-              )}
-            </div>
             <div>
               <button className="btn-status">ACCEPTED</button>
             </div>

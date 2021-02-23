@@ -123,8 +123,12 @@ export default function App() {
   return (
     <div className="App">
       <Navbar
+        setProfile={setProfile}
         setCurrentUser={setCurrentUser}
         removeCurrentUser={removeCurrentUser}
+        setJobView={setJobView}
+        cookies={cookies}
+        state={state}
       />
       <div className="page-containers">
         <div className="map-container">
@@ -178,7 +182,7 @@ export default function App() {
             />
           </div>
           <div className="chat-container">
-            <ChatNav setJobView={setJobView} />
+            <ChatNav state={state} setJobView={setJobView} />
           </div>
         </div>
       </div>

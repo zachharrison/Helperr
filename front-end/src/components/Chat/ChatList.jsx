@@ -1,9 +1,8 @@
-import React from "react";
 import ChatSearch from "./ChatSearch";
 import ChatListItem from "./ChatListItem";
 import Toolbar from "./Toolbar";
 
-import "./ChatList.css";
+import "./Chat.css";
 
 export default function ChatList({ getConversations, setChat, setJobView }) {
   const chatListData = getConversations();
@@ -19,7 +18,7 @@ export default function ChatList({ getConversations, setChat, setJobView }) {
 
   return (
     <div className="conversation-list">
-      <Toolbar title="Messenger" />
+      <h3>Messages</h3>
       <ChatSearch />
 
       <div className="message-list-container">{chatListItems}</div>

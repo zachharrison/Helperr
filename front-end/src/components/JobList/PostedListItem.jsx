@@ -14,7 +14,6 @@ export default function PostedListItem({
   setCoord,
   price,
   pay_type,
-  start_time,
   end_time,
   category_id,
   postReview,
@@ -47,8 +46,6 @@ export default function PostedListItem({
     return Intl.DateTimeFormat("en-US", {
       month: "short",
       day: "2-digit",
-      // hour: "2-digit",
-      // minute: "2-digit",
     }).format(new Date(date));
   };
 
@@ -71,10 +68,7 @@ export default function PostedListItem({
           </div>
         </div>
         {status !== "COMPLETED" && (
-          <h6 className="date">
-            {/* {formattedDate(start_time)}-to- */}
-            Expiry: {formattedDate(end_time)}
-          </h6>
+          <h6 className="date">Expiry: {formattedDate(end_time)}</h6>
         )}
 
         <Collapsible
@@ -86,9 +80,8 @@ export default function PostedListItem({
             />
           }
         >
-          {status === "FILLED" && (
+          {status !== "COMPLETED" && (
             <div className="btns">
-              <Reviews user={user} job_id={job_id} />
               <Reviews user={user} job_id={job_id} />
             </div>
           )}
@@ -101,10 +94,10 @@ export default function PostedListItem({
                 offer_id={offers.id}
                 job_id={job_id}
                 helper_id={offers.helper_id}
+                state={state}
                 status={offers.status}
                 postReview={postReview}
                 updateOffer={updateOffer}
-                state={state}
               />
             </div>
           ))}

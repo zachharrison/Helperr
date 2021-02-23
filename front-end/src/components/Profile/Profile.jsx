@@ -1,4 +1,3 @@
-import React from "react";
 import "./Profile.css";
 
 const Profile = ({ state }) => {
@@ -30,19 +29,6 @@ const Profile = ({ state }) => {
   };
   const userReviews = getUserReviews(completedJobs, reviews);
 
-  // GET REVIEWER NAME
-  const getReviewerName = (users, review) => {
-    let name;
-    users.forEach((u) => {
-      if (u.id === review.user_id) {
-        name = u.name;
-      } else {
-        name = "Anonymous user";
-      }
-    });
-    return name;
-  };
-
   // GET USERS AVERAGE STARS
   const getAvgStars = (userReviews) => {
     if (userReviews.length > 1) {
@@ -67,10 +53,8 @@ const Profile = ({ state }) => {
           </div>
           <div className="job-feedback">
             <p>
-              <span className="review-title">
-                {getReviewerName(users, review)}:{" "}
-              </span>{" "}
-              "{review.details}"
+              <span className="review-title">{review.reviewer}: </span>"
+              {review.details}"
             </p>
           </div>
         </div>
