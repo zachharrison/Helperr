@@ -111,15 +111,17 @@ export default function PostedListItem(props) {
               <div className="item-row">
                 <p className="job-description">{description}</p>
               </div>
-              {jobOffers
-              .filter((offer) => offer.job_id === job_id)
+              {acceptedOffer()
               .map((offers) => (
                 <div className="offers">
                   <OfferListItem
                     offer_id={offers.id}
+                    job_id={job_id}
                     helper_id={offers.helper_id}
                     state={state}
                     status={offers.status}
+                    postReview={postReview}
+                    updateOffer={updateOffer}
                   />
                 </div>
               ))}
