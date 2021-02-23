@@ -17,13 +17,13 @@
   outline: 0;
   border-radius: 12px;
 }
-.toggle-btn-container .selected {
+.toggle-btn-container .skin.selected {
   border-color: #093a79;
   color: #093a79;
   background-color: #9fc5e7;
   padding: 16px 16px;
   outline: 0;
-  border-radius: 16px;
+  border-radius: 12px;
 }
 
 
