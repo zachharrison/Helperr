@@ -45,6 +45,7 @@ export default function AppliedListItem(props) {
   };
 
   return (
+    <div className="accordion-show">
     <div
       className="jobListItem"
       onClick={() => {
@@ -83,6 +84,7 @@ export default function AppliedListItem(props) {
         </h6>
       </div>
       {status}
+    </div>
     </div>
   );
 }
