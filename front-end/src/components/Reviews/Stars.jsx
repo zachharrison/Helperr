@@ -1,81 +1,68 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Rating from '@material-ui/lab/Rating';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
-import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
-import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
-import SentimentSatisfiedAltIcon from '@material-ui/icons/SentimentSatisfiedAltOutlined';
-import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfied';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import GradeIcon from '@material-ui/icons/Grade';
-import { useStyles } from '@material-ui/pickers/views/Calendar/Day';
-
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+import Rating from "@material-ui/lab/Rating";
+import Box from "@material-ui/core/Box";
+import GradeIcon from "@material-ui/icons/Grade";
 
 const labels = {
-  1: 'Useless',
-  2: 'Poor',
-  3: 'Ok',
-  4: 'Good',
-  5: 'Excellent',
+  1: "Useless",
+  2: "Poor",
+  3: "Ok",
+  4: "Good",
+  5: "Excellent",
 };
 
 const StyledRating = withStyles({
   icon: {
-    fontSize: '50px',
+    fontSize: "50px",
   },
   iconFilled: {
-    color: '#02539b',
+    color: "#02539b",
   },
   iconHover: {
-    color: '#02539b',
+    color: "#02539b",
   },
   heading: {
-    textAlign: 'center;',
-    color: 'pink;'
-  }
+    textAlign: "center;",
+    color: "pink;",
+  },
 })(Rating);
 
 const Styles = makeStyles({
   header: {
-    textAlign: 'center;',
+    textAlign: "center;",
   },
 
   text: {
-    textAlign: 'center;',
-  }
-    
-  
-})
+    textAlign: "center;",
+  },
+});
 
 const customIcons = {
   1: {
-    icon: <GradeIcon/>,
-    label: 'Very Dissatisfied',
+    icon: <GradeIcon />,
+    label: "Very Dissatisfied",
   },
   2: {
     icon: <GradeIcon />,
-    label: 'Dissatisfied',
+    label: "Dissatisfied",
   },
   3: {
     icon: <GradeIcon />,
-    label: 'Neutral',
+    label: "Neutral",
   },
   4: {
     icon: <GradeIcon />,
-    label: 'Satisfied',
+    label: "Satisfied",
   },
   5: {
     icon: <GradeIcon />,
-    label: 'Very Satisfied',
+    label: "Very Satisfied",
   },
 };
 
-function IconContainer(props) {
-  const { value, ...other } = props;
+function IconContainer({ value, ...other }) {
   return <span {...other}>{customIcons[value].icon}</span>;
 }
 
@@ -83,11 +70,8 @@ IconContainer.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-
-
-export default function CustomizedRatings(props) {
+export default function CustomizedRatings({ starValue, setStarValue }) {
   const classes = Styles();
-  const {starValue, setStarValue} = props
   const [hover, setHover] = React.useState(-1);
   return (
     <div>
@@ -109,7 +93,6 @@ export default function CustomizedRatings(props) {
           <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : starValue]}</Box>
         )}
       </Box>
-
     </div>
   );
 }

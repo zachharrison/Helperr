@@ -2,10 +2,9 @@ import ChatSearch from "./ChatSearch";
 import ChatListItem from "./ChatListItem";
 import Toolbar from "./Toolbar";
 
-import "./ChatListItem.css";
-export default function ChatList(props) {
-  const { getConversations, setChat, setJobView } = props;
+import "./Chat.css";
 
+export default function ChatList({ getConversations, setChat, setJobView }) {
   const chatListData = getConversations();
 
   const chatListItems = chatListData.map((item) => (

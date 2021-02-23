@@ -1,14 +1,14 @@
 INSERT INTO users (name, avatar, email, password)
 VALUES (
-    'BobTheBuilder',
-    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/bob-the-builder.png?raw=true',
-    'Bob@BobsBuilding.com',
-    'password'
-  ),
-  (
     'Mrs.Doubtfire',
     'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/mrs-doubtfire.png?raw=true',
     'robinwilliams@ripthegoat.com',
+    'password'
+  ),
+  (
+    'BobTheBuilder',
+    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/bob-the-builder.png?raw=true',
+    'Bob@BobsBuilding.com',
     'password'
   ),
   (
@@ -50,6 +50,48 @@ INSERT INTO jobs (
 VALUES (
     1,
     2,
+    1,
+    'Furniture mover',
+    'I have recently purchased a beautiful new couch, and need someone who can help me cary it up 4 flights of stars to my appartment',
+    45.631060,
+    -122.671570,
+    10000,
+    ' total',
+    '2021-02-26 18:00:00',
+    '2021-02-27 24:00:00',
+    'COMPLETED'
+  ),
+  (
+    1,
+    3,
+    5,
+    'Locksmith needed',
+    'Please fix our back door lock before we leave on vacation!',
+    49.275338,
+    -123.1491361,
+    10000,
+    ' total',
+    '2021-03-04 18:00:00',
+    '2021-03-08 18:00:00',
+    'FILLED'
+  ),
+  (
+    1,
+    null,
+    8,
+    'Grocery shopping',
+    'I''m an old lady and need someone to do my grocery shopping and deliver to my house.',
+    49.278300,
+    -123.126520,
+    1000,
+    '/hr',
+    '2021-02-26 18:00:00',
+    '2021-02-27 24:00:00',
+    'POSTED'
+  ),
+  (
+    2,
+    1,
     3,
     'Babysit a lil brat',
     'Take care of this POS for me thanks',
@@ -59,32 +101,46 @@ VALUES (
     '/hr',
     '2021-02-26 18:00:00',
     '2021-02-27 24:00:00',
+    'COMPLETED'
+  ),
+  (
+    2,
+    null,
+    9,
+    'Need marriage counselor',
+    'It seems like I can fix just about anything but my marriage, PLEASE HELP!',
+    48.428421,
+    -123.3656461,
+    15000,
+    ' total',
+    '2021-02-26 18:00:00',
+    '2021-02-27 24:00:00',
     'POSTED'
   ),
   (
-    3,
     2,
-    8,
-    'Grocery shopping',
-    'Need someone to do my grocery shopping and deliver to my house.',
-    49.278300,
-    -123.126520,
-    1000,
+    4,
+    7,
+    'Teach my uncoordinated son to throw a football',
+    'He''s really bad at sports.. not even sure he''s mine',
+    49.3042584,
+    -123.1442522,
+    2000,
     '/hr',
     '2021-02-26 18:00:00',
     '2021-02-27 24:00:00',
     'FILLED'
   ),
   (
-    4,
     3,
-    4,
-    'Fix my flat tire',
-    'In need of a helper who can put on my spare tire for me!',
-    48.428421,
-    -123.3656461,
-    15000,
-    ' total',
+    2,
+    3,
+    'Caregiver needed during recovery from fall ',
+    'We both tripped on some hotwheels then fell down the stairs onto some Lego.. Need a gental caregiver to help us eat and go to the washroom during our long road to physical rehabilitation',
+    49.281290,
+    123.115121,
+    5000,
+    '/hr',
     '2021-02-26 18:00:00',
     '2021-02-27 24:00:00',
     'COMPLETED'
@@ -104,50 +160,8 @@ VALUES (
     'POSTED'
   ),
   (
+    4,
     2,
-    null,
-    1,
-    'Furniture mover',
-    'I have recently purchased a beautiful new couch, and need someone who can help me cary it up 4 flights of stars to my appartment',
-    45.631060,
-    -122.671570,
-    10000,
-    ' total',
-    '2021-02-26 18:00:00',
-    '2021-02-27 24:00:00',
-    'POSTED'
-  ),
-  (
-    1,
-    null,
-    5,
-    'Locksmith needed',
-    'Please fix our back door lock before we leave on vacation!',
-    49.275338,
-    -123.1491361,
-    10000,
-    ' total',
-    '2021-03-04 18:00:00',
-    '2021-03-08 18:00:00',
-    'POSTED'
-  ),
-  (
-    1,
-    null,
-    7,
-    'Teach my uncoordinated son to throw a football',
-    'He''s really bad at sports.. not even sure he''s mine',
-    49.3042584,
-    -123.1442522,
-    2000,
-    '/hr',
-    '2021-02-26 18:00:00',
-    '2021-02-27 24:00:00',
-    'FILLED'
-  ),
-  (
-    1,
-    3,
     4,
     'Put my bumper back on',
     'My son is learning how to drive and backed into my garage, would really appreciate if someone could help me re-attach my bumper. Should be pretty easy, not too worried about how it looks as long as its on',
@@ -158,20 +172,45 @@ VALUES (
     '2021-02-20 18:00:00',
     '2021-02-27 24:00:00',
     'COMPLETED'
+  ),
+  (
+    3,
+    2,
+    3,
+    'Caregiver needed during recovery from fall ',
+    'We both tripped on some hotwheels then fell down the stairs onto some Lego.. Need a gental caregiver to help us eat and go to the washroom during our long road to physical rehabilitation',
+    49.281290,
+    123.115121,
+    5000,
+    '/hr',
+    '2021-02-26 18:00:00',
+    '2021-02-27 24:00:00',
+    'COMPLETED'
   );
 INSERT INTO offers (helper_id, job_id, price, pay_type, status)
-VALUES (2, 1, 2000, '/hr', 'PENDING'),
-  (1, 2, 15000, ' total', 'PENDING'),
-  (2, 3, 2000, '/hr', 'PENDING'),
-  (3, 5, 20000, '/hr', 'ACCEPTED'),
+VALUES (2, 1, 2000, '/hr', 'REVIEWED'),
+  (3, 1, 3000, '/hr', 'PENDING'),
   (4, 1, 3000, '/hr', 'PENDING'),
-  (4, 2, 2500, ' total', 'PENDING'),
-  (3, 6, 100000, ' total', 'ACCEPTED'),
-  (4, 6, 10000, '/hr', 'PENDING'),
-  (2, 7, 3000, '/hr', 'PENDING'),
-  (4, 7, 1212, ' total', 'DECLINED'),
-  (3, 8, 150, ' total', 'ACCEPTED'),
-  (3, 1, 3000, '/hr', 'PENDING');
+  (4, 2, 15000, ' total', 'PENDING'),
+  (3, 2, 2500, ' total', 'ACCEPTED'),
+  (2, 2, 2500, ' total', 'PENDING'),
+  (3, 3, 2000, '/hr', 'PENDING'),
+  (4, 3, 20000, '/hr', 'PENDING'),
+  (2, 3, 2000, '/hr', 'PENDING'),
+  (1, 4, 20000, '/hr', 'REVIEWED'),
+  (3, 4, 20000, '/hr', 'PENDING'),
+  (4, 4, 2000, '/hr', 'PENDING'),
+  (4, 5, 20000, '/hr', 'PENDING'),
+  (3, 5, 20000, '/hr', 'PENDING'),
+  (1, 5, 2000, '/hr', 'PENDING'),
+  (3, 6, 100000, ' total', 'PENDING'),
+  (4, 6, 10000, '/hr', 'ACCEPTED'),
+  (1, 6, 10000, '/hr', 'PENDING'),
+  (1, 7, 20000, '/hr', 'REVIEWED'),
+  (2, 7, 1212, ' total', 'PENDING'),
+  (1, 8, 20000, '/hr', 'PENDING'),
+  (2, 8, 1250, ' total', 'REVIEWED'),
+  (2, 9, 5000, ' total', 'REVIEWED');
 INSERT INTO messages (user_id, offer_id, message, timestamp)
 VALUES (
     2,
@@ -179,22 +218,21 @@ VALUES (
     'User sent an offer 2000',
     '2021-02-15T09:13:58.223Z'
   ),
-  -- 2 sends message to 1 for offer 1
   (
+    4,
     2,
-    2,
-    'User sent an offer 15000',
+    'User sent an offer 3000',
     '2021-02-16T09:12:38.223Z'
   ),
   (
-    2,
-    3,
+    4,
+    4,
     'User sent an offer 2000',
     '2021-02-16T09:12:38.223Z'
   ),
   (
     3,
-    4,
+    5,
     'User sent an offer 20000',
     '2021-02-15T09:12:38.223Z'
   ),

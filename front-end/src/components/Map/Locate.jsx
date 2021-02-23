@@ -1,12 +1,12 @@
 import "./Map.css";
-export default function Locate(props) {
+export default function Locate({ panTo }) {
   return (
     <button
       className="find-me"
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            props.panTo({
+            panTo({
               lat: position.coords.latitude,
               lng: position.coords.longitude,
             });

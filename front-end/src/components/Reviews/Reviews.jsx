@@ -5,9 +5,6 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import Stars from "./Stars";
 import TextField from "@material-ui/core/TextField";
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
-import { BottomNavigation } from "@material-ui/core";
 import "./Reviews.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,9 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Reviews(props) {
-  const { helper_id, job_id, offer_id, onSave } = props;
-
+export default function Reviews({ helper_id, job_id, offer_id, onSave }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [review, setReview] = useState("");
@@ -60,7 +55,7 @@ export default function Reviews(props) {
     },
   });
 
-  Reviews = withStyles(styles)(Reviews);
+  Reviews = withStyles(styles)(Reviews); //what is this, (its throwing a warning)
 
   function validate(isCompleted) {
     if (review === "" || starValue === "") {

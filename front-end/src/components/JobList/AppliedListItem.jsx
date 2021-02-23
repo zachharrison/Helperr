@@ -11,31 +11,27 @@ export default function AppliedListItem(props) {
   // console.log("props from job item", props);
   const {
     name,
-    helper_id,
     client_id,
     description,
     lat,
     lng,
-    setCoord,
     price,
     pay_type,
-    start_time,
     end_time,
     category_id,
-    categories,
-    users,
     setProfile,
-    onSave,
     setJobView,
-    jobView,
     state,
-    job_id,
     status,
   } = props;
+
+  const categories = Object.values(state.categories);
+  const users = Object.values(state.users);
 
   const categoryName = categories[category_id - 1].name;
   const userAvatar = users[client_id - 1].avatar;
   const userName = users[client_id - 1].name;
+
   const formattedDate = (date) => {
     return Intl.DateTimeFormat("en-US", {
       month: "short",

@@ -1,6 +1,5 @@
 import "./Chat.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 export default function ChatNav({ state, setJobView }) {
@@ -27,7 +26,6 @@ export default function ChatNav({ state, setJobView }) {
           }}
         >
           <div className="x-icon">X</div>
-          {/* <FontAwesomeIcon className="x-icon" icon={faTimes} /> */}
         </div>
       )}
     </div>

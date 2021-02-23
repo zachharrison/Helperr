@@ -1,5 +1,4 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
@@ -11,9 +10,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 import PersonIcon from "@material-ui/icons/Person";
 import AddIcon from "@material-ui/icons/Add";
-import Typography from "@material-ui/core/Typography";
 import { blue } from "@material-ui/core/colors";
-import { useCookies, withCookies } from "react-cookie";
 
 const users = ["user1@gmail.com", "user2@gmail.com"];
 const useStyles = makeStyles({
@@ -23,23 +20,14 @@ const useStyles = makeStyles({
   },
 });
 
-function Login(props) {
-  const [cookie, setCookie] = useCookies();
-
-  function handleCookie(id) {
-    setCookie("user", id, {
-      path: "/",
-    });
-  }
+function Login({ onClose, selectedValue, open, setCurrentUser }) {
   const classes = useStyles();
-  const { onClose, selectedValue, open, setCurrentUser } = props;
 
   const handleClose = () => {
     onClose(selectedValue);
   };
 
   const handleListItemClick = (value) => {
-    // onClose(value);
     value === "user1@gmail.com" ? setCurrentUser(1) : setCurrentUser(2);
   };
 
@@ -79,13 +67,7 @@ function Login(props) {
   );
 }
 
-// Login.propTypes = {
-//   onClose: PropTypes.func.isRequired,
-//   open: PropTypes.bool.isRequired,
-//   selectedValue: PropTypes.string.isRequired,
-// };
-
-export default function PleaseLogin(props) {
+export default function PleaseLogin({ setCurrentUser, removeCurrentUser }) {
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(users[1]);
 
@@ -100,14 +82,13 @@ export default function PleaseLogin(props) {
 
   return (
     <div>
-      {/* <Typography variant="subtitle1">Selected: {selectedValue}</Typography> */}
       <br />
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Please Log in first
       </Button>
       <Login
-        setCurrentUser={props.setCurrentUser}
-        removeCurrentUser={props.removeCurrentUser}
+        setCurrentUser={setCurrentUser}
+        removeCurrentUser={removeCurrentUser}
         selectedValue={selectedValue}
         open={open}
         onClose={handleClose}
@@ -115,14 +96,3 @@ export default function PleaseLogin(props) {
     </div>
   );
 }
-
-// return (
-//   <div>
-//     <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
-//     <br />
-//     <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-//       Open simple dialog
-//     </Button>
-//     <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
-//   </div>
-// );

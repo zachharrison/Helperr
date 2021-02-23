@@ -7,7 +7,6 @@ export default function Markers({
   coord,
   jobMarkers,
   state,
-  jobView,
 }) {
   const icon = Object.values(state.categories);
   return (

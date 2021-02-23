@@ -12,8 +12,6 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
-// import InputBase from "@material-ui/core/InputBase";
-// import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
   grow: {

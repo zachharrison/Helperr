@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import { add } from "date-fns";
 
 export default function useAppData() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
@@ -26,7 +25,6 @@ export default function useAppData() {
       axios.get("/api/categories"),
       axios.get("/api/offers"),
       axios.get("/api/reviews"),
-      // axios.get("/api/login/1"),
     ]).then((all) => {
       setState((prev) => ({
         ...prev,
@@ -36,7 +34,6 @@ export default function useAppData() {
         categories: all[2].data,
         offers: all[3].data,
         reviews: all[4].data,
-        // login: all[5].data,
       }));
     });
     if (cookies && cookies.user) {
@@ -45,19 +42,18 @@ export default function useAppData() {
   }, []);
 
   const setJobView = (jobView) =>
-    setState((previous) => ({ ...previous, jobView })); // swap to ...previous, like this, if there is a state bug****
+    setState((previous) => ({ ...previous, jobView }));
 
   const setProfile = (profile) => {
     setState((prev) => ({ ...prev, profile }));
-    // .then(console.log(profile))
   };
 
   const setChat = (chatId) => {
-    setRoom(chatId);
-    setState({ ...state, chatId, jobView: "CHAT" });
     setCookie("room", chatId, {
       path: "/",
     });
+    setRoom(chatId);
+    setState((prev) => ({ ...prev, chatId, jobView: "CHAT" }));
   };
 
   const setCurrentUser = (currentUser) => {
@@ -85,15 +81,18 @@ export default function useAppData() {
     removeCookie("user");
   };
 
-  const setMessages = (message) =>
-    setState({ ...state, messages: [...state.messages, message] });
+
+  const setMessages = (message) => {
+
+    console.log(message)
+    setState((prev) => ({ ...prev, messages: [...prev.messages, message] }));
+  }
 
   const addMessage = (message) => {
     return axios.post("/api/messages", { message });
   };
 
   const getConversations = () => {
-    const currentUser = +cookies.user;
     const usersMessages = state.userMessages;
     const result = {};
 
@@ -129,7 +128,6 @@ export default function useAppData() {
         offerMessages.push(message);
       }
     }
-    // console.log(offerMessages)
     return offerMessages;
   };
 

@@ -1,49 +1,43 @@
 import Post from "./Post";
 import Find from "./Find";
 import All from "./All";
-import Reviews from "../Reviews/Reviews";
 import Profile from "../Profile/Profile";
-import JobToggle from "../JobToggle/JobToggle";
-import "./Jobs.css";
 import Chat from "../Chat/Chat";
 import ChatList from "../Chat/ChatList";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Login from "../Login/Login";
-// import { useCookies, withCookies } from 'react-cookie'
+import "./Jobs.css";
 
-export default function Jobs(props) {
-  const {
-    state,
-    setJobView,
-    getConversations,
-    getMessages,
-    setChat,
-    setCoord,
-    coord,
-    cookies,
-    setCurrentUser,
-    removeCurrentUser,
-    setMessages,
-    postJob,
-    postOffer,
-    postReview,
-    updateOffer,
-    message,
-    sendMessage,
-    room,
-    setRoom,
-    setMessage,
-    currentChat,
-    setCurrentChat,
-    setMessageView,
-    addMessage,
-    setCategoryFilter,
-    jobsFiltered,
-    selected,
-    setSelected,
-    setProfile,
-  } = props;
-
+export default function Jobs({
+  state,
+  setJobView,
+  getConversations,
+  getMessages,
+  setChat,
+  setCoord,
+  coord,
+  cookies,
+  setCurrentUser,
+  removeCurrentUser,
+  setMessages,
+  postJob,
+  postOffer,
+  postReview,
+  updateOffer,
+  message,
+  sendMessage,
+  room,
+  setRoom,
+  setMessage,
+  currentChat,
+  setCurrentChat,
+  setMessageView,
+  addMessage,
+  setCategoryFilter,
+  jobsFiltered,
+  selected,
+  setSelected,
+  setProfile,
+}) {
   function saveJob(newJob) {
     postJob(newJob)
       .then(() => setJobView("ALL"))
@@ -130,7 +124,6 @@ export default function Jobs(props) {
         <div>
           <Chat
             message={message}
-            sendMessage={sendMessage}
             room={room}
             setRoom={setRoom}
             setMessage={setMessage}

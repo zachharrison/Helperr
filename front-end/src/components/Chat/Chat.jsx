@@ -1,18 +1,14 @@
 import Toolbar from "../Chat/Toolbar";
 import "./Chat.css";
 
-const Chat = (props) => {
+export default function Chat(props) {
   const {
-    messages,
     getMessages,
     state,
     cookies,
     message,
     sendMessage,
-    room,
-    setRoom,
     setMessage,
-    currentChat,
     setCurrentChat,
     addMessage,
   } = props;
@@ -66,6 +62,4 @@ const Chat = (props) => {
       </div>
     </div>
   );
-};
-
-export default Chat;
+}

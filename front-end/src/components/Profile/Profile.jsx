@@ -72,7 +72,7 @@ const Profile = ({ state }) => {
           <div className="card-name-container">
             <div className="profile-info">
               <h5 className="card-title">{user.name}</h5>
-              <img src={user.avatar} alt="profile-image" className="profile" />
+              <img src={user.avatar} alt="profile" className="profile" />
             </div>
             <div className="stars-container">
               <h5 className="card-title">Average Stars</h5>

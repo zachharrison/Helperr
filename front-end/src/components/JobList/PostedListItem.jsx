@@ -1,16 +1,12 @@
-import { useState } from "react";
-import Button from "@material-ui/core/Button";
 import OfferListItem from "./OfferList/OfferListItem";
 import Reviews from "../Reviews/Reviews";
 import "../Reviews/Reviews.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-
 import Collapsible from "react-collapsible";
 
 export default function PostedListItem({
   name,
-  helper_id,
   client_id,
   description,
   lat,
@@ -18,19 +14,18 @@ export default function PostedListItem({
   setCoord,
   price,
   pay_type,
-  start_time,
   end_time,
   category_id,
-  categories,
-  users,
   postReview,
   updateOffer,
-  state,
   job_id,
   status,
-  user,
-  setProfile,
+  state,
 }) {
+  const user = state.currentUser;
+  const users = Object.values(state.users);
+  const categories = Object.values(state.categories);
+
   const categoryName = categories[category_id - 1].name;
   const userAvatar = users[client_id - 1].avatar;
   const userName = users[client_id - 1].name;
@@ -41,7 +36,8 @@ export default function PostedListItem({
 
   const acceptedOffer = () => {
     const accepted = allOffers.find(
-      (jobOffer) => jobOffer.status === "ACCEPTED"
+      (jobOffer) =>
+        jobOffer.status === "ACCEPTED" || jobOffer.status === "REVIEWED"
     );
     return accepted ? [accepted] : allOffers;
   };
@@ -110,77 +106,3 @@ export default function PostedListItem({
     </div>
   );
 }
-
-{
-  /* <div className="jobListItem">
-      <Accordion allowZeroExpanded>
-        <AccordionItem>
-          <AccordionItemHeading>
-            <AccordionItemButton>
-              <div
-                onClick={() => {
-                  setCoord({ lat, lng });
-                }}
-              >
-                <div className="item-row">
-                  <h1>{name}</h1>
-                  <div className="pay">
-                    <p>
-                      ${price}
-                      {pay_type}
-                    </p>
-                  </div>
-                </div>
-                <div className="item-row">
-                  <img
-                    className="avatar"
-                    src={userAvatar}
-                    alt="(╯°□°)╯︵ ┻━┻"
-                    width="50"
-                    height="50"
-                  />
-                  <div>
-                    <h1>{userName}</h1>
-                  </div>
-                </div>
-              </div>
-              <div className="accordion-category">
-                <p>{categoryName}</p>
-              </div>
-              <div className="posted-description">
-                <p>{description}</p>
-              </div>
-              <div>
-                {status !== "COMPLETED" && (
-                  <h6 className="date">
-                    {/* {formattedDate(start_time)}
-                  -to- */
-}
-/*Expires {formattedDate(end_time)}
-                  </h6>
-                )}
-
-                // {/* {status} */
-//               </div>
-//             </AccordionItemButton>
-//           </AccordionItemHeading>
-//           <AccordionItemPanel>
-//             {acceptedOffer().map((offers) => (
-//               <div className="offers">
-//                 <OfferListItem
-//                   offer_id={offers.id}
-//                   job_id={job_id}
-//                   helper_id={offers.helper_id}
-//                   state={state}
-//                   status={offers.status}
-//                   postReview={postReview}
-//                   updateOffer={updateOffer}
-//                 />
-//               </div>
-//             ))}
-//           </AccordionItemPanel>
-//         </AccordionItem>
-//       </Accordion>
-//     </div>
-//   );
-// }
