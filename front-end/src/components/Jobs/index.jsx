@@ -26,6 +26,8 @@ export default function Jobs(props) {
     setMessages,
     postJob,
     postOffer,
+    postReview,
+    updateOffer,
     message,
     sendMessage,
     room,
@@ -37,7 +39,6 @@ export default function Jobs(props) {
     addMessage,
     setCategoryFilter,
     jobsFiltered,
-    saveReview,
     selected,
     setSelected,
     setProfile,
@@ -60,95 +61,91 @@ export default function Jobs(props) {
 
   return (
     <div className="job-container">
-        {state.jobView === "POST" && cookies.user && (
-          <div>
-            <Post
-              state={state}
-              setCoord={setCoord}
-              coord={coord}
-              onSave={saveJob}
-              setJobView={setJobView}
-            />
-          </div>
-        )}
-        {state.jobView === "PROFILE" && cookies.user && (
-          <div>
-            <Profile state={state} cookies={cookies} />
-          </div>
-        )}
-        {state.jobView === "FIND" && (
-          <div>
-            <Find
-              state={state}
-              jobsFiltered={jobsFiltered}
-              setCategoryFilter={setCategoryFilter}
-              saveOffer={saveOffer}
-              setJobView={setJobView}
-              setCoord={setCoord}
-              selected={selected}
-              setSelected={setSelected}
-              setProfile={setProfile}
-            />
-          </div>
-        )}
-        {state.jobView === "ALL" && cookies.user && (
-          <div>
-            <All
-              state={state}
-              jobsFiltered={jobsFiltered}
-              setCategoryFilter={setCategoryFilter}
-              setJobView={setJobView}
-              cookies={cookies}
-              setCoord={setCoord}
-              setProfile={setProfile}
-            />
-          </div>
-        )}
-        {state.jobView === "REVIEWS" && cookies.user && (
-          <div>
-            <Reviews cookies={cookies} />
-          </div>
-        )}
-        {state.jobView === "MESSAGE" && cookies.user && (          
-          <div>
-            <ChatList
-              sendMessage={sendMessage}
-              setJobView={setJobView}
-              getConversations={getConversations}
-              setChat={setChat}
-              setMessageView={setMessageView}
-            />
-          </div>         
-        )}
-        {!cookies.user && state.jobView !== "FIND" && (          
-          <div>
-            <Login
-              cookies={cookies}
-              removeCurrentUser={removeCurrentUser}
-              setCurrentUser={setCurrentUser}
-            />
-          </div>          
-        )}
-        {state.jobView === "CHAT" && cookies.user && (          
-          <div>
-            <Chat
-              message={message}
-              sendMessage={sendMessage}
-              room={room}
-              setRoom={setRoom}
-              setMessage={setMessage}
-              currentChat={currentChat}
-              setCurrentChat={setCurrentChat}
-              setMessageView={setMessageView}
-              getMessages={getMessages}
-              state={state}
-              setMessages={setMessages}
-              sendMessage={sendMessage}
-              cookies={cookies}
-              addMessage={addMessage}
-            />
-          </div>          
-        )}
+      {state.jobView === "POST" && cookies.user && (
+        <div>
+          <Post
+            state={state}
+            setCoord={setCoord}
+            coord={coord}
+            onSave={saveJob}
+            setJobView={setJobView}
+          />
+        </div>
+      )}
+      {state.jobView === "PROFILE" && cookies.user && (
+        <div>
+          <Profile state={state} cookies={cookies} />
+        </div>
+      )}
+      {state.jobView === "FIND" && (
+        <div>
+          <Find
+            state={state}
+            jobsFiltered={jobsFiltered}
+            setCategoryFilter={setCategoryFilter}
+            saveOffer={saveOffer}
+            setJobView={setJobView}
+            setCoord={setCoord}
+            selected={selected}
+            setSelected={setSelected}
+            setProfile={setProfile}
+          />
+        </div>
+      )}
+      {state.jobView === "ALL" && cookies.user && (
+        <div>
+          <All
+            state={state}
+            setCategoryFilter={setCategoryFilter}
+            setJobView={setJobView}
+            cookies={cookies}
+            setCoord={setCoord}
+            setProfile={setProfile}
+            postReview={postReview}
+            updateOffer={updateOffer}
+          />
+        </div>
+      )}
+      {state.jobView === "MESSAGE" && cookies.user && (
+        <div>
+          <ChatList
+            sendMessage={sendMessage}
+            setJobView={setJobView}
+            getConversations={getConversations}
+            setChat={setChat}
+            setMessageView={setMessageView}
+          />
+        </div>
+      )}
+      {!cookies.user && state.jobView !== "FIND" && (
+        <div>
+          <Login
+            cookies={cookies}
+            removeCurrentUser={removeCurrentUser}
+            setCurrentUser={setCurrentUser}
+          />
+        </div>
+      )}
+      {state.jobView === "CHAT" && cookies.user && (
+        <div>
+          <Chat
+            message={message}
+            sendMessage={sendMessage}
+            room={room}
+            setRoom={setRoom}
+            setMessage={setMessage}
+            currentChat={currentChat}
+            setCurrentChat={setCurrentChat}
+            setMessageView={setMessageView}
+            getMessages={getMessages}
+            state={state}
+            setMessages={setMessages}
+            sendMessage={sendMessage}
+            cookies={cookies}
+            addMessage={addMessage}
+          />
+        </div>
+      )}
     </div>
   );
 }

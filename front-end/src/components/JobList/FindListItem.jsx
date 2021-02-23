@@ -48,7 +48,7 @@ export default function FindListItem(props) {
       job_id,
       price,
       pay_type,
-      status: "SENT",
+      status: "PENDING",
     };
     if (helper_id === "") {
       setError("Please login");

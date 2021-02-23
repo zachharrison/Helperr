@@ -48,9 +48,9 @@ export default function useAppData() {
     setState((previous) => ({ ...previous, jobView })); // swap to ...previous, like this, if there is a state bug****
 
   const setProfile = (profile) => {
-    setState((prev) => ({...prev, profile}))
+    setState((prev) => ({ ...prev, profile }));
     // .then(console.log(profile))
-  }
+  };
 
   const setChat = (chatId) => {
     setRoom(chatId);
@@ -89,9 +89,8 @@ export default function useAppData() {
     setState({ ...state, messages: [...state.messages, message] });
 
   const addMessage = (message) => {
-    return axios
-    .post("/api/messages", {message})
-  }
+    return axios.post("/api/messages", { message });
+  };
 
   const getConversations = () => {
     const currentUser = +cookies.user;
@@ -146,6 +145,7 @@ export default function useAppData() {
       });
     });
   }
+
   function postOffer(offer) {
     return axios.post(`/api/offers/`, { offer }).then(() => {
       const id = Object.keys(state.offers).length + 1;
@@ -156,6 +156,57 @@ export default function useAppData() {
           [id]: { ...offer, id },
         },
       });
+    });
+  }
+
+  function updateOffer(update) {
+    changeOfferStatus(update);
+    changeJobStatus(update);
+  }
+
+  function changeOfferStatus(offer) {
+    return axios.post(`/api/offers/${offer.offer_id}`, { offer }).then(() => {
+      setState((prevState) => ({
+        ...prevState,
+        offers: {
+          ...prevState.offers,
+          [offer.offer_id]: {
+            ...prevState.offers[offer.offer_id],
+            status: offer.offer_status,
+          },
+        },
+      }));
+    });
+  }
+  function changeJobStatus(job) {
+    return axios.post(`/api/jobs/${job.job_id}`, { job }).then(() => {
+      setState((prevState) => ({
+        ...prevState,
+        jobs: {
+          ...prevState.jobs,
+          [job.job_id]: {
+            ...prevState.jobs[job.job_id],
+            status: job.job_status,
+            helper_id: job.helper_id,
+          },
+        },
+      }));
+    });
+  }
+
+  function postReview(review) {
+    console.log("REVIEW POSTED", review);
+    changeJobStatus(review);
+    changeOfferStatus(review);
+    return axios.post(`/api/reviews/`, { review }).then(() => {
+      const id = Object.keys(state.reviews).length + 1;
+      setState((prevState) => ({
+        ...prevState,
+        reviews: {
+          ...prevState.reviews,
+          [id]: { ...review, id },
+        },
+      }));
     });
   }
 
@@ -176,7 +227,9 @@ export default function useAppData() {
     setMessages,
     postJob,
     postOffer,
+    postReview,
+    updateOffer,
     addMessage,
-    setProfile
+    setProfile,
   };
 }

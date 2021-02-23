@@ -9,10 +9,19 @@ export default function All(props) {
   const jobs = Object.values(props.state.jobs);
   const categories = Object.values(props.state.categories);
 
-  const applied = jobs.filter((job) => job.helper_id === user);
   const posted = jobs.filter(
-    (job) => job.client_id === user && job.status !== "COMPLETED"
+    (job) =>
+      job.client_id === user &&
+      (job.status === "POSTED" || job.status === "FILLED")
   );
+
+  const applied = Object.values(props.state.offers)
+    .filter((offer) => offer.helper_id === user)
+    .map((myApps) =>
+      jobs.find((job) => job.status !== "COMPLETED" && job.id === myApps.job_id)
+    )
+    .filter((app) => app);
+
   const completed = jobs.filter(
     (job) => job.client_id === user && job.status === "COMPLETED"
   );
@@ -26,13 +35,15 @@ export default function All(props) {
             {...myPosts}
             job_id={myPosts.id}
             categories={categories}
-            users={users}
-            setJobView={props.setJobView}
-            cookies={props.cookies}
-            state={props.state}
-            setProfile={props.setProfile}
             user={user}
+            users={users}
+            state={props.state}
             setCoord={props.setCoord}
+            updateOffer={props.updateOffer}
+            postReview={props.postReview}
+            setProfile={props.setProfile}
+            // cookies={props.cookies}
+            // setJobView={props.setJobView}
           />
         ))}
       {posted.length < 1 && <p className="text-center">You have no posted jobs.</p>}
@@ -44,11 +55,11 @@ export default function All(props) {
             key={myApps.id}
             categories={categories}
             users={users}
-            setJobView={props.setJobView}
-            cookies={props.cookies}
             state={props.state}
+            setJobView={props.setJobView}
             setCoord={props.setCoord}
             setProfile={props.setProfile}
+            // cookies={props.cookies}
           />
         ))}
       {applied.length < 1 && <p className="text-center">You have no applied jobs.</p>}
@@ -59,9 +70,11 @@ export default function All(props) {
             {...myPosts}
             job_id={myPosts.id}
             categories={categories}
+            user={user}
             users={users}
             state={props.state}
-            user={user}
+            setCoord={props.setCoord}
+            updateOffer={props.updateOffer}
             setProfile={props.setProfile}
           />
         ))}

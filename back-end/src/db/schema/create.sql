@@ -42,7 +42,7 @@ CREATE TABLE jobs (
   status job_status,
   timestamp TIMESTAMP NOT NULL DEFAULT NOW()::timestamp
 );
-CREATE TYPE offer_status AS ENUM('PENDING', 'ACCEPTED', 'DECLINED');
+CREATE TYPE offer_status AS ENUM('PENDING', 'ACCEPTED', 'DECLINED', 'REVIEWED');
 CREATE TABLE offers (
   id SERIAL PRIMARY KEY NOT NULL,
   helper_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -54,14 +54,12 @@ CREATE TABLE offers (
   status offer_status,
   timestamp TIMESTAMP NOT NULL DEFAULT NOW()::timestamp
 );
-CREATE TYPE review_who AS ENUM('helper', 'client');
 CREATE TABLE reviews (
   id SERIAL PRIMARY KEY NOT NULL,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  helper_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   --this is who was reviewed
   job_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
   stars INTEGER,
-  who review_who,
   details VARCHAR(255) NOT NULL,
   timestamp TIMESTAMP NOT NULL DEFAULT NOW()::timestamp
 );

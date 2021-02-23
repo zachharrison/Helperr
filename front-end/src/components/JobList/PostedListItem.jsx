@@ -19,7 +19,6 @@ import Collapsible from 'react-collapsible';
 
 
 export default function PostedListItem(props) {
-  // console.log("props from job item", props);
   const {
     name,
     helper_id,
@@ -35,9 +34,10 @@ export default function PostedListItem(props) {
     category_id,
     categories,
     users,
-    onSave,
-    setJobView,
-    jobView,
+    postReview,
+    updateOffer,
+    // setJobView,
+    // jobView,
     state,
     job_id,
     status,
@@ -51,7 +51,17 @@ export default function PostedListItem(props) {
   const userAvatar = users[client_id - 1].avatar;
   const userName = users[client_id - 1].name;
 
-  const jobOffers = Object.values(state.offers);
+  const allOffers = Object.values(state.offers)
+    .filter((offer) => offer.job_id === job_id)
+    .filter((offer) => offer.status !== "DECLINED");
+
+  const acceptedOffer = () => {
+    const accepted = allOffers.find(
+      (jobOffer) => jobOffer.status === "ACCEPTED"
+    );
+    return accepted ? [accepted] : allOffers;
+  };
+
   const formattedDate = (date) => {
     return Intl.DateTimeFormat("en-US", {
       month: "short",
@@ -167,27 +177,27 @@ export default function PostedListItem(props) {
                   </h6>
                 )}
 
-                {/* {status} */
-      //           {status !== "COMPLETED" && (
-      //             <Reviews user={user} job_id={job_id} />
-      //           )}
-      //         </div>
-      //       </AccordionItemButton>
-      //     </AccordionItemHeading>
-      //     <AccordionItemPanel>
-      //       {jobOffers
-      //         .filter((offer) => offer.job_id === job_id)
-      //         .map((offers) => (
-      //           <div className="offers">
-      //             <OfferListItem
-      //               offer_id={offers.id}
-      //               helper_id={offers.helper_id}
-      //               state={state}
-      //               status={offers.status}
-      //             />
-      //           </div>
-      //         ))}
-      //     </AccordionItemPanel>
-      //   </AccordionItem>
-      // </Accordion>
-      // </div> */}
+                // {/* {status} */
+//               </div>
+//             </AccordionItemButton>
+//           </AccordionItemHeading>
+//           <AccordionItemPanel>
+//             {acceptedOffer().map((offers) => (
+//               <div className="offers">
+//                 <OfferListItem
+//                   offer_id={offers.id}
+//                   job_id={job_id}
+//                   helper_id={offers.helper_id}
+//                   state={state}
+//                   status={offers.status}
+//                   postReview={postReview}
+//                   updateOffer={updateOffer}
+//                 />
+//               </div>
+//             ))}
+//           </AccordionItemPanel>
+//         </AccordionItem>
+//       </Accordion>
+//     </div>
+//   );
+// }

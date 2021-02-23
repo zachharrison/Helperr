@@ -9,8 +9,6 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import { BottomNavigation } from "@material-ui/core";
 import "./Reviews.css";
-import JobListItem2 from "../JobList/JobListItem2";
-import Accordion from "../Jobs/Accordion/Accordion"
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -36,11 +34,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Review(props) {
+export default function Reviews(props) {
+  console.log("PROPS INSIDE REVIEW", props);
+  const { helper_id, job_id, offer_id, onSave } = props;
+
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [review, setReview] = useState("");
   const [starValue, setStarValue] = useState();
+  const [error, setError] = useState("");
 
   const reviewInput = useRef(null);
   const handleOpen = () => {
@@ -59,28 +61,33 @@ export default function Review(props) {
     },
   });
 
-  Review = withStyles(styles)(Review);
+  Reviews = withStyles(styles)(Reviews);
 
-  const saveReview = () => {
-    console.log(
-      "review",
-      review,
-      "stars",
-      starValue,
-      "user",
-      props.user,
-      "jobId",
-      props.job_id
-    );
+  function validate(isCompleted) {
+    if (review === "" || starValue === "") {
+      setError("Please fill out the full review");
+      return;
+    }
+    setError("");
+    const newReview = {
+      details: review,
+      stars: starValue,
+      job_id,
+      helper_id,
+      job_status: isCompleted,
+      offer_id,
+      offer_status: isCompleted === "COMPLETED" ? "REVIEWED" : "DECLINED",
+    };
+    onSave(newReview);
     handleClose();
-  };
+  }
 
   return (
     <div>
 
       <div>
         <button className="btn" type="button" onClick={handleOpen}>
-          Completed
+          Review
         </button>
         <Modal
           aria-labelledby="transition-modal-title"
@@ -118,10 +125,10 @@ export default function Review(props) {
                 variant="filled"
                 fullWidth
               />
+              <span>{error}</span>
               <div className="flex-container">
-                <button onClick={() => saveReview()} className="add-icon">
-                  +
-                </button>
+                <button onClick={() => validate("COMPLETED")}>Completed</button>
+                <button onClick={() => validate("POSTED")}>Repost</button>
               </div>
             </div>
           </Fade>

@@ -30,6 +30,8 @@ export default function App() {
     setMessages,
     postJob,
     postOffer,
+    postReview,
+    updateOffer,
     addMessage,
     room,
     setRoom,
@@ -170,6 +172,8 @@ export default function App() {
               setMessages={setMessages}
               postJob={postJob}
               postOffer={postOffer}
+              postReview={postReview}
+              updateOffer={updateOffer}
               addMessage={addMessage}
               setProfile={setProfile}
             />
