@@ -61,6 +61,7 @@ const Chat = (props) => {
         </div>
         <div className="message-container">
             <input
+              autoComplete="off"
               className="message-input"
               type="text"
               name="message"

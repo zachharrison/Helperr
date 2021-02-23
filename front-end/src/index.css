@@ -15,11 +15,85 @@ body {
   height: 100vh;
 }
 
+.App {
+  height: 100vh;
+}
+
+.btn-small {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 60px;
+  height: 25px;
+  border-radius: 30px;
+  text-align: center;
+  outline: none;
+  margin:5px;
+  border: none;
+  background-color: #9fc5e7;
+  color: #135ea2;
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0px;
+  margin-bottom: 15px;
+  flex-direction: row;
+}
+
+.btn {
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  text-align: center;
+  outline: none;
+  margin:5px;
+  border: none;
+  background-color: #135ea2;
+  color: #fff;
+}
+
+.btn:hover {
+  background: chocolate;
+}
+
+.btn-small:hover {
+  background: chocolate;
+  color: white;
+}
+
+.btn-status {
+  background-color: rgba(210, 105, 30, 0.7);
+  color: rgba(255,255,255, 0.8);
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  text-align: center;
+  outline: none;
+  margin:5px;
+  border: none;
+}
+
+.profile-btn-small {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 25px;
+  border-radius: 30px;
+  text-align: center;
+  outline: none;
+  margin:5px;
+  border: none;
+  background-color: #135ea2;
+  color: #fff;
+}
+
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* make scrollbar transparent */
 }
 
-.App {
-  height: 100vh;
-}

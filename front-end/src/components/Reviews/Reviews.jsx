@@ -10,6 +10,7 @@ import AddIcon from "@material-ui/icons/Add";
 import { BottomNavigation } from "@material-ui/core";
 import "./Reviews.css";
 import JobListItem2 from "../JobList/JobListItem2";
+import Accordion from "../Jobs/Accordion/Accordion"
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -76,8 +77,9 @@ export default function Review(props) {
 
   return (
     <div>
+
       <div>
-        <button type="button" onClick={handleOpen}>
+        <button className="btn" type="button" onClick={handleOpen}>
           Completed
         </button>
         <Modal

@@ -5,7 +5,8 @@
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  margin-right: 15px;
+  margin: 0px 40px;
+  
 }
 .card-name-container {
   display: flex;
@@ -81,4 +82,23 @@
 .review-title {
   color: #02539b;
   font-weight: bold;
+}
+
+/* .profile-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+} */
+
+.profile-container img {
+  margin-left: 20px;
+}
+
+.profile-container .username {
+  margin-left: 5px;
+}
+
+.profile-container .btn {
+  margin-right: 150px;
 }

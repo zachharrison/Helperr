@@ -11,7 +11,7 @@ export default function All(props) {
 
   const applied = jobs.filter((job) => job.helper_id === user);
   const posted = jobs.filter(
-    (job) => job.client_id === user && job.status === "POSTED"
+    (job) => job.client_id === user && job.status !== "COMPLETED"
   );
   const completed = jobs.filter(
     (job) => job.client_id === user && job.status === "COMPLETED"
@@ -35,7 +35,7 @@ export default function All(props) {
             setCoord={props.setCoord}
           />
         ))}
-      {posted.length < 1 && <div>You have no posted jobs.</div>}
+      {posted.length < 1 && <p className="text-center">You have no posted jobs.</p>}
       <h3>Applied Jobs</h3>
       {applied.length > 0 &&
         applied.map((myApps) => (
@@ -51,7 +51,7 @@ export default function All(props) {
             setProfile={props.setProfile}
           />
         ))}
-      {applied.length < 1 && <div>You have no applied jobs.</div>}
+      {applied.length < 1 && <p className="text-center">You have no applied jobs.</p>}
       <h3>Completed Jobs</h3>
       {completed.length > 0 &&
         completed.map((myPosts) => (
@@ -65,7 +65,7 @@ export default function All(props) {
             setProfile={props.setProfile}
           />
         ))}
-      {completed.length < 1 && <div>You have no completed jobs.</div>}
+      {completed.length < 1 && <p className="text-center">You have no completed jobs.</p>}
     </>
   );
 }
