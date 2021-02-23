@@ -9,12 +9,29 @@ export default function All(props) {
   const jobs = Object.values(props.state.jobs);
   const categories = Object.values(props.state.categories);
 
-  const applied = jobs.filter((job) => job.helper_id === user);
   const posted = jobs.filter(
     (job) =>
       job.client_id === user &&
       (job.status === "POSTED" || job.status === "FILLED")
   );
+
+  // all the offers you have sent
+  const applied = Object.values(props.state.offers)
+    .filter((offer) => offer.helper_id === user)
+    .map((myApps) =>
+      jobs.find((job) => job.status !== "COMPLETED" && job.id === myApps.job_id)
+    )
+    .filter((app) => app);
+
+  // console.log("HERE", apps);
+  console.log("my APPS", applied);
+
+  /*  const applied = apps.filter(
+    (job) => job.id === apps.job_id && job.status !== "COMPLETED"
+  ); */
+
+  // const applied = jobs.filter((job) => job.helper_id === user);
+
   const completed = jobs.filter(
     (job) => job.client_id === user && job.status === "COMPLETED"
   );
