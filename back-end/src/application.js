@@ -13,13 +13,12 @@ const app = express();
 
 const server = require("http").Server(app);
 
-const io = require('socket.io')(server, {
+const io = require("socket.io")(server, {
   cors: {
     origin: "*",
-    methods: ["GET", "POST"]
-  }
+    methods: ["GET", "POST"],
+  },
 });
-
 
 const db = require("./db");
 
@@ -32,7 +31,6 @@ const reviews = require("./routes/reviews");
 const loginMessages = require("./routes/login-messages");
 const loginJobs = require("./routes/login-jobs");
 const loginOffers = require("./routes/login-offers");
-
 
 /************************** BACK END HELPERS ***********************/
 // const users = [];
@@ -66,13 +64,12 @@ server.listen(8001, () => {
   console.log(`Listening on port ${PORT} in ${ENV} mode.`);
 });
 
-
 module.exports = function application(ENV, actions = { updateJobs: () => {} }) {
   app.use(cors());
   app.use(helmet());
   app.use(bodyparser.json());
-  io.on("connection", socket => {
-    console.log('connected')
+  io.on("connection", (socket) => {
+    console.log("connected");
     const getCurrentCookies = () => {
       // console.log(socket.handshake.headers)
       const cookies = socket.handshake.headers.cookie.split(" ");
@@ -86,24 +83,23 @@ module.exports = function application(ENV, actions = { updateJobs: () => {} }) {
         }
       }
 
-      return { currentUser, currentRoom }
-    }
+      return { currentUser, currentRoom };
+    };
 
-    const userCookies = getCurrentCookies()
-    const {currentUser, currentRoom} = userCookies;
+    const userCookies = getCurrentCookies();
+    const { currentUser, currentRoom } = userCookies;
     // console.log(`Connected: ${currentRoom} as user ${currentUser}`);
 
     // socket.on("disconnect", () => console.log("Disconnected"));
     socket.on("join", (room) => {
-      console.log(`Socket ${socket.id} joining ${room}`)
+      console.log(`Socket ${socket.id} joining ${room}`);
       socket.join(room);
     });
-  })
+  });
 
   const getSocket = () => {
-    return io.sockets
-  }
-
+    return io.sockets;
+  };
 
   app.use("/api", users(db, getSocket));
   app.use("/api", jobs(db, getSocket));
