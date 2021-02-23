@@ -37,6 +37,7 @@ export default function AppliedListItem({
   };
 
   return (
+    <div className="accordion-show">
     <div
       className="jobListItem"
       onClick={() => {
@@ -77,6 +78,7 @@ export default function AppliedListItem({
         </h6>
       </div>
       {status}
+    </div>
     </div>
   );
 }

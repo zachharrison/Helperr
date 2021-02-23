@@ -1,10 +1,10 @@
 import "./ViewToggle.css";
 
-export default function JobToggle({ setJobView }) {
+export default function JobToggle({ setJobView, jobView }) {
   return (
     <div className="toggle-btn-container">
       <button
-        className="multi-button skin skin1"
+        className={`multi-button skin ${jobView === "ALL" ? "selected" : ""}`}
         onClick={() => {
           setJobView("ALL");
         }}
@@ -12,7 +12,7 @@ export default function JobToggle({ setJobView }) {
         Jobs
       </button>
       <button
-        className="multi-button skin skin2"
+        className={`multi-button skin ${jobView === "POST" ? "selected" : ""}`}
         onClick={() => {
           setJobView("POST");
         }}
@@ -20,7 +20,7 @@ export default function JobToggle({ setJobView }) {
         Post
       </button>
       <button
-        className="multi-button skin skin3"
+        className={`multi-button skin ${jobView === "FIND" ? "selected" : ""}`}
         onClick={() => {
           setJobView("FIND");
         }}
