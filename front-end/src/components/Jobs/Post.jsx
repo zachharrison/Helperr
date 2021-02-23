@@ -5,13 +5,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Places from "../Places/Places";
-import "./Jobs.css";
-import "date-fns";
-
 import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
 import {
@@ -19,8 +15,10 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
+import "date-fns";
+import "./Jobs.css";
 
-export default function Post(props) {
+export default function Post({ state, coord, setCoord, onSave }) {
   const classes = useStyles();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -34,12 +32,12 @@ export default function Post(props) {
 
   function validate() {
     const newJob = {
-      client_id: props.state.currentUser,
+      client_id: state.currentUser,
       name,
       category_id,
       description,
-      lat: props.coord.lat,
-      lng: props.coord.lng,
+      lat: coord.lat,
+      lng: coord.lng,
       price,
       pay_type,
       status: "POSTED",
@@ -59,8 +57,7 @@ export default function Post(props) {
       return;
     }
     setError("");
-    props.onSave(newJob);
-    // props.setJobView("ALL");
+    onSave(newJob); //jobview can be set here
   }
   const handleChange = (event) => {
     setPayType(event.target.value);
@@ -76,7 +73,6 @@ export default function Post(props) {
 
   return (
     <div className="post-form">
-      {/* <span>Post Help Request</span> */}
       <form action="">
         <TextField
           id="job-name"
@@ -101,18 +97,18 @@ export default function Post(props) {
           onChange={(event, value) => setCategory(value ? value.id : "")}
           id="category-search"
           name="category-search"
-          value={props.state.category_id}
-          options={Object.values(props.state.categories)}
+          value={state.category_id}
+          options={Object.values(state.categories)}
           getOptionLabel={(option) => option.name}
           style={{ width: 450, margin: 8 }}
           renderInput={(params) => <TextField {...params} label="Category" />}
         />
-        <Places setCoord={props.setCoord} coord={props.coord} />
+        <Places setCoord={setCoord} coord={coord} />
         <TextField
           label="Price"
           id="price"
           name="price"
-          value={props.state.price}
+          value={state.price}
           style={{ width: 315, margin: 8 }}
           InputProps={{
             startAdornment: <InputAdornment position="start">$</InputAdornment>,
@@ -128,7 +124,7 @@ export default function Post(props) {
             labelId="demo-simple-select-label"
             id="pay-type-select"
             name="pay-type-select"
-            value={props.state.pay_type}
+            value={state.pay_type}
             onChange={handleChange}
           >
             <MenuItem value={"/hr"}>Per Hour</MenuItem>
@@ -189,15 +185,9 @@ export default function Post(props) {
         </MuiPickersUtilsProvider>
         <br />
         <span>{error}</span>
-        {/* <Button
-          onClick={validate}
-          variant="contained"
-          color="primary"
-          style={{ margin: 8 }}
-        >
-          HELP ME!!!
-        </Button> */}
-        <button onClick={validate} className="btn">POST</button>
+        <button onClick={validate} className="btn">
+          POST
+        </button>
       </form>
     </div>
   );

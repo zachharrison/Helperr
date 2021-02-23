@@ -1,99 +1,86 @@
-import React, { useState, useEffect } from "react";
-import TextField from "@material-ui/core/TextField";
-import Toolbar from '../Chat/Toolbar'
+import React from "react";
+import Toolbar from "../Chat/Toolbar";
 import "./Chat.css";
-// import { io } from "socket.io-client";
-import fixtures from '../helpers/__mocks__/axios'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 // const FA = require('react-fontawesome')
 
-const Chat = (props) => {
-  const {
-    messages,
-    getMessages,
-    state,
-    cookies,
-    message,
-    sendMessage,
-    room,
-    setRoom,
-    setMessage,
-    currentChat,
-    setCurrentChat,
-    addMessage
-    // messageState,
-    // setMessageState
-  } = props;
-
+export default function Chat({
+  getMessages,
+  state,
+  cookies,
+  message,
+  sendMessage,
+  setMessage,
+  setCurrentChat,
+  addMessage,
+}) {
   const onMessageSubmit = () => {
     const user_id = cookies.user;
     const room = state.chatId;
-    addMessage({offer_id: room, user_id, message})
+    addMessage({ offer_id: room, user_id, message });
     sendMessage({ message, room, user_id });
-    setCurrentChat(oldChats => [message, ...oldChats])
+    setCurrentChat((oldChats) => [message, ...oldChats]);
     console.log({ message, room, user_id });
-    setMessage('');
+    setMessage("");
   };
 
-  const messageList = getMessages(state.chatId)
+  const messageList = getMessages(state.chatId);
   const messageListDisplay = messageList.map((message, index) => {
-    const currentAuthor = +cookies.user
+    const currentAuthor = +cookies.user;
     return (
       <div className="chat">
-        <div className={[`${message.user_id == currentAuthor ? 'mine' : 'yours'}`, 'messages'].join(' ')} key={index}>
-            <div className="message last">
-              { message.message }
-            </div>
+        <div
+          className={[
+            `${message.user_id == currentAuthor ? "mine" : "yours"}`,
+            "messages",
+          ].join(" ")}
+          key={index}
+        >
+          <div className="message last">{message.message}</div>
         </div>
-      </div>
-    )
-  })
-
-    return (
-      <div className="message-list scrollable content">
-        <Toolbar
-          title="Conversation Title"
-        />
-        <div className="chat-body">
-          {messageListDisplay}
-        </div>
-        <div className="message-container">
-            <input
-              autoComplete="off"
-              className="message-input"
-              type="text"
-              name="message"
-              onChange={(e) => setMessage(e.target.value)}
-              value={message}
-              placeholder="Message"
-            />
-          <button className="message-btn" onClick={() => onMessageSubmit()}>Send <FontAwesomeIcon icon={faPaperPlane} /></button>
-          </div>
       </div>
     );
+  });
+
+  return (
+    <div className="message-list scrollable content">
+      <Toolbar title="Conversation Title" />
+      <div className="chat-body">{messageListDisplay}</div>
+      <div className="message-container">
+        <input
+          autoComplete="off"
+          className="message-input"
+          type="text"
+          name="message"
+          onChange={(e) => setMessage(e.target.value)}
+          value={message}
+          placeholder="Message"
+        />
+        <button className="message-btn" onClick={() => onMessageSubmit()}>
+          Send <FontAwesomeIcon icon={faPaperPlane} />
+        </button>
+      </div>
+    </div>
+  );
 }
 
-export default Chat;
+// SAVING MESSAGE IN STATE {message: 'Hello world', name: "2"}
+// cookie is a string and ID from DB is a number
+// const [messageState, setMessageState] = useState({ message: "", name: ""});
+// const [messageState, setMessageState] = useState({ room: cookies.room, user: cookies.user});
 
+// const onTextChange = (e) => {
+//   setMessageState({ ...messageState, [e.target.name]: e.target.value });
+// };
 
-  // SAVING MESSAGE IN STATE {message: 'Hello world', name: "2"}
-  // cookie is a string and ID from DB is a number
-  // const [messageState, setMessageState] = useState({ message: "", name: ""});
-  // const [messageState, setMessageState] = useState({ room: cookies.room, user: cookies.user});
-
-
-  // const onTextChange = (e) => {
-  //   setMessageState({ ...messageState, [e.target.name]: e.target.value });
-  // };
-
-  // const onMessageSubmit = (e) => {
-  //   e.preventDefault();
-  //   const { name, message } = messageState;
-  //   sendMessage({ name, message });
-  //   setMessageState({ message: "", name });
-  // };
+// const onMessageSubmit = (e) => {
+//   e.preventDefault();
+//   const { name, message } = messageState;
+//   sendMessage({ name, message });
+//   setMessageState({ message: "", name });
+// };
 
 /*
   - Sockets are currently in an array. How could we change this?
