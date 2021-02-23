@@ -31,7 +31,7 @@ export default function OfferListItem({
           <p>{helperName}</p>
         </div>
         <div className="pay">{/* <h1 className="rate">{status}</h1> */}</div>
-        {status !== "ACCEPTED" && status !== "DECLINED" && (
+        {status === "PENDING" && (
           <div className="btns">
             <button
               className="btn-small accept"
@@ -64,9 +64,9 @@ export default function OfferListItem({
             </div>
           </>
         )}
-        {status === "DECLINED" && (
+        {status === "REVIEWED" && (
           <div>
-            <button className="btn-status">DECLINED</button>
+            <button className="btn-status">COMPLETED</button>
           </div>
         )}
       </div>

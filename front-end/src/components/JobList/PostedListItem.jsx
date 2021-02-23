@@ -37,7 +37,8 @@ export default function PostedListItem({
 
   const acceptedOffer = () => {
     const accepted = allOffers.find(
-      (jobOffer) => jobOffer.status === "ACCEPTED"
+      (jobOffer) =>
+        jobOffer.status === "ACCEPTED" || jobOffer.status === "REVIEWED"
     );
     return accepted ? [accepted] : allOffers;
   };
