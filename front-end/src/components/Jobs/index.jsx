@@ -7,37 +7,41 @@ import ChatList from "../Chat/ChatList";
 import Login from "../Login/Login";
 import "./Jobs.css";
 
-export default function Jobs({
-  state,
-  setJobView,
-  getConversations,
-  getMessages,
-  setChat,
-  setCoord,
-  coord,
-  cookies,
-  setCurrentUser,
-  removeCurrentUser,
-  setMessages,
-  postJob,
-  postOffer,
-  postReview,
-  updateOffer,
-  message,
-  sendMessage,
-  room,
-  setRoom,
-  setMessage,
-  currentChat,
-  setCurrentChat,
-  setMessageView,
-  addMessage,
-  setCategoryFilter,
-  jobsFiltered,
-  selected,
-  setSelected,
-  setProfile,
-}) {
+export default function Jobs(props) {
+  const {
+    state,
+    setJobView,
+    getConversations,
+    getMessages,
+    setChat,
+    setCoord,
+    coord,
+    cookies,
+    setCurrentUser,
+    removeCurrentUser,
+    setMessages,
+    postJob,
+    postOffer,
+    postReview,
+    updateOffer,
+    message,
+    sendMessage,
+    room,
+    setRoom,
+    setMessage,
+    currentChat,
+    setCurrentChat,
+    setMessageView,
+    addMessage,
+    setCategoryFilter,
+    jobsFiltered,
+    selected,
+    setSelected,
+    setProfile,
+    getUserNameFromId,
+  } = props;
+
+  console.log("JOBINDEXPROPS", props);
   function saveJob(newJob) {
     postJob(newJob)
       .then(() => setJobView("ALL"))
@@ -108,11 +112,13 @@ export default function Jobs({
             getConversations={getConversations}
             setChat={setChat}
             setMessageView={setMessageView}
+            getUserNameFromId={getUserNameFromId}
+            currentUser={state.currentUser}
           />
         </div>
       )}
       {!cookies.user && state.jobView !== "FIND" && (
-        <div>
+        <div className="accordion-show">
           <Login
             cookies={cookies}
             removeCurrentUser={removeCurrentUser}

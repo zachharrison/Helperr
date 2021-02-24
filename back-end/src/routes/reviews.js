@@ -3,9 +3,10 @@ const router = require("express").Router();
 module.exports = (db) => {
   router.get("/reviews", (request, response) => {
     db.query(
-      `SELECT reviews.*, jobs.name
+      `SELECT reviews.*, jobs.name, users.name AS reviewer
     FROM reviews
-    JOIN jobs ON jobs.id = job_id;`
+    JOIN jobs ON jobs.id = job_id
+    JOIN users ON jobs.client_id = users.id;`
     ).then(({ rows: messages }) => {
       response.json(
         messages.reduce(
@@ -17,7 +18,6 @@ module.exports = (db) => {
   });
 
   router.post("/reviews", (request, response) => {
-    console.log("reqbody response in reviews:", request.body);
     if (process.env.TEST_ERROR) {
       setTimeout(() => response.status(500).json({}), 1000);
       return;

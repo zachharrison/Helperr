@@ -13,7 +13,7 @@ export default function useAppData() {
     offers: {},
     chats: {},
     reviews: {},
-    jobView: "ALL",
+    jobView: "POST",
     chatId: null,
     currentUser: null,
   });
@@ -60,20 +60,16 @@ export default function useAppData() {
     setCookie("user", currentUser, {
       path: "/",
     });
-    Promise.all([
-      axios.get(`/api/login/messages/${currentUser}`),
-      axios.get(`/api/login/jobs/${currentUser}`),
-      axios.get(`/api/login/offers/${currentUser}`),
-    ]).then((all) => {
-      setState((prev) => ({
-        ...prev,
-        jobView: "ALL",
-        userMessages: all[0].data,
-        userJobs: all[1].data,
-        userOffers: all[2].data,
-        currentUser,
-      }));
-    });
+    Promise.all([axios.get(`/api/login/messages/${currentUser}`)]).then(
+      (all) => {
+        setState((prev) => ({
+          ...prev,
+          jobView: "ALL",
+          userMessages: all[0].data,
+          currentUser,
+        }));
+      }
+    );
   };
 
   const removeCurrentUser = () => {
@@ -81,27 +77,40 @@ export default function useAppData() {
     removeCookie("user");
   };
 
-
   const setMessages = (message) => {
-
-    console.log(message)
+    console.log(message);
     setState((prev) => ({ ...prev, messages: [...prev.messages, message] }));
-  }
+  };
 
   const addMessage = (message) => {
     return axios.post("/api/messages", { message });
   };
 
+  const getUserNameFromId = (id) => {
+    const users = Object.values(state.users);
+    for (const user of users) {
+      if (user.id === id) {
+        return user.name;
+      }
+    }
+  };
+
   const getConversations = () => {
     const usersMessages = state.userMessages;
     const result = {};
-
+    const chatUsers = [];
     for (const offer of usersMessages) {
+      const userName = getUserNameFromId(offer.user_id);
+      if (!chatUsers.includes(userName)) {
+        chatUsers.push(userName);
+      }
+
       if (!result.hasOwnProperty(offer.offer_id)) {
         result[offer.offer_id] = {
           offerId: offer.offer_id,
           title: offer.title,
           messages: [offer.message],
+          users: chatUsers,
         };
       } else {
         result[offer.offer_id].messages.push(offer.message);
@@ -113,10 +122,11 @@ export default function useAppData() {
     return conversations.map((conversation) => {
       const id = conversation.offerId;
       const title = conversation.title;
+      const users = conversation.users;
       const lastMessage =
         conversation.messages[conversation.messages.length - 1];
 
-      return { id, title, message: lastMessage };
+      return { id, title, message: lastMessage, users };
     });
   };
 
@@ -130,6 +140,16 @@ export default function useAppData() {
     }
     return offerMessages;
   };
+
+  // const getUserName = (id) => {
+  //   for (const user in state.users) {
+  //     if (user.id === id) {
+  //       return user.name;
+  //     }
+  //   }
+  // };
+
+  // console.log(getUserName(1));
 
   function postJob(job) {
     return axios.post(`/api/jobs/`, { job }).then(() => {
@@ -229,5 +249,6 @@ export default function useAppData() {
     updateOffer,
     addMessage,
     setProfile,
+    getUserNameFromId,
   };
 }

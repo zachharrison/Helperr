@@ -28,7 +28,6 @@ function Login({ onClose, selectedValue, open, setCurrentUser }) {
   };
 
   const handleListItemClick = (value) => {
-    // onClose(value);
     value === "user1@gmail.com" ? setCurrentUser(1) : setCurrentUser(2);
   };
 
@@ -68,16 +67,7 @@ function Login({ onClose, selectedValue, open, setCurrentUser }) {
   );
 }
 
-// Login.propTypes = {
-//   onClose: PropTypes.func.isRequired,
-//   open: PropTypes.bool.isRequired,
-//   selectedValue: PropTypes.string.isRequired,
-// };
-
-export default function SimpleDialogDemo({
-  setCurrentUser,
-  removeCurrentUser,
-}) {
+export default function PleaseLogin({ setCurrentUser, removeCurrentUser }) {
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(users[1]);
 
@@ -92,7 +82,6 @@ export default function SimpleDialogDemo({
 
   return (
     <div>
-      {/* <Typography variant="subtitle1">Selected: {selectedValue}</Typography> */}
       <br />
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Please Log in first
@@ -107,14 +96,3 @@ export default function SimpleDialogDemo({
     </div>
   );
 }
-
-// return (
-//   <div>
-//     <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
-//     <br />
-//     <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-//       Open simple dialog
-//     </Button>
-//     <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
-//   </div>
-// );
