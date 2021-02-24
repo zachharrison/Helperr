@@ -22,6 +22,7 @@ const Profile = ({ state }) => {
         alt="fullstar"
         width="20px"
         height="20px"
+        fill="#ace"
       />
     );
     const half = (
@@ -63,63 +64,64 @@ const Profile = ({ state }) => {
     .map(
       (review) => state.categories[state.jobs[review.job_id].category_id].name
     )
-    .reduce((acc, cur) => {
-      acc[cur] = (acc[cur] || 0) + 1;
+    .reduce((acc, curr) => {
+      acc[curr] = (acc[curr] || 0) + 1;
       return acc;
     }, {});
 
   return (
     <div className="profile-card">
-      <div className="card profile-card-4">
-        <div className="card-body pt-5">
-          <div className="card-name-container">
-            <div className="profile-info">
-              <h5 className="card-title">{user.name}</h5>
-              <img src={user.avatar} alt="profile" className="profile" />
-            </div>
-            <div className="stars-container">
-              {Object.keys(reviewCats).map((cat, i) => (
-                <span className="review-title">
-                  {cat}: {reviewCats[cat]}
-                </span>
-              ))}
-            </div>
-            <div className="stars-container">
-              {/* <h5 className="card-title">Average Stars</h5> */}
-              <div className="stars">{starIcons(avgStars)}</div>
+      <div>
+        <div className="card-name-container">
+          <div className="profile-info">
+            <h5 className="card-title">{user.name}</h5>
+            <img src={user.avatar} alt="profile" className="profile" />
+          </div>
+
+          <div className="stars-container">
+            <p>Average Stars</p>
+            <div className="stars">
+              {starIcons(avgStars)}
+              <div className="stars-container">
+                {Object.keys(reviewCats).map((cat, i) => (
+                  <span className="review-title">
+                    {cat}: {reviewCats[cat]}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-          {reviews.length > 0 ? (
-            reviews.map((review) => (
-              <div className="reviews">
-                <div className="job-details">
-                  <div className="review-box">
-                    <h4>
-                      {
-                        state.categories[state.jobs[review.job_id].category_id]
-                          .name
-                      }
-                    </h4>
-                    <h4>{review.name} </h4>
-                  </div>
-                  <h4>{starIcons(review.stars)}</h4>
-                </div>
-                <div className="job-feedback">
-                  <p>
-                    <span className="review-title">
-                      {state.users[state.jobs[review.job_id].client_id].name}:{" "}
-                    </span>{" "}
-                    "{review.details}"
-                  </p>
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="reviews">
-              {state.profile} hasn't completed any jobs yet.
-            </div>
-          )}
         </div>
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
+            <div className="reviews">
+              <div className="job-details">
+                <div className="review-box">
+                  <p>
+                    {
+                      state.categories[state.jobs[review.job_id].category_id]
+                        .name
+                    }
+                  </p>
+                  <h4>{review.name} </h4>
+                </div>
+                <h5 className="stars">{starIcons(review.stars)}</h5>
+              </div>
+              <div className="job-feedback">
+                <p>
+                  <span className="review-title">
+                    {state.users[state.jobs[review.job_id].client_id].name}:
+                  </span>
+                  "{review.details}"
+                </p>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="reviews">
+            {state.profile} hasn't completed any jobs yet.
+          </div>
+        )}
       </div>
     </div>
   );
