@@ -50,22 +50,22 @@ const Profile = ({ state }) => {
       starArr.push(full);
       stars++;
     }
-    avgStars % 1 !== 0 && starArr.push(half);
+
+    avgStars % 1 >= 0.5 && starArr.push(half);
 
     while (starArr.length < 5) {
       starArr.push(empty);
     }
-
     return starArr;
   };
 
-  const categoriesReviewed = reviews
+  const reviewCats = reviews
     .map(
       (review) => state.categories[state.jobs[review.job_id].category_id].name
     )
-    .reduce((m, c) => {
-      m[c] = (m[c] || 0) + 1;
-      return m;
+    .reduce((acc, cur) => {
+      acc[cur] = (acc[cur] || 0) + 1;
+      return acc;
     }, {});
 
   return (
@@ -78,9 +78,9 @@ const Profile = ({ state }) => {
               <img src={user.avatar} alt="profile" className="profile" />
             </div>
             <div className="stars-container">
-              {Object.keys(categoriesReviewed).map((cat, i) => (
+              {Object.keys(reviewCats).map((cat, i) => (
                 <span className="review-title">
-                  {cat}: {categoriesReviewed[cat]}
+                  {cat}: {reviewCats[cat]}
                 </span>
               ))}
             </div>

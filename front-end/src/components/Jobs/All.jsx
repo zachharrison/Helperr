@@ -5,10 +5,10 @@ import AppliedListItem from "../JobList/AppliedListItem";
 export default function All({
   state,
   setCoord,
-  postReview,
-  updateOffer,
   setProfile,
   setJobView,
+  postReview,
+  updateOffer,
 }) {
   const user = state.currentUser;
   const jobs = Object.values(state.jobs);
@@ -42,6 +42,7 @@ export default function All({
             setCoord={setCoord}
             postReview={postReview}
             updateOffer={updateOffer}
+            setJobView={setJobView}
             setProfile={setProfile}
           />
         ))}
@@ -73,6 +74,7 @@ export default function All({
             setCoord={setCoord}
             postReview={postReview}
             updateOffer={updateOffer}
+            setJobView={setJobView}
             setProfile={setProfile}
           />
         ))}

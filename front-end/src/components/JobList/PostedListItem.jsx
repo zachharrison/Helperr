@@ -20,9 +20,10 @@ export default function PostedListItem({
   updateOffer,
   job_id,
   status,
+  setProfile,
+  setJobView,
   state,
 }) {
-  const user = state.currentUser;
   const users = Object.values(state.users);
   const categories = Object.values(state.categories);
 
@@ -49,6 +50,11 @@ export default function PostedListItem({
     }).format(new Date(date));
   };
 
+  const handleProfileClick = () => {
+    setJobView("PROFILE");
+    setProfile(userName);
+  };
+
   return (
     <div className="accordion-show">
       <div className="jobListItem">
@@ -62,13 +68,15 @@ export default function PostedListItem({
               </h1>
             </div>
           </div>
-          <div className="profile-container">
-            <img src={userAvatar} alt="profile" />
-            <p className="username">{userName}</p>
+          <div className="small-profile" onClick={handleProfileClick}>
+            <div className="profile-container">
+              <img src={userAvatar} alt="profile" />
+              <p className="username">{userName}</p>
+            </div>
           </div>
         </div>
         {status !== "COMPLETED" && (
-          <h6 className="date">Expiry: {formattedDate(end_time)}</h6>
+          <h6 className="date">Expiry: {/* {formattedDate(end_time)} */}</h6>
         )}
 
         <Collapsible
@@ -80,11 +88,6 @@ export default function PostedListItem({
             />
           }
         >
-          {status !== "COMPLETED" && (
-            <div className="btns">
-              <Reviews user={user} job_id={job_id} />
-            </div>
-          )}
           <div className="item-row">
             <p className="job-description">{description}</p>
           </div>

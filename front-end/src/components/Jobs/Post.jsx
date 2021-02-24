@@ -29,7 +29,8 @@ export default function Post({ state, coord, setCoord, onSave }) {
 
   const [error, setError] = useState("");
 
-  function validate() {
+  function validate(e) {
+    e.preventDefault();
     const newJob = {
       client_id: state.currentUser,
       name,
@@ -59,6 +60,7 @@ export default function Post({ state, coord, setCoord, onSave }) {
     setError("");
     onSave(newJob); //jobview can be set here
   }
+
   const handleChange = (event) => {
     setPayType(event.target.value);
   };
@@ -75,7 +77,7 @@ export default function Post({ state, coord, setCoord, onSave }) {
     <div>
       <h3>Post a New Job</h3>
       <div className="post-form">
-        <form action="">
+        <div>
           <TextField
             id="job-name"
             style={{ width: 450, margin: 8, marginTop: 0 }}
@@ -171,10 +173,10 @@ export default function Post({ state, coord, setCoord, onSave }) {
           </MuiPickersUtilsProvider>
           <br />
           <span>{error}</span>
-          <button onClick={validate} className="btn">
+          <button onClick={(e) => validate(e)} className="btn">
             POST
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );

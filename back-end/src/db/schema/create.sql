@@ -34,11 +34,8 @@ CREATE TABLE jobs (
   lng FLOAT,
   price INTEGER NOT NULL,
   pay_type pay_type,
-  start_time TIMESTAMP,
-  end_time TIMESTAMP,
-  --tags VARCHAR(255) NOT NULL, --will this take an array of #'s
-  --req --add this if they need a car or whatever
-  --quantity SMALLINT NOT NULL DEFAULT 1, --add this if we have jobs that require more than one
+  start_time DATE,
+  end_time DATE,
   status job_status,
   timestamp TIMESTAMP NOT NULL DEFAULT NOW()::timestamp
 );

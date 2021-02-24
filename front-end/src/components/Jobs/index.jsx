@@ -34,6 +34,7 @@ export default function Jobs(props) {
     setMessageView,
     addMessage,
     setCategoryFilter,
+    setDistanceFilter,
     jobsFiltered,
     selected,
     setSelected,
@@ -81,9 +82,11 @@ export default function Jobs(props) {
             state={state}
             jobsFiltered={jobsFiltered}
             setCategoryFilter={setCategoryFilter}
+            setDistanceFilter={setDistanceFilter}
             saveOffer={saveOffer}
             setJobView={setJobView}
             setCoord={setCoord}
+            coord={coord}
             selected={selected}
             setSelected={setSelected}
             setProfile={setProfile}
@@ -94,9 +97,7 @@ export default function Jobs(props) {
         <div>
           <All
             state={state}
-            setCategoryFilter={setCategoryFilter}
             setJobView={setJobView}
-            cookies={cookies}
             setCoord={setCoord}
             setProfile={setProfile}
             postReview={postReview}
