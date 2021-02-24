@@ -1,4 +1,4 @@
-import "./ViewToggle.css";
+import "./JobToggle.css";
 
 export default function JobToggle({ setJobView, jobView }) {
   return (

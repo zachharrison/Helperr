@@ -58,11 +58,13 @@ body {
 
 .btn:hover {
   background: chocolate;
+  cursor: pointer;
 }
 
 .btn-small:hover {
   background: chocolate;
   color: white;
+  cursor: pointer;
 }
 
 .btn-status {
@@ -90,6 +92,12 @@ body {
   border: none;
   background-color: #135ea2;
   color: #fff;
+  margin-left: 15px;
+}
+
+.profile-btn-small:hover {
+  background: chocolate;
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar {

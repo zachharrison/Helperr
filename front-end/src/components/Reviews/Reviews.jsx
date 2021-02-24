@@ -58,8 +58,8 @@ export default function Reviews({ helper_id, job_id, offer_id, onSave }) {
   Reviews = withStyles(styles)(Reviews); //what is this, (its throwing a warning)
 
   function validate(isCompleted) {
-    if (review === "" || starValue === "") {
-      setError("Please fill out the full review");
+    if (review === "" || !starValue) {
+      setError("Please rate and review");
       return;
     }
     setError("");
@@ -119,9 +119,13 @@ export default function Reviews({ helper_id, job_id, offer_id, onSave }) {
                 fullWidth
               />
               <span>{error}</span>
-              <div className="flex-container">
-                <button onClick={() => validate("COMPLETED")}>Completed</button>
-                <button onClick={() => validate("POSTED")}>Repost</button>
+              <div className="btns">
+                <button className="btn" onClick={() => validate("COMPLETED")}>
+                  Completed
+                </button>
+                <button className="btn" onClick={() => validate("POSTED")}>
+                  Repost
+                </button>
               </div>
             </div>
           </Fade>
