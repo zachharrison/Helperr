@@ -16,7 +16,7 @@ export default function AppliedListItem(props) {
     lng,
     price,
     pay_type,
-    end_time,
+    end_date,
     category_id,
     setProfile,
     setJobView,
@@ -61,7 +61,7 @@ export default function AppliedListItem(props) {
             <p className="username">{userName}</p>
           </div>
         </div>
-        <h6 className="date">Expiry: {formattedDate(end_time)}</h6>
+        <h6 className="date">Expiry: {formattedDate(end_date)}</h6>
         <Collapsible
           name={name}
           trigger={

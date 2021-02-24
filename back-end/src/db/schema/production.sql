@@ -33,8 +33,8 @@ INSERT INTO jobs (
     lng,
     price,
     pay_type,
-    start_time,
-    end_time,
+    start_date,
+    end_date,
     status
   )
 VALUES (

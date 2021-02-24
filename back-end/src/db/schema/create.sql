@@ -34,8 +34,8 @@ CREATE TABLE jobs (
   lng FLOAT,
   price INTEGER NOT NULL,
   pay_type pay_type,
-  start_time DATE,
-  end_time DATE,
+  start_date TIMESTAMP,
+  end_date TIMESTAMP,
   status job_status,
   timestamp TIMESTAMP NOT NULL DEFAULT NOW()::timestamp
 );

@@ -24,8 +24,8 @@ export default function Post({ state, coord, setCoord, onSave }) {
   const [category_id, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [pay_type, setPayType] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [start_date, setStartDate] = useState(new Date());
+  const [end_date, setEndDate] = useState(new Date());
 
   const [error, setError] = useState("");
 
@@ -41,10 +41,10 @@ export default function Post({ state, coord, setCoord, onSave }) {
       price,
       pay_type,
       status: "POSTED",
-      startDate,
-      endDate,
+      start_date,
+      end_date,
     };
-    console.log("newjob", newJob.startDate, newJob.endDate);
+    console.log("newjob", newJob.start_date, newJob.end_date);
 
     if (
       name === "" ||
@@ -52,8 +52,8 @@ export default function Post({ state, coord, setCoord, onSave }) {
       description === "" ||
       price === "" ||
       pay_type === "" ||
-      startDate === "" ||
-      endDate === ""
+      start_date === "" ||
+      end_date === ""
     ) {
       setError("Please fill all fields");
       return;
@@ -152,7 +152,7 @@ export default function Post({ state, coord, setCoord, onSave }) {
                 format="yyyy/MM/dd"
                 margin="normal"
                 label="Start Date"
-                value={startDate}
+                value={start_date}
                 onChange={handleStartDateChange}
                 KeyboardButtonProps={{
                   "aria-label": "change date",
@@ -166,7 +166,7 @@ export default function Post({ state, coord, setCoord, onSave }) {
                 format="yyyy/MM/dd"
                 margin="normal"
                 label="End Date"
-                value={endDate}
+                value={end_date}
                 onChange={handleEndDateChange}
                 KeyboardButtonProps={{
                   "aria-label": "change date",

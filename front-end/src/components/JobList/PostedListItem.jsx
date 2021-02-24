@@ -14,7 +14,7 @@ export default function PostedListItem({
   setCoord,
   price,
   pay_type,
-  end_time,
+  end_date,
   category_id,
   postReview,
   updateOffer,
@@ -50,6 +50,8 @@ export default function PostedListItem({
     }).format(new Date(date));
   };
 
+  console.log("end_dateend_dateend_date");
+
   const handleProfileClick = () => {
     setJobView("PROFILE");
     setProfile(userName);
@@ -76,7 +78,7 @@ export default function PostedListItem({
           </div>
         </div>
         {status !== "COMPLETED" && (
-          <h6 className="date">Expiry: {/* {formattedDate(end_time)} */}</h6>
+          <h6 className="date">Expiry: {formattedDate(end_date)}</h6>
         )}
 
         <Collapsible
