@@ -33,7 +33,7 @@ export default function OfferListItem({
   return (
     <div className="offer-list-item">
       <div className="item-row">
-        <div className="small-profile" onClick={handleProfileClick}>
+        <div className="small-profile-offer" onClick={handleProfileClick}>
           <div className="profile-container">
             <img src={helperAvatar} alt="profile" />
             <p className="username">{helperName}</p>

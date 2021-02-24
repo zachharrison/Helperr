@@ -64,7 +64,31 @@
 }
 
 .small-profile {
+  width: 300px;;
+}
+
+.small-profile img {
+  margin-right: 5px;
+}
+
+.small-profile-offer {
   width: 300px;
+  color: black;
+  margin-right: 65px;
+}
+
+.small-profile-offer img {
+  margin-right: 5px;
+}
+
+.small-profile-offer .username {
+  color: #ace;
+  margin-left: 5px;
+}
+
+.small-profile-offer .username:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .status-element {
@@ -107,7 +131,7 @@
 }
 
 .profile-container-inner {
-  /* border: 3px solid chocolate; */
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,9 +146,13 @@
   margin-top: 3px;
 }
 
-.profile-container-inner p {
+/* .profile-container-inner p {
   color: #fff;
   margin-top: 3px;
+} */
+
+.app-username p {
+  color: #9fc5e7;
 }
 
 .profile-btn {
