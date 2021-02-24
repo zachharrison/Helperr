@@ -41,7 +41,6 @@ export default function Jobs(props) {
     getUserNameFromId,
   } = props;
 
-  console.log("JOBINDEXPROPS", props);
   function saveJob(newJob) {
     postJob(newJob)
       .then(() => setJobView("ALL"))

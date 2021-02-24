@@ -6,20 +6,27 @@
   align-items: center;
   border-radius: 5px;
   margin: 0px 40px;
-  
+  /* margin: 0px auto; */
+  padding: 26px;
 }
 .card-name-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 500px;
+  width: 95%;
 }
 
 .stars-container {
+  margin-top: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%;
+  margin-left: 3px;
+}
+
+.stars-container p {
+  margin: 0px;
 }
 
 .profile-info {
@@ -44,7 +51,6 @@
 
 .stars {
   font-size: 36px;
-  color: chocolate;
   font-weight: bold;
 }
 
@@ -56,12 +62,13 @@
 
 .reviews {
   margin-top: 25px;
+  /* border: 3px solid chocolate; */
+  width: 95%;
 }
 
 .job-details {
   display: flex;
   justify-content: space-between;
-  margin: 20px 15px;
   border-top: 1px solid chocolate;
 }
 
@@ -72,24 +79,20 @@
 
 .job-feedback p {
   color: black;
-  text-align: center;
   letter-spacing: 1px;
   font-size: 15px;
-  margin: 5px;
-  width: 85%;
+  margin: 12px 5px 5px 13px;
+  width: 95%;
+  text-indent: -0.5em;
 }
 
 .review-title {
   color: #02539b;
   font-weight: bold;
+  font-size: 16px;
+  margin: 0;
+  margin-bottom: 3px;
 }
-
-/* .profile-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-} */
 
 .profile-container img {
   margin-left: 20px;
@@ -101,4 +104,19 @@
 
 .profile-container .btn {
   margin-right: 150px;
+}
+
+.review-box p {
+  margin: 6px;
+  padding-top: 15px;
+}
+
+.review-box h4 {
+  margin: 6px;
+  width: 90%;
+}
+
+.job-details h5 {
+  margin: 6px;
+  margin-right: 7px;
 }

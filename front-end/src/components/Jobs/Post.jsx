@@ -43,7 +43,8 @@ export default function Post({ state, coord, setCoord, onSave }) {
       startDate,
       endDate,
     };
-    console.log(newJob);
+    console.log("newjob", newJob.startDate, newJob.endDate);
+
     if (
       name === "" ||
       category_id === "" ||
@@ -57,6 +58,8 @@ export default function Post({ state, coord, setCoord, onSave }) {
       return;
     }
     setError("");
+    console.log("newjob", newJob);
+
     onSave(newJob); //jobview can be set here
   }
   const handleChange = (event) => {

@@ -80,11 +80,6 @@ export default function PostedListItem({
             />
           }
         >
-          {status !== "COMPLETED" && (
-            <div className="btns">
-              <Reviews user={user} job_id={job_id} />
-            </div>
-          )}
           <div className="item-row">
             <p className="job-description">{description}</p>
           </div>

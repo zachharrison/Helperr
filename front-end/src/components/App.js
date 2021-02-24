@@ -19,7 +19,6 @@ export default function App() {
     state,
     setState,
     setJobView,
-    jobView,
     setMessageView,
     getConversations,
     getMessages,
@@ -136,7 +135,7 @@ export default function App() {
           <Map
             state={state}
             setJobView={setJobView}
-            jobView={jobView}
+            jobView={state.jobView}
             setCoord={setCoord}
             coord={coord}
             jobMarkers={jobsFiltered}
@@ -147,7 +146,11 @@ export default function App() {
 
         <div className="right-container">
           <div className="view-container">
-            <JobToggle state={state} setJobView={setJobView} />
+            <JobToggle
+              state={state}
+              setJobView={setJobView}
+              jobView={state.jobView}
+            />
           </div>
           <div className="jobs-container">
             <Jobs

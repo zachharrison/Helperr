@@ -4,9 +4,7 @@
 
 .jobListItem {
   position: relative;
-  /* background-color: #00539cff; */
   background-color: #9fc5e7;
-  /* color: #f9cb9c; */
   color: #00539cff;
   border-radius: 10px;
   width: 80%;
@@ -37,6 +35,7 @@
   margin-bottom: 15px;
   font-size: 1em;
   display: flex;
+  align-self: flex-end;
 }
 
 .rate {
@@ -48,14 +47,7 @@
   padding: 5px;
 }
 
-/* .posted-description {
-  width: 100%;
-  outline: 3px solid black;
-} */
-
 .accordion {
-  /* border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 2px; */
   width: 90%;
 }
 
@@ -63,12 +55,7 @@
   width: 100%;
 }
 
-/* .accordion__item {
-  margin: 5px;
-} */
-
 .offer-list-item {
-  /* color: #00539cff; */
   color: #fff;
   background: #00539cff;
   padding: 15px;
