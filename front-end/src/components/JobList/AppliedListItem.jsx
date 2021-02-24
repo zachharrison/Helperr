@@ -8,7 +8,6 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import Collapsible from "react-collapsible";
 
 export default function AppliedListItem(props) {
-  // console.log("props from job item", props);
   const {
     name,
     client_id,
@@ -56,12 +55,14 @@ export default function AppliedListItem(props) {
             </h1>
           </div>
         </div>
-        <div className="profile-container">
-          <img src={userAvatar} alt="profile" />
-          <p className="username">{userName}</p>
-          <button onClick={handleProfileClick} className="btn">
+        <div className="small-profile" onClick={handleProfileClick}>
+          <div className="profile-container">
+            <img src={userAvatar} alt="profile" />
+            <p className="username">{userName}</p>
+            {/* <button onClick={handleProfileClick} className="btn">
             View Profile
-          </button>
+          </button> */}
+          </div>
         </div>
         <h6 className="date">Expiry: {formattedDate(end_time)}</h6>
         <Collapsible

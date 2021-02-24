@@ -13,6 +13,7 @@ module.exports = (db) => {
   });
 
   router.post("/jobs", (request, response) => {
+    console.log("reqbody response in offers:", request.body);
     if (process.env.TEST_ERROR) {
       setTimeout(() => response.status(500).json({}), 1000);
       return;
@@ -31,7 +32,7 @@ module.exports = (db) => {
     } = request.body.job;
     db.query(
       `
-      INSERT INTO jobs ( client_id, category_id, name, description, lat, lng, price, pay_type, status, start_time, end_time ) VALUES ($1::integer, $2::integer, $3::text, $4::text, $5::float, $6::float, $7::integer, $8::pay_type, $9::job_status, $10::timestamp, $11::timestamp)
+      INSERT INTO jobs ( client_id, category_id, name, description, lat, lng, price, pay_type, status, start_time, end_time ) VALUES ($1::integer, $2::integer, $3::text, $4::text, $5::float, $6::float, $7::integer, $8::pay_type, $9::job_status, $10::date, $11::date)
     `,
       [
         client_id,
