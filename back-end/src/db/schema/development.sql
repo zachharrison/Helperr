@@ -104,7 +104,7 @@ VALUES (
     'COMPLETED'
   ),
   (
-    2,
+    3,
     null,
     9,
     'Need marriage counselor',
@@ -186,7 +186,64 @@ VALUES (
     '2021-02-20',
     '2021-02-27',
     'COMPLETED'
+  ),
+  (
+    4,
+    null,
+    6,
+    'Take profesional photo''s of my Super Bowl trophies',
+    'I have just won yet another Super Bowl, and am in need of a photographer to take some photo''s of my collection',
+    49.280470,
+    -123.123200,
+    10000,
+    ' total',
+    '2021-02-26',
+    '2021-02-27',
+    'POSTED'
+  ),
+  (
+    3,
+    null,
+    2,
+    'Party Cleanup',
+    'We went away for the weekend, and our teenagers threw a party without our knowledge. Apparently they couldn''t be bothered to clean up their own mess, so hoping to find someone to help with it. Funds will be coming out of their own pockets!',
+    49.281230,
+    -123.132590,
+    100,
+    '/hr',
+    '2021-02-24',
+    '2021-03-01',
+    'POSTED'
+  ),
+  (
+    3,
+    2,
+    1,
+    'Fix my broken stove',
+    'I bought a brand new stove just 3 weeks ago and it has already stopped working. In need of someone handy who can fix it!',
+    49.272260,
+    -123.153460,
+    10000,
+    ' total',
+    '2021-02-26',
+    '2021-02-27',
+    'FILLED'
+  ),
+  (
+    1,
+    null,
+    1,
+    'Actor headshots',
+    'Its been a while since I''ve got some new headshots, and getting them done through a company can be quite expensive. Hoping to save some cash, and you can use my photos for your portfolio!',
+    49.264080,
+    -123.151230,
+    100,
+    ' total',
+    '2021-02-26',
+    '2021-03-02',
+    'POSTED'
   );
+  
 INSERT INTO offers (helper_id, job_id, price, pay_type, status)
 VALUES (2, 1, 2000, '/hr', 'REVIEWED'),
   (3, 1, 3000, '/hr', 'PENDING'),
@@ -194,7 +251,7 @@ VALUES (2, 1, 2000, '/hr', 'REVIEWED'),
   (4, 2, 15000, ' total', 'PENDING'),
   (3, 2, 2500, ' total', 'ACCEPTED'),
   (2, 2, 2500, ' total', 'PENDING'),
-  (3, 3, 2000, '/hr', 'PENDING'),
+  (2, 3, 2000, '/hr', 'PENDING'),
   (4, 3, 20000, '/hr', 'PENDING'),
   (2, 3, 2000, '/hr', 'PENDING'),
   (1, 4, 20000, '/hr', 'REVIEWED'),
@@ -240,6 +297,36 @@ VALUES (
     1,
     'Perfect, let''s talk in the morning then',
     '2021-02-21T09:14:39.223Z'
+  ),
+  (
+    2,
+    1,
+    'Sounds great!',
+    '2021-02-20T09:15:39.223Z'
+  ),
+  (
+    1,
+    15,
+    'User sent an offer - $2000',
+    '2021-02-20T09:15:39.223Z'
+  ),
+  (
+    1,
+    15,
+    'Hey, I think I might be able to help you out, I know it''s a tough situation. Let''s chat and see if we might be a good fit',
+    '2021-02-21T09:15:39.223Z'
+  ),
+  (
+    3,
+    15,
+    'I''m willing to try anything at this point, I know we can get through this! If you''re okay with the price let''s find a time that works.',
+    '2021-02-22T09:15:39.223Z'
+  ),
+  (
+    2,
+    7,
+    'User sent an offer: $2000',
+    '2021-02-20T09:15:39.223Z'
   );
 INSERT INTO reviews (helper_id, job_id, stars, details, timestamp)
 VALUES (

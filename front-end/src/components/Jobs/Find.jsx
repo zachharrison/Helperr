@@ -73,6 +73,7 @@ export default function Find({
             step={1}
             valueLabelDisplay="auto"
             marks={marks}
+            style={{ color: "red;" }}
             onChange={(event, value) => {
               setDistanceFilter(value || null);
             }}
