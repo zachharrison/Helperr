@@ -104,7 +104,7 @@ export default function Find({
         </div>
       </div>
       {jobsFiltered
-        .filter((job) => job.client_id !== state.currentUser)
+        /* .filter((job) => job.client_id !== state.currentUser) */
         .map((job) => (
           <FindListItem
             {...job}

@@ -59,9 +59,6 @@ export default function AppliedListItem(props) {
           <div className="profile-container">
             <img src={userAvatar} alt="profile" />
             <p className="username">{userName}</p>
-            {/* <button onClick={handleProfileClick} className="btn">
-            View Profile
-          </button> */}
           </div>
         </div>
         <h6 className="date">Expiry: {formattedDate(end_time)}</h6>
