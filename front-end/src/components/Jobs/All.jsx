@@ -39,6 +39,7 @@ export default function All({
             {...myPosts}
             job_id={myPosts.id}
             state={state}
+            end_date={myPosts.end_date}
             setCoord={setCoord}
             postReview={postReview}
             updateOffer={updateOffer}

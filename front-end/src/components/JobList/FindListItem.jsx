@@ -15,8 +15,8 @@ export default function FindListItem({
   setCoord,
   price,
   pay_type,
-  start_time,
-  end_time,
+  start_date,
+  end_date,
   category_id,
   onSave,
   setJobView,
@@ -85,7 +85,7 @@ export default function FindListItem({
             </div>
           </div>
           <div className="item-row">
-            <h6 className="date">Expiry: {formattedDate(end_time)}</h6>
+            <h6 className="date">Expiry: {formattedDate(end_date)}</h6>
           </div>
         </div>
         <Collapsible
