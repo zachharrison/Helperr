@@ -133,7 +133,7 @@ VALUES (
   ),
   (
     3,
-    2,
+    1,
     3,
     'Caregiver needed during recovery from fall ',
     'We both tripped on some hotwheels then fell down the stairs onto some Lego.. Need a gental caregiver to help us eat and go to the washroom during our long road to physical rehabilitation',
@@ -161,10 +161,10 @@ VALUES (
   ),
   (
     4,
-    2,
-    4,
-    'Put my bumper back on',
-    'My son is learning how to drive and backed into my garage, would really appreciate if someone could help me re-attach my bumper. Should be pretty easy, not too worried about how it looks as long as its on',
+    1,
+    7,
+    'Teach me how to cook',
+    'I would love to learn how to cook so that I can feed my family something other than cereal. Someone please teach me how to make an egg without burning it, or myself...',
     49.282740,
     -123.133260,
     150,
@@ -174,16 +174,16 @@ VALUES (
     'COMPLETED'
   ),
   (
-    3,
-    2,
-    3,
-    'Caregiver needed during recovery from fall ',
-    'We both tripped on some hotwheels then fell down the stairs onto some Lego.. Need a gental caregiver to help us eat and go to the washroom during our long road to physical rehabilitation',
-    49.281290,
-    123.115121,
-    5000,
-    '/hr',
-    '2021-02-26 18:00:00',
+    4,
+    null,
+    4,
+    'Put my bumper back on',
+    'My son is learning how to drive and backed into my garage, would really appreciate if someone could help me re-attach my bumper. Should be pretty easy, not too worried about how it looks as long as its on',
+    49.282740,
+    -123.133260,
+    150,
+    ' total',
+    '2021-02-20 18:00:00',
     '2021-02-27 24:00:00',
     'COMPLETED'
   );
@@ -209,8 +209,7 @@ VALUES (2, 1, 2000, '/hr', 'REVIEWED'),
   (1, 7, 20000, '/hr', 'REVIEWED'),
   (2, 7, 1212, ' total', 'PENDING'),
   (1, 8, 20000, '/hr', 'PENDING'),
-  (2, 8, 1250, ' total', 'REVIEWED'),
-  (2, 9, 5000, ' total', 'REVIEWED');
+  (2, 8, 1250, ' total', 'REVIEWED');
 INSERT INTO messages (user_id, offer_id, message, timestamp)
   VALUES (
     2, 1, 'User sent an offer of $10000', '2021-02-17T09:14:39.223Z'
@@ -223,10 +222,31 @@ INSERT INTO messages (user_id, offer_id, message, timestamp)
 
 INSERT INTO reviews (helper_id, job_id, stars, details, timestamp)
 VALUES (
+    2,
+    1,
+    5,
+    'Bob did such a great job lifting my beautiful victoria era, hardwood, 7 seat sectional couch up the stairs up the 10 flights of stairs to my appartment, I gave him a lemonade as a tip for all his hardwork',
+    '2021-02-27 24:00:00'
+  ),
+  (
+    1,
     4,
     3,
+    'Mrs.Doubtfire did a great job babysitting.. but she left the toliet seat up and now my wife is asking for a divorce!',
+    '2021-02-27 24:00:00'
+  ),
+  (
+    1,
+    7,
     5,
-    'Was on my way to go win another Super Bowl when I ran over a nail on the freeway. Without the help of Harry and Marv I would not be able to bring home the Lombardi trophy for the seventh time!',
+    'After Marv and I were seriously injured by some hotwheels Mrs.Doubtfire helped us get back to contracting for our lovely community!',
+    '2021-02-27 24:00:00'
+  ),
+  (
+    1,
+    8,
+    1,
+    'I booked Mrs.Doubtfire to teach me how to cook for my family and she lit my house onfire during our first lesson! She even left the toliet seat up and I fell into it the night before the superbowl! DO NOT BOOK HER',
     '2021-02-27 24:00:00'
   );
 
