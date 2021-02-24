@@ -101,6 +101,8 @@ export default function PostedListItem({
                 status={offers.status}
                 postReview={postReview}
                 updateOffer={updateOffer}
+                setProfile={setProfile}
+                setJobView={setJobView}
               />
             </div>
           ))}

@@ -8,6 +8,8 @@ export default function OfferListItem({
   status,
   postReview,
   updateOffer,
+  setProfile,
+  setJobView,
 }) {
   const helperAvatar = state.users[helper_id].avatar;
   const helperName = state.users[helper_id].name;
@@ -23,12 +25,19 @@ export default function OfferListItem({
     updateOffer(isApproved);
   }
 
+  const handleProfileClick = () => {
+    setJobView("PROFILE");
+    setProfile(helperName);
+  };
+
   return (
     <div className="offer-list-item">
       <div className="item-row">
-        <div className="profile-container-inner">
-          <img src={helperAvatar} alt="profile" />
-          <p>{helperName}</p>
+        <div className="small-profile" onClick={handleProfileClick}>
+          <div className="profile-container">
+            <img src={helperAvatar} alt="profile" />
+            <p className="username">{helperName}</p>
+          </div>
         </div>
         <div className="pay">{/* <h1 className="rate">{status}</h1> */}</div>
         {status === "PENDING" && (
