@@ -86,16 +86,31 @@ export default function useAppData() {
     return axios.post("/api/messages", { message });
   };
 
+  const getUserNameFromId = (id) => {
+    const users = Object.values(state.users);
+    for (const user of users) {
+      if (user.id === id) {
+        return user.name;
+      }
+    }
+  };
+
   const getConversations = () => {
     const usersMessages = state.userMessages;
     const result = {};
-
+    const chatUsers = [];
     for (const offer of usersMessages) {
+      const userName = getUserNameFromId(offer.user_id);
+      if (!chatUsers.includes(userName)) {
+        chatUsers.push(userName);
+      }
+
       if (!result.hasOwnProperty(offer.offer_id)) {
         result[offer.offer_id] = {
           offerId: offer.offer_id,
           title: offer.title,
           messages: [offer.message],
+          users: chatUsers,
         };
       } else {
         result[offer.offer_id].messages.push(offer.message);
@@ -107,10 +122,11 @@ export default function useAppData() {
     return conversations.map((conversation) => {
       const id = conversation.offerId;
       const title = conversation.title;
+      const users = conversation.users;
       const lastMessage =
         conversation.messages[conversation.messages.length - 1];
 
-      return { id, title, message: lastMessage };
+      return { id, title, message: lastMessage, users };
     });
   };
 
@@ -233,5 +249,6 @@ export default function useAppData() {
     updateOffer,
     addMessage,
     setProfile,
+    getUserNameFromId,
   };
 }

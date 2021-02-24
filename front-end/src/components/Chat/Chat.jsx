@@ -13,13 +13,20 @@ export default function Chat(props) {
     addMessage,
   } = props;
 
+  // LOOP THROUGH USER MESSAGES AND RETURN TITLE IF CHATID IN STATE IS EQUAL TO THE OFFERID FROM THE USER MESSAGE OBJECT
+  let jobTitle;
+  for (const message of state.userMessages) {
+    if (state.chatId === message.offer_id) {
+      jobTitle = message.title;
+    }
+  }
+
   const onMessageSubmit = () => {
     const user_id = cookies.user;
     const room = state.chatId;
     addMessage({ offer_id: room, user_id, message });
     sendMessage({ message, room, user_id });
     setCurrentChat((oldChats) => [message, ...oldChats]);
-    console.log({ message, room, user_id });
     setMessage("");
   };
 
@@ -43,7 +50,7 @@ export default function Chat(props) {
 
   return (
     <div className="message-list scrollable content">
-      <Toolbar title="Conversation Title" />
+      <h3>{jobTitle}</h3>
       <div className="chat-body">{messageListDisplay}</div>
       <div className="message-container">
         <input

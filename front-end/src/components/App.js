@@ -36,6 +36,7 @@ export default function App() {
     room,
     setRoom,
     setProfile,
+    getUserNameFromId,
   } = useAppData();
 
   const [socket, setSocket] = useState("");
@@ -179,6 +180,7 @@ export default function App() {
               updateOffer={updateOffer}
               addMessage={addMessage}
               setProfile={setProfile}
+              getUserNameFromId={getUserNameFromId}
             />
           </div>
           <div className="chat-container">
