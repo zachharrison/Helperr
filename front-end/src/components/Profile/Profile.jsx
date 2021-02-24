@@ -51,16 +51,16 @@ const Profile = ({ state }) => {
       starArr.push(full);
       stars++;
     }
-    avgStars % 1 !== 0 && starArr.push(half);
+
+    avgStars % 1 >= 0.5 && starArr.push(half);
 
     while (starArr.length < 5) {
       starArr.push(empty);
     }
-
     return starArr;
   };
 
-  const categoriesReviewed = reviews
+  const reviewCats = reviews
     .map(
       (review) => state.categories[state.jobs[review.job_id].category_id].name
     )
@@ -83,9 +83,9 @@ const Profile = ({ state }) => {
             <div className="stars">
               {starIcons(avgStars)}
               <div className="stars-container">
-                {Object.keys(categoriesReviewed).map((cat, i) => (
+                {Object.keys(reviewCats).map((cat, i) => (
                   <span className="review-title">
-                    {cat}: {categoriesReviewed[cat]}
+                    {cat}: {reviewCats[cat]}
                   </span>
                 ))}
               </div>

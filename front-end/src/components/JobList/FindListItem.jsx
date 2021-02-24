@@ -75,15 +75,17 @@ export default function FindListItem({
               </h1>
             </div>
           </div>
-          <div className="profile-container">
-            <img src={userAvatar} alt="profile" />
-            <p className="username">{userName}</p>
-            <button onClick={handleProfileClick} className="profile-btn-small">
-              Profile
-            </button>
-            <div className="expiry">
-              <h6 className="date">Expiry: {formattedDate(end_time)}</h6>
+          <div className="small-profile" onClick={handleProfileClick}>
+            <div className="profile-container">
+              <img src={userAvatar} alt="profile" />
+              <p className="username">{userName}</p>
+              {/* <button onClick={handleProfileClick} className="btn">
+            View Profile
+          </button> */}
             </div>
+          </div>
+          <div className="item-row">
+            <h6 className="date">Expiry: {formattedDate(end_time)}</h6>
           </div>
         </div>
         <Collapsible

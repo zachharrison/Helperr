@@ -9,7 +9,6 @@ import { getJobsFiltered } from "./helpers/selectors";
 import JobToggle from "./JobToggle/JobToggle";
 
 export default function App() {
-  const [categoryFilter, setCategoryFilter] = useState([]);
   const [coord, setCoord] = useState({
     lat: 49.26800377076573,
     lng: -123.10571490809717,
@@ -118,7 +117,14 @@ export default function App() {
     };
   }, [room]);
 
-  const jobsFiltered = getJobsFiltered(state, categoryFilter);
+  const [categoryFilter, setCategoryFilter] = useState([]);
+  const [distanceFilter, setDistanceFilter] = useState(1000);
+  const jobsFiltered = getJobsFiltered(
+    state,
+    coord,
+    categoryFilter,
+    distanceFilter
+  );
 
   return (
     <div className="App">
@@ -173,6 +179,7 @@ export default function App() {
               setSelected={setSelected}
               selected={selected}
               setCategoryFilter={setCategoryFilter}
+              setDistanceFilter={setDistanceFilter}
               cookies={cookies}
               setCurrentUser={setCurrentUser}
               removeCurrentUser={removeCurrentUser}

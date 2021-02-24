@@ -57,8 +57,8 @@ VALUES (
     -122.671570,
     10000,
     ' total',
-    '2021-02-26 18:00:00',
-    '2021-02-27 24:00:00',
+    '2021-02-26',
+    '2021-02-27',
     'COMPLETED'
   ),
   (
@@ -71,8 +71,8 @@ VALUES (
     -123.1491361,
     10000,
     ' total',
-    '2021-03-04 18:00:00',
-    '2021-03-08 18:00:00',
+    '2021-03-04',
+    '2021-03-08',
     'FILLED'
   ),
   (
@@ -85,8 +85,8 @@ VALUES (
     -123.126520,
     1000,
     '/hr',
-    '2021-02-26 18:00:00',
-    '2021-02-27 24:00:00',
+    '2021-02-26',
+    '2021-02-27',
     'POSTED'
   ),
   (
@@ -99,8 +99,8 @@ VALUES (
     -123.115121,
     1000,
     '/hr',
-    '2021-02-26 18:00:00',
-    '2021-02-27 24:00:00',
+    '2021-02-26',
+    '2021-02-27',
     'COMPLETED'
   ),
   (
@@ -113,8 +113,8 @@ VALUES (
     -123.3656461,
     15000,
     ' total',
-    '2021-02-26 18:00:00',
-    '2021-02-27 24:00:00',
+    '2021-02-26',
+    '2021-02-27',
     'POSTED'
   ),
   (
@@ -127,8 +127,8 @@ VALUES (
     -123.1442522,
     2000,
     '/hr',
-    '2021-02-26 18:00:00',
-    '2021-02-27 24:00:00',
+    '2021-02-26',
+    '2021-02-27',
     'FILLED'
   ),
   (
@@ -141,8 +141,8 @@ VALUES (
     123.115121,
     5000,
     '/hr',
-    '2021-02-26 18:00:00',
-    '2021-02-27 24:00:00',
+    '2021-02-26',
+    '2021-02-27',
     'COMPLETED'
   ),
   (
@@ -151,12 +151,12 @@ VALUES (
     7,
     'Flute lessons',
     'For years my mom has wanted to be able to play the flute, looking for someone with some experience to teach her. She has never played one before but we got her one for Christmas, dont think she needs anything else.',
-    49.281290,
-    123.115121,
+    49.2944647,
+    -123.150173,
     5000,
     '/hr',
-    '2021-02-26 18:00:00',
-    '2021-02-27 24:00:00',
+    '2021-02-26',
+    '2021-02-27',
     'POSTED'
   ),
   (
@@ -169,8 +169,8 @@ VALUES (
     -123.133260,
     150,
     ' total',
-    '2021-02-20 18:00:00',
-    '2021-02-27 24:00:00',
+    '2021-02-20',
+    '2021-02-27',
     'COMPLETED'
   ),
   (
@@ -183,8 +183,8 @@ VALUES (
     -123.133260,
     150,
     ' total',
-    '2021-02-20 18:00:00',
-    '2021-02-27 24:00:00',
+    '2021-02-20',
+    '2021-02-27',
     'COMPLETED'
   );
 INSERT INTO offers (helper_id, job_id, price, pay_type, status)
@@ -211,15 +211,36 @@ VALUES (2, 1, 2000, '/hr', 'REVIEWED'),
   (1, 8, 20000, '/hr', 'PENDING'),
   (2, 8, 1250, ' total', 'REVIEWED');
 INSERT INTO messages (user_id, offer_id, message, timestamp)
-  VALUES (
-    2, 1, 'User sent an offer of $10000', '2021-02-17T09:14:39.223Z'
-  ), 
-  (2, 1, 'Hello, I''m interested in your job to help you move your furniture. Let me know I''m available anytime!', '2021-02-18T09:14:45.223Z'),
-  (1, 1, 'Excellent, how does 4 O''clock sound?', '2021-02-19T09:14:52.223Z'),
-  (2, 1, 'Sounds great!', '2021-02-20T09:15:39.223Z'),
-  (1, 1, 'Perfect, let''s talk in the morning then', '2021-02-21T09:14:39.223Z');
-
-
+VALUES (
+    2,
+    1,
+    'User sent an offer of $10000',
+    '2021-02-17T09:14:39.223Z'
+  ),
+  (
+    2,
+    1,
+    'Hello, I''m interested in your job to help you move your furniture. Let me know I''m available anytime!',
+    '2021-02-18T09:14:45.223Z'
+  ),
+  (
+    1,
+    1,
+    'Excellent, how does 4 O''clock sound?',
+    '2021-02-19T09:14:52.223Z'
+  ),
+  (
+    2,
+    1,
+    'Sounds great!',
+    '2021-02-20T09:15:39.223Z'
+  ),
+  (
+    1,
+    1,
+    'Perfect, let''s talk in the morning then',
+    '2021-02-21T09:14:39.223Z'
+  );
 INSERT INTO reviews (helper_id, job_id, stars, details, timestamp)
 VALUES (
     2,
@@ -249,8 +270,7 @@ VALUES (
     'I booked Mrs.Doubtfire to teach me how to cook for my family and she lit my house onfire during our first lesson! She even left the toliet seat up and I fell into it the night before the superbowl! DO NOT BOOK HER',
     '2021-02-27 24:00:00'
   );
-
-  -- VALUES (
+-- VALUES (
 --     2,
 --     1,
 --     'User sent an offer 2000',

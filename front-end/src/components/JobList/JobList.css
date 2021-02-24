@@ -63,6 +63,10 @@
   border-radius: 10px;
 }
 
+.small-profile {
+  width: 300px;
+}
+
 .status-element {
   pointer-events: none;
   outline: none;
@@ -83,7 +87,9 @@
 
 .profile-container {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  width: 30px;
+  white-space: nowrap;
 }
 
 .profile-container img {
@@ -97,6 +103,7 @@
   margin-top: 3px;
   color: #135ea2;
   margin-bottom: 5px;
+  display: inline-block;
 }
 
 .profile-container-inner {
@@ -136,6 +143,11 @@
   align-items: center;
   font-weight: bold;
   border: none;
+}
+
+.small-profile:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .Collapsible__contentOuter {
