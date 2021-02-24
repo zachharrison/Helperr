@@ -9,11 +9,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
+
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
-// import InputBase from "@material-ui/core/InputBase";
-// import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -78,11 +76,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PrimarySearchAppBar({
-  setCurrentUser,
-  removeCurrentUser,
-}) {
-  // const [text, setText] = useState("");
+export default function Navbar(props) {
+  const {
+    setCurrentUser,
+    removeCurrentUser,
+    setProfile,
+    setJobView,
+    state,
+    cookies,
+  } = props;
 
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -118,9 +120,23 @@ export default function PrimarySearchAppBar({
     handleMenuClose();
   };
 
+  const handleProfileClick = (cookies, state) => {
+    const users = Object.values(state.users);
+    let userName;
+    for (const user of users) {
+      if (user.id === state.currentUser) {
+        userName = user.name;
+      }
+    }
+    setJobView("PROFILE");
+    setProfile(userName);
+    handleMenuClose();
+  };
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
+      state={state}
       anchorEl={anchorEl}
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
       id={menuId}
@@ -129,8 +145,9 @@ export default function PrimarySearchAppBar({
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={() => handleProfileClick(cookies, state)}>
+        My Profile
+      </MenuItem>
       <MenuItem onClick={() => handleLogin(1)}>Login: User 1</MenuItem>
       <MenuItem onClick={() => handleLogin(2)}>Login: User 2</MenuItem>
       <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
@@ -148,14 +165,6 @@ export default function PrimarySearchAppBar({
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
           <Badge badgeContent={11} color="secondary">
@@ -198,13 +207,8 @@ export default function PrimarySearchAppBar({
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+              <Badge badgeContent={5} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>

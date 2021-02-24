@@ -211,68 +211,15 @@ VALUES (2, 1, 2000, '/hr', 'REVIEWED'),
   (1, 8, 20000, '/hr', 'PENDING'),
   (2, 8, 1250, ' total', 'REVIEWED');
 INSERT INTO messages (user_id, offer_id, message, timestamp)
-VALUES (
-    2,
-    1,
-    'User sent an offer 2000',
-    '2021-02-15T09:13:58.223Z'
-  ),
-  (
-    4,
-    2,
-    'User sent an offer 3000',
-    '2021-02-16T09:12:38.223Z'
-  ),
-  (
-    4,
-    4,
-    'User sent an offer 2000',
-    '2021-02-16T09:12:38.223Z'
-  ),
-  (
-    3,
-    5,
-    'User sent an offer 20000',
-    '2021-02-15T09:12:38.223Z'
-  ),
-  (
-    2,
-    5,
-    'User sent an offer 3000',
-    '2021-02-17T09:16:42.223Z'
-  ),
-  (
-    4,
-    6,
-    'User sent an offer 2500',
-    '2021-02-17T09:14:39.223Z'
-  ),
-  (
-    2,
-    1,
-    'Hey I am available to fill your babysitting position!',
-    '2021-02-17T09:12:38.223Z'
-  ),
-  (
-    1,
-    1,
-    'Sounds great!',
-    '2021-02-17T09:14:28.223Z'
-  ),
-  (
-    3,
-    2,
-    'I am very intrested in your position!',
-    '2021-02-18T09:12:38.223Z'
-  ),
-  (
-    4,
-    3,
-    'Lets chat tomorrow',
-    '2021-02-17T09:12:38.223Z'
-  );
--- GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
--- "timestamp": "2021-02-18T09:12:38.223Z",
+  VALUES (
+    2, 1, 'User sent an offer of $10000', '2021-02-17T09:14:39.223Z'
+  ), 
+  (2, 1, 'Hello, I''m interested in your job to help you move your furniture. Let me know I''m available anytime!', '2021-02-18T09:14:45.223Z'),
+  (1, 1, 'Excellent, how does 4 O''clock sound?', '2021-02-19T09:14:52.223Z'),
+  (2, 1, 'Sounds great!', '2021-02-20T09:15:39.223Z'),
+  (1, 1, 'Perfect, let''s talk in the morning then', '2021-02-21T09:14:39.223Z');
+
+
 INSERT INTO reviews (helper_id, job_id, stars, details, timestamp)
 VALUES (
     2,
@@ -302,3 +249,66 @@ VALUES (
     'I booked Mrs.Doubtfire to teach me how to cook for my family and she lit my house onfire during our first lesson! She even left the toliet seat up and I fell into it the night before the superbowl! DO NOT BOOK HER',
     '2021-02-27 24:00:00'
   );
+
+  -- VALUES (
+--     2,
+--     1,
+--     'User sent an offer 2000',
+--     '2021-02-15T09:13:58.223Z'
+--   ),
+--   (
+--     4,
+--     2,
+--     'User sent an offer 3000',
+--     '2021-02-16T09:12:38.223Z'
+--   ),
+--   (
+--     4,
+--     4,
+--     'User sent an offer 2000',
+--     '2021-02-16T09:12:38.223Z'
+--   ),
+--   (
+--     3,
+--     5,
+--     'User sent an offer 20000',
+--     '2021-02-15T09:12:38.223Z'
+--   ),
+--   (
+--     2,
+--     5,
+--     'User sent an offer 3000',
+--     '2021-02-17T09:16:42.223Z'
+--   ),
+--   (
+--     4,
+--     6,
+--     'User sent an offer 2500',
+--     '2021-02-17T09:14:39.223Z'
+--   ),
+--   (
+--     2,
+--     1,
+--     'Hey I am available to fill your babysitting position!',
+--     '2021-02-17T09:12:38.223Z'
+--   ),
+--   (
+--     1,
+--     1,
+--     'Sounds great!',
+--     '2021-02-17T09:14:28.223Z'
+--   ),
+--   (
+--     3,
+--     2,
+--     'I am very intrested in your position!',
+--     '2021-02-18T09:12:38.223Z'
+--   ),
+--   (
+--     4,
+--     3,
+--     'Lets chat tomorrow',
+--     '2021-02-17T09:12:38.223Z'
+--   );
+-- GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
+-- "timestamp": "2021-02-18T09:12:38.223Z",
