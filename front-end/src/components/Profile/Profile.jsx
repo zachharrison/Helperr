@@ -112,7 +112,7 @@ const Profile = ({ state }) => {
               <div className="job-feedback">
                 <p>
                   <span className="review-title">
-                    {review.reviewer}:
+                    <div>{state.users[state.currentUser].name}here</div>:
                   </span>
                   "{review.details}"
                 </p>

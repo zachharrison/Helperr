@@ -104,7 +104,7 @@ VALUES (
     'COMPLETED'
   ),
   (
-    3,
+    2,
     null,
     9,
     'Need marriage counselor',
@@ -230,7 +230,7 @@ VALUES (
     'FILLED'
   ),
   (
-    1,
+    3,
     null,
     6,
     'Actor headshots',
@@ -253,19 +253,18 @@ VALUES (2, 1, 2000, '/hr', 'REVIEWED'),
   (2, 2, 2500, ' total', 'PENDING'),
   (2, 3, 2000, '/hr', 'PENDING'),
   (4, 3, 20000, '/hr', 'PENDING'),
-  (2, 3, 2000, '/hr', 'PENDING'),
+  (2, 5, 2000, '/hr', 'PENDING'),
   (1, 4, 20000, '/hr', 'REVIEWED'),
   (3, 4, 20000, '/hr', 'PENDING'),
   (4, 4, 2000, '/hr', 'PENDING'),
   (4, 5, 20000, '/hr', 'PENDING'),
   (3, 5, 20000, '/hr', 'PENDING'),
-  (1, 5, 2000, '/hr', 'PENDING'),
   (3, 6, 100000, ' total', 'PENDING'),
   (4, 6, 10000, '/hr', 'ACCEPTED'),
   (1, 6, 10000, '/hr', 'PENDING'),
   (1, 7, 20000, '/hr', 'REVIEWED'),
   (2, 7, 1212, ' total', 'PENDING'),
-  (1, 8, 20000, '/hr', 'PENDING'),
+  (4, 8, 20000, '/hr', 'PENDING'),
   (2, 8, 1250, ' total', 'REVIEWED');
 INSERT INTO messages (user_id, offer_id, message, timestamp)
 VALUES (
