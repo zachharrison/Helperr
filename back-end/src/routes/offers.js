@@ -13,7 +13,6 @@ module.exports = (db) => {
   });
 
   router.post("/offers", (request, response) => {
-    console.log("reqbody response in offers:", request.body);
     if (process.env.TEST_ERROR) {
       setTimeout(() => response.status(500).json({}), 1000);
       return;
@@ -35,15 +34,12 @@ module.exports = (db) => {
   });
 
   router.post("/offers/:id", (request, response) => {
-    console.log("reqbody response in offers UPDATE:", request.body);
     if (process.env.TEST_ERROR) {
       setTimeout(() => response.status(500).json({}), 1000);
       return;
     }
     const offer_id = request.params.id;
     const status = request.body.offer.offer_status;
-
-    console.log("STATUSSSS", status);
 
     db.query(
       `

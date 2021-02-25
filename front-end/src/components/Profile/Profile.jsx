@@ -1,16 +1,18 @@
 import "./Profile.css";
 
 const Profile = ({ state }) => {
-  const user = Object.values(state.users).find(
-    (user) => state.profile === user.name
-  );
+  // GET THE CURRENT USERS PROFILE IF THEIR USERNAME IS IN PROFILE STATE
+  const user = Object
+    .values(state.users)
+    .find((user) => state.profile === user.name);
 
-  const reviews = Object.values(state.reviews).filter(
-    (review) => review.helper_id === user.id
-  );
+  // GET ALL OF THE USERS REVIEWS
+  const reviews = Object
+  .values(state.reviews)
+  .filter((review) => review.helper_id === user.id);
 
-  const avgStars =
-    reviews.length >= 1
+  // IF A USER HAS MORE THAN ONE REVEIW COMPUTE THE AVERAGE STARS, OTHERWISE RETURN N/A 
+  const avgStars = reviews.length >= 1
       ? reviews.reduce((curr, acc) => curr + acc.stars, 0) / reviews.length
       : "N/A";
 
@@ -43,15 +45,16 @@ const Profile = ({ state }) => {
         height="20px"
       />
     );
-    const fullStars = avgStars - (avgStars % 1);
 
+    const fullStars = avgStars - (avgStars % 1);
     const starArr = [];
     let stars = 0;
+
     while (stars < fullStars) {
       starArr.push(full);
       stars++;
     }
-
+    
     avgStars % 1 >= 0.5 && starArr.push(half);
 
     while (starArr.length < 5) {
@@ -60,10 +63,9 @@ const Profile = ({ state }) => {
     return starArr;
   };
 
+  // LOOP AND REDUCE THE NUMBER OF EACH CATAGORY COMPLETED IN REVIEWS
   const reviewCats = reviews
-    .map(
-      (review) => state.categories[state.jobs[review.job_id].category_id].name
-    )
+    .map((review) => state.categories[state.jobs[review.job_id].category_id].name)
     .reduce((acc, curr) => {
       acc[curr] = (acc[curr] || 0) + 1;
       return acc;
@@ -99,18 +101,18 @@ const Profile = ({ state }) => {
                 <div className="review-box">
                   <p>
                     {
-                      state.categories[state.jobs[review.job_id].category_id]
-                        .name
+                      // JOINS STATE TO GET CATEGORY NAME
+                      state.categories[state.jobs[review.job_id].category_id].name
                     }
                   </p>
-                  <h4>{review.name} </h4>
+                  <h4>{review.name}</h4>
                 </div>
                 <h5 className="stars">{starIcons(review.stars)}</h5>
               </div>
               <div className="job-feedback">
                 <p>
                   <span className="review-title">
-                    {state.users[state.jobs[review.job_id].client_id].name}:
+                    {review.reviewer}:
                   </span>
                   "{review.details}"
                 </p>

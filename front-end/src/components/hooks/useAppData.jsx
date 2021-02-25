@@ -5,7 +5,8 @@ import { useCookies } from "react-cookie";
 export default function useAppData() {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const [room, setRoom] = useState("");
-  // const [messageState, setMessageState] = useState({ room: cookies.room, user: cookies.user});
+
+  // SET INITIAL PROJECT STATE
   const [state, setState] = useState({
     users: {},
     jobs: {},
@@ -18,6 +19,7 @@ export default function useAppData() {
     currentUser: null,
   });
 
+  // GET ALL INFO REQUIRED FOR PAGE FROM DB AND ADD TO STATE
   useEffect(() => {
     Promise.all([
       axios.get("/api/users"),
@@ -36,18 +38,21 @@ export default function useAppData() {
         reviews: all[4].data,
       }));
     });
+    // IF USER ALREADY HAS COOKIE FROM PREVIOUS LOGIN IN SET USER
     if (cookies && cookies.user) {
       setCurrentUser(+cookies.user);
     }
   }, []);
 
+  // SETS VIEW FOR RIGHT HALF OF PAGE
   const setJobView = (jobView) =>
     setState((previous) => ({ ...previous, jobView }));
-
+  
   const setProfile = (profile) => {
     setState((prev) => ({ ...prev, profile }));
   };
 
+  // SETS PAGE VIEW AND WHICH SPECIFIC CHAT TO OPEN AND COOKIE FOR BACKEND
   const setChat = (chatId) => {
     setCookie("room", chatId, {
       path: "/",
@@ -56,6 +61,7 @@ export default function useAppData() {
     setState((prev) => ({ ...prev, chatId, jobView: "CHAT" }));
   };
 
+  // SET COOKIE FOR CURRENT USER FOR BACKEND, RETRIEVE USER MESSAGES FROM DB AND SHOWS ALL USER JOBS PAGE
   const setCurrentUser = (currentUser) => {
     setCookie("user", currentUser, {
       path: "/",
@@ -76,9 +82,8 @@ export default function useAppData() {
     setState({ ...state, currentUser: null });
     removeCookie("user");
   };
-
+  
   const setMessages = (message) => {
-    console.log(message);
     setState((prev) => ({ ...prev, messages: [...prev.messages, message] }));
   };
 
@@ -95,22 +100,18 @@ export default function useAppData() {
     }
   };
 
+  // LOOP THROUGH ALL MESSAGES FROM USER, CREATE OBJECT CONTAINING OFFER ID AND USERS INVOLVED IN CONVERSATION
   const getConversations = () => {
+    const currentUser = +cookies.user;
     const usersMessages = state.userMessages;
     const result = {};
-    const chatUsers = [];
-    for (const offer of usersMessages) {
-      const userName = getUserNameFromId(offer.user_id);
-      if (!chatUsers.includes(userName)) {
-        chatUsers.push(userName);
-      }
 
+    for (const offer of usersMessages) {
       if (!result.hasOwnProperty(offer.offer_id)) {
         result[offer.offer_id] = {
           offerId: offer.offer_id,
           title: offer.title,
           messages: [offer.message],
-          users: chatUsers,
         };
       } else {
         result[offer.offer_id].messages.push(offer.message);
@@ -122,14 +123,15 @@ export default function useAppData() {
     return conversations.map((conversation) => {
       const id = conversation.offerId;
       const title = conversation.title;
-      const users = conversation.users;
       const lastMessage =
         conversation.messages[conversation.messages.length - 1];
 
-      return { id, title, message: lastMessage, users };
+      return { id, title, message: lastMessage };
     });
   };
 
+
+  // RETURN MESSAGES FOR SPECIFIC OFFER
   const getMessages = (id) => {
     const offerMessages = [];
     const userMessages = state.userMessages;
@@ -140,18 +142,8 @@ export default function useAppData() {
     }
     return offerMessages;
   };
-
-  // const getUserName = (id) => {
-  //   for (const user in state.users) {
-  //     if (user.id === id) {
-  //       return user.name;
-  //     }
-  //   }
-  // };
-
-  // console.log(getUserName(1));
-
-  function postJob(job) {
+  
+  const postJob = (job) => {
     return axios.post(`/api/jobs/`, { job }).then(() => {
       const id = Object.keys(state.jobs).length + 1;
       setState({
@@ -164,39 +156,7 @@ export default function useAppData() {
     });
   }
 
-  function postOffer(offer) {
-    return axios.post(`/api/offers/`, { offer }).then(() => {
-      const id = Object.keys(state.offers).length + 1;
-      setState({
-        ...state,
-        offers: {
-          ...state.offers,
-          [id]: { ...offer, id },
-        },
-      });
-    });
-  }
-
-  function updateOffer(update) {
-    changeOfferStatus(update);
-    changeJobStatus(update);
-  }
-
-  function changeOfferStatus(offer) {
-    return axios.post(`/api/offers/${offer.offer_id}`, { offer }).then(() => {
-      setState((prevState) => ({
-        ...prevState,
-        offers: {
-          ...prevState.offers,
-          [offer.offer_id]: {
-            ...prevState.offers[offer.offer_id],
-            status: offer.offer_status,
-          },
-        },
-      }));
-    });
-  }
-  function changeJobStatus(job) {
+  const changeJobStatus = (job) => {
     return axios.post(`/api/jobs/${job.job_id}`, { job }).then(() => {
       setState((prevState) => ({
         ...prevState,
@@ -212,8 +172,40 @@ export default function useAppData() {
     });
   }
 
-  function postReview(review) {
-    console.log("REVIEW POSTED", review);
+  const postOffer = (offer) => {
+    return axios.post(`/api/offers/`, { offer }).then(() => {
+      const id = Object.keys(state.offers).length + 1;
+      setState({
+        ...state,
+        offers: {
+          ...state.offers,
+          [id]: { ...offer, id },
+        },
+      });
+    });
+  }
+
+  const updateOffer = (update) => {
+    changeOfferStatus(update);
+    changeJobStatus(update);
+  }
+
+  const changeOfferStatus = (offer) => {
+    return axios.post(`/api/offers/${offer.offer_id}`, { offer }).then(() => {
+      setState((prevState) => ({
+        ...prevState,
+        offers: {
+          ...prevState.offers,
+          [offer.offer_id]: {
+            ...prevState.offers[offer.offer_id],
+            status: offer.offer_status,
+          },
+        },
+      }));
+    });
+  }
+
+  const postReview = (review) => {
     changeJobStatus(review);
     changeOfferStatus(review);
     return axios.post(`/api/reviews/`, { review }).then(() => {
@@ -251,4 +243,6 @@ export default function useAppData() {
     setProfile,
     getUserNameFromId,
   };
+  
 }
+

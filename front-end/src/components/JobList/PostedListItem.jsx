@@ -1,4 +1,4 @@
-import OfferListItem from "./OfferList/OfferListItem";
+import OfferListItem from "./OfferListItem";
 import Reviews from "../Reviews/Reviews";
 import "../Reviews/Reviews.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,14 +27,17 @@ export default function PostedListItem({
   const users = Object.values(state.users);
   const categories = Object.values(state.categories);
 
+  // JOINING BACKEND STATE TOGEHTEHR 
   const categoryName = categories[category_id - 1].name;
   const userAvatar = users[client_id - 1].avatar;
   const userName = users[client_id - 1].name;
 
+  // SHOW ONLY OFFERS FOR SPEFICIC JOB, UNLESS THEY WERE DECLINED
   const allOffers = Object.values(state.offers)
     .filter((offer) => offer.job_id === job_id)
     .filter((offer) => offer.status !== "DECLINED");
 
+  // SHOW ONLY ACCEPTED OR REVIEWED OFFERS, OTHERWISE SHOW ALL
   const acceptedOffer = () => {
     const accepted = allOffers.find(
       (jobOffer) =>
@@ -49,8 +52,6 @@ export default function PostedListItem({
       day: "2-digit",
     }).format(new Date(date));
   };
-
-  console.log("end_dateend_dateend_date");
 
   const handleProfileClick = () => {
     setJobView("PROFILE");

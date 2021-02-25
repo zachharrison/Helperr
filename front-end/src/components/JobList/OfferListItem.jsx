@@ -39,7 +39,7 @@ export default function OfferListItem({
             <p className="username">{helperName}</p>
           </div>
         </div>
-        <div className="pay">{/* <h1 className="rate">{status}</h1> */}</div>
+        {/* <div className="pay"></div> */}
         {status === "PENDING" && (
           <div className="btns">
             <button

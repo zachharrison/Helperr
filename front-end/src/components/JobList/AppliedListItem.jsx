@@ -7,22 +7,23 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 import Collapsible from "react-collapsible";
 
-export default function AppliedListItem(props) {
-  const {
-    name,
-    client_id,
-    description,
-    lat,
-    lng,
-    price,
-    pay_type,
-    end_date,
-    category_id,
-    setProfile,
-    setJobView,
-    state,
-    status,
-  } = props;
+export default function AppliedListItem({
+  name,
+  client_id,
+  description,
+  lat,
+  lng,
+  price,
+  pay_type,
+  end_date,
+  category_id,
+  setProfile,
+  setJobView,
+  setCoord,
+  state,
+  status
+}) {
+
 
   const categories = Object.values(state.categories);
   const users = Object.values(state.users);
@@ -45,7 +46,7 @@ export default function AppliedListItem(props) {
 
   return (
     <div className="accordion-show">
-      <div className="jobListItem" onClick={() => props.setCoord({ lat, lng })}>
+      <div className="jobListItem" onClick={() => setCoord({ lat, lng })}>
         <div className="item-row">
           <h1>{name}</h1>
           <div className="pay">

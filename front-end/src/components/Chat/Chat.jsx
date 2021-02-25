@@ -1,19 +1,16 @@
-import Toolbar from "../Chat/Toolbar";
 import "./Chat.css";
 
-export default function Chat(props) {
-  const {
-    getMessages,
-    state,
-    cookies,
-    message,
-    sendMessage,
-    setMessage,
-    setCurrentChat,
-    addMessage,
-  } = props;
+export default function Chat({
+  getMessages,
+  state,
+  cookies,
+  message,
+  setMessage,
+  setCurrentChat,
+  addMessage
+}) {
 
-  // LOOP THROUGH USER MESSAGES AND RETURN TITLE IF CHATID IN STATE IS EQUAL TO THE OFFERID FROM THE USER MESSAGE OBJECT
+  // LOOP THROUGH USER MESSAGES AND RETURN TITLE IF THE CHATID IN STATE IS EQUAL TO THE OFFERID FROM THE USER MESSAGE OBJECT
   let jobTitle;
   for (const message of state.userMessages) {
     if (state.chatId === message.offer_id) {
@@ -24,12 +21,17 @@ export default function Chat(props) {
   const onMessageSubmit = () => {
     const user_id = cookies.user;
     const room = state.chatId;
+
+    // MAKE POST REQUEST TO THE DATABASE
     addMessage({ offer_id: room, user_id, message });
-    sendMessage({ message, room, user_id });
+
+    // ADD MESSAGE TO STATE AND UPDATE THE CURRENT CHAT
     setCurrentChat((oldChats) => [message, ...oldChats]);
+
     setMessage("");
   };
 
+  // GET MESSAGES FROM STATE AND DISPLAY IN UI
   const messageList = getMessages(state.chatId);
   const messageListDisplay = messageList.map((message, index) => {
     const currentAuthor = +cookies.user;

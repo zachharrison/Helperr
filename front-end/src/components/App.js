@@ -9,11 +9,6 @@ import { getJobsFiltered } from "./helpers/selectors";
 import JobToggle from "./JobToggle/JobToggle";
 
 export default function App() {
-  const [coord, setCoord] = useState({
-    lat: 49.26800377076573,
-    lng: -123.10571490809717,
-  });
-
   const {
     state,
     setState,
@@ -36,89 +31,17 @@ export default function App() {
     setProfile,
     getUserNameFromId,
   } = useAppData();
-
+  
   const [socket, setSocket] = useState("");
-
-  const initiateSocket = (room) => {
-    const socket = io("http://localhost:8001", { transports: ["websocket"] });
-    setSocket(socket);
-    // console.log(`Connecting socket...`);
-    if (socket && room) socket.emit("join", room);
-    socket.on("chat", (msg) => {
-      // console.log('A chat repsonse', msg);
-      // cb(null, msg);
-      // console.log('THIS IS A STATE TEST ', state)
-
-      const newMessage = {
-        offer_id: state.chatId,
-        user_id: msg.user_id,
-        message: msg.message,
-      };
-      setState((prev) => ({
-        ...prev,
-        userMessages: [...prev.userMessages, newMessage],
-      }));
-      // getConversations();
-      // addMessage({msg})
-      // addMessage({
-      //   offer_id: room,
-      //   user_id: msg.user_id,
-      //   message: msg.message,
-      // });
-      console.log(msg);
-      // setState here becoz msg contains new message
-      // debugger
-      // setState(prev => ({...prev, userMessages: [...prev.userMessages, {...msg, room} ]}))
-      // setState(prev => ({...prev, userMessages: [...prev.userMessages, msg]}))
-    });
-  };
-  const disconnectSocket = () => {
-    // console.log('Disconnecting socket...', !!socket);
-    if (socket) socket.disconnect();
-    setSocket(null);
-  };
-  // const joinChat = (cb) => {
-  //   // console.log("socket in joinchat", socket)
-  //   if (!socket) {
-  //     console.log("joinchat has no socket");
-  //     return true;
-  //   }
-  //   socket.on("chat", (msg) => {
-  //     // console.log('Websocket event received!');
-  //     return cb(null, msg);
-  //   });
-  // };
-  const sendMessage = (message) => {
-    console.log("SENT");
-    // addMessage(message)
-    // addMessage({
-    //   offer_id: room,
-    //   user_id: user_id,
-    //   message: message,
-    // });
-  };
-
-  // const [room, setRoom] = useState('');
   const [message, setMessage] = useState("");
   const [currentChat, setCurrentChat] = useState([]);
   const [selected, setSelected] = useState();
-  useEffect(() => {
-    if (state.chatId) initiateSocket(room);
-    // console.log(socket)
-    // // socket.on('chat', msg => {
-    // //   console.log('TESTING RESPONSE FROM USE EFFECT', msg);
-    // // });
-    // joinChat((err, data) => {
-    //   if(err) console.log("error:", err);
-    //   setChat(oldChats =>[data, ...oldChats])
-    // });
-    return () => {
-      disconnectSocket();
-    };
-  }, [room]);
-
   const [categoryFilter, setCategoryFilter] = useState([]);
   const [distanceFilter, setDistanceFilter] = useState(1000);
+  const [coord, setCoord] = useState({
+    lat: 49.26800377076573,
+    lng: -123.10571490809717,
+  });
   const jobsFiltered = getJobsFiltered(
     state,
     coord,
@@ -126,12 +49,45 @@ export default function App() {
     distanceFilter
   );
 
+  const initiateSocket = (room) => {
+    const socket = io("http://localhost:8001", { transports: ["websocket"] });
+    // SET SOCKET CONNECTION IN STATE
+    setSocket(socket);
+    if (socket && room) socket.emit("join", room);
+
+    // LISTEN FOR NEW MESSAGES AND CREATE THE MESSAGE OBJECT
+    socket.on("chat", (msg) => {
+      const newMessage = {
+        offer_id: state.chatId,
+        user_id: msg.user_id,
+        message: msg.message,
+      };
+      // COPY THE PREVIOUS STATE AND ADD THE NEW MESSAGE
+      setState((prev) => ({
+        ...prev,
+        userMessages: [...prev.userMessages, newMessage],
+      }));
+    });
+  };
+  
+  const disconnectSocket = () => {
+    if (socket) socket.disconnect();
+    setSocket(null);
+  };
+
+  // DISCONNECT AND RECONNECT TO A NEW SOCKET EVERYTIME A USER SWITCHES CHATS
+  useEffect(() => {
+    disconnectSocket();
+    if (state.chatId) initiateSocket(room);
+  }, [room]);
+
   return (
     <div className="App">
-      <Navbar
+      <Navbar 
         setProfile={setProfile}
         setCurrentUser={setCurrentUser}
         removeCurrentUser={removeCurrentUser}
+        getUserNameFromId={getUserNameFromId}
         setJobView={setJobView}
         cookies={cookies}
         state={state}
@@ -163,7 +119,6 @@ export default function App() {
               state={state}
               setJobView={setJobView}
               message={message}
-              sendMessage={sendMessage}
               room={room}
               setRoom={setRoom}
               setMessage={setMessage}

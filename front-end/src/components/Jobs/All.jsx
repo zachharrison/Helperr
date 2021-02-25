@@ -39,12 +39,12 @@ export default function All({
             {...myPosts}
             job_id={myPosts.id}
             state={state}
-            end_date={myPosts.end_date}
             setCoord={setCoord}
-            postReview={postReview}
-            updateOffer={updateOffer}
             setJobView={setJobView}
             setProfile={setProfile}
+            postReview={postReview}
+            updateOffer={updateOffer}
+            end_date={myPosts.end_date}
           />
         ))}
       {posted.length < 1 && (
@@ -70,13 +70,13 @@ export default function All({
         completed.map((myPosts) => (
           <PostedListItem
             {...myPosts}
-            job_id={myPosts.id}
             state={state}
             setCoord={setCoord}
-            postReview={postReview}
-            updateOffer={updateOffer}
             setJobView={setJobView}
             setProfile={setProfile}
+            job_id={myPosts.id}
+            postReview={postReview}
+            updateOffer={updateOffer}
           />
         ))}
       {completed.length < 1 && (

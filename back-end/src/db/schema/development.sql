@@ -297,31 +297,31 @@ VALUES (
     1,
     'Perfect, let''s talk in the morning then',
     '2021-02-21T09:14:39.223Z'
+  ),
+  (
+    1,
+    15,
+    'User sent an offer - $2000',
+    '2021-02-20T09:15:39.223Z'
+  ),
+  (
+    1,
+    15,
+    'Hey, I think I might be able to help you out, I know it''s a tough situation. Let''s chat and see if we might be a good fit',
+    '2021-02-21T09:15:39.223Z'
+  ),
+  (
+    3,
+    15,
+    'I''m willing to try anything at this point, I know we can get through this! If you''re okay with the price let''s find a time that works.',
+    '2021-02-22T09:15:39.223Z'
+  ),
+  (
+    2,
+    7,
+    'User sent an offer: $2000',
+    '2021-02-20T09:15:39.223Z'
   );
-  -- (
-  --   1,
-  --   15,
-  --   'User sent an offer - $2000',
-  --   '2021-02-20T09:15:39.223Z'
-  -- ),
-  -- (
-  --   1,
-  --   15,
-  --   'Hey, I think I might be able to help you out, I know it''s a tough situation. Let''s chat and see if we might be a good fit',
-  --   '2021-02-21T09:15:39.223Z'
-  -- ),
-  -- (
-  --   3,
-  --   15,
-  --   'I''m willing to try anything at this point, I know we can get through this! If you''re okay with the price let''s find a time that works.',
-  --   '2021-02-22T09:15:39.223Z'
-  -- ),
-  -- (
-  --   2,
-  --   7,
-  --   'User sent an offer: $2000',
-  --   '2021-02-20T09:15:39.223Z'
-  -- );
 INSERT INTO reviews (helper_id, job_id, stars, details, timestamp)
 VALUES (
     2,

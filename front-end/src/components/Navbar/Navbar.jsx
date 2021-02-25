@@ -83,6 +83,7 @@ export default function Navbar(props) {
     setJobView,
     state,
     cookies,
+    getUserNameFromId,
   } = props;
 
   const classes = useStyles();
@@ -193,11 +194,13 @@ export default function Navbar(props) {
         style={{ background: "#a0c5e7", color: "#02539b" }}
       >
         <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Hand on Demand
-          </Typography>
+          <img src="hod-logo-w.png" alt="Hand on Demand" width="140" height="50"/>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+            {state.currentUser && (
+              <div className="welcome">Welcome back, {getUserNameFromId(state.currentUser)}!</div>
+            )}
+           
             <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={5} color="secondary">
                 <NotificationsIcon />

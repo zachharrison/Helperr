@@ -10,9 +10,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 
 const app = express();
-
 const server = require("http").Server(app);
-
 const io = require("socket.io")(server, {
   cors: {
     origin: "*",
@@ -31,19 +29,6 @@ const reviews = require("./routes/reviews");
 const loginMessages = require("./routes/login-messages");
 const loginJobs = require("./routes/login-jobs");
 const loginOffers = require("./routes/login-offers");
-
-/************************** BACK END HELPERS ***********************/
-// const users = [];
-
-// // JOIN USER TO A ROOM AND RETURN THE USER
-// const userJoin = (userId, roomId) => {
-//   const user = { userId, roomId };
-//   users.push(user)
-//   return user;
-// };
-
-// // GET USERS IN ROOM
-// const getRoomUsers = (room) => users.filter(user => user.roomId === room);
 
 function read(file) {
   return new Promise((resolve, reject) => {
@@ -64,14 +49,15 @@ server.listen(8001, () => {
   console.log(`Listening on port ${PORT} in ${ENV} mode.`);
 });
 
+// EXPORT THE ROUTER WITH THE SOCKET CONNECTION
 module.exports = function application(ENV, actions = { updateJobs: () => {} }) {
   app.use(cors());
   app.use(helmet());
   app.use(bodyparser.json());
+
+  // GET COOKIES FOR CHAT ROOM AND CURRENT USER
   io.on("connection", (socket) => {
-    console.log("connected");
     const getCurrentCookies = () => {
-      // console.log(socket.handshake.headers)
       const cookies = socket.handshake.headers.cookie.split(" ");
       let currentUser;
       let currentRoom;
@@ -88,9 +74,8 @@ module.exports = function application(ENV, actions = { updateJobs: () => {} }) {
 
     const userCookies = getCurrentCookies();
     const { currentUser, currentRoom } = userCookies;
-    // console.log(`Connected: ${currentRoom} as user ${currentUser}`);
 
-    // socket.on("disconnect", () => console.log("Disconnected"));
+    // ADD USERS TO THE CORRECT ROOM ON JOIN
     socket.on("join", (room) => {
       console.log(`Socket ${socket.id} joining ${room}`);
       socket.join(room);
@@ -100,7 +85,8 @@ module.exports = function application(ENV, actions = { updateJobs: () => {} }) {
   const getSocket = () => {
     return io.sockets;
   };
-
+  
+  // PASS DATABASE AND ALL SOCKETS TO EXPRESS MIDDLEWEAR
   app.use("/api", users(db, getSocket));
   app.use("/api", jobs(db, getSocket));
   app.use("/api", categories(db, getSocket));

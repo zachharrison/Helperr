@@ -26,7 +26,6 @@ export default function Post({ state, coord, setCoord, onSave }) {
   const [pay_type, setPayType] = useState("");
   const [start_date, setStartDate] = useState(new Date());
   const [end_date, setEndDate] = useState(new Date());
-
   const [error, setError] = useState("");
 
   function validate(e) {
@@ -44,7 +43,6 @@ export default function Post({ state, coord, setCoord, onSave }) {
       start_date,
       end_date,
     };
-    console.log("newjob", newJob.start_date, newJob.end_date);
 
     if (
       name === "" ||
@@ -59,9 +57,8 @@ export default function Post({ state, coord, setCoord, onSave }) {
       return;
     }
     setError("");
-    console.log("newjob", newJob);
 
-    onSave(newJob); //jobview can be set here
+    onSave(newJob);
   }
 
   const handleChange = (event) => {

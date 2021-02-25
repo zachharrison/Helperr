@@ -7,53 +7,53 @@ import ChatList from "../Chat/ChatList";
 import Login from "../Login/Login";
 import "./Jobs.css";
 
-export default function Jobs(props) {
-  const {
-    state,
-    setJobView,
-    getConversations,
-    getMessages,
-    setChat,
-    setCoord,
-    coord,
-    cookies,
-    setCurrentUser,
-    removeCurrentUser,
-    setMessages,
-    postJob,
-    postOffer,
-    postReview,
-    updateOffer,
-    message,
-    sendMessage,
-    room,
-    setRoom,
-    setMessage,
-    currentChat,
-    setCurrentChat,
-    setMessageView,
-    addMessage,
-    setCategoryFilter,
-    setDistanceFilter,
-    jobsFiltered,
-    selected,
-    setSelected,
-    setProfile,
-    getUserNameFromId,
-  } = props;
+export default function Jobs({
+  state,
+  setJobView,
+  getConversations,
+  getMessages,
+  setChat,
+  setCoord,
+  coord,
+  cookies,
+  setCurrentUser,
+  removeCurrentUser,
+  setMessages,
+  postJob,
+  postOffer,
+  postReview,
+  updateOffer,
+  message,
+  room,
+  setRoom,
+  setMessage,
+  currentChat,
+  setCurrentChat,
+  setMessageView,
+  addMessage,
+  setCategoryFilter,
+  setDistanceFilter,
+  jobsFiltered,
+  selected,
+  setSelected,
+  setProfile,
+  getUserNameFromId
+}) {
+
 
   function saveJob(newJob) {
     postJob(newJob)
       .then(() => setJobView("ALL"))
       .catch((error) => {
-        console.log("Error: ", error);
+        console.log(`Error saving job: ${error}`);
       });
   }
+  
   function saveOffer(newOffer) {
     postOffer(newOffer)
       .then(() => setJobView("ALL"))
       .catch((error) => {
-        console.log("Error: ", error);
+        console.log(`Error saving offer: ${error}`);
       });
   }
 
@@ -107,7 +107,6 @@ export default function Jobs(props) {
       {state.jobView === "MESSAGE" && cookies.user && (
         <div>
           <ChatList
-            sendMessage={sendMessage}
             setJobView={setJobView}
             getConversations={getConversations}
             setChat={setChat}
@@ -139,7 +138,6 @@ export default function Jobs(props) {
             getMessages={getMessages}
             state={state}
             setMessages={setMessages}
-            sendMessage={sendMessage}
             cookies={cookies}
             addMessage={addMessage}
           />

@@ -12,6 +12,7 @@ const mapContainerStyle = {
   height: "100%",
 };
 
+// DEFAULT MAP STARTING LOCATION
 const center = {
   lat: 49.26800377076573,
   lng: -123.10571490809717,
@@ -23,6 +24,7 @@ const options = {
   zoomControl: true,
 };
 
+// ENABLED GMAPS LIBRARIES
 const libraries = ["places"];
 
 export default function Map({
@@ -32,6 +34,7 @@ export default function Map({
   selected,
   jobMarkers,
 }) {
+
   const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
     libraries,
@@ -46,7 +49,7 @@ export default function Map({
   const panTo = useCallback(({ lat, lng }) => {
     if (mapRef.current) {
       mapRef.current.panTo({ lat, lng });
-      mapRef.current.setZoom(16);
+      mapRef.current.setZoom(15)
     }
   }, []);
 

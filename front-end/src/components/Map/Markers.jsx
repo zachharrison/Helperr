@@ -22,7 +22,6 @@ export default function Markers({
             anchor: new window.google.maps.Point(10, 10),
           }}
           onClick={() => {
-            console.log("MARKER CLICKED");
             setSelected(job);
           }}
         />

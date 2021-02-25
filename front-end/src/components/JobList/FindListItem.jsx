@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import Collapsible from "react-collapsible";
 import "./JobList.css";
-import "../Jobs/Accordion/Accordion.css";
+
 
 export default function FindListItem({
   name,
@@ -79,10 +79,7 @@ export default function FindListItem({
             <div className="profile-container">
               <img src={userAvatar} alt="profile" />
               <p className="username">{userName}</p>
-              {/* <button onClick={handleProfileClick} className="btn">
-            View Profile
-          </button> */}
-            </div>
+             </div>
           </div>
           <div className="item-row">
             <h6 className="date">Expiry: {formattedDate(end_date)}</h6>

@@ -47,7 +47,7 @@ export default function Places({ setCoord }) {
         setCoord({ lat, lng });
       })
       .catch((error) => {
-        console.log("Error: ", error);
+        console.log("Error getting geocode: ", error);
       });
   };
 
@@ -57,7 +57,6 @@ export default function Places({ setCoord }) {
         place_id,
         structured_formatting: { main_text, secondary_text },
       } = suggestion;
-      /* wrap the below in a menuItem tag to make arrowkey dropdown */
       return (
         <Grid
           container
@@ -83,8 +82,7 @@ export default function Places({ setCoord }) {
         disabled={!ready}
         label="Location"
       />
-      {/* We can use the "status" to decide whether we should display the dropdown or not */}
-      {status === "OK" && renderSuggestions()} {/* wrap this in select tag */}
+      {status === "OK" && renderSuggestions()}
     </div>
   );
 }

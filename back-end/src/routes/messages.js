@@ -38,7 +38,6 @@ module.exports = (db, getSocket) => {
       .then((dbRes) => {
         const message = dbRes.rows[0]
         const socket = getSocket()
-        console.log({...message} )
         socket.emit('chat', {...message, offer_id: offer_id} );
         response.status(204).json({});
       })

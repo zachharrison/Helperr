@@ -27,6 +27,9 @@ h3 {
   border-radius: 12px;
 }
 
-/* .post-form form {
-  zoom: 0.9;
-} */
+
+.accordion-show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

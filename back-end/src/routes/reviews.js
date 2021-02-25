@@ -33,7 +33,6 @@ module.exports = (db) => {
         response.status(204).json({});
       })
       .catch((error) => {
-        console.log("error posting offer to db: ", error);
         response.status(500).json(error);
       });
   });
