@@ -30,8 +30,9 @@ export default function App() {
     setRoom,
     setProfile,
     getUserNameFromId,
+    deletePost,
   } = useAppData();
-  
+
   const [socket, setSocket] = useState("");
   const [message, setMessage] = useState("");
   const [currentChat, setCurrentChat] = useState([]);
@@ -69,7 +70,7 @@ export default function App() {
       }));
     });
   };
-  
+
   const disconnectSocket = () => {
     if (socket) socket.disconnect();
     setSocket(null);
@@ -83,7 +84,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <Navbar 
+      <Navbar
         setProfile={setProfile}
         setCurrentUser={setCurrentUser}
         removeCurrentUser={removeCurrentUser}
@@ -146,6 +147,7 @@ export default function App() {
               addMessage={addMessage}
               setProfile={setProfile}
               getUserNameFromId={getUserNameFromId}
+              deletePost={deletePost}
             />
           </div>
           <div className="chat-container">
