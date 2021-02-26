@@ -79,7 +79,7 @@ export default function Reviews({ helper_id, job_id, offer_id, onSave }) {
   return (
     <div>
       <div>
-        <button className="btn" type="button" onClick={handleOpen}>
+        <button className="light-btn" type="button" onClick={handleOpen}>
           Review
         </button>
         <Modal
@@ -109,7 +109,7 @@ export default function Reviews({ helper_id, job_id, offer_id, onSave }) {
               <TextField
                 ref={reviewInput}
                 className={classes.paragraph}
-                style={{ fontSize: "5rem" }}
+                style={{ fontSize: "5rem", marginBottom: "12px" }}
                 id="standard-basic"
                 label="Review"
                 onChange={(event) => setReview(event.target.value)}
@@ -119,7 +119,7 @@ export default function Reviews({ helper_id, job_id, offer_id, onSave }) {
                 fullWidth
               />
               <span>{error}</span>
-              <div className="btns">
+              <div className="review btns">
                 <button className="btn" onClick={() => validate("COMPLETED")}>
                   Completed
                 </button>

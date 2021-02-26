@@ -226,6 +226,24 @@
   margin-left: 100px;
 }
 
+.light-btn {
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  text-align: center;
+  outline: none;
+  margin: 5px;
+  border: none;
+  background: #9fc5e7;
+  color: #135ea2;
+}
+
+.light-btn:hover {
+  background: chocolate;
+  color: white;
+  cursor: pointer;
+}
+
 .job-list-chevron:hover {
   -webkit-animation: mover 0.5s infinite alternate;
   animation: mover 0.5s infinite alternate;

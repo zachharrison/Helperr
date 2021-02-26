@@ -13,7 +13,7 @@ export function getJobsFiltered(state, coord, categoryFilter, distanceFilter) {
         (job) =>
           distBtw2Ptss([job.lat, job.lng], [coord.lat, coord.lng]) <
           distanceFilter
-      ))
+    ))
     : (radiusJobs = pendingJobs);
 
   return categoryFilter.length === 0

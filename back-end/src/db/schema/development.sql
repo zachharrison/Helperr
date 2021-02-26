@@ -109,8 +109,8 @@ VALUES (
     9,
     'Need marriage counselor',
     'It seems like I can fix just about anything but my marriage, PLEASE HELP!',
-    48.428421,
-    -123.3656461,
+    48.6150804,
+    -123.419924,
     15000,
     ' total',
     '2021-02-26',
@@ -242,6 +242,90 @@ VALUES (
     '2021-02-26',
     '2021-03-02',
     'POSTED'
+  ),
+  (
+    4,
+    null,
+    3,
+    'Cook my wife a delicious dinner',
+    'My anniversary is coming up and I wanted to cook my wife a romantic dinner, but I have no cooking skills. Hoping someone can come over during the day so it will be ready when she gets home',
+    49.261320, 
+    -123.113940,
+    200,
+    ' total',
+    '2021-02-26',
+    '2021-03-19',
+    'POSTED'
+  ),
+  (
+    4,
+    null,
+    5,
+    'I put pasta in my toaster and now its broken!',
+    'My microwave broke after I tried to heat up some cutlery, so I tired to cook pasta in my toaster and now that doesn''t work either.. SOmeone please fix it!',
+    49.271600, 
+    -123.106500,
+    100,
+    ' total',
+    '2021-02-26',
+    '2021-03-01',
+    'POSTED'
+  ),
+  (
+    3,
+    null,
+    8,
+    'Pickup groceries from granville market',
+    'I''ve been meaning to pick up some fresh produce, but haven''t been able to make it down there. Would really appreciate some help!',
+    49.2727014, 
+    -123.1352146,
+    100,
+    ' total',
+    '2021-02-26',
+    '2021-03-08',
+    'POSTED'
+  ),
+  (
+    4,
+    null,
+    9,
+    'Dropped my iphone in the Vancouver aquarium!',
+    'I need a scuba diver to get it for me',
+    49.3007961, 
+    -123.1309293,
+    100,
+    ' total',
+    '2021-02-26',
+    '2021-03-07',
+    'POSTED'
+  ),
+  (
+    4,
+    null,
+    4,
+    'I hit a pothole and now my car is upside down!',
+    'Need a bodybuilder or mechanic to help me flip it back onto its wheels!',
+    49.275338, 
+    -123.1491361,
+    100,
+    ' total',
+    '2021-02-26',
+    '2021-03-05',
+    'POSTED'
+  ),
+  (
+    2,
+    null,
+    1,
+    'Need someone to hold the ladder while',
+    'Need a bodybuilder or mechanic to help me flip it back onto its wheels!',
+    49.2900541, 
+    -123.1376043,
+    100,
+    ' total',
+    '2021-03-15',
+    '2021-03-16',
+    'POSTED'
   );
   
 INSERT INTO offers (helper_id, job_id, price, pay_type, status)
@@ -278,18 +362,6 @@ VALUES (
     1,
     'Hello, I''m interested in your job to help you move your furniture. Let me know I''m available anytime!',
     '2021-02-18T09:14:45.223Z'
-  ),
-  (
-    1,
-    1,
-    'Excellent, how does 4 O''clock sound?',
-    '2021-02-19T09:14:52.223Z'
-  ),
-  (
-    2,
-    1,
-    'Sounds great!',
-    '2021-02-20T09:15:39.223Z'
   ),
   (
     1,
