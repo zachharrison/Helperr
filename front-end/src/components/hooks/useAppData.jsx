@@ -47,7 +47,7 @@ export default function useAppData() {
   // SETS VIEW FOR RIGHT HALF OF PAGE
   const setJobView = (jobView) =>
     setState((previous) => ({ ...previous, jobView }));
-  
+
   const setProfile = (profile) => {
     setState((prev) => ({ ...prev, profile }));
   };
@@ -82,7 +82,7 @@ export default function useAppData() {
     setState({ ...state, currentUser: null });
     removeCookie("user");
   };
-  
+
   const setMessages = (message) => {
     setState((prev) => ({ ...prev, messages: [...prev.messages, message] }));
   };
@@ -130,7 +130,6 @@ export default function useAppData() {
     });
   };
 
-
   // RETURN MESSAGES FOR SPECIFIC OFFER
   const getMessages = (id) => {
     const offerMessages = [];
@@ -142,7 +141,7 @@ export default function useAppData() {
     }
     return offerMessages;
   };
-  
+
   const postJob = (job) => {
     return axios.post(`/api/jobs/`, { job }).then(() => {
       const id = Object.keys(state.jobs).length + 1;
@@ -154,7 +153,7 @@ export default function useAppData() {
         },
       });
     });
-  }
+  };
 
   const changeJobStatus = (job) => {
     return axios.post(`/api/jobs/${job.job_id}`, { job }).then(() => {
@@ -170,7 +169,18 @@ export default function useAppData() {
         },
       }));
     });
-  }
+  };
+
+  const deletePost = (id) => {
+    return axios.delete(`/api/jobs/${id}`).then(() => {
+      const jobs = { ...state.jobs };
+      delete jobs[id];
+      setState((prev) => ({
+        ...prev,
+        jobs,
+      }));
+    });
+  };
 
   const postOffer = (offer) => {
     return axios.post(`/api/offers/`, { offer }).then(() => {
@@ -183,12 +193,12 @@ export default function useAppData() {
         },
       });
     });
-  }
+  };
 
   const updateOffer = (update) => {
     changeOfferStatus(update);
     changeJobStatus(update);
-  }
+  };
 
   const changeOfferStatus = (offer) => {
     return axios.post(`/api/offers/${offer.offer_id}`, { offer }).then(() => {
@@ -203,7 +213,7 @@ export default function useAppData() {
         },
       }));
     });
-  }
+  };
 
   const postReview = (review) => {
     changeJobStatus(review);
@@ -218,7 +228,7 @@ export default function useAppData() {
         },
       }));
     });
-  }
+  };
 
   return {
     state,
@@ -242,7 +252,6 @@ export default function useAppData() {
     addMessage,
     setProfile,
     getUserNameFromId,
+    deletePost,
   };
-  
 }
-

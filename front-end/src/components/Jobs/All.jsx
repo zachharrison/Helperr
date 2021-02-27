@@ -9,6 +9,7 @@ export default function All({
   setJobView,
   postReview,
   updateOffer,
+  deletePost,
 }) {
   const user = state.currentUser;
   const jobs = Object.values(state.jobs);
@@ -45,6 +46,7 @@ export default function All({
             postReview={postReview}
             updateOffer={updateOffer}
             end_date={myPosts.end_date}
+            deletePost={deletePost}
           />
         ))}
       {posted.length < 1 && (

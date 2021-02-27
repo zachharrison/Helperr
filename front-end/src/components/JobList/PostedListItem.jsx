@@ -23,6 +23,7 @@ export default function PostedListItem({
   setProfile,
   setJobView,
   state,
+  deletePost,
 }) {
   const users = Object.values(state.users);
   const categories = Object.values(state.categories);
@@ -69,6 +70,16 @@ export default function PostedListItem({
                 {categoryName} for ${price}
                 {pay_type}
               </h1>
+              {status !== "COMPLETED" && (
+                <button
+                  className="profile-btn-small"
+                  onClick={() => {
+                    deletePost(job_id);
+                  }}
+                >
+                  Remove
+                </button>
+              )}
             </div>
           </div>
           <div className="small-profile" onClick={handleProfileClick}>

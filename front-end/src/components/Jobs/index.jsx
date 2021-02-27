@@ -37,10 +37,9 @@ export default function Jobs({
   selected,
   setSelected,
   setProfile,
-  getUserNameFromId
+  getUserNameFromId,
+  deletePost,
 }) {
-
-
   function saveJob(newJob) {
     postJob(newJob)
       .then(() => setJobView("ALL"))
@@ -48,7 +47,7 @@ export default function Jobs({
         console.log(`Error saving job: ${error}`);
       });
   }
-  
+
   function saveOffer(newOffer) {
     postOffer(newOffer)
       .then(() => setJobView("ALL"))
@@ -101,6 +100,7 @@ export default function Jobs({
             setProfile={setProfile}
             postReview={postReview}
             updateOffer={updateOffer}
+            deletePost={deletePost}
           />
         </div>
       )}
