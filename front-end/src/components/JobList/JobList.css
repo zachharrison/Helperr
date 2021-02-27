@@ -66,6 +66,7 @@
   padding: 15px;
   border-radius: 10px;
   align-items: center;
+  white-space: nowrap;
 }
 
 .small-profile {
@@ -170,6 +171,9 @@
   align-items: center;
   font-weight: bold;
   border: none;
+}
+.profile-btn-small {
+  color: #9fc5e7;
 }
 
 .small-profile:hover {
