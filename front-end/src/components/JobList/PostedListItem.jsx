@@ -27,7 +27,7 @@ export default function PostedListItem({
   const users = Object.values(state.users);
   const categories = Object.values(state.categories);
 
-  // JOINING BACKEND STATE TOGEHTEHR 
+  // JOINING BACKEND STATE TOGEHTEHR
   const categoryName = categories[category_id - 1].name;
   const userAvatar = users[client_id - 1].avatar;
   const userName = users[client_id - 1].name;
@@ -97,9 +97,9 @@ export default function PostedListItem({
           {acceptedOffer().map((offers) => (
             <div className="offers">
               <OfferListItem
+                {...offers}
                 offer_id={offers.id}
                 job_id={job_id}
-                helper_id={offers.helper_id}
                 state={state}
                 status={offers.status}
                 postReview={postReview}

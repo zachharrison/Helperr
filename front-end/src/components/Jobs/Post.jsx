@@ -87,6 +87,7 @@ export default function Post({ state, coord, setCoord, onSave }) {
             onChange={(event) => setName(event.target.value)}
             autoComplete="off"
           />
+          <br />
           <TextField
             id="job-descripton"
             name="job-descripton"
@@ -114,7 +115,7 @@ export default function Post({ state, coord, setCoord, onSave }) {
             id="price"
             name="price"
             value={state.price}
-            style={{ width: 145, margin: 8, marginRight: 25 }}
+            style={{ width: 208, margin: 8, marginRight: 25 }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">$</InputAdornment>
@@ -134,6 +135,7 @@ export default function Post({ state, coord, setCoord, onSave }) {
               name="pay-type-select"
               value={state.pay_type}
               onChange={handleChange}
+              style={{ width: 208 }}
             >
               <MenuItem value={"/hr"}>Per Hour</MenuItem>
               <MenuItem value={" total"}>Total</MenuItem>
@@ -143,7 +145,7 @@ export default function Post({ state, coord, setCoord, onSave }) {
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid container>
               <KeyboardDatePicker
-                style={{ width: 145, margin: 8, marginRight: 25 }}
+                style={{ width: 208, margin: 8, marginRight: 25 }}
                 disableToolbar
                 variant="inline"
                 format="yyyy/MM/dd"
@@ -157,7 +159,7 @@ export default function Post({ state, coord, setCoord, onSave }) {
               />
               <br />
               <KeyboardDatePicker
-                style={{ width: 145, margin: 8 }}
+                style={{ width: 208, margin: 8 }}
                 disableToolbar
                 variant="inline"
                 format="yyyy/MM/dd"

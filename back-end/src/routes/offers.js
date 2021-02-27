@@ -17,7 +17,7 @@ module.exports = (db) => {
       setTimeout(() => response.status(500).json({}), 1000);
       return;
     }
-    const { helper_id, job_id, price, pay_type, status } = request.body.offer;
+    const { helper_id, job_id, price, pay_type } = request.body.offer;
     db.query(
       `
       INSERT INTO offers ( helper_id, job_id, price, pay_type, status) VALUES ($1::integer, $2::integer, $3::integer, $4::pay_type, $5::offer_status);

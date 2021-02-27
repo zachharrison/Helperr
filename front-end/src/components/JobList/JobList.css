@@ -59,8 +59,8 @@
   color: #fff;
   background: #00539cff;
   padding: 15px;
-  height: 75px;
   border-radius: 10px;
+  align-items: center;
 }
 
 .small-profile {
@@ -146,11 +146,6 @@
   margin-top: 3px;
 }
 
-/* .profile-container-inner p {
-  color: #fff;
-  margin-top: 3px;
-} */
-
 .app-username p {
   color: #9fc5e7;
 }
@@ -178,6 +173,10 @@
   cursor: pointer;
 }
 
+.counter-offer {
+  color: #9fc5e7;
+}
+
 .Collapsible__contentOuter {
   display: flex;
   align-items: center;
@@ -199,10 +198,6 @@
   box-shadow: 0px 17px 6px 24px rgba(0,83,156,1); */
   border-top: 2px solid #135ea2;
 }
-
-/* .Collapsible__contentInner .offers {
-  color: green;
-} */
 
 .job-list-chevron {
   display: flex;

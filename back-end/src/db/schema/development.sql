@@ -22,6 +22,12 @@ VALUES (
     'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/tom-brady.png?raw=true',
     'Tom@balldeflator.com',
     'password'
+  ),
+  (
+    'Curious George',
+    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/curious-george-sqr.png?raw=true',
+    'bannanaboi@msn.org',
+    'banananana'
   );
 INSERT INTO categories (name, marker)
 VALUES ('Light-labour', '/hard-hat-solid.svg'),
@@ -249,7 +255,7 @@ VALUES (
     3,
     'Cook my wife a delicious dinner',
     'My anniversary is coming up and I wanted to cook my wife a romantic dinner, but I have no cooking skills. Hoping someone can come over during the day so it will be ready when she gets home',
-    49.261320, 
+    49.261320,
     -123.113940,
     200,
     ' total',
@@ -263,7 +269,7 @@ VALUES (
     5,
     'I put pasta in my toaster and now its broken!',
     'My microwave broke after I tried to heat up some cutlery, so I tired to cook pasta in my toaster and now that doesn''t work either.. SOmeone please fix it!',
-    49.271600, 
+    49.271600,
     -123.106500,
     100,
     ' total',
@@ -277,7 +283,7 @@ VALUES (
     8,
     'Pickup groceries from granville market',
     'I''ve been meaning to pick up some fresh produce, but haven''t been able to make it down there. Would really appreciate some help!',
-    49.2727014, 
+    49.2727014,
     -123.1352146,
     100,
     ' total',
@@ -291,7 +297,7 @@ VALUES (
     9,
     'Dropped my iphone in the Vancouver aquarium!',
     'I need a scuba diver to get it for me',
-    49.3007961, 
+    49.3007961,
     -123.1309293,
     100,
     ' total',
@@ -305,7 +311,7 @@ VALUES (
     4,
     'I hit a pothole and now my car is upside down!',
     'Need a bodybuilder or mechanic to help me flip it back onto its wheels!',
-    49.275338, 
+    49.275338,
     -123.1491361,
     100,
     ' total',
@@ -319,7 +325,7 @@ VALUES (
     1,
     'Need someone to hold the ladder while',
     'Need a bodybuilder or mechanic to help me flip it back onto its wheels!',
-    49.2900541, 
+    49.2900541,
     -123.1376043,
     100,
     ' total',
@@ -327,7 +333,6 @@ VALUES (
     '2021-03-16',
     'POSTED'
   );
-  
 INSERT INTO offers (helper_id, job_id, price, pay_type, status)
 VALUES (2, 1, 2000, '/hr', 'REVIEWED'),
   (3, 1, 3000, '/hr', 'PENDING'),
