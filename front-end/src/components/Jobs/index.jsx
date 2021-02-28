@@ -88,6 +88,8 @@ export default function Jobs({
             selected={selected}
             setSelected={setSelected}
             setProfile={setProfile}
+            getConversations={getConversations}
+            cookies={cookies}
           />
         </div>
       )}

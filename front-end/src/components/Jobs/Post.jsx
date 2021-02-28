@@ -77,106 +77,102 @@ export default function Post({ state, coord, setCoord, onSave }) {
     <div>
       <h3>Post a New Job</h3>
       <div className="post-form">
-        <div>
-          <TextField
-            id="job-name"
-            style={{ width: 450, margin: 8, marginTop: 0 }}
-            label="Job"
-            placeholder="What do you need help with?"
-            fullWidth
-            onChange={(event) => setName(event.target.value)}
-            autoComplete="off"
-          />
-          <TextField
-            id="job-descripton"
-            name="job-descripton"
-            style={{ width: 450, margin: 8 }}
-            label="Description"
-            placeholder="Details of your job"
-            fullWidth
-            multiline
-            rowsMax="10"
-            onChange={(event) => setDescription(event.target.value)}
-          />
-          <Autocomplete
-            onChange={(event, value) => setCategory(value ? value.id : "")}
-            id="category-search"
-            name="category-search"
-            value={state.category_id}
-            options={Object.values(state.categories)}
-            getOptionLabel={(option) => option.name}
-            style={{ width: 450, margin: 8 }}
-            renderInput={(params) => <TextField {...params} label="Category" />}
-          />
-          <Places setCoord={setCoord} coord={coord} />
-          <TextField
-            label="Price"
-            id="price"
-            name="price"
-            value={state.price}
-            style={{ width: 145, margin: 8, marginRight: 25 }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">$</InputAdornment>
-              ),
-            }}
-            onChange={(event) => setPrice(event.target.value)}
-            autoComplete="off"
-          />
-          <FormControl
-            className={classes.formControl}
-            onSubmit={(event) => event.preventDefault()}
+        <TextField
+          id="job-name"
+          style={{ width: 450, margin: 8, marginTop: 0, textAlign: "center" }}
+          label="Job"
+          placeholder="What do you need help with?"
+          fullWidth
+          onChange={(event) => setName(event.target.value)}
+          autoComplete="off"
+        />
+        <TextField
+          id="job-descripton"
+          name="job-descripton"
+          style={{ width: 450, margin: 8 }}
+          label="Description"
+          placeholder="Details of your job"
+          fullWidth
+          multiline
+          rowsMax="10"
+          onChange={(event) => setDescription(event.target.value)}
+        />
+        <Autocomplete
+          onChange={(event, value) => setCategory(value ? value.id : "")}
+          id="category-search"
+          name="category-search"
+          value={state.category_id}
+          options={Object.values(state.categories)}
+          getOptionLabel={(option) => option.name}
+          style={{ width: 450, margin: 8 }}
+          renderInput={(params) => <TextField {...params} label="Category" />}
+        />
+        <Places setCoord={setCoord} coord={coord} />
+        <TextField
+          label="Price"
+          id="price"
+          name="price"
+          value={state.price}
+          style={{ width: 145, margin: 8, marginRight: 25 }}
+          InputProps={{
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+          }}
+          onChange={(event) => setPrice(event.target.value)}
+          autoComplete="off"
+        />
+        <FormControl
+          className={classes.formControl}
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <InputLabel id="pay-type">Pay Type</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="pay-type-select"
+            name="pay-type-select"
+            value={state.pay_type}
+            onChange={handleChange}
           >
-            <InputLabel id="pay-type">Pay Type</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="pay-type-select"
-              name="pay-type-select"
-              value={state.pay_type}
-              onChange={handleChange}
-            >
-              <MenuItem value={"/hr"}>Per Hour</MenuItem>
-              <MenuItem value={" total"}>Total</MenuItem>
-            </Select>
-          </FormControl>
+            <MenuItem value={"/hr"}>Per Hour</MenuItem>
+            <MenuItem value={" total"}>Total</MenuItem>
+          </Select>
+        </FormControl>
 
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container>
-              <KeyboardDatePicker
-                style={{ width: 145, margin: 8, marginRight: 25 }}
-                disableToolbar
-                variant="inline"
-                format="yyyy/MM/dd"
-                margin="normal"
-                label="Start Date"
-                value={start_date}
-                onChange={handleStartDateChange}
-                KeyboardButtonProps={{
-                  "aria-label": "change date",
-                }}
-              />
-              <br />
-              <KeyboardDatePicker
-                style={{ width: 145, margin: 8 }}
-                disableToolbar
-                variant="inline"
-                format="yyyy/MM/dd"
-                margin="normal"
-                label="End Date"
-                value={end_date}
-                onChange={handleEndDateChange}
-                KeyboardButtonProps={{
-                  "aria-label": "change date",
-                }}
-              />
-            </Grid>
-          </MuiPickersUtilsProvider>
-          <br />
-          <span>{error}</span>
-          <button onClick={(e) => validate(e)} className="btn">
-            POST
-          </button>
-        </div>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container>
+            <KeyboardDatePicker
+              style={{ width: 145, margin: 8, marginRight: 25 }}
+              disableToolbar
+              variant="inline"
+              format="yyyy/MM/dd"
+              margin="normal"
+              label="Start Date"
+              value={start_date}
+              onChange={handleStartDateChange}
+              KeyboardButtonProps={{
+                "aria-label": "change date",
+              }}
+            />
+            <br />
+            <KeyboardDatePicker
+              style={{ width: 145, margin: 8 }}
+              disableToolbar
+              variant="inline"
+              format="yyyy/MM/dd"
+              margin="normal"
+              label="End Date"
+              value={end_date}
+              onChange={handleEndDateChange}
+              KeyboardButtonProps={{
+                "aria-label": "change date",
+              }}
+            />
+          </Grid>
+        </MuiPickersUtilsProvider>
+        <br />
+        <span>{error}</span>
+        <button onClick={(e) => validate(e)} className="btn">
+          POST
+        </button>
       </div>
     </div>
   );

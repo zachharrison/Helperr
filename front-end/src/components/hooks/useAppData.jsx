@@ -183,16 +183,33 @@ export default function useAppData() {
   };
 
   const postOffer = (offer) => {
-    return axios.post(`/api/offers/`, { offer }).then(() => {
-      const id = Object.keys(state.offers).length + 1;
-      setState({
-        ...state,
-        offers: {
-          ...state.offers,
-          [id]: { ...offer, id },
-        },
-      });
-    });
+    console.log("OFFER OBJ: ", offer);
+    return axios
+      .post(`/api/offers/`, { offer })
+      .then((res, req) => {
+        const offer_id = res.data.offerId.id;
+        console.log("res from post", res.data);
+        console.log("res from post", res.data.offerId.id);
+
+        const id = Object.keys(state.offers).length + 1;
+        setState({
+          ...state,
+          offers: {
+            ...state.offers,
+            [id]: { ...offer, id },
+          },
+        });
+        return offer_id;
+      })
+      .then((offer_id) => {
+        const newMessage = {
+          offer_id,
+          user_id: offer.helper_id,
+          message: `User has sent an offer of $${offer.price}`,
+        };
+        addMessage(newMessage);
+      })
+      .catch((err) => console.log(err));
   };
 
   const updateOffer = (update) => {

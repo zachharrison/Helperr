@@ -4,7 +4,6 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import Collapsible from "react-collapsible";
 import "./JobList.css";
 
-
 export default function FindListItem({
   name,
   helper_id,
@@ -15,7 +14,6 @@ export default function FindListItem({
   setCoord,
   price,
   pay_type,
-  start_date,
   end_date,
   category_id,
   onSave,
@@ -23,6 +21,8 @@ export default function FindListItem({
   state,
   job_id,
   setProfile,
+  getConversations,
+  cookies,
 }) {
   const [error, setError] = useState("");
 
@@ -79,7 +79,7 @@ export default function FindListItem({
             <div className="profile-container">
               <img src={userAvatar} alt="profile" />
               <p className="username">{userName}</p>
-             </div>
+            </div>
           </div>
           <div className="item-row">
             <h6 className="date">Expiry: {formattedDate(end_date)}</h6>

@@ -18,14 +18,23 @@ h3 {
 }
 
 .post-form {
-  margin: 0px 40px;
+  margin: 0px auto;
   background: #eee;
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   padding: 30px;
   border-radius: 12px;
+  width: 70%;
+  border: 3px solid black;
 }
+
+/* .post-form * {
+display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; 
+} */
 
 .accordion-show {
   display: flex;
