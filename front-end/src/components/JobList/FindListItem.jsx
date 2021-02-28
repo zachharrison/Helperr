@@ -117,7 +117,7 @@ export default function FindListItem({
               name="price"
               value={state.offerPrice}
               defaultValue={offerPrice}
-              style={{ width: 100, margin: 8, marginRight: 25 }}
+              style={{ width: 100, margin: 8 }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">$</InputAdornment>
