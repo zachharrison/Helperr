@@ -1,6 +1,13 @@
 import { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import TextField from "@material-ui/core/TextField";
+import Select from "@material-ui/core/Select";
 import Collapsible from "react-collapsible";
 import "./JobList.css";
 
@@ -24,14 +31,21 @@ export default function FindListItem({
   getConversations,
   cookies,
 }) {
+  const [offerPrice, setOfferPrice] = useState(price);
   const [error, setError] = useState("");
+  const classes = useStyles();
+
+  const [offerPayType, setOfferPayType] = useState(pay_type);
+  const handleChange = (event) => {
+    setOfferPayType(event.target.value);
+  };
 
   function application() {
     const newOffer = {
       helper_id: state.currentUser,
       job_id,
-      price,
-      pay_type,
+      price: offerPrice,
+      pay_type: offerPayType,
       status: "PENDING",
     };
     if (helper_id === "") {
@@ -96,11 +110,65 @@ export default function FindListItem({
           <div className="item-row">
             <p className="job-description">{description}</p>
           </div>
-          <button onClick={application} className="btn">
-            Apply
-          </button>
+          <div className="item-row">
+            <TextField
+              label="Price"
+              id="price"
+              name="price"
+              value={state.offerPrice}
+              defaultValue={offerPrice}
+              style={{ width: 145, margin: 8, marginRight: 25 }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">$</InputAdornment>
+                ),
+              }}
+              onChange={(event) => setOfferPrice(event.target.value)}
+              autoComplete="off"
+            />
+            <FormControl
+              className={classes.formControl}
+              onSubmit={(event) => event.preventDefault()}
+            >
+              <InputLabel id="pay-type">Pay Type</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="pay-type-select"
+                name="pay-type-select"
+                defaultValue={offerPayType}
+                value={state.offerPayType}
+                onChange={handleChange}
+              >
+                {console.log(state.jobs[job_id].pay_type)}
+                <MenuItem value={"/hr"}>Per Hour</MenuItem>
+                <MenuItem value={" total"}>Total</MenuItem>
+              </Select>
+            </FormControl>
+            <button onClick={application} className="btn">
+              Apply
+            </button>
+          </div>
         </Collapsible>
       </div>
     </div>
   );
 }
+
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: "25ch",
+  },
+}));

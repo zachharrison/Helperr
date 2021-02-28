@@ -2,17 +2,18 @@ import "./Profile.css";
 
 const Profile = ({ state }) => {
   // GET THE CURRENT USERS PROFILE IF THEIR USERNAME IS IN PROFILE STATE
-  const user = Object
-    .values(state.users)
-    .find((user) => state.profile === user.name);
+  const user = Object.values(state.users).find(
+    (user) => state.profile === user.name
+  );
 
   // GET ALL OF THE USERS REVIEWS
-  const reviews = Object
-  .values(state.reviews)
-  .filter((review) => review.helper_id === user.id);
+  const reviews = Object.values(state.reviews).filter(
+    (review) => review.helper_id === user.id
+  );
 
-  // IF A USER HAS MORE THAN ONE REVEIW COMPUTE THE AVERAGE STARS, OTHERWISE RETURN N/A 
-  const avgStars = reviews.length >= 1
+  // IF A USER HAS MORE THAN ONE REVEIW COMPUTE THE AVERAGE STARS, OTHERWISE RETURN N/A
+  const avgStars =
+    reviews.length >= 1
       ? reviews.reduce((curr, acc) => curr + acc.stars, 0) / reviews.length
       : "N/A";
 
@@ -54,7 +55,7 @@ const Profile = ({ state }) => {
       starArr.push(full);
       stars++;
     }
-    
+
     avgStars % 1 >= 0.5 && starArr.push(half);
 
     while (starArr.length < 5) {
@@ -65,7 +66,9 @@ const Profile = ({ state }) => {
 
   // LOOP AND REDUCE THE NUMBER OF EACH CATAGORY COMPLETED IN REVIEWS
   const reviewCats = reviews
-    .map((review) => state.categories[state.jobs[review.job_id].category_id].name)
+    .map(
+      (review) => state.categories[state.jobs[review.job_id].category_id].name
+    )
     .reduce((acc, curr) => {
       acc[curr] = (acc[curr] || 0) + 1;
       return acc;
@@ -102,7 +105,8 @@ const Profile = ({ state }) => {
                   <p>
                     {
                       // JOINS STATE TO GET CATEGORY NAME
-                      state.categories[state.jobs[review.job_id].category_id].name
+                      state.categories[state.jobs[review.job_id].category_id]
+                        .name
                     }
                   </p>
                   <h4>{review.name}</h4>
@@ -112,7 +116,9 @@ const Profile = ({ state }) => {
               <div className="job-feedback">
                 <p>
                   <span className="review-title">
-                    <div>{state.users[state.currentUser].name}here</div>:
+                    <div>
+                      {state.users[state.jobs[review.job_id].client_id].name}:
+                    </div>
                   </span>
                   "{review.details}"
                 </p>

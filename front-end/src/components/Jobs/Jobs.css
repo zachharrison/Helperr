@@ -3,7 +3,7 @@
 }
 
 h3 {
-  border-bottom: 1px solid rgb(179, 89, 25);
+  border-bottom: 1px solid chocolate;
   width: 55%;
   text-align: center;
   margin: auto;
@@ -18,15 +18,21 @@ h3 {
 }
 
 .post-form {
-  margin: 0px auto;
-  background: #eee;
-  /* display: flex;
+  /* margin: 0px 40px;
+  background: #eee; */
+  /*   display: flex;
   align-items: center;
   justify-content: center; */
-  padding: 30px;
-  border-radius: 12px;
-  width: 70%;
-  border: 3px solid black;
+  /* padding: 30px;
+  border-radius: 12px; */
+
+  position: relative;
+  background-color: #9fc5e7;
+  color: #00539cff;
+  border-radius: 10px;
+  width: 80%;
+  margin: 12px 5px;
+  padding: 15px 25px;
 }
 
 /* .post-form * {

@@ -5,6 +5,8 @@ export default function OfferListItem({
   offer_id,
   job_id,
   helper_id,
+  price,
+  pay_type,
   status,
   postReview,
   updateOffer,
@@ -39,7 +41,10 @@ export default function OfferListItem({
             <p className="username">{helperName}</p>
           </div>
         </div>
-        {/* <div className="pay"></div> */}
+        <div className="counter-offer">
+          ${price}
+          {pay_type}
+        </div>
         {status === "PENDING" && (
           <div className="btns">
             <button
@@ -66,12 +71,11 @@ export default function OfferListItem({
                 onSave={postReview}
               />
             )}
-            <button className="btn-status">ACCEPTED</button>
           </div>
         )}
         {status === "REVIEWED" && (
           <div>
-            <button className="btn-status">COMPLETED</button>
+            <button className="btn-status">REVIEWED</button>
           </div>
         )}
       </div>

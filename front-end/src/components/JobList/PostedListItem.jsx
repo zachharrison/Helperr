@@ -108,9 +108,9 @@ export default function PostedListItem({
           {acceptedOffer().map((offers) => (
             <div className="offers">
               <OfferListItem
+                {...offers}
                 offer_id={offers.id}
                 job_id={job_id}
-                helper_id={offers.helper_id}
                 state={state}
                 status={offers.status}
                 postReview={postReview}

@@ -39,8 +39,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 0px;
-  margin-bottom: 15px;
   flex-direction: row;
 }
 
@@ -68,7 +66,7 @@ body {
 }
 
 .btn-status {
-  background-color: rgba(210, 105, 30, 0.7);
+  background-color: chocolate;
   color: rgba(255, 255, 255, 0.8);
   width: 100px;
   height: 40px;
