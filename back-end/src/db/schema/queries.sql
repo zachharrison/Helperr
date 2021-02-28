@@ -52,3 +52,6 @@ INSERT INTO reviews (user_id, job_id, stars, who, details)
 SELECT reviews.*, jobs.name
 FROM reviews
 JOIN jobs ON jobs.id = job_id;
+
+INSERT INTO offers ( helper_id, job_id, price, pay_type, status) VALUES (1, 1, 100, ' total', 'PENDING')
+    RETURNING id;

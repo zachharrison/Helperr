@@ -21,7 +21,6 @@ export default function FindListItem({
   setCoord,
   price,
   pay_type,
-  start_date,
   end_date,
   category_id,
   onSave,
@@ -29,6 +28,8 @@ export default function FindListItem({
   state,
   job_id,
   setProfile,
+  getConversations,
+  cookies,
 }) {
   const [offerPrice, setOfferPrice] = useState(price);
   const [error, setError] = useState("");

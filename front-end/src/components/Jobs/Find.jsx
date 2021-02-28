@@ -56,6 +56,8 @@ export default function Find({
   setSelected,
   setProfile,
   coord,
+  cookies,
+  getConversations,
 }) {
   const classes = useStyles();
   const categories = Object.values(state.categories);
@@ -117,6 +119,8 @@ export default function Find({
             isSelected={selected && selected.id === job.id}
             setSelected={setSelected}
             setProfile={setProfile}
+            getConversations={getConversations}
+            cookies={cookies}
           />
         ))}
     </div>

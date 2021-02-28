@@ -8,7 +8,7 @@ export default [
       },
     ],
   },
-  {
+  /* {
     featureType: "landscape",
     elementType: "all",
     stylers: [
@@ -25,7 +25,7 @@ export default [
         color: "#d6d6d6",
       },
     ],
-  },
+  }, */
   {
     featureType: "poi",
     elementType: "all",
@@ -44,7 +44,7 @@ export default [
       },
     ],
   },
-  {
+  /* {
     featureType: "road",
     elementType: "all",
     stylers: [
@@ -82,7 +82,7 @@ export default [
         visibility: "off",
       },
     ],
-  },
+  }, */
   {
     featureType: "water",
     elementType: "all",

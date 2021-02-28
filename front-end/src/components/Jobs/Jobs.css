@@ -20,7 +20,7 @@ h3 {
 .post-form {
   /* margin: 0px 40px;
   background: #eee; */
-/*   display: flex;
+  /*   display: flex;
   align-items: center;
   justify-content: center; */
   /* padding: 30px;
@@ -33,8 +33,14 @@ h3 {
   width: 80%;
   margin: 12px 5px;
   padding: 15px 25px;
-
 }
+
+/* .post-form * {
+display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; 
+} */
 
 .accordion-show {
   display: flex;
