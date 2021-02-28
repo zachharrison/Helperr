@@ -72,7 +72,7 @@ export default function PostedListItem({
               </h1>
               {status !== "COMPLETED" && (
                 <button
-                  className="profile-btn-small"
+                  className="remove-btn"
                   onClick={() => {
                     deletePost(job_id);
                   }}

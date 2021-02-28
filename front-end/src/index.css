@@ -98,6 +98,28 @@ body {
   cursor: pointer;
 }
 
+.remove-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 26px;
+  border-radius: 30px;
+  text-align: center;
+  outline: none;
+  margin: 5px;
+  border: none;
+  background-color: #135ea2;
+  color: #fff;
+  margin-left: 15px;
+}
+
+.remove-btn:hover {
+  background: chocolate;
+  color: white;
+  cursor: pointer;
+}
+
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* make scrollbar transparent */

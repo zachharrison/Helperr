@@ -1,3 +1,10 @@
+.offer-options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+}
+
 .category-box {
   margin-bottom: 45px;
 }

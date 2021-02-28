@@ -110,14 +110,14 @@ export default function FindListItem({
           <div className="item-row">
             <p className="job-description">{description}</p>
           </div>
-          <div className="item-row">
+          <div className="offer-options">
             <TextField
               label="Price"
               id="price"
               name="price"
               value={state.offerPrice}
               defaultValue={offerPrice}
-              style={{ width: 145, margin: 8, marginRight: 25 }}
+              style={{ width: 100, margin: 8 }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">$</InputAdornment>
