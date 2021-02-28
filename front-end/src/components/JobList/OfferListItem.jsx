@@ -71,12 +71,11 @@ export default function OfferListItem({
                 onSave={postReview}
               />
             )}
-            <button className="btn-status">ACCEPTED</button>
           </div>
         )}
         {status === "REVIEWED" && (
           <div>
-            <button className="btn-status">COMPLETED</button>
+            <button className="btn-status">REVIEWED</button>
           </div>
         )}
       </div>
