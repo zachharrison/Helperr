@@ -18,29 +18,18 @@ h3 {
 }
 
 .post-form {
-  /* margin: 0px 40px;
-  background: #eee; */
-  /*   display: flex;
-  align-items: center;
-  justify-content: center; */
-  /* padding: 30px;
-  border-radius: 12px; */
-
-  position: relative;
-  background-color: #9fc5e7;
-  color: #00539cff;
-  border-radius: 10px;
-  width: 80%;
-  margin: 12px 5px;
-  padding: 15px 25px;
-}
-
-/* .post-form * {
-display: flex;
+  margin: 0px 40px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column; 
-} */
+  padding: 25px 0px;
+  border-radius: 12px;
+}
+
+.post-form-container {
+  padding: 45px;
+  background: #eee;
+}
 
 .accordion-show {
   display: flex;

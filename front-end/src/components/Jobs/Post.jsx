@@ -77,7 +77,7 @@ export default function Post({ state, coord, setCoord, onSave }) {
     <div>
       <h3>Post a New Job</h3>
       <div className="post-form">
-        <div>
+        <div className="post-form-container">
           <TextField
             id="job-name"
             style={{ width: 450, margin: 8, marginTop: 0 }}
