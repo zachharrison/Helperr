@@ -53,7 +53,7 @@ function read(file) {
   });
 }
 
-server.listen(8001, () => {
+server.listen(PORT, () => {
   console.log(`Listening on port ${PORT} in ${ENV} mode.`);
 });
 
