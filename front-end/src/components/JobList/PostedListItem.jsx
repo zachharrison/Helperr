@@ -1,5 +1,4 @@
 import OfferListItem from "./OfferListItem";
-import Reviews from "../Reviews/Reviews";
 import "../Reviews/Reviews.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
