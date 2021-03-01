@@ -1,5 +1,3 @@
-import { useState } from "react";
-import Button from "@material-ui/core/Button";
 import "./JobList.css";
 import "../Reviews/Reviews.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

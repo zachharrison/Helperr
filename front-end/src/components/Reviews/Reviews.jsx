@@ -40,7 +40,6 @@ export default function Reviews({ helper_id, job_id, offer_id, onSave }) {
 
   const reviewInput = useRef(null);
   const handleOpen = () => {
-    // reviewInput.current.focus();
     setOpen(true);
   };
 
@@ -55,7 +54,7 @@ export default function Reviews({ helper_id, job_id, offer_id, onSave }) {
     },
   });
 
-  Reviews = withStyles(styles)(Reviews); //what is this, (its throwing a warning)
+  Reviews = withStyles(styles)(Reviews);
 
   function validate(isCompleted) {
     if (review === "" || !starValue) {

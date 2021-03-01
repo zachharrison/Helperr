@@ -1,31 +1,31 @@
 INSERT INTO users (name, avatar, email, password)
 VALUES (
     'Mrs.Doubtfire',
-    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/mrs-doubtfire.png?raw=true',
+    'https://github.com/AdamTranquilla/handondemand/blob/master/front-end/public/avatars/mrs-doubtfire.png?raw=true',
     'robinwilliams@ripthegoat.com',
     'password'
   ),
   (
     'BobTheBuilder',
-    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/bob-the-builder.png?raw=true',
+    'https://github.com/AdamTranquilla/handondemand/blob/master/front-end/public/avatars/bob-the-builder.png?raw=true',
     'Bob@BobsBuilding.com',
     'password'
   ),
   (
     'Harry n'' Marv',
-    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/the-wet-bantis-homealone.png?raw=true',
+    'https://github.com/AdamTranquilla/handondemand/blob/master/front-end/public/avatars/the-wet-bantis-homealone.png?raw=true',
     'harrynmarv@notascam.com',
     'password'
   ),
   (
     'Tom Brady',
-    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/tom-brady.png?raw=true',
+    'https://github.com/AdamTranquilla/handondemand/blob/master/front-end/public/avatars/tom-brady.png?raw=true',
     'Tom@balldeflator.com',
     'password'
   ),
   (
     'Curious George',
-    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/curious-george-sqr.png?raw=true',
+    'https://github.com/AdamTranquilla/handondemand/blob/master/front-end/public/avatars/curious-george-sqr.png?raw=true',
     'bannanaboi@msn.org',
     'banananana'
   );
@@ -347,8 +347,7 @@ VALUES (
     '2021-03-16',
     'COMPLETED'
   );
-INSERT INTO offers (helper_id, job_id, price, pay_type, status)
-<<<<<<< HEAD
+INSERT INTO offers (helper_id, job_id, price, pay_type, status) << << << < HEAD
 VALUES (2, 1, 2000, '/hr', 'REVIEWED'),
   (3, 1, 3000, '/hr', 'PENDING'),
   (4, 1, 3000, '/hr', 'PENDING'),
@@ -367,7 +366,7 @@ VALUES (2, 1, 2000, '/hr', 'REVIEWED'),
   (4, 6, 10000, '/hr', 'ACCEPTED'),
   (1, 6, 10000, '/hr', 'PENDING'),
   (1, 7, 20000, '/hr', 'REVIEWED'),
-=======
+  == == == =
 VALUES (2, 1, 20, '/hr', 'REVIEWED'),
   (3, 1, 30, '/hr', 'PENDING'),
   (4, 1, 30, '/hr', 'PENDING'),
@@ -386,8 +385,7 @@ VALUES (2, 1, 20, '/hr', 'REVIEWED'),
   (4, 6, 100, '/hr', 'ACCEPTED'),
   (1, 6, 5, '/hr', 'PENDING'),
   (1, 7, 200, '/hr', 'REVIEWED'),
->>>>>>> acf025b7ac22025d12ce7f64bfb5d55263ed5b4d
-  (2, 7, 1212, ' total', 'PENDING'),
+  >> >> >> > acf025b7ac22025d12ce7f64bfb5d55263ed5b4d (2, 7, 1212, ' total', 'PENDING'),
   (4, 8, 200, '/hr', 'PENDING'),
   (2, 8, 1250, ' total', 'REVIEWED');
 INSERT INTO messages (user_id, offer_id, message, timestamp)
@@ -476,65 +474,3 @@ VALUES (
     'The kool-aid man kicked our door in right before we left on vacation so we booked Harry and Marv as locksmiths. When we got home our house was flooded and one of my SuperBowl rings was gone. Good thing I have 6 more',
     '2021-02-27 24:00:00'
   );
--- VALUES (
---     2,
---     1,
---     'User sent an offer 2000',
---     '2021-02-15T09:13:58.223Z'
---   ),
---   (
---     4,
---     2,
---     'User sent an offer 3000',
---     '2021-02-16T09:12:38.223Z'
---   ),
---   (
---     4,
---     4,
---     'User sent an offer 2000',
---     '2021-02-16T09:12:38.223Z'
---   ),
---   (
---     3,
---     5,
---     'User sent an offer 20000',
---     '2021-02-15T09:12:38.223Z'
---   ),
---   (
---     2,
---     5,
---     'User sent an offer 3000',
---     '2021-02-17T09:16:42.223Z'
---   ),
---   (
---     4,
---     6,
---     'User sent an offer 2500',
---     '2021-02-17T09:14:39.223Z'
---   ),
---   (
---     2,
---     1,
---     'Hey I am available to fill your babysitting position!',
---     '2021-02-17T09:12:38.223Z'
---   ),
---   (
---     1,
---     1,
---     'Sounds great!',
---     '2021-02-17T09:14:28.223Z'
---   ),
---   (
---     3,
---     2,
---     'I am very intrested in your position!',
---     '2021-02-18T09:12:38.223Z'
---   ),
---   (
---     4,
---     3,
---     'Lets chat tomorrow',
---     '2021-02-17T09:12:38.223Z'
---   );
--- GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO labber;
--- "timestamp": "2021-02-18T09:12:38.223Z",

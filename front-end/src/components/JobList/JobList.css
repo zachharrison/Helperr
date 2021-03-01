@@ -221,7 +221,7 @@
 .job-list-chevron {
   display: flex;
   /* align-self: center; */
-  color: chocolate;
+  color: darkgrey;
   font-size: 28px;
   margin: 0 auto;
   margin-top: 10px;
@@ -253,7 +253,7 @@
 }
 
 .light-btn:hover {
-  background: chocolate;
+  background: darkgrey;
   color: white;
   cursor: pointer;
 }
