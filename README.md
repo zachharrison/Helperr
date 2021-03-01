@@ -1,16 +1,4 @@
-# Hand on Demand
-
-* Hand on Demand is a fully responsive webapp where users can pin help requests to the map which helpers can filter through & apply to
-* When Applying to jobs, helpers can filter based on location, distance, and job category. They can then send a counter offer based on payment type and amount.
-* When booking a helper clients can message applicants in real time and view there previous jobs reviews before making a decision
-* After the completion of a job, clients can review their helper and have the option to mark the job completed, or repost the job which will bring back all pending offers.
-
-## Stack
-### Frontend: 
-* React, JS, CSS, material UI
-### Backend: 
-* Node, express, pSQL, socket.io, google maps API
-
+# Helperr
 
 ## Setup
 
@@ -18,7 +6,7 @@ Install dependencies withing the root, front-end and back-end folder with `npm i
 
 ## Creating The DB
 
-On back-end:
+###On back-end:
 
 1. Use the `psql -U development` command to login to the PostgreSQL server with the username `development` and the password `development`.
 2. Create a database with the command `CREATE DATABASE helperr_development;`.
@@ -44,13 +32,13 @@ CHOKIDAR_USEPOLLING=false
 
 ## Seeding the DB
 
-On back-end:
+###On back-end:
 
 1. Run a the development server with `npm start` in the Host environment.
 2. Then either Make a `GET` request to `/api/debug/reset` with `curl http://localhost:8001/api/debug/reset`, or use the browser to navigate to `http://localhost:8001/api/debug/reset`.
 
 ## Run The Server
 
-On front-end:
+###On front-end:
 
 1. Run a the server with `npm start`
