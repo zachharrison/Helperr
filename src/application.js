@@ -30,6 +30,14 @@ const loginMessages = require("./routes/login-messages");
 const loginJobs = require("./routes/login-jobs");
 const loginOffers = require("./routes/login-offers");
 
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static('front-end/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'front-end', 'build', 'index.html'));
+  });
+}
+
 function read(file) {
   return new Promise((resolve, reject) => {
     fs.readFile(
@@ -98,17 +106,9 @@ module.exports = function application(ENV, actions = { updateJobs: () => {} }) {
   app.use("/api", loginJobs(db, getSocket));
   app.use("/api", loginOffers(db, getSocket));
 
-  if(process.env.NODE_ENV === 'production') {
-    app.use(express.static('front-end/build'));
-
-    app.get('*', (req, res) => {
-      res.sendFile(path.resolve(__dirname, 'front-end', 'build', 'index.html'));
-    });
-  }
-
-  app.get("/", (req, res) => {
-    res.send({ response: "I am alive" }).status(200);
-  });
+  // app.get("/", (req, res) => {
+  //   res.send({ response: "I am alive" }).status(200);
+  // });
 
   if (ENV === "development" || ENV === "test") {
     Promise.all([
