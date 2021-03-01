@@ -30,6 +30,10 @@
   font-size: 1.1em;
 }
 
+.offer-amount {
+  white-space: nowrap;
+}
+
 .pay {
   font-size: 0.8em;
   align-content: flex-end;

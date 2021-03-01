@@ -21,10 +21,8 @@ export default function AppliedListItem({
   setJobView,
   setCoord,
   state,
-  status
+  status,
 }) {
-
-
   const categories = Object.values(state.categories);
   const users = Object.values(state.users);
 
@@ -50,7 +48,7 @@ export default function AppliedListItem({
         <div className="item-row">
           <h1>{name}</h1>
           <div className="pay">
-            <h1>
+            <h1 className="offer-amount">
               {categoryName} for ${price}
               {pay_type}
             </h1>

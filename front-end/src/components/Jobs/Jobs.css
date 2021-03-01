@@ -29,6 +29,7 @@ h3 {
 .post-form-container {
   padding: 45px;
   background: #eee;
+  border-radius: 12px;
 }
 
 .accordion-show {

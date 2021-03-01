@@ -40,7 +40,12 @@ function Login({ onClose, selectedValue, open, setCurrentUser }) {
       <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
       <List>
         {users.map((user) => (
-          <ListItem button onClick={() => handleListItemClick(user)} key={user}>
+          <ListItem
+            button
+            onClick={() => handleListItemClick(user)}
+            key={user}
+            label={"login"}
+          >
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
                 <PersonIcon />

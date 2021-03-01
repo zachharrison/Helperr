@@ -41,10 +41,6 @@ export default function OfferListItem({
             <p className="username">{helperName}</p>
           </div>
         </div>
-        <div className="counter-offer">
-          ${price}
-          {pay_type}
-        </div>
         {status === "PENDING" && (
           <div className="btns">
             <button
@@ -78,6 +74,10 @@ export default function OfferListItem({
             <button className="btn-status">REVIEWED</button>
           </div>
         )}
+        <div className="counter-offer">
+          ${price}
+          {pay_type}
+        </div>
       </div>
     </div>
   );

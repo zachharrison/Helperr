@@ -194,13 +194,20 @@ export default function Navbar(props) {
         style={{ background: "#a0c5e7", color: "#02539b" }}
       >
         <Toolbar>
-          <img src="hod-logo-w.png" alt="Hand on Demand" width="140" height="50"/>
+          <img
+            src="hod-logo-w.png"
+            alt="Hand on Demand"
+            width="140"
+            height="50"
+          />
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {state.currentUser && (
-              <div className="welcome">Welcome back, {getUserNameFromId(state.currentUser)}!</div>
+              <div className="welcome">
+                Welcome back, {getUserNameFromId(state.currentUser)}!
+              </div>
             )}
-           
+
             <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={5} color="secondary">
                 <NotificationsIcon />
