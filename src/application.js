@@ -30,13 +30,13 @@ const loginMessages = require("./routes/login-messages");
 const loginJobs = require("./routes/login-jobs");
 const loginOffers = require("./routes/login-offers");
 
-if(process.env.NODE_ENV === 'production') {
-  app.use(express.static('front-end/build'));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'front-end', 'build', 'index.html'));
-  });
-}
+app.use(express.static('front-end/build'));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'front-end', 'build', 'index.html'));
+});
+
 
 function read(file) {
   return new Promise((resolve, reject) => {
