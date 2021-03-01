@@ -55,18 +55,18 @@ body {
 }
 
 .btn:hover {
-  background: chocolate;
+  background: darkgrey;
   cursor: pointer;
 }
 
 .btn-small:hover {
-  background: chocolate;
+  background: darkgrey;
   color: white;
   cursor: pointer;
 }
 
 .btn-status {
-  background-color: chocolate;
+  background-color: darkgrey;
   color: rgba(255, 255, 255, 0.8);
   width: 100px;
   height: 40px;
@@ -94,7 +94,7 @@ body {
 }
 
 .profile-btn-small:hover {
-  background: chocolate;
+  background: darkgrey;
   cursor: pointer;
 }
 
@@ -115,7 +115,7 @@ body {
 }
 
 .remove-btn:hover {
-  background: chocolate;
+  background: darkgrey;
   color: white;
   cursor: pointer;
 }

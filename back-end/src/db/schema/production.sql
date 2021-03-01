@@ -1,25 +1,25 @@
 INSERT INTO users (username, avatar, email, password)
 VALUES (
     'BobTheBuilder',
-    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/bob-the-builder.png?raw=true',
+    'https://github.com/zachharrison/handondemand/blob/master/front-end/public/avatars/bob-the-builder.png?raw=true',
     'Bob@BobsBuilding.com',
     'password'
   ),
   (
     'Mrs.Doubtfire',
-    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/mrs-doubtfire.png?raw=true',
+    'https://github.com/zachharrison/handondemand/blob/master/front-end/public/avatars/mrs-doubtfire.png?raw=true',
     'robinwilliams@ripthegoat.com',
     'password'
   ),
   (
     "Harry n' Marv",
-    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/the-wet-bantis-homealone.png?raw=true',
+    'https://github.com/zachharrison/handondemand/blob/master/front-end/public/avatars/the-wet-bantis-homealone.png?raw=true',
     'harrynmarv@notascam.com',
     'password'
   ),
   (
     'Tom Brady',
-    'https://github.com/zachharrison/helperr/blob/master/front-end/public/avatars/tom-brady.png?raw=true',
+    'https://github.com/zachharrison/handondemand/blob/master/front-end/public/avatars/tom-brady.png?raw=true',
     'Tom@balldeflator.com',
     'password'
   );
