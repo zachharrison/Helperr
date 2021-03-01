@@ -28,8 +28,6 @@ export default function FindListItem({
   state,
   job_id,
   setProfile,
-  getConversations,
-  cookies,
 }) {
   const [offerPrice, setOfferPrice] = useState(price);
   const [error, setError] = useState("");
