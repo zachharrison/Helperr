@@ -98,6 +98,14 @@ module.exports = function application(ENV, actions = { updateJobs: () => {} }) {
   app.use("/api", loginJobs(db, getSocket));
   app.use("/api", loginOffers(db, getSocket));
 
+  if(process.env.NODE_ENV === 'production') {
+    app.use(express.static('front-end/build'));
+
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'front-end', 'build', 'index.html'));
+    });
+  }
+
   app.get("/", (req, res) => {
     res.send({ response: "I am alive" }).status(200);
   });
