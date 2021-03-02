@@ -12,6 +12,10 @@
     "dev": "nodemon ./src/index.js",
     "heroku-postbuild": "npm install --prefix front-end && npm run build --prefix front-end"
   },
+  "engines": {
+    "npm": "6.9.0",
+    "node": "10.16.1"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
