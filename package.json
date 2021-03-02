@@ -10,7 +10,7 @@
     "reset": "psql -U development -d helperr_development < ./src/db/schema/create.sql && psql -U development -d helperr_development < ./src/db/schema/development.sql",
     "test:server": "NODE_ENV=test npm start",
     "dev": "nodemon ./src/index.js",
-    "heroku-postbuild": "npm install --prefix front-end && npm run build --prefix front-end"
+    "heroku-postbuild": "cd front-end && npm install && npm run build"
   },
   "engines": {
     "npm": "6.9.0",
