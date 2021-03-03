@@ -31,11 +31,11 @@ const loginJobs = require("./routes/login-jobs");
 const loginOffers = require("./routes/login-offers");
 
 
-app.use(express.static(path.join(__dirname, 'front-end/build')));
+// app.use(express.static(path.join(__dirname, 'front-end/build')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/front-end/build/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname+'/front-end/build/index.html'));
+// });
 
 
 function read(file) {
