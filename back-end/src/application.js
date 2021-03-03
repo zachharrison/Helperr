@@ -45,7 +45,7 @@ function read(file) {
   });
 }
 
-server.listen(8001, () => {
+server.listen(PORT, () => {
   console.log(`Listening on port ${PORT} in ${ENV} mode.`);
 });
 
@@ -85,7 +85,7 @@ module.exports = function application(ENV, actions = { updateJobs: () => {} }) {
   const getSocket = () => {
     return io.sockets;
   };
-  
+
   // PASS DATABASE AND ALL SOCKETS TO EXPRESS MIDDLEWEAR
   app.use("/api", users(db, getSocket));
   app.use("/api", jobs(db, getSocket));

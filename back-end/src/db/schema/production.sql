@@ -1,31 +1,31 @@
 INSERT INTO users (name, avatar, email, password)
 VALUES (
     'Mrs.Doubtfire',
-    'https://github.com/AdamTranquilla/handondemand/blob/master/front-end/public/avatars/mrs-doubtfire.png?raw=true',
+    'https://i.imgur.com/6KarFum.png',
     'robinwilliams@ripthegoat.com',
     'password'
   ),
   (
     'BobTheBuilder',
-    'https://github.com/AdamTranquilla/handondemand/blob/master/front-end/public/avatars/bob-the-builder.png?raw=true',
+    'https://i.imgur.com/SqyfWYC.png',
     'Bob@BobsBuilding.com',
     'password'
   ),
   (
     'Harry n'' Marv',
-    'https://github.com/AdamTranquilla/handondemand/blob/master/front-end/public/avatars/the-wet-bantis-homealone.png?raw=true',
+    'https://i.imgur.com/mPZ4Oqk.png',
     'harrynmarv@notascam.com',
     'password'
   ),
   (
     'Tom Brady',
-    'https://github.com/AdamTranquilla/handondemand/blob/master/front-end/public/avatars/tom-brady.png?raw=true',
+    'https://i.imgur.com/Wy12bEa.png',
     'Tom@balldeflator.com',
     'password'
   ),
   (
     'Curious George',
-    'https://github.com/AdamTranquilla/handondemand/blob/master/front-end/public/avatars/curious-george-sqr.png?raw=true',
+    'https://i.imgur.com/9b0l4al.png',
     'bannanaboi@msn.org',
     'banananana'
   );
@@ -347,26 +347,7 @@ VALUES (
     '2021-03-16',
     'COMPLETED'
   );
-INSERT INTO offers (helper_id, job_id, price, pay_type, status) << << << < HEAD
-VALUES (2, 1, 2000, '/hr', 'REVIEWED'),
-  (3, 1, 3000, '/hr', 'PENDING'),
-  (4, 1, 3000, '/hr', 'PENDING'),
-  (4, 2, 15000, ' total', 'PENDING'),
-  (3, 2, 2500, ' total', 'ACCEPTED'),
-  (2, 2, 2500, ' total', 'PENDING'),
-  (2, 3, 2000, '/hr', 'PENDING'),
-  (4, 3, 20000, '/hr', 'PENDING'),
-  (5, 5, 2000, '/hr', 'PENDING'),
-  (1, 4, 20000, '/hr', 'REVIEWED'),
-  (3, 4, 20000, '/hr', 'PENDING'),
-  (4, 4, 2000, '/hr', 'PENDING'),
-  (4, 5, 20000, '/hr', 'PENDING'),
-  (3, 5, 20000, '/hr', 'PENDING'),
-  (3, 6, 100000, ' total', 'PENDING'),
-  (4, 6, 10000, '/hr', 'ACCEPTED'),
-  (1, 6, 10000, '/hr', 'PENDING'),
-  (1, 7, 20000, '/hr', 'REVIEWED'),
-  == == == =
+INSERT INTO offers (helper_id, job_id, price, pay_type, status)
 VALUES (2, 1, 20, '/hr', 'REVIEWED'),
   (3, 1, 30, '/hr', 'PENDING'),
   (4, 1, 30, '/hr', 'PENDING'),
@@ -385,7 +366,7 @@ VALUES (2, 1, 20, '/hr', 'REVIEWED'),
   (4, 6, 100, '/hr', 'ACCEPTED'),
   (1, 6, 5, '/hr', 'PENDING'),
   (1, 7, 200, '/hr', 'REVIEWED'),
-  >> >> >> > acf025b7ac22025d12ce7f64bfb5d55263ed5b4d (2, 7, 1212, ' total', 'PENDING'),
+  (2, 7, 1212, ' total', 'PENDING'),
   (4, 8, 200, '/hr', 'PENDING'),
   (2, 8, 1250, ' total', 'REVIEWED');
 INSERT INTO messages (user_id, offer_id, message, timestamp)
