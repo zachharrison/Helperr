@@ -183,7 +183,6 @@ export default function useAppData() {
   };
 
   const postOffer = (offer) => {
-    console.log("OFFER OBJ: ", offer);
     return axios
       .post(`/api/offers/`, { offer })
       .then((res, req) => {

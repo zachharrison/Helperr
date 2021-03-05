@@ -73,7 +73,6 @@ module.exports = function application(ENV, actions = { updateJobs: () => {} }) {
     };
 
     const userCookies = getCurrentCookies();
-    const { currentUser, currentRoom } = userCookies;
 
     // ADD USERS TO THE CORRECT ROOM ON JOIN
     socket.on("join", (room) => {

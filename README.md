@@ -50,7 +50,12 @@ CHOKIDAR_USEPOLLING=false
 On back-end:
 
 1. Run a the development server with `npm start` in the Host environment.
-2. Then either Make a `GET` request to `/api/debug/reset` with `curl http://localhost:8001/api/debug/reset`, or use the browser to navigate to `http://localhost:8001/api/debug/reset`.
+2. Then either Make a `GET` request to `/api/debug/reset` with `http://localhost:8001/api/debug/reset`, or seed driectly in psql with
+
+```psql
+\i src/db/schema/create.sql
+\i src/db/schema/development.sql
+```
 
 ## Run The Server
 
