@@ -1,9 +1,17 @@
 # Hand on Demand
 
-- Hand on Demand is a fully responsive webapp where users can pin help requests to the map which helpers can filter through & apply to
-- When Applying to jobs, helpers can filter based on location, distance, and job category. They can then send a counter offer based on payment type and amount.
-- When booking a helper clients can message applicants in real time and view there previous jobs reviews before making a decision
-- After the completion of a job, clients can review their helper and have the option to mark the job completed, or repost the job which will bring back all pending offers.
+Hand on Demand is a responsive google maps based web app where users can pin help requests to the map that other users can filter through, and apply to!
+
+- From the POST page users can list jobs with specified locations, categories, prices and payment types. After a location and category are selected a category-themed marker will pin the jobs to the map. Clicking on jobs pans to the jobs marker.
+[posting job form](https://github.com/AdamTranquilla/hand-on-demand/blob/master/front-end/public/post.png?raw=true)
+- When applying to jobs, helpers can filter based on location, distance, and job category. They can then send a counter offer based on price and payment type.
+[filter and apply list](https://github.com/AdamTranquilla/hand-on-demand/blob/master/front-end/public/apply.png?raw=true)
+- From the JOBS sections users can see all of their postings, applications, and completed jobs. Posted jobs show all applications to them in a drop-down menu where applicants can be accepted or declined.
+[users job list](https://github.com/AdamTranquilla/hand-on-demand/blob/master/front-end/public/my-jobs.png?raw=true)
+- Before accepting a job offer users can view the applicant's profile by selecting their avatar banner. Here you can see all of an applicant's past reviews as well as their average rating and completions per job category.
+[user profile](https://github.com/AdamTranquilla/hand-on-demand/blob/master/front-end/public/profile.png?raw=true)
+- After accepting an offer users can review the accepted applicant and either mark the job as completed or repost the job. Reposting a job brings back any pending applications.
+[review helper](https://github.com/AdamTranquilla/hand-on-demand/blob/master/front-end/public/review.png?raw=true)
 
 ## Stack
 
@@ -50,8 +58,7 @@ CHOKIDAR_USEPOLLING=false
 On back-end:
 
 1. Run a the development server with `npm start` in the Host environment.
-2. Then either Make a `GET` request to `/api/debug/reset` with `http://localhost:8001/api/debug/reset`, or seed driectly in psql with
-
+2. Then either Make a `GET` request to `/api/debug/reset` with `http://localhost:8001/api/debug/reset`, or seed directly in psql with
 ```psql
 \i src/db/schema/create.sql
 \i src/db/schema/development.sql
