@@ -373,7 +373,7 @@ INSERT INTO messages (user_id, offer_id, message, timestamp)
 VALUES (
     2,
     1,
-    'User sent an offer: $10',
+    'BobTheBuilder sent an offer: $10',
     '2021-02-17T09:14:39.223Z'
   ),
   (
@@ -391,7 +391,7 @@ VALUES (
   (
     1,
     15,
-    'User sent an offer: $2000',
+    'Mrs.Doubtfire sent an offer: $2000',
     '2021-02-20T09:15:39.223Z'
   ),
   (
@@ -409,7 +409,7 @@ VALUES (
   (
     2,
     7,
-    'User sent an offer: $2000',
+    'BobTheBuilder sent an offer: $2000',
     '2021-02-20T09:15:39.223Z'
   );
 INSERT INTO reviews (helper_id, job_id, stars, details, timestamp)
