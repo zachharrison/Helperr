@@ -2,6 +2,15 @@
 
 Hand on Demand is an a full stack application using React, Express, PSQL and the google maps API. Users can create, read, update, and delete jobs. When a new job is created a pin will be dropped on the map, and other users can apply to any job and hop over into the chat to arrange all of the details. When searching for a job users can also filter through all of the job listings based on location as well as the jobs category.
 
+### Posting a job
+![Post](/front-end/public/post-job.gif)
+
+### Filtering jobs
+![Filtering](/front-end/public/filter-jobs.gif)
+
+### Chat with other users
+![Chat](/front-end/public/chat.gif)
+
 ## Stack
 
 ### Frontend:
