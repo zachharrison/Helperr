@@ -1,15 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&family=Merriweather:wght@300&family=RocknRoll+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,700;1,600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&family=Merriweather:wght@300&family=RocknRoll+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,700;1,600&display=swap');
 html {
   box-sizing: border-box;
   margin: 0;
 }
 
 body {
-  /* font-family: "RocknRoll One", sans-serif !important; */
-  font-family: "Merriweather", serif !important;
-  /* font-family: "Josefin Sans", sans-serif; */
-  /* overflow: scroll; */
+  font-family: 'Merriweather', serif !important;
   overflow: hidden;
   margin: 0;
   height: 100vh;

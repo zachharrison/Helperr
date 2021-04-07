@@ -80,17 +80,11 @@ span {
 }
 
 .bottom-nav {
-  /* display: flex;
-  align-content: flex-end;
-  justify-content: center; */
   width: 100px;
   background-color: #0a3a79;
   position: absolute;
-  /* top: 85px; */
   bottom: 0;
   cursor: pointer;
-  /* box-shadow: 2px -1px 2px 0px rgba(210, 105, 30, 1),
-    0px -2px 2px 0px rgba(210, 105, 30, 1); */
   border-radius: 8px 0px 0px 0px;
   transition: 0.2s;
   z-index: 10;
@@ -100,24 +94,17 @@ span {
 }
 
 .bottom-nav:hover {
-  /* background-color: rgb(153, 185, 218); */
   background-color: #0a3a79;
   width: 150px;
-  /* box-shadow: 0px -3px 5px 0px rgba(153, 185, 218, 1),
-    0px -5px 5px 0px rgb(115, 123, 133); */
   box-shadow: -2px -1px 2px 4px rgba(10, 58, 121, 1);
-  /* 0px -2px 2px 0px rgba(210, 105, 30, 1); */
   transition: 0.2s;
 }
 
 .bottom-nav-back {
   background-color: #0a3a79;
   position: absolute;
-  /* top: 85px; */
   bottom: 0;
   cursor: pointer;
-  /* box-shadow: 2px -1px 2px 0px rgba(210, 105, 30, 1),
-    0px -2px 2px 0px rgba(210, 105, 30, 1); */
   border-radius: 8px 0px 0px 0px;
   transition: 0.2s;
   z-index: 10;
@@ -143,7 +130,7 @@ span {
   color: #fff;
   font-size: 24px;
   font-weight: bold;
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   padding: 18px;
   -webkit-transition: -webkit-transform 0.8s ease-in-out;
   transition: transform 0.8s ease-in-out;
@@ -152,22 +139,6 @@ span {
 .x-icon:hover {
   transform: rotate(180deg);
 }
-
-/* @keyframes x-rotate {
-  0% {
-  }
-} */
-
-/* img {
-  border-radius: 50%;
-  -webkit-transition: -webkit-transform 0.8s ease-in-out;
-          transition: transform 0.8s ease-in-out;
-}
-
-img:hover {
-  -webkit-transform: rotate(360deg);
-          transform: rotate(360deg);
-} */
 
 .messenger {
   display: grid;
@@ -223,7 +194,7 @@ body {
 }
 
 .yours .message.last:before {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 0;
   bottom: 0;
@@ -234,7 +205,7 @@ body {
   border-bottom-right-radius: 15px;
 }
 .yours .message.last:after {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 0;
   bottom: 0;
@@ -259,7 +230,7 @@ body {
 }
 
 .mine .message.last:before {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 0;
   bottom: 0;
@@ -272,7 +243,7 @@ body {
 }
 
 .mine .message.last:after {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 1;
   bottom: 0;
@@ -289,8 +260,3 @@ body {
   align-items: center;
   overflow: scroll;
 }
-
-/* .message-list {
-  padding-bottom: 100px;
-  margin-bottom: 100px;
-} */
